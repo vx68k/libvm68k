@@ -1,0 +1,4 @@
+[patterns]
+
+# The default is native.  DO NOT put any patterns below the next line.
+** = native

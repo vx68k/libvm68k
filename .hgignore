@@ -1,0 +1,13 @@
+syntax: glob
+
+# RAD Studio local files
+*.local
+
+# Common binary directories
+.libs/
+Debug/
+Release/
+
+# Common backup files
+*~
+

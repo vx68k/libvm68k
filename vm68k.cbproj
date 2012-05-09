@@ -23,9 +23,9 @@
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
 			<BCC_PCHUsage>None</BCC_PCHUsage>
-			<ILINK_LibraryPath>bits\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+			<ILINK_LibraryPath>config\win32\;src\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
 			<LinkPackageStatics>rtl.lib;vcl.lib</LinkPackageStatics>
-			<IncludePath>bits\;$(IncludePath)</IncludePath>
+			<IncludePath>config\win32\;src\;$(IncludePath)</IncludePath>
 			<OutputExt>dll</OutputExt>
 			<Multithreaded>true</Multithreaded>
 			<PackageImports>vcl.bpi;rtl.bpi;bcbie.bpi;vclx.bpi;vclactnband.bpi;xmlrtl.bpi;bcbsmp.bpi;svnui.bpi;svn.bpi;bdertl.bpi;TeeUI.bpi;TeeDB.bpi;Tee.bpi;vclimg.bpi;vcldb.bpi;dbrtl.bpi;vcldbx.bpi;vcltouch.bpi;dsnap.bpi;dsnapcon.bpi;adortl.bpi;IndyCore.bpi;IndySystem.bpi;IndyProtocols.bpi;vclie.bpi;inet.bpi;inetdb.bpi;webdsnap.bpi;websnap.bpi;inetdbbde.bpi;inetdbxpress.bpi;soaprtl.bpi;DbxCommonDriver.bpi;DBXInterBaseDriver.bpi;DBXMySQLDriver.bpi;dbexpress.bpi;dbxcds.bpi;DbxClientDriver.bpi;AzureCloud.bpi</PackageImports>
@@ -66,11 +66,17 @@
 			<TASM_Debugging>None</TASM_Debugging>
 		</PropertyGroup>
 		<ItemGroup>
-			<CppCompile Include="bits\win32dll.cpp">
-				<BuildOrder>0</BuildOrder>
-			</CppCompile>
+			<None Include="config\win32\vm68kint.h">
+				<BuildOrder>4</BuildOrder>
+			</None>
 			<None Include="ModelSupport_vm68k\default.txaPackage"/>
 			<None Include="ModelSupport_vm68k\default.txvpck"/>
+			<None Include="src\vm68kdef.h">
+				<BuildOrder>3</BuildOrder>
+			</None>
+			<CppCompile Include="src\win32dll.cpp">
+				<BuildOrder>4</BuildOrder>
+			</CppCompile>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>

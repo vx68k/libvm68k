@@ -22,18 +22,20 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
+			<BCC_PCHUsage>None</BCC_PCHUsage>
+			<ILINK_LibraryPath>bits\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+			<LinkPackageStatics>rtl.lib;vcl.lib</LinkPackageStatics>
+			<IncludePath>bits\;$(IncludePath)</IncludePath>
+			<OutputExt>dll</OutputExt>
 			<Multithreaded>true</Multithreaded>
-			<ILINK_LibraryPath>vx68k\libvm68k\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
 			<PackageImports>vcl.bpi;rtl.bpi;bcbie.bpi;vclx.bpi;vclactnband.bpi;xmlrtl.bpi;bcbsmp.bpi;svnui.bpi;svn.bpi;bdertl.bpi;TeeUI.bpi;TeeDB.bpi;Tee.bpi;vclimg.bpi;vcldb.bpi;dbrtl.bpi;vcldbx.bpi;vcltouch.bpi;dsnap.bpi;dsnapcon.bpi;adortl.bpi;IndyCore.bpi;IndySystem.bpi;IndyProtocols.bpi;vclie.bpi;inet.bpi;inetdb.bpi;webdsnap.bpi;websnap.bpi;inetdbbde.bpi;inetdbxpress.bpi;soaprtl.bpi;DbxCommonDriver.bpi;DBXInterBaseDriver.bpi;DBXMySQLDriver.bpi;dbexpress.bpi;dbxcds.bpi;DbxClientDriver.bpi;AzureCloud.bpi</PackageImports>
 			<NoVCL>true</NoVCL>
 			<ProjectType>VCppStyleDll</ProjectType>
-			<IncludePath>vx68k\libvm68k\;$(IncludePath)</IncludePath>
 			<AllPackageLibs>rtl.lib;vcl.lib</AllPackageLibs>
-			<_TCHARMapping>char</_TCHARMapping>
+			<_TCHARMapping>wchar_t</_TCHARMapping>
 			<ILINK_GenerateImportLibrary>true</ILINK_GenerateImportLibrary>
 			<DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE</DCC_UnitAlias>
-			<DynamicRTL>true</DynamicRTL>
 			<IntermediateOutputDir>.\$(Config)\$(Platform)</IntermediateOutputDir>
 			<FinalOutputDir>.\$(Config)\$(Platform)</FinalOutputDir>
 			<BCC_wpar>false</BCC_wpar>
@@ -64,9 +66,11 @@
 			<TASM_Debugging>None</TASM_Debugging>
 		</PropertyGroup>
 		<ItemGroup>
-			<CppCompile Include="win32dll.cpp">
+			<CppCompile Include="bits\win32dll.cpp">
 				<BuildOrder>0</BuildOrder>
 			</CppCompile>
+			<None Include="ModelSupport_vm68k\default.txaPackage"/>
+			<None Include="ModelSupport_vm68k\default.txvpck"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>
@@ -122,6 +126,7 @@
 				<Platforms>
 					<Platform value="Win32">True</Platform>
 				</Platforms>
+				<ModelSupport>True</ModelSupport>
 			</BorlandProject>
 			<ProjectFileVersion>12</ProjectFileVersion>
 		</ProjectExtensions>

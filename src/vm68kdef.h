@@ -6,9 +6,17 @@
 
 #include <vm68kint.h>
 
+#ifndef VM68K_EXPORT
+#if _WIN32
+#define VM68K_EXPORT __declspec(dllimport)
+#else
+#define VM68K_EXPORT
+#endif
+#endif /* !defined VM68K_EXPORT */
+
 namespace vm68k
 {
-    class byte
+    class VM68K_EXPORT byte
     {
     public:
         typedef int_least8_t int_type;
@@ -17,7 +25,7 @@ namespace vm68k
         uint_least8_t value;
     };
 
-    class word
+    class VM68K_EXPORT word
     {
     public:
         typedef int_least16_t int_type;
@@ -26,7 +34,7 @@ namespace vm68k
         uint_least16_t value;
     };
 
-    class long_word
+    class VM68K_EXPORT long_word
     {
     public:
         typedef int_least32_t int_type;

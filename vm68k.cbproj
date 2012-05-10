@@ -22,6 +22,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
+			<BCC_Defines>VM68K_EXPORT=__declspec(dllexport);$(BCC_Defines)</BCC_Defines>
 			<BCC_PCHUsage>None</BCC_PCHUsage>
 			<ILINK_LibraryPath>config\win32\;config\;src\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
 			<LinkPackageStatics>rtl.lib;vcl.lib</LinkPackageStatics>

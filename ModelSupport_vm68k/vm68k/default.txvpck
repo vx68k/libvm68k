@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <view uin="z5pgg81lbhp_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.long_word">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="10,10,100,116" />
+      <reference referencedUin="cpp:e_field:src:vm68k:vm68k.long_word.value" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.long_word.uint_least32_t" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.long_word.int_least32_t" />
+    </reference>
+    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.byte">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="120,10,93,116" />
+      <reference referencedUin="cpp:e_field:src:vm68k:vm68k.byte.value" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.byte.uint_least8_t" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.byte.int_least8_t" />
+    </reference>
+    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.word">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="223,10,100,116" />
+      <reference referencedUin="cpp:e_field:src:vm68k:vm68k.word.value" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.word.uint_least16_t" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.word.int_least16_t" />
+    </reference>
+  </view>
+</nodeSet>

@@ -22,6 +22,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
+			<BCC_InstructionSet>5</BCC_InstructionSet>
 			<BCC_Defines>VM68K_EXPORT=__declspec(dllexport);$(BCC_Defines)</BCC_Defines>
 			<BCC_PCHUsage>None</BCC_PCHUsage>
 			<ILINK_LibraryPath>config\win32\;config\;src\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
@@ -68,10 +69,10 @@
 		</PropertyGroup>
 		<ItemGroup>
 			<None Include="config\vm68kint_boost.h">
-				<BuildOrder>7</BuildOrder>
+				<BuildOrder>9</BuildOrder>
 			</None>
 			<None Include="config\vm68kint_classic.h">
-				<BuildOrder>5</BuildOrder>
+				<BuildOrder>8</BuildOrder>
 			</None>
 			<None Include="config\win32\vm68kint.h">
 				<BuildOrder>4</BuildOrder>

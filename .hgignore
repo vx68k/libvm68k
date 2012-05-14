@@ -1,7 +1,10 @@
 syntax: glob
 
-# RAD Studio local files
+# RAD Studio files and directories
 *.local
+*.dsk
+*.~*
+LibrarySupport/
 
 # Common binary directories
 .libs/

@@ -77,27 +77,27 @@ namespace vm68k
         int_type value;
 
     public:
-        static std::size_t size() throw()
+        static std::size_t size()
         {
             return Size;
         }
 
-        static int_fast_type int_min() throw()
+        static int_fast_type int_min()
         {
             return int_fast_type(-1) << (size() * 8 - 1);
         }
 
-        static int_fast_type int_max() throw()
+        static int_fast_type int_max()
         {
             return (int_fast_type(1) << (size() * 8 - 1)) - 1;
         }
 
-        static uint_fast_type uint_max() throw()
+        static uint_fast_type uint_max()
         {
             return (uint_fast_type(1) << (size() * 8)) - 1;
         }
 
-        static int_fast_type to_int_type(uint_fast_type x) throw()
+        static int_fast_type to_int_type(uint_fast_type x)
         {
             x &= uint_max();
             if (x > int_max())
@@ -108,19 +108,19 @@ namespace vm68k
         /**
          * <stereotype>constructor</stereotype>
          */
-        data() throw()
+        data()
         {
         }
 
         /**
          * <stereotype>constructor</stereotype>
          */
-        data(uint_fast_type x) throw()
+        data(uint_fast_type x)
         {
             value = to_int_type(x);
         }
 
-        operator int_fast_type() const throw()
+        operator int_fast_type() const
         {
             return value;
         }

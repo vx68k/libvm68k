@@ -20,6 +20,7 @@
 #define vm68kdefH
 
 #include <vm68kint.h>
+#include <cstddef>
 
 #ifndef VM68K_EXPORT
 #if _WIN32
@@ -31,117 +32,103 @@
 
 namespace vm68k
 {
-    class VM68K_EXPORT byte
+    template<std::size_t Size>
+    struct size_traits;
+
+    template<>
+    struct size_traits<1U>
     {
-    public:
         typedef int_least8_t int_type;
         typedef uint_least8_t uint_type;
-
-        /**
-         * <stereotype>constructor</stereotype>
-         */
-        byte();
-
-        /**
-         * <stereotype>constructor</stereotype>
-         */
-        byte(uint_fast8_t x);
-
-        operator int_fast8_t() const ;
-
-    private:
-        uint_least8_t value;
+        typedef int_fast8_t int_fast_type;
+        typedef uint_fast8_t uint_fast_type;
     };
 
-    class VM68K_EXPORT word
+    template<>
+    struct size_traits<2U>
     {
-    public:
         typedef int_least16_t int_type;
         typedef uint_least16_t uint_type;
-
-        /**
-         * <stereotype>constructor</stereotype>
-         */
-        word();
-
-        /**
-         * <stereotype>constructor</stereotype>
-         */
-        word(uint_fast16_t x);
-
-        operator int_fast16_t() const;
-
-    private:
-        uint_least16_t value;
+        typedef int_fast16_t int_fast_type;
+        typedef uint_fast16_t uint_fast_type;
     };
 
-    class VM68K_EXPORT long_word
+    template<>
+    struct size_traits<4U>
     {
-    public:
         typedef int_least32_t int_type;
         typedef uint_least32_t uint_type;
-
-        /**
-         * <stereotype>constructor</stereotype>
-         */
-        long_word();
-
-        /**
-         * <stereotype>constructor</stereotype>
-         */
-        long_word(uint_fast32_t x);
-
-        operator int_fast32_t() const;
-
-    private:
-        uint_least32_t value;
+        typedef int_fast32_t int_fast_type;
+        typedef uint_fast32_t uint_fast_type;
     };
 
-    typedef long_word lword;
-
-    /* Inline implementations.  */
-
-    inline byte::byte()
+    template<std::size_t Size, class Traits = size_traits<Size> >
+    class data
     {
-    }
+    public:
+        typedef Traits traits_type;
 
-    inline byte::byte(uint_fast8_t x)
-    {
-        value = x & 0xff;
-    }
+        typedef typename Traits::int_type int_type;
+        typedef typename Traits::uint_type uint_type;
+        typedef typename Traits::int_fast_type int_fast_type;
+        typedef typename Traits::uint_fast_type uint_fast_type;
 
-    inline byte::operator int_fast8_t() const
-    {
-        return value;
-    }
+    private:
+        int_type value;
 
-    inline word::word()
-    {
-    }
+    public:
+        static std::size_t size() throw()
+        {
+            return Size;
+        }
 
-    inline word::word(uint_fast16_t x)
-    {
-        value = x & 0xffff;
-    }
+        static int_fast_type int_min() throw()
+        {
+            return int_fast_type(-1) << (size() * 8 - 1);
+        }
 
-    inline word::operator int_fast16_t() const
-    {
-        return value;
-    }
+        static int_fast_type int_max() throw()
+        {
+            return (int_fast_type(1) << (size() * 8 - 1)) - 1;
+        }
 
-    inline long_word::long_word()
-    {
-    }
+        static uint_fast_type uint_max() throw()
+        {
+            return (uint_fast_type(1) << (size() * 8)) - 1;
+        }
 
-    inline long_word::long_word(uint_fast32_t x)
-    {
-        value = x;
-    }
+        static int_fast_type to_int_type(uint_fast_type x) throw()
+        {
+            x &= uint_max();
+            if (x > int_max())
+                x -= uint_fast_type(1) << (size() * 8);
+            return int_fast_type(x);
+        }
 
-    inline long_word::operator int_fast32_t() const
-    {
-        return value;
-    }
+        /**
+         * <stereotype>constructor</stereotype>
+         */
+        data() throw()
+        {
+        }
+
+        /**
+         * <stereotype>constructor</stereotype>
+         */
+        data(uint_fast_type x) throw()
+        {
+            value = to_int_type(x);
+        }
+
+        operator int_fast_type() const throw()
+        {
+            return value;
+        }
+    };
+
+    typedef data<1U> byte;
+    typedef data<2U> word;
+    typedef data<4U> long_word;
 }
 
 #endif

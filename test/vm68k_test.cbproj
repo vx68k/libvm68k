@@ -23,6 +23,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
+			<IncludePath>..\config\win32;..\config;..\src;$(IncludePath)</IncludePath>
 			<OutputExt>exe</OutputExt>
 			<DCC_UnitSearchPath>$(BDS)\Source\DUnit\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<LinkPackageImports>rtl.bpi;vcl.bpi</LinkPackageImports>
@@ -33,12 +34,11 @@
 			<PackageImports>vcl.bpi;rtl.bpi;bcbie.bpi;vclx.bpi;vclactnband.bpi;xmlrtl.bpi;bcbsmp.bpi;svnui.bpi;svn.bpi;bdertl.bpi;TeeUI.bpi;TeeDB.bpi;Tee.bpi;vclimg.bpi;vcldb.bpi;dbrtl.bpi;vcldbx.bpi;vcltouch.bpi;dsnap.bpi;dsnapcon.bpi;adortl.bpi;IndyCore.bpi;IndySystem.bpi;IndyProtocols.bpi;vclie.bpi;inet.bpi;inetdb.bpi;webdsnap.bpi;websnap.bpi;inetdbbde.bpi;inetdbxpress.bpi;soaprtl.bpi;DbxCommonDriver.bpi;DBXInterBaseDriver.bpi;DBXMySQLDriver.bpi;dbexpress.bpi;dbxcds.bpi;DbxClientDriver.bpi;AzureCloud.bpi</PackageImports>
 			<DCC_DcuOutput>.</DCC_DcuOutput>
 			<AllPackageLibs>rtl.lib;vcl.lib</AllPackageLibs>
-			<ILINK_LibraryPath>$(BDSLIB)\$(PLATFORM)\debug;$(BDS)\source\dUnit\src;$(ILINK_LibraryPath)</ILINK_LibraryPath>
 			<DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE</DCC_UnitAlias>
 			<UsePackages>true</UsePackages>
 			<IntermediateOutputDir>.\$(Config)\$(Platform)</IntermediateOutputDir>
-			<FinalOutputDir>.\$(Config)\$(Platform)</FinalOutputDir>
+			<FinalOutputDir>..\$(Config)\$(Platform)</FinalOutputDir>
 			<BCC_wpar>false</BCC_wpar>
 			<BCC_OptimizeForSpeed>true</BCC_OptimizeForSpeed>
 			<BCC_ExtendedErrorInfo>true</BCC_ExtendedErrorInfo>
@@ -66,6 +66,10 @@
 			<TASM_Debugging>None</TASM_Debugging>
 		</PropertyGroup>
 		<ItemGroup>
+			<CppCompile Include="Test_vm68kdef.cpp">
+				<DependentOn>Test_vm68kdef.h</DependentOn>
+				<BuildOrder>1</BuildOrder>
+			</CppCompile>
 			<CppCompile Include="vm68k_test.cpp">
 				<BuildOrder>0</BuildOrder>
 			</CppCompile>

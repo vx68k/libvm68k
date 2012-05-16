@@ -4,45 +4,54 @@
     <property name="$defaultDiagram" value="true" />
     <property name="$metaclass" value="Package Diagram" />
     <property name="$name" value="default" />
-    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.byte">
+    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;4&gt;">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="10,10,143,103" />
-      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.byte.byte()" />
-      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.byte.int_least8_t">
-        <property name="$hidden" value="True" />
-      </reference>
-      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.byte.uint_least8_t">
-        <property name="$hidden" value="True" />
-      </reference>
-      <reference referencedUin="cpp:e_field:src:vm68k:vm68k.byte.value" />
+      <property name="$hidden" value="True" />
+      <property name="bounds" value="382,10,95,83" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;4&gt;.uint_least32_t" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;4&gt;.int_least32_t" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;4&gt;.int_fast32_t" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;4&gt;.uint_fast32_t" />
     </reference>
-    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.long_word">
+    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;Size&gt;">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="10,123,177,103" />
-      <reference referencedUin="cpp:e_field:src:vm68k:vm68k.long_word.value" />
-      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.long_word.uint_least32_t">
-        <property name="$hidden" value="True" />
-      </reference>
-      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.long_word.int_least32_t">
-        <property name="$hidden" value="True" />
-      </reference>
-      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.long_word.long_word()" />
+      <property name="bounds" value="382,10,113,72" />
     </reference>
-    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.lword">
+    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.data&lt;Size,Traits&gt;">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="197,123,62,36" />
+      <property name="bounds" value="10,10,362,289" />
+      <reference referencedUin="cpp:e_field:src:vm68k:vm68k.data&lt;Size,Traits&gt;.value" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.data&lt;Size,Traits&gt;.data(::vm68k::data&lt;Size,Traits&gt;::Traits::uint_fast_type)" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.data&lt;Size,Traits&gt;.data()" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.data&lt;Size,Traits&gt;.uint_max()" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.data&lt;Size,Traits&gt;.int_max()" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.data&lt;Size,Traits&gt;.int_min()" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.data&lt;Size,Traits&gt;.size()" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.data&lt;Size,Traits&gt;.uint_type" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.data&lt;Size,Traits&gt;.int_type" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.data&lt;Size,Traits&gt;.traits_type" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.data&lt;Size,Traits&gt;.int_fast_type()" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.data&lt;Size,Traits&gt;.uint_fast_type" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.data&lt;Size,Traits&gt;.int_fast_type" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.data&lt;Size,Traits&gt;.to_int_type(::vm68k::data&lt;Size,Traits&gt;::Traits::uint_fast_type)" />
     </reference>
-    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.word">
+    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;2&gt;">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="163,10,146,103" />
-      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.word.word()" />
-      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.word.uint_least16_t">
-        <property name="$hidden" value="True" />
-      </reference>
-      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.word.int_least16_t">
-        <property name="$hidden" value="True" />
-      </reference>
-      <reference referencedUin="cpp:e_field:src:vm68k:vm68k.word.value" />
+      <property name="$hidden" value="True" />
+      <property name="bounds" value="10,294,95,83" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;2&gt;.uint_least16_t" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;2&gt;.int_least16_t" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;2&gt;.int_fast16_t" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;2&gt;.uint_fast16_t" />
+    </reference>
+    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;1&gt;">
+      <property name="$shortcutReference" value="true" />
+      <property name="$hidden" value="True" />
+      <property name="bounds" value="120,294,95,83" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;1&gt;.uint_least8_t" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;1&gt;.int_least8_t" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;1&gt;.int_fast8_t" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;1&gt;.uint_fast8_t" />
     </reference>
   </view>
 </nodeSet>

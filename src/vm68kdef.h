@@ -20,7 +20,6 @@
 #define vm68kdefH
 
 #include <vm68kint.h>
-#include <cstddef>
 
 #ifndef VM68K_EXPORT
 #if _WIN32
@@ -32,76 +31,106 @@
 
 namespace vm68k
 {
-    template<std::size_t Size>
+    template<unsigned int Size>
     struct size_traits;
 
     template<>
     struct size_traits<1U>
     {
-        typedef int_least8_t int_type;
+        typedef int_least8_t  int_type;
         typedef uint_least8_t uint_type;
-        typedef int_fast8_t int_fast_type;
-        typedef uint_fast8_t uint_fast_type;
+        typedef int_fast8_t   int_fast_type;
+        typedef uint_fast8_t  uint_fast_type;
+
+        static int_fast_type int_min()
+        {
+            return -0x80;
+        }
+
+        static int_fast_type int_max()
+        {
+            return 0x7f;
+        }
+
+        static uint_fast_type uint_max()
+        {
+            return 0xffU;
+        }
     };
 
     template<>
     struct size_traits<2U>
     {
-        typedef int_least16_t int_type;
+        typedef int_least16_t  int_type;
         typedef uint_least16_t uint_type;
-        typedef int_fast16_t int_fast_type;
-        typedef uint_fast16_t uint_fast_type;
+        typedef int_fast16_t   int_fast_type;
+        typedef uint_fast16_t  uint_fast_type;
+
+        static int_fast_type int_min()
+        {
+            return -0x8000;
+        }
+
+        static int_fast_type int_max()
+        {
+            return 0x7fff;
+        }
+
+        static uint_fast_type uint_max()
+        {
+            return 0xffffU;
+        }
     };
 
     template<>
     struct size_traits<4U>
     {
-        typedef int_least32_t int_type;
+        typedef int_least32_t  int_type;
         typedef uint_least32_t uint_type;
-        typedef int_fast32_t int_fast_type;
-        typedef uint_fast32_t uint_fast_type;
+        typedef int_fast32_t   int_fast_type;
+        typedef uint_fast32_t  uint_fast_type;
+
+        static int_fast_type int_min()
+        {
+            return -0x80000000L;
+        }
+
+        static int_fast_type int_max()
+        {
+            return 0x7fffffffL;
+        }
+
+        static uint_fast_type uint_max()
+        {
+            return 0xffffffffUL;
+        }
     };
 
-    template<std::size_t Size, class Traits = size_traits<Size> >
+    template<unsigned int Size, class Traits = size_traits<Size> >
     class data
     {
     public:
         typedef Traits traits_type;
 
-        typedef typename Traits::int_type int_type;
-        typedef typename Traits::uint_type uint_type;
-        typedef typename Traits::int_fast_type int_fast_type;
+        typedef typename Traits::int_type       int_type;
+        typedef typename Traits::uint_type      uint_type;
+        typedef typename Traits::int_fast_type  int_fast_type;
         typedef typename Traits::uint_fast_type uint_fast_type;
 
     private:
         int_type value;
 
     public:
-        static std::size_t size()
+        static unsigned int size()
         {
             return Size;
         }
 
-        static int_fast_type int_min()
-        {
-            return int_fast_type(-1) << (size() * 8 - 1);
-        }
-
-        static int_fast_type int_max()
-        {
-            return (int_fast_type(1) << (size() * 8 - 1)) - 1;
-        }
-
-        static uint_fast_type uint_max()
-        {
-            return (uint_fast_type(1) << (size() * 8)) - 1;
-        }
-
         static int_fast_type to_int_type(uint_fast_type x)
         {
-            x &= uint_max();
-            if (x > int_max())
-                x -= uint_fast_type(1) << (size() * 8);
+            x &= traits_type::uint_max();
+            if (x > traits_type::int_max())
+                x -= traits_type::uint_max() + 1;
             return int_fast_type(x);
         }
 

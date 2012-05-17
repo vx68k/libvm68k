@@ -64,9 +64,9 @@ void __fastcall TTest_byte::TestStatic()
 {
     using vm68k:: byte;
     CheckEquals(1U, byte::size(), "byte::size()");
-    CheckEquals(-0x80, byte::int_min(), "byte::int_min()");
-    CheckEquals(0x7f, byte::int_max(), "byte::int_max()");
-    CheckEquals(0xff, byte::uint_max(), "byte::uint_max()");
+    CheckEquals(-0x80, byte::traits_type::int_min(), "byte::int_min()");
+    CheckEquals(0x7f, byte::traits_type::int_max(), "byte::int_max()");
+    CheckEquals(0xff, byte::traits_type::uint_max(), "byte::uint_max()");
 }
 
 void __fastcall TTest_byte::TestBasic()
@@ -90,9 +90,9 @@ void __fastcall TTest_word::TearDown()
 void __fastcall TTest_word::TestStatic()
 {
     CheckEquals(2U, word::size(), "word::size()");
-    CheckEquals(-0x8000, word::int_min(), "word::int_min()");
-    CheckEquals(0x7fff, word::int_max(), "word::int_max()");
-    CheckEquals(0xffff, word::uint_max(), "word::uint_max()");
+    CheckEquals(-0x8000, word::traits_type::int_min(), "word::int_min()");
+    CheckEquals(0x7fff, word::traits_type::int_max(), "word::int_max()");
+    CheckEquals(0xffff, word::traits_type::uint_max(), "word::uint_max()");
 }
 
 void __fastcall TTest_word::TestBasic()
@@ -115,9 +115,9 @@ void __fastcall TTest_long_word::TearDown()
 void __fastcall TTest_long_word::TestStatic()
 {
     CheckEquals(4U, long_word::size(), "long_word::size()");
-    CheckEquals(-0x80000000L, long_word::int_min(), "long_word::int_min()");
-    CheckEquals(0x7fffffffL, long_word::int_max(), "long_word::int_max()");
-    CheckEquals(0xffffffffU, long_word::uint_max(), "long_word::uint_max()");
+    CheckEquals(-0x80000000L, long_word::traits_type::int_min(), "long_word::int_min()");
+    CheckEquals(0x7fffffffL, long_word::traits_type::int_max(), "long_word::int_max()");
+    CheckEquals(0xffffffffU, long_word::traits_type::uint_max(), "long_word::uint_max()");
 }
 
 void __fastcall TTest_long_word::TestBasic()

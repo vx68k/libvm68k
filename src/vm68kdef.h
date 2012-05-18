@@ -29,6 +29,10 @@
 #endif
 #endif /* !defined VM68K_EXPORT */
 
+#if _WIN32
+#pragma comment(lib, "vm68k.lib")
+#endif
+
 namespace vm68k
 {
     template<unsigned int Size>

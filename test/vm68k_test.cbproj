@@ -23,6 +23,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
+			<ILINK_LibraryPath>..\$(Config)\$(Platform);$(ILINK_LibraryPath)</ILINK_LibraryPath>
 			<IncludePath>..\config\win32;..\config;..\src;$(IncludePath)</IncludePath>
 			<OutputExt>exe</OutputExt>
 			<DCC_UnitSearchPath>$(BDS)\Source\DUnit\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>

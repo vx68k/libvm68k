@@ -1,6 +1,8 @@
 #include <System.hpp>
 #pragma hdrstop
 
+#include "Test_vm68kdef.h"
+
 #include <vm68kdef.h>
 #include <TestFramework.hpp>
 

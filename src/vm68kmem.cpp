@@ -21,3 +21,11 @@
 #include "vm68kmem.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
+
+vm68k::device::~device()
+{
+}
+
+vm68k::memory_map::~memory_map()
+{
+}

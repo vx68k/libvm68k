@@ -18,8 +18,56 @@
 
 #ifndef vm68kmemH
 #define vm68kmemH
-//---------------------------------------------------------------------------
 
 #include <vm68kdef.h>
 
+#if _WIN32
+#pragma comment(lib, "vm68k.lib")
 #endif
+
+namespace vm68k
+{
+    /**
+     * <author>Kaz Sasa</author>
+     * <since>2.0</since>
+     */
+    class VM68K_EXPORT device
+    {
+    protected:
+        /**
+         * <stereotype>constructor</stereotype>
+         */
+        device()
+        {
+        }
+
+    public:
+        /**
+         * <stereotype>destructor</stereotype>
+         */
+        virtual ~device();
+    };
+
+    /**
+     * <author>Kaz Sasa</author>
+     * <since>2.0</since>
+     */
+    class VM68K_EXPORT memory_map
+    {
+    protected:
+        /**
+         * <stereotype>constructor</stereotype>
+         */
+        memory_map()
+        {
+        }
+
+    public:
+        /**
+         * <stereotype>destructor</stereotype>
+         */
+        virtual ~memory_map();
+    };
+}
+
+#endif /* once */

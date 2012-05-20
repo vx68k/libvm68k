@@ -126,12 +126,12 @@ namespace vm68k
             return Size;
         }
 
-        static int_fast_type to_int_type(uint_fast_type x)
+        static int_type to_int_type(uint_type x)
         {
             x &= traits_type::uint_max();
             if (x > traits_type::int_max())
                 x -= traits_type::uint_max() + 1;
-            return int_fast_type(x);
+            return int_type(x);
         }
 
         /**
@@ -144,12 +144,12 @@ namespace vm68k
         /**
          * <stereotype>constructor</stereotype>
          */
-        data(uint_fast_type x)
+        data(uint_type x)
         {
             value = to_int_type(x);
         }
 
-        operator int_fast_type() const
+        operator int_type() const
         {
             return value;
         }

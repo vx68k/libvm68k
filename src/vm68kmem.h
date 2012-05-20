@@ -54,7 +54,7 @@ namespace vm68k
      */
     class VM68K_EXPORT memory_map
     {
-    protected:
+    public:
         /**
          * <stereotype>constructor</stereotype>
          */
@@ -62,7 +62,6 @@ namespace vm68k
         {
         }
 
-    public:
         /**
          * <stereotype>destructor</stereotype>
          */

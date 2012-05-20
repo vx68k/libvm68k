@@ -71,6 +71,10 @@
 				<DependentOn>Test_vm68kdef.h</DependentOn>
 				<BuildOrder>1</BuildOrder>
 			</CppCompile>
+			<CppCompile Include="Test_vm68kmem.cpp">
+				<DependentOn>Test_vm68kmem.h</DependentOn>
+				<BuildOrder>2</BuildOrder>
+			</CppCompile>
 			<CppCompile Include="vm68k_test.cpp">
 				<BuildOrder>0</BuildOrder>
 			</CppCompile>

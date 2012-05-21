@@ -6,8 +6,13 @@
 #include <vm68kmem.h>
 #include <TestFramework.hpp>
 
+using namespace vm68k;
+
 class TTest_memory_map : public TTestCase
 {
+private:
+    memory_map *obj;
+
 public:
     __fastcall virtual TTest_memory_map(System::String name)
         : TTestCase(name)
@@ -21,10 +26,12 @@ __published:
 
 void __fastcall TTest_memory_map::SetUp()
 {
+    obj = new memory_map();
 }
 
 void __fastcall TTest_memory_map::TearDown()
 {
+    delete obj;
 }
 
 static void registerTests()

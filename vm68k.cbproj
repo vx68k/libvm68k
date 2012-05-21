@@ -74,6 +74,9 @@
 			<None Include="config\vm68kint_classic.h">
 				<BuildOrder>8</BuildOrder>
 			</None>
+			<None Include="config\vm68kint_std11.h">
+				<BuildOrder>10</BuildOrder>
+			</None>
 			<None Include="config\win32\vm68kint.h">
 				<BuildOrder>4</BuildOrder>
 			</None>

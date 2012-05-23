@@ -84,6 +84,7 @@
 			<None Include="ModelSupport_vm68k\default.txvpck"/>
 			<None Include="ModelSupport_vm68k\vm68k\default.txaPackage"/>
 			<None Include="ModelSupport_vm68k\vm68k\default.txvpck"/>
+			<None Include="README"/>
 			<None Include="src\vm68kdef.h">
 				<BuildOrder>3</BuildOrder>
 			</None>

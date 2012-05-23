@@ -1,5 +1,5 @@
 /*
- * Integral type definitions.
+ * Integral types for older systems.
  * Copyright (C) 2012  Kaz Sasa
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,6 +19,12 @@
 #ifndef vm68kint_classicH
 #define vm68kint_classicH 1
 
+#if __cplusplus >= 201103L
+
+#include <vm68kint_std11.h>
+
+#else
+
 namespace vm68k
 {
     typedef signed char    int_least8_t;
@@ -35,5 +41,7 @@ namespace vm68k
     typedef int            int_fast32_t;
     typedef unsigned int   uint_fast32_t;
 }
+
+#endif /* __cplusplus < 201103L */
 
 #endif /* once */

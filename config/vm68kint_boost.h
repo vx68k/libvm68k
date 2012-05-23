@@ -1,5 +1,5 @@
 /*
- * Integral type definitions using Boost.
+ * Integral types based on Boost libraries.
  * Copyright (C) 2012  Kaz Sasa
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,6 +19,12 @@
 #ifndef vm68kint_boostH
 #define vm68kint_boostH 1
 
+#if __cplusplus >= 201103L
+
+#include <vm68kint_std11.h>
+
+#else
+
 #include <boost/cstdint.hpp>
 
 namespace vm68k
@@ -37,5 +43,7 @@ namespace vm68k
     using boost::int_fast32_t;
     using boost::uint_fast32_t;
 }
+
+#endif /* __cplusplus < 201103L */
 
 #endif /* once */

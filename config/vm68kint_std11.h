@@ -1,5 +1,5 @@
 /*
- * Integral type definitions for C++11
+ * Integral types based on ISO/IEC 14882:2011 a.k.a. C++11
  * Copyright (C) 2012  Kaz Sasa
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,6 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+/* TODO: This header is not tested. */
 
 #ifndef vm68kint_std11H
 #define vm68kint_std11H 1

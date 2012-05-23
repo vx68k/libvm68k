@@ -1,5 +1,5 @@
 /*
- * Definitions of integral types based on ISO/IEC TR 19768 a.k.a. C++ TR1
+ * Integral types based on ISO/IEC TR 19768 a.k.a. C++ TR1
  * Copyright (C) 2012  Kaz Sasa
  *
  * This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,12 @@
 #ifndef vm68kint_tr1H
 #define vm68kint_tr1H 1
 
+#if __cplusplus >= 201103L
+
+#include <vm68kint_std11.h>
+
+#else
+
 #include <tr1/cstdint>
 
 namespace vm68k
@@ -39,6 +45,8 @@ namespace vm68k
     using std::tr1::int_fast32_t;
     using std::tr1::uint_fast32_t;
 }
+
+#endif /* __cplusplus < 201103L */
 
 #endif /* once */
 

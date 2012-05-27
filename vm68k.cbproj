@@ -146,7 +146,7 @@
 					</VersionInfoKeys>
 					<ProjectProperties>
 						<ProjectProperties Name="AutoShowDeps">False</ProjectProperties>
-						<ProjectProperties Name="ManagePaths">True</ProjectProperties>
+						<ProjectProperties Name="ManagePaths">False</ProjectProperties>
 						<ProjectProperties Name="VerifyPackages">True</ProjectProperties>
 					</ProjectProperties>
 				</CPlusPlusBuilder.Personality>

@@ -21,7 +21,9 @@ AC_PROG_CXX
 AC_LANG_PUSH([C++])
 AC_CHECK_HEADERS([tr1/cstdint boost/cstdint.hpp],,,
 [// no default includes])
-if test "$ac_cv_header_boost_cstdint_hpp" = yes; then
+if test "$ac_cv_header_tr1_cstdint" = yes; then
+    vm68kint=vm68kint_tr1
+elif test "$ac_cv_header_boost_cstdint_hpp" = yes; then
     vm68kint=vm68kint_boost
 else
     vm68kint=vm68kint_classic

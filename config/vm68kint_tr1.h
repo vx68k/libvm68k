@@ -35,7 +35,7 @@ namespace vm68k
     using std::tr1::uint_least8_t;
     using std::tr1::int_least16_t;
     using std::tr1::uint_least16_t;
-    using std::tr1::tr1::int_least32_t;
+    using std::tr1::int_least32_t;
     using std::tr1::uint_least32_t;
 
     using std::tr1::int_fast8_t;

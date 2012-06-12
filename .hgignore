@@ -2,8 +2,8 @@ syntax: glob
 
 # RAD Studio files and directories
 *.local
+*.tvsconfig
 *.dsk
-*.~*
 LibrarySupport/
 
 # Common binary directories
@@ -11,6 +11,6 @@ LibrarySupport/
 Debug/
 Release/
 
-# Common backup files
+# Backup files
 *~
-
+*.~*

@@ -13,4 +13,4 @@ vm68kinclude_HEADERS = config/vm68kint_std11.h
 noinst_HEADERS = config/vm68kint_tr1.h config/vm68kint_boost.h \
 config/vm68kint_classic.h
 
-EXTRA_DIST = config/win32
+EXTRA_DIST = libvm68k.groupproj vm68k.cbproj ModelSupport_vm68k config/win32

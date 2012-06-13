@@ -11,5 +11,13 @@
       <reference referencedUin="cpp:e_class:src:vm68k:vm68k.long_word" />
       <reference referencedUin="cpp:e_class:src:vm68k:vm68k.byte" />
     </reference>
+    <reference referencedUin="design:view:::nr34mpr4nrg_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="10,10,107,149" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.memory_map" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;1&gt;" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;Size&gt;" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.device" />
+    </reference>
   </view>
 </nodeSet>

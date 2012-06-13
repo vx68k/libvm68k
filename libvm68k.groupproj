@@ -3,11 +3,11 @@
 			<ProjectGuid>{DA43D304-F1F8-4F43-B2DF-C925E7846837}</ProjectGuid>
 		</PropertyGroup>
 		<ItemGroup>
-			<Projects Include="vm68k.cbproj">
+			<Projects Include="src\vm68k.cbproj">
 				<Dependencies/>
 			</Projects>
 			<Projects Include="test\vm68k_test.cbproj">
-				<Dependencies>vm68k.cbproj</Dependencies>
+				<Dependencies>src\vm68k.cbproj</Dependencies>
 			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
@@ -18,13 +18,13 @@
 			</BorlandProject>
 		</ProjectExtensions>
 		<Target Name="vm68k">
-			<MSBuild Projects="vm68k.cbproj"/>
+			<MSBuild Projects="src\vm68k.cbproj"/>
 		</Target>
 		<Target Name="vm68k:Clean">
-			<MSBuild Projects="vm68k.cbproj" Targets="Clean"/>
+			<MSBuild Projects="src\vm68k.cbproj" Targets="Clean"/>
 		</Target>
 		<Target Name="vm68k:Make">
-			<MSBuild Projects="vm68k.cbproj" Targets="Make"/>
+			<MSBuild Projects="src\vm68k.cbproj" Targets="Make"/>
 		</Target>
 		<Target Name="vm68k_test" DependsOnTargets="vm68k">
 			<MSBuild Projects="test\vm68k_test.cbproj"/>

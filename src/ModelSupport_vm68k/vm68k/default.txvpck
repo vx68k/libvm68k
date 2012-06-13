@@ -17,13 +17,13 @@
       <reference referencedUin="cpp:e_method:src:vm68k:vm68k.device.device()" />
     </reference>
     <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;Size&gt;">
-      <property name="$shortcutReference" value="true" />
       <property name="$hidden" value="True" />
-      <property name="bounds" value="225,104,113,72" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="225,104,113,66" />
     </reference>
     <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;1&gt;">
-      <property name="$shortcutReference" value="true" />
       <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
       <property name="bounds" value="106,113,95,85" />
       <reference referencedUin="cpp:e_field:src:vm68k:vm68k.size_traits&lt;1&gt;.int_fast_type" />
       <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;1&gt;.uint_fast8_t" />

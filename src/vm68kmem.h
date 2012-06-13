@@ -21,7 +21,7 @@
 
 #include <vm68kdef.h>
 
-#if _WIN32
+#if _WIN32 && !_VM68K
 #pragma comment(lib, "vm68k.lib")
 #endif
 

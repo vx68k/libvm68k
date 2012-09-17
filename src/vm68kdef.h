@@ -19,7 +19,7 @@
 #ifndef vm68kdefH
 #define vm68kdefH
 
-#include <vm68kint.h>
+#include <bits/vm68kint.h>
 
 #ifndef VM68K_EXPORT
 #if _WIN32

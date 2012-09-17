@@ -68,22 +68,22 @@
 			<TASM_Debugging>None</TASM_Debugging>
 		</PropertyGroup>
 		<ItemGroup>
-			<None Include="..\config\vm68kint_boost.h">
-				<BuildOrder>9</BuildOrder>
+			<None Include="..\config\bits\vm68kint_boost.h">
+				<BuildOrder>15</BuildOrder>
 			</None>
-			<None Include="..\config\vm68kint_classic.h">
-				<BuildOrder>8</BuildOrder>
+			<None Include="..\config\bits\vm68kint_classic.h">
+				<BuildOrder>14</BuildOrder>
 			</None>
-			<None Include="..\config\vm68kint_std11.h">
-				<BuildOrder>10</BuildOrder>
+			<None Include="..\config\bits\vm68kint_tr1.h">
+				<BuildOrder>15</BuildOrder>
 			</None>
-			<None Include="..\config\vm68kint_tr1.h">
-				<BuildOrder>11</BuildOrder>
-			</None>
-			<None Include="..\config\win32\vm68kint.h">
-				<BuildOrder>4</BuildOrder>
+			<None Include="..\config\win32\bits\vm68kint1.h">
+				<BuildOrder>14</BuildOrder>
 			</None>
 			<None Include="..\README"/>
+			<None Include="bits\vm68kint.h">
+				<BuildOrder>13</BuildOrder>
+			</None>
 			<None Include="ModelSupport_vm68k\default.txaPackage"/>
 			<None Include="ModelSupport_vm68k\default.txvpck"/>
 			<None Include="ModelSupport_vm68k\vm68k\default.txaPackage"/>

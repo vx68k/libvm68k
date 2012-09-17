@@ -84,10 +84,10 @@
 			<None Include="bits\vm68kint.h">
 				<BuildOrder>13</BuildOrder>
 			</None>
-			<None Include="ModelSupport_vm68k\default.txaPackage"/>
-			<None Include="ModelSupport_vm68k\default.txvpck"/>
-			<None Include="ModelSupport_vm68k\vm68k\default.txaPackage"/>
-			<None Include="ModelSupport_vm68k\vm68k\default.txvpck"/>
+			<None Include="ModelSupport_vm68k2\default.txaPackage"/>
+			<None Include="ModelSupport_vm68k2\default.txvpck"/>
+			<None Include="ModelSupport_vm68k2\vm68k\default.txaPackage"/>
+			<None Include="ModelSupport_vm68k2\vm68k\default.txvpck"/>
 			<None Include="vm68kdef.h">
 				<BuildOrder>3</BuildOrder>
 			</None>

@@ -23,6 +23,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
+			<ILINK_AdditionalOptions>vm68k2.lib</ILINK_AdditionalOptions>
 			<ILINK_LibraryPath>..\$(Config)\$(Platform);$(ILINK_LibraryPath)</ILINK_LibraryPath>
 			<IncludePath>..\config\win32;..\config;..\src;$(IncludePath)</IncludePath>
 			<OutputExt>exe</OutputExt>

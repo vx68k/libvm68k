@@ -68,8 +68,8 @@
 			<TASM_Debugging>None</TASM_Debugging>
 		</PropertyGroup>
 		<ItemGroup>
-			<CppCompile Include="Test_vm68kdef.cpp">
-				<DependentOn>Test_vm68kdef.h</DependentOn>
+			<CppCompile Include="Test_vm68kdata.cpp">
+				<DependentOn>Test_vm68kdata.h</DependentOn>
 				<BuildOrder>1</BuildOrder>
 			</CppCompile>
 			<CppCompile Include="Test_vm68kmem.cpp">

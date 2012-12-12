@@ -1,9 +1,9 @@
 #include <System.hpp>
 #pragma hdrstop
 
-#include "Test_vm68kdef.h"
+#include "Test_vm68kdata.h"
 
-#include <vm68kdef.h>
+#include <bits/vm68kdata.h>
 #include <TestFramework.hpp>
 
 using namespace vm68k;
@@ -66,9 +66,9 @@ void __fastcall TTest_byte::TestStatic()
 {
     using vm68k:: byte;
     CheckEquals(1U, byte::size(), "byte::size()");
-    CheckEquals(-0x80, byte::traits_type::int_min(), "byte::int_min()");
-    CheckEquals(0x7f, byte::traits_type::int_max(), "byte::int_max()");
-    CheckEquals(0xff, byte::traits_type::uint_max(), "byte::uint_max()");
+    CheckEquals(-0x80, byte::min(), "byte::min()");
+    CheckEquals(0x7f, byte::max(), "byte::max()");
+    CheckEquals(0xff, byte::umax(), "byte::umax()");
 }
 
 void __fastcall TTest_byte::TestBasic()
@@ -92,9 +92,9 @@ void __fastcall TTest_word::TearDown()
 void __fastcall TTest_word::TestStatic()
 {
     CheckEquals(2U, word::size(), "word::size()");
-    CheckEquals(-0x8000, word::traits_type::int_min(), "word::int_min()");
-    CheckEquals(0x7fff, word::traits_type::int_max(), "word::int_max()");
-    CheckEquals(0xffff, word::traits_type::uint_max(), "word::uint_max()");
+    CheckEquals(-0x8000, word::min(), "word::min()");
+    CheckEquals(0x7fff, word::max(), "word::max()");
+    CheckEquals(0xffff, word::umax(), "word::umax()");
 }
 
 void __fastcall TTest_word::TestBasic()
@@ -117,18 +117,18 @@ void __fastcall TTest_long_word::TearDown()
 void __fastcall TTest_long_word::TestStatic()
 {
     CheckEquals(4U, long_word::size(), "long_word::size()");
-    CheckEquals(-0x80000000L, long_word::traits_type::int_min(), "long_word::int_min()");
-    CheckEquals(0x7fffffffL, long_word::traits_type::int_max(), "long_word::int_max()");
-    CheckEquals(0xffffffffU, long_word::traits_type::uint_max(), "long_word::uint_max()");
+    CheckEquals(-0x7fffffffL - 1, long_word::min(), "long_word::min()");
+    CheckEquals(0x7fffffffL, long_word::max(), "long_word::max()");
+    CheckEquals(0xffffffffU, long_word::umax(), "long_word::umax()");
 }
 
 void __fastcall TTest_long_word::TestBasic()
 {
     CheckEquals(0, long_word(0), "long_word(0)");
     CheckEquals(0x7fffffffL, long_word(0x7fffffffL), "long_word(0x7fffffffL)");
-    CheckEquals(-0x80000000L, long_word(0x7fffffffL + 1), "long_word(0x7fffffffL + 1)");
-    CheckEquals(-0x80000000L, long_word(-0x80000000L), "long_word(-0x80000000L)");
-    CheckEquals(0x7fffffffL, long_word(-0x80000000L - 1), "long_word(-0x80000000L - 1)");
+    CheckEquals(-0x7fffffffL - 1, long_word(0x7fffffffL + 1), "long_word(0x7fffffffL + 1)");
+    CheckEquals(-0x7fffffffL - 1, long_word(-0x7fffffffL - 1), "long_word(-0x80000000L)");
+    CheckEquals(0x7fffffffL, long_word(-0x7fffffffL - 2), "long_word(-0x80000000L - 1)");
 }
 
 static void registerTests()

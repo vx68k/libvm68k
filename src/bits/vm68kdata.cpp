@@ -1,5 +1,5 @@
 /*
- * Base definitions.
+ * vm68kdata - target data type definitions (implementation)
  * Copyright (C) 2012  Kaz Sasa
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,15 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef vm68kdefH
-#define vm68kdefH 1
+#pragma hdrstop
 
-#ifndef VM68K_EXPORT
-#if _WIN32
-#define VM68K_EXPORT __declspec(dllimport)
-#else
-#define VM68K_EXPORT
-#endif
-#endif /* !defined VM68K_EXPORT */
-
-#endif
+#include "vm68kdata.h"
+#pragma package(smart_init)

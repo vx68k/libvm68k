@@ -81,6 +81,10 @@
 				<BuildOrder>14</BuildOrder>
 			</None>
 			<None Include="..\README"/>
+			<CppCompile Include="bits\vm68kdata.cpp">
+				<DependentOn>bits\vm68kdata.h</DependentOn>
+				<BuildOrder>0</BuildOrder>
+			</CppCompile>
 			<None Include="bits\vm68kint.h">
 				<BuildOrder>13</BuildOrder>
 			</None>
@@ -93,10 +97,10 @@
 			</None>
 			<CppCompile Include="vm68kmem.cpp">
 				<DependentOn>vm68kmem.h</DependentOn>
-				<BuildOrder>0</BuildOrder>
+				<BuildOrder>1</BuildOrder>
 			</CppCompile>
 			<CppCompile Include="win32dll.cpp">
-				<BuildOrder>1</BuildOrder>
+				<BuildOrder>2</BuildOrder>
 			</CppCompile>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>

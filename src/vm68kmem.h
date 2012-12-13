@@ -19,7 +19,7 @@
 #ifndef vm68kmemH
 #define vm68kmemH
 
-#include <vm68kdef.h>
+#include <bits/vm68kdef.h>
 
 namespace vm68k
 {

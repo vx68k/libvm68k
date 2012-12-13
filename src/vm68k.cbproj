@@ -86,6 +86,9 @@
 				<DependentOn>bits\vm68kdata.h</DependentOn>
 				<BuildOrder>0</BuildOrder>
 			</CppCompile>
+			<None Include="bits\vm68kdef.h">
+				<BuildOrder>3</BuildOrder>
+			</None>
 			<None Include="bits\vm68kint.h">
 				<BuildOrder>13</BuildOrder>
 			</None>
@@ -93,9 +96,6 @@
 			<None Include="ModelSupport_vm68k\default.txvpck"/>
 			<None Include="ModelSupport_vm68k\vm68k\default.txaPackage"/>
 			<None Include="ModelSupport_vm68k\vm68k\default.txvpck"/>
-			<None Include="vm68kdef.h">
-				<BuildOrder>3</BuildOrder>
-			</None>
 			<CppCompile Include="vm68kmem.cpp">
 				<DependentOn>vm68kmem.h</DependentOn>
 				<BuildOrder>1</BuildOrder>

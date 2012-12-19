@@ -28,6 +28,20 @@ namespace vm68k
      */
     template<unsigned int N, typename IntT, typename UIntT>
     class basic_data {
+        /*
+         * Tests if a basic_data object equals to another.
+         */
+        friend bool operator ==(const basic_data &x, const basic_data &y) {
+            return x.value == y.value;
+        }
+
+        /*
+         * Tests if a basic_data object does not equal to another.
+         */
+        friend bool operator !=(const basic_data &x, const basic_data &y) {
+            return x.value != y.value;
+        }
+
     public:
         typedef IntT  int_type;
         typedef UIntT unsigned_int_type;

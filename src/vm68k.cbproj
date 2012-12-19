@@ -22,6 +22,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
+			<ILINK_BaseAddress>0x67F80000</ILINK_BaseAddress>
 			<DllSuffix>2</DllSuffix>
 			<Defines>_VM68K=1;$(Defines)</Defines>
 			<BCC_InstructionSet>5</BCC_InstructionSet>

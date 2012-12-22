@@ -1,48 +1,48 @@
-﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-		<PropertyGroup>
-			<ProjectGuid>{DA43D304-F1F8-4F43-B2DF-C925E7846837}</ProjectGuid>
-		</PropertyGroup>
-		<ItemGroup>
-			<Projects Include="src\vm68k.cbproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="test\vm68k_test.cbproj">
-				<Dependencies>src\vm68k.cbproj</Dependencies>
-			</Projects>
-		</ItemGroup>
-		<ProjectExtensions>
-			<Borland.Personality>Default.Personality.12</Borland.Personality>
-			<Borland.ProjectType/>
-			<BorlandProject>
-				<Default.Personality/>
-			</BorlandProject>
-		</ProjectExtensions>
-		<Target Name="vm68k">
-			<MSBuild Projects="src\vm68k.cbproj"/>
-		</Target>
-		<Target Name="vm68k:Clean">
-			<MSBuild Projects="src\vm68k.cbproj" Targets="Clean"/>
-		</Target>
-		<Target Name="vm68k:Make">
-			<MSBuild Projects="src\vm68k.cbproj" Targets="Make"/>
-		</Target>
-		<Target Name="vm68k_test" DependsOnTargets="vm68k">
-			<MSBuild Projects="test\vm68k_test.cbproj"/>
-		</Target>
-		<Target Name="vm68k_test:Clean" DependsOnTargets="vm68k:Clean">
-			<MSBuild Projects="test\vm68k_test.cbproj" Targets="Clean"/>
-		</Target>
-		<Target Name="vm68k_test:Make" DependsOnTargets="vm68k:Make">
-			<MSBuild Projects="test\vm68k_test.cbproj" Targets="Make"/>
-		</Target>
-		<Target Name="Build">
-			<CallTarget Targets="vm68k;vm68k_test"/>
-		</Target>
-		<Target Name="Clean">
-			<CallTarget Targets="vm68k:Clean;vm68k_test:Clean"/>
-		</Target>
-		<Target Name="Make">
-			<CallTarget Targets="vm68k:Make;vm68k_test:Make"/>
-		</Target>
-		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
-	</Project>
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{DA43D304-F1F8-4F43-B2DF-C925E7846837}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="src\vm68k.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="test\vm68k_test.cbproj">
+            <Dependencies>src\vm68k.cbproj</Dependencies>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="vm68k">
+        <MSBuild Projects="src\vm68k.cbproj"/>
+    </Target>
+    <Target Name="vm68k:Clean">
+        <MSBuild Projects="src\vm68k.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="vm68k:Make">
+        <MSBuild Projects="src\vm68k.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="vm68k_test" DependsOnTargets="vm68k">
+        <MSBuild Projects="test\vm68k_test.cbproj"/>
+    </Target>
+    <Target Name="vm68k_test:Clean" DependsOnTargets="vm68k:Clean">
+        <MSBuild Projects="test\vm68k_test.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="vm68k_test:Make" DependsOnTargets="vm68k:Make">
+        <MSBuild Projects="test\vm68k_test.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="vm68k;vm68k_test"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="vm68k:Clean;vm68k_test:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="vm68k:Make;vm68k_test:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

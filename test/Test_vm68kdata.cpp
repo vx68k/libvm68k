@@ -1,3 +1,21 @@
+/*
+ * Test_vm68kdata - Test cases for libvm68k (implementation)
+ * Copyright (C) 2012  Kaz Sasa
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include <System.hpp>
 #pragma hdrstop
 
@@ -8,12 +26,9 @@
 
 using namespace vm68k;
 
-class TTest_byte : public TTestCase
-{
+class TTest_byte : public TTestCase {
 public:
-    __fastcall virtual TTest_byte(System::String name)
-        : TTestCase(name)
-    {
+    __fastcall virtual TTest_byte(System::String name) : TTestCase(name) {
     }
     virtual void __fastcall SetUp();
     virtual void __fastcall TearDown();
@@ -23,12 +38,9 @@ __published:
     void __fastcall TestBasic();
 };
 
-class TTest_word : public TTestCase
-{
+class TTest_word : public TTestCase {
 public:
-    __fastcall virtual TTest_word(System::String name)
-        : TTestCase(name)
-    {
+    __fastcall virtual TTest_word(System::String name) : TTestCase(name) {
     }
     virtual void __fastcall SetUp();
     virtual void __fastcall TearDown();
@@ -38,13 +50,10 @@ __published:
     void __fastcall TestBasic();
 };
 
-class TTest_long_word : public TTestCase
-{
+class TTest_long_word : public TTestCase {
 
 public:
-    __fastcall virtual TTest_long_word(System::String name)
-        : TTestCase(name)
-    {
+    __fastcall virtual TTest_long_word(System::String name) : TTestCase(name) {
     }
     virtual void __fastcall SetUp();
     virtual void __fastcall TearDown();
@@ -54,24 +63,20 @@ __published:
     void __fastcall TestBasic();
 };
 
-void __fastcall TTest_byte::SetUp()
-{
+void __fastcall TTest_byte::SetUp() {
 }
 
-void __fastcall TTest_byte::TearDown()
-{
+void __fastcall TTest_byte::TearDown() {
 }
 
-void __fastcall TTest_byte::TestStatic()
-{
+void __fastcall TTest_byte::TestStatic() {
     CheckEquals(1U, byte::size(), "byte::size()");
     CheckEquals(-0x80, byte::min(), "byte::min()");
     CheckEquals(0x7f, byte::max(), "byte::max()");
     CheckEquals(0xff, byte::umax(), "byte::umax()");
 }
 
-void __fastcall TTest_byte::TestBasic()
-{
+void __fastcall TTest_byte::TestBasic() {
     using vm68k::byte;
     byte zero1;
     byte zero2(0);
@@ -89,24 +94,20 @@ void __fastcall TTest_byte::TestBasic()
     CheckFalse(zero1 != zero2, "byte() != byte(0)");
 }
 
-void __fastcall TTest_word::SetUp()
-{
+void __fastcall TTest_word::SetUp() {
 }
 
-void __fastcall TTest_word::TearDown()
-{
+void __fastcall TTest_word::TearDown() {
 }
 
-void __fastcall TTest_word::TestStatic()
-{
+void __fastcall TTest_word::TestStatic() {
     CheckEquals(2U, word::size(), "word::size()");
     CheckEquals(-0x8000, word::min(), "word::min()");
     CheckEquals(0x7fff, word::max(), "word::max()");
     CheckEquals(0xffff, word::umax(), "word::umax()");
 }
 
-void __fastcall TTest_word::TestBasic()
-{
+void __fastcall TTest_word::TestBasic() {
     word zero1;
     word zero2(0);
     word max1(0x7fff);
@@ -123,16 +124,13 @@ void __fastcall TTest_word::TestBasic()
     CheckFalse(zero1 != zero2, "word() != word(0)");
 }
 
-void __fastcall TTest_long_word::SetUp()
-{
+void __fastcall TTest_long_word::SetUp() {
 }
 
-void __fastcall TTest_long_word::TearDown()
-{
+void __fastcall TTest_long_word::TearDown() {
 }
 
-void __fastcall TTest_long_word::TestStatic()
-{
+void __fastcall TTest_long_word::TestStatic() {
 #pragma option push -w-8041
     CheckEquals(4U, long_word::size(), "long_word::size()");
     CheckEquals(-0x80000000L, long_word::min(), "long_word::min()");
@@ -141,8 +139,7 @@ void __fastcall TTest_long_word::TestStatic()
 #pragma option pop
 }
 
-void __fastcall TTest_long_word::TestBasic()
-{
+void __fastcall TTest_long_word::TestBasic() {
 #pragma option push -w-8041
     long_word zero1;
     long_word zero2(0);
@@ -161,8 +158,7 @@ void __fastcall TTest_long_word::TestBasic()
 #pragma option pop
 }
 
-static void registerTests()
-{
+static void registerTests() {
     Testframework::RegisterTest(TTest_byte::Suite());
     Testframework::RegisterTest(TTest_word::Suite());
     Testframework::RegisterTest(TTest_long_word::Suite());

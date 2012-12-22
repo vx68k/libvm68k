@@ -27,7 +27,7 @@ namespace vm68k
      * <author>Kaz Sasa</author>
      * <since>2.0</since>
      */
-    class VM68K_EXPORT device
+    class _VM68K_EXPORT device
     {
     protected:
         /**
@@ -48,7 +48,7 @@ namespace vm68k
      * <author>Kaz Sasa</author>
      * <since>2.0</since>
      */
-    class VM68K_EXPORT memory_map
+    class _VM68K_EXPORT memory_map
     {
     public:
         /**

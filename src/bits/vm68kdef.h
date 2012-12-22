@@ -19,12 +19,8 @@
 #ifndef vm68kdefH
 #define vm68kdefH 1
 
-#ifndef VM68K_EXPORT
-#if _WIN32
-#define VM68K_EXPORT __declspec(dllimport)
-#else
-#define VM68K_EXPORT
+#ifndef _VM68K_EXPORT
+#define _VM68K_EXPORT
 #endif
-#endif /* !defined VM68K_EXPORT */
 
 #endif

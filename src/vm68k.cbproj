@@ -40,7 +40,7 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <BCC_Defines>VM68K_EXPORT=__declspec(dllexport);$(BCC_Defines)</BCC_Defines>
+        <BCC_Defines>_VM68K_EXPORT=__declspec(dllexport);$(BCC_Defines)</BCC_Defines>
         <Defines>_VM68K_IMPLEMENTATION=1;$(Defines)</Defines>
         <IncludePath>.;$(IncludePath)</IncludePath>
         <BCC_InstructionSet>6</BCC_InstructionSet>

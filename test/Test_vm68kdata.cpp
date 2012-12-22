@@ -3,7 +3,7 @@
 
 #include "Test_vm68kdata.h"
 
-#include <bits/vm68kdata.h>
+#include <vm68k>
 #include <TestFramework.hpp>
 
 using namespace vm68k;

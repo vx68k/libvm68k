@@ -16,10 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <vcl.h>
+#include <System.hpp>
 #pragma hdrstop
 
 #include <tchar.h>
+#include <vcl.h>
 #include <GUITestRunner.hpp>
 
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int) {

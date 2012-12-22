@@ -41,7 +41,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <BCC_Defines>VM68K_EXPORT=__declspec(dllexport);$(BCC_Defines)</BCC_Defines>
-        <Defines>_VM68K=1;$(Defines)</Defines>
+        <Defines>_VM68K_IMPLEMENTATION=1;$(Defines)</Defines>
         <IncludePath>.;$(IncludePath)</IncludePath>
         <BCC_InstructionSet>6</BCC_InstructionSet>
         <BCC_PCHUsage>None</BCC_PCHUsage>
@@ -131,6 +131,7 @@
         <None Include="ModelSupport_vm68k\default.txvpck"/>
         <None Include="ModelSupport_vm68k\vm68k\default.txaPackage"/>
         <None Include="ModelSupport_vm68k\vm68k\default.txvpck"/>
+        <None Include="vm68k"/>
         <CppCompile Include="win32dll.cpp">
             <BuildOrder>2</BuildOrder>
         </CppCompile>

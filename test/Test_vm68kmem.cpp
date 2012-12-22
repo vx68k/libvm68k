@@ -3,7 +3,7 @@
 
 #include "Test_vm68kmem.h"
 
-#include <vm68kmem.h>
+#include <bits/vm68kmemory.h>
 #include <TestFramework.hpp>
 
 using namespace vm68k;

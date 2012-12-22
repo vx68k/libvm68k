@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef vm68kmemH
-#define vm68kmemH
+#ifndef vm68kmemoryH
+#define vm68kmemoryH
 
 #include <bits/vm68kdef.h>
 

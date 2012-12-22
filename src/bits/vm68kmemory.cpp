@@ -18,7 +18,7 @@
 
 #pragma hdrstop
 
-#include "vm68kmem.h"
+#include "vm68kmemory.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 

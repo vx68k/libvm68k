@@ -20,9 +20,34 @@
 #define vm68kmemoryH
 
 #include <bits/vm68kdef.h>
+#include <exception>
 
 namespace vm68k
 {
+    class _VM68K_EXPORT memory_exception : public std::exception {
+    public:
+        memory_exception() throw();
+        memory_exception(const memory_exception &x) throw();
+        memory_exception &operator =(const memory_exception & x) throw();
+        virtual const char *what() const throw();
+    };
+
+    class _VM68K_EXPORT bus_error : public memory_exception {
+    public:
+        bus_error() throw();
+        bus_error(const bus_error &x) throw();
+        bus_error &operator =(const bus_error &x) throw();
+        virtual const char *what() const throw();
+    };
+
+    class _VM68K_EXPORT address_error : public memory_exception {
+    public:
+        address_error() throw();
+        address_error(const address_error &x) throw();
+        address_error &operator =(const address_error &x) throw();
+        virtual const char *what() const throw();
+    };
+
     /**
      * <author>Kaz Sasa</author>
      * <since>2.0</since>

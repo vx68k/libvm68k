@@ -22,8 +22,64 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
-vm68k::device::~device()
-{
+using namespace vm68k;
+
+/*
+ * memory_exception
+ */
+
+memory_exception::memory_exception() throw() {
+}
+
+memory_exception::memory_exception(const memory_exception &x) throw() {
+}
+
+memory_exception &memory_exception::operator =
+    (const memory_exception & x) throw() {
+    return *this;
+}
+
+const char *memory_exception::what() const throw() {
+    return "vm68k::memory_exception";
+}
+
+/*
+ * bus_error
+ */
+
+bus_error::bus_error() throw() {
+}
+
+bus_error::bus_error(const bus_error &x) throw() {
+}
+
+bus_error &bus_error::operator =(const bus_error & x) throw() {
+    return *this;
+}
+
+const char *bus_error::what() const throw() {
+    return "vm68k::bus_error";
+}
+
+/*
+ * address_error
+ */
+
+address_error::address_error() throw() {
+}
+
+address_error::address_error(const address_error &x) throw() {
+}
+
+address_error &address_error::operator =(const address_error & x) throw() {
+    return *this;
+}
+
+const char *address_error::what() const throw() {
+    return "vm68k::address_error";
+}
+
+vm68k::device::~device() {
 }
 
 vm68k::memory_map::~memory_map()

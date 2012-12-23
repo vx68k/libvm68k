@@ -49,21 +49,21 @@ namespace vm68k
         /*
          * Returns the minimum value for signed integers.
          */
-        static int_type min() {
+        static constexpr int_type min() {
             return ~(int_type)0 << N - 1;
         }
 
         /*
          * Returns the maximum value for signed integers.
          */
-        static int_type max() {
+        static constexpr int_type max() {
             return ~min();
         }
 
         /*
          * Returns the maximum value for unsigned integers.
          */
-        static unsigned_int_type umax() {
+        static constexpr unsigned_int_type umax() {
             return ~(~(unsigned_int_type)1 << N - 1);
         }
 
@@ -109,7 +109,7 @@ namespace vm68k
      */
     class byte : public basic_data<8, int_least8_t, uint_least8_t> {
     public:
-        static unsigned int size() {
+        static constexpr unsigned int size() {
             return 1;
         }
 
@@ -128,7 +128,7 @@ namespace vm68k
      */
     class word : public basic_data<16, int_least16_t, uint_least16_t> {
     public:
-        static unsigned int size() {
+        static constexpr unsigned int size() {
             return 2;
         }
 
@@ -147,7 +147,7 @@ namespace vm68k
      */
     class long_word : public basic_data<32, int_least32_t, uint_least32_t> {
     public:
-        static unsigned int size() {
+        static constexpr unsigned int size() {
             return 4;
         }
 

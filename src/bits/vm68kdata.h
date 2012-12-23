@@ -88,15 +88,9 @@ namespace vm68k
             return (int_type)x;
         }
 
-        /**
-         * <stereotype>constructor</stereotype>
-         */
         basic_data(unsigned_int_type x) : value(to_int(x)) {
         }
 
-        /**
-         * <stereotype>constructor</stereotype>
-         */
         basic_data(const basic_data<N, IntT, UIntT> &x) : value(x.value) {
         }
 
@@ -113,9 +107,6 @@ namespace vm68k
             return 1;
         }
 
-        /**
-         * <stereotype>constructor</stereotype>
-         */
         byte(unsigned_int_type x = 0) : base(x) {
         }
 
@@ -132,9 +123,6 @@ namespace vm68k
             return 2;
         }
 
-        /**
-         * <stereotype>constructor</stereotype>
-         */
         word(unsigned_int_type x = 0) : base(x) {
         }
 
@@ -151,9 +139,6 @@ namespace vm68k
             return 4;
         }
 
-        /**
-         * <stereotype>constructor</stereotype>
-         */
         long_word(unsigned_int_type x = 0) : base(x) {
         }
 

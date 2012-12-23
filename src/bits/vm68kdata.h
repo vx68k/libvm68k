@@ -43,8 +43,16 @@ namespace vm68k
         }
 
     public:
-        typedef IntT  int_type;
+        typedef uint_least32_t size_type;
+        typedef IntT int_type;
         typedef UIntT unsigned_int_type;
+
+        /*
+         * Returns the size of this class in bytes.
+         */
+        static constexpr size_type size() {
+            return (N + 7U) >> 3;
+        }
 
         /*
          * Returns the minimum value for signed integers.
@@ -103,10 +111,6 @@ namespace vm68k
      */
     class byte : public basic_data<8, int_least8_t, uint_least8_t> {
     public:
-        static constexpr unsigned int size() {
-            return 1;
-        }
-
         byte(unsigned_int_type x = 0) : base(x) {
         }
 
@@ -119,10 +123,6 @@ namespace vm68k
      */
     class word : public basic_data<16, int_least16_t, uint_least16_t> {
     public:
-        static constexpr unsigned int size() {
-            return 2;
-        }
-
         word(unsigned_int_type x = 0) : base(x) {
         }
 
@@ -135,10 +135,6 @@ namespace vm68k
      */
     class long_word : public basic_data<32, int_least32_t, uint_least32_t> {
     public:
-        static constexpr unsigned int size() {
-            return 4;
-        }
-
         long_word(unsigned_int_type x = 0) : base(x) {
         }
 

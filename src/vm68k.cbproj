@@ -104,9 +104,6 @@
         <None Include="..\config\bits\vm68kint_boost.h">
             <BuildOrder>15</BuildOrder>
         </None>
-        <None Include="..\config\bits\vm68kint_classic.h">
-            <BuildOrder>14</BuildOrder>
-        </None>
         <None Include="..\config\bits\vm68kint_tr1.h">
             <BuildOrder>15</BuildOrder>
         </None>

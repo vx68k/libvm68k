@@ -7,7 +7,7 @@
             <Dependencies/>
         </Projects>
         <Projects Include="test\vm68k_test.cbproj">
-            <Dependencies>src\vm68k.cbproj</Dependencies>
+            <Dependencies/>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -26,13 +26,13 @@
     <Target Name="vm68k:Make">
         <MSBuild Projects="src\vm68k.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="vm68k_test" DependsOnTargets="vm68k">
+    <Target Name="vm68k_test">
         <MSBuild Projects="test\vm68k_test.cbproj"/>
     </Target>
-    <Target Name="vm68k_test:Clean" DependsOnTargets="vm68k:Clean">
+    <Target Name="vm68k_test:Clean">
         <MSBuild Projects="test\vm68k_test.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="vm68k_test:Make" DependsOnTargets="vm68k:Make">
+    <Target Name="vm68k_test:Make">
         <MSBuild Projects="test\vm68k_test.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">

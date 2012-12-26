@@ -40,5 +40,5 @@ namespace vm68k
     using std::tr1::uint_fast32_t;
 }
 
-#endif /* once */
+#endif
 

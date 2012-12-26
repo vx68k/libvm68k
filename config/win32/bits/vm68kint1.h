@@ -25,4 +25,4 @@
 #error Unknown compiler
 #endif
 
-#endif /* once */
+#endif

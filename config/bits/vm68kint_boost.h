@@ -38,4 +38,4 @@ namespace vm68k
     using boost::uint_fast32_t;
 }
 
-#endif /* once */
+#endif

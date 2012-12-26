@@ -48,4 +48,4 @@ namespace vm68k
 
 #endif /* __cplusplus < 201103L */
 
-#endif /* once */
+#endif

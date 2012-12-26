@@ -17,7 +17,7 @@
  */
 
 #ifndef vm68kmemoryH
-#define vm68kmemoryH
+#define vm68kmemoryH 1
 
 #include <bits/vm68kdef.h>
 #include <exception>
@@ -90,4 +90,4 @@ namespace vm68k
     };
 }
 
-#endif /* once */
+#endif

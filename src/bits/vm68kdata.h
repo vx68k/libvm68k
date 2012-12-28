@@ -115,36 +115,33 @@ namespace vm68k
      * Target byte type.  This type is 8-bit long.
      */
     class byte : public basic_data<8, int_least8_t, uint_least8_t> {
-    public:
-        _VM68K_CONSTEXPR byte(unsigned_int_type x = 0) : base(x) {
-        }
+        typedef basic_data<8, int_least8_t, uint_least8_t> inherited;
 
-    private:
-        typedef basic_data<8, int_least8_t, uint_least8_t> base;
+    public:
+        _VM68K_CONSTEXPR byte(unsigned_int_type x = 0) : inherited(x) {
+        }
     };
 
     /*
      * Target word type.  This type is 16-bit long.
      */
     class word : public basic_data<16, int_least16_t, uint_least16_t> {
-    public:
-        _VM68K_CONSTEXPR word(unsigned_int_type x = 0) : base(x) {
-        }
+        typedef basic_data<16, int_least16_t, uint_least16_t> inherited;
 
-    private:
-        typedef basic_data<16, int_least16_t, uint_least16_t> base;
+    public:
+        _VM68K_CONSTEXPR word(unsigned_int_type x = 0) : inherited(x) {
+        }
     };
 
     /*
      * Target long word type.  This type is 32-bit long.
      */
     class long_word : public basic_data<32, int_least32_t, uint_least32_t> {
-    public:
-        _VM68K_CONSTEXPR long_word(unsigned_int_type x = 0) : base(x) {
-        }
+        typedef basic_data<32, int_least32_t, uint_least32_t> inherited;
 
-    private:
-        typedef basic_data<32, int_least32_t, uint_least32_t> base;
+    public:
+        _VM68K_CONSTEXPR long_word(unsigned_int_type x = 0) : inherited(x) {
+        }
     };
 }
 

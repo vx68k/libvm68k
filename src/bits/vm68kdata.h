@@ -108,8 +108,12 @@ namespace vm68k
         _VM68K_CONSTEXPR basic_data(unsigned_int_type x) : value(to_int(x)) {
         }
 
+#if __cplusplus >= 201103L
+        basic_data(const basic_data &x) = default;
+#else
         _VM68K_CONSTEXPR basic_data(const basic_data &x) : value(x.value) {
         }
+#endif
 
     private:
         int_type value;

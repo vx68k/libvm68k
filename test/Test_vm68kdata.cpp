@@ -26,141 +26,140 @@
 
 using namespace vm68k;
 
-class TTest_byte : public TTestCase {
+template<typename DataT>
+class TTest_basic_data : public TTestCase {
 public:
-    __fastcall virtual TTest_byte(System::String name) : TTestCase(name) {
+    typedef DataT data_type;
+
+    __fastcall TTest_basic_data(UnicodeString MethodName) : TTestCase(MethodName) {
     }
+
     virtual void __fastcall SetUp();
     virtual void __fastcall TearDown();
 
 __published:
-    void __fastcall TestStatic();
-    void __fastcall TestBasic();
+    void __fastcall Test_size();
+    void __fastcall Test_min();
+    void __fastcall Test_max();
+    void __fastcall Test_umax();
+    void __fastcall TestConstructor();
+    void __fastcall TestEquals();
+    void __fastcall TestNotEquals();
 };
 
-class TTest_word : public TTestCase {
-public:
-    __fastcall virtual TTest_word(System::String name) : TTestCase(name) {
-    }
-    virtual void __fastcall SetUp();
-    virtual void __fastcall TearDown();
-
-__published:
-    void __fastcall TestStatic();
-    void __fastcall TestBasic();
-};
-
-class TTest_long_word : public TTestCase {
-
-public:
-    __fastcall virtual TTest_long_word(System::String name) : TTestCase(name) {
-    }
-    virtual void __fastcall SetUp();
-    virtual void __fastcall TearDown();
-
-__published:
-    void __fastcall TestStatic();
-    void __fastcall TestBasic();
-};
-
-void __fastcall TTest_byte::SetUp() {
+template<typename DataT>
+void __fastcall TTest_basic_data<DataT>::SetUp() {
 }
 
-void __fastcall TTest_byte::TearDown() {
+template<typename DataT>
+void __fastcall TTest_basic_data<DataT>::TearDown() {
 }
 
-void __fastcall TTest_byte::TestStatic() {
-    CheckEquals(1U, byte::size(), "byte::size()");
-    CheckEquals(-0x80, byte::min(), "byte::min()");
-    CheckEquals(0x7f, byte::max(), "byte::max()");
-    CheckEquals(0xff, byte::umax(), "byte::umax()");
+template<typename DataT>
+void __fastcall TTest_basic_data<DataT>::TestConstructor() {
+    const data_type zero1;
+    const data_type zero2(0);
+    const data_type max1(data_type::max());
+    const data_type min1(data_type::min());
+    const data_type umax1(data_type::umax());
+    const data_type omax1(data_type::max() + 1);
+    const data_type omin1(data_type::min() - 1);
+    CheckEquals(0, zero1, "basic_data()");
+    CheckEquals(0, zero2, "basic_data(0)");
+    CheckEquals(data_type::max(), max1, "basic_data(max())");
+    CheckEquals(data_type::min(), min1, "basic_data(min())");
+    CheckEquals(-1, umax1, "basic_data(umax())");
+    CheckEquals(data_type::min(), omax1, "basic_data(max() + 1)");
+    CheckEquals(data_type::max(), omin1, "basic_data(min() - 1)");
 }
 
-void __fastcall TTest_byte::TestBasic() {
-    using vm68k::byte;
-    byte zero1;
-    byte zero2(0);
-    byte max1(0x7f);
-    byte min1(-0x80);
-    byte omax1(max1 + 1);
-    byte omin1(min1 - 1);
-    CheckEquals(0, zero1, "byte()");
-    CheckEquals(0, zero2, "byte(0)");
-    CheckEquals(0x7f, max1, "byte(0x7f)");
-    CheckEquals(-0x80, min1, "byte(-0x80)");
-    CheckEquals(-0x80, omax1, "byte(byte(0x7f) + 1)");
-    CheckEquals(0x7f, omin1, "byte(byte(-0x80) - 1)");
-    CheckTrue(zero1 == zero2, "byte() == byte(0)");
-    CheckFalse(zero1 != zero2, "byte() != byte(0)");
+template<typename DataT>
+void __fastcall TTest_basic_data<DataT>::TestEquals() {
+    const data_type a(0);
+    const data_type b(1);
+    CheckTrue(a == a, "0 == 0");
+    CheckTrue(b == b, "1 == 1");
+    CheckFalse(a == b, "0 == 1");
 }
 
-void __fastcall TTest_word::SetUp() {
+template<typename DataT>
+void __fastcall TTest_basic_data<DataT>::TestNotEquals() {
+    const data_type a(0);
+    const data_type b(1);
+    CheckFalse(a != a, "0 != 0");
+    CheckFalse(b != b, "1 != 1");
+    CheckTrue(a != b, "0 != 1");
 }
 
-void __fastcall TTest_word::TearDown() {
+template<>
+void __fastcall TTest_basic_data<vm68k::byte>::Test_size() {
+    CheckEquals(1U, data_type::size(), "size()");
 }
 
-void __fastcall TTest_word::TestStatic() {
-    CheckEquals(2U, word::size(), "word::size()");
-    CheckEquals(-0x8000, word::min(), "word::min()");
-    CheckEquals(0x7fff, word::max(), "word::max()");
-    CheckEquals(0xffff, word::umax(), "word::umax()");
+template<>
+void __fastcall TTest_basic_data<vm68k::byte>::Test_min() {
+    CheckEquals(-0x80, data_type::min(), "min()");
 }
 
-void __fastcall TTest_word::TestBasic() {
-    word zero1;
-    word zero2(0);
-    word max1(0x7fff);
-    word min1(-0x8000);
-    word omax1(max1 + 1);
-    word omin1(min1 - 1);
-    CheckEquals(0, zero1, "word()");
-    CheckEquals(0, zero2, "word(0)");
-    CheckEquals(0x7fff, max1, "word(0x7fff)");
-    CheckEquals(-0x8000, min1, "word(-0x8000)");
-    CheckEquals(-0x8000, omax1, "word(word(0x7fff) + 1)");
-    CheckEquals(0x7fff, omin1, "word(word(-0x8000) - 1)");
-    CheckTrue(zero1 == zero2, "word() == word(0)");
-    CheckFalse(zero1 != zero2, "word() != word(0)");
+template<>
+void __fastcall TTest_basic_data<vm68k::byte>::Test_max() {
+    CheckEquals(0x7f, data_type::max(), "max()");
 }
 
-void __fastcall TTest_long_word::SetUp() {
+template<>
+void __fastcall TTest_basic_data<vm68k::byte>::Test_umax() {
+    CheckEquals(0xff, data_type::umax(), "umax()");
 }
 
-void __fastcall TTest_long_word::TearDown() {
+template<>
+void __fastcall TTest_basic_data<vm68k::word>::Test_size() {
+    CheckEquals(2U, data_type::size(), "size()");
 }
 
-void __fastcall TTest_long_word::TestStatic() {
+template<>
+void __fastcall TTest_basic_data<vm68k::word>::Test_min() {
+    CheckEquals(-0x8000, data_type::min(), "min()");
+}
+
+template<>
+void __fastcall TTest_basic_data<vm68k::word>::Test_max() {
+    CheckEquals(0x7fff, data_type::max(), "max()");
+}
+
+template<>
+void __fastcall TTest_basic_data<vm68k::word>::Test_umax() {
+    CheckEquals(0xffff, data_type::umax(), "umax()");
+}
+
+template<>
+void __fastcall TTest_basic_data<vm68k::long_word>::Test_size() {
+    CheckEquals(4U, data_type::size(), "size()");
+}
+
 #pragma option push -w-8041
-    CheckEquals(4U, long_word::size(), "long_word::size()");
-    CheckEquals(-0x80000000L, long_word::min(), "long_word::min()");
-    CheckEquals(0x7fffffffL, long_word::max(), "long_word::max()");
-    CheckEquals(0xffffffffU, long_word::umax(), "long_word::umax()");
+template<>
+void __fastcall TTest_basic_data<vm68k::long_word>::Test_min() {
+    CheckEquals(-0x80000000L, data_type::min(), "min()");
+}
 #pragma option pop
+
+template<>
+void __fastcall TTest_basic_data<vm68k::long_word>::Test_max() {
+    CheckEquals(0x7fffffffL, data_type::max(), "max()");
 }
 
-void __fastcall TTest_long_word::TestBasic() {
-#pragma option push -w-8041
-    long_word zero1;
-    long_word zero2(0);
-    long_word max1(0x7fffffffL);
-    long_word min1(-0x80000000L);
-    long_word omax1(max1 + 1);
-    long_word omin1(min1 - 1);
-    CheckEquals(0, zero1, "long_word()");
-    CheckEquals(0, zero2, "long_word(0)");
-    CheckEquals(0x7fffffffL, max1, "long_word(0x7fffffff)");
-    CheckEquals(-0x80000000L, min1, "long_word(-0x80000000)");
-    CheckEquals(-0x80000000L, omax1, "long_word(long_word(0x7fffffff) + 1)");
-    CheckEquals(0x7fffffffL, omin1, "long_word(long_word(-0x80000000) - 1)");
-    CheckTrue(zero1 == zero2, "long_word() == long_word(0)");
-    CheckFalse(zero1 != zero2, "long_word() != long_word(0)");
-#pragma option pop
+template<>
+void __fastcall TTest_basic_data<vm68k::long_word>::Test_umax() {
+    CheckEquals(0xffffffffL, data_type::umax(), "umax()");
 }
+
+template class TTest_basic_data<vm68k::byte>;
+template class TTest_basic_data<vm68k::word>;
+template class TTest_basic_data<vm68k::long_word>;
 
 static void registerTests() {
-    Testframework::RegisterTest(TTest_byte::Suite());
-    Testframework::RegisterTest(TTest_word::Suite());
-    Testframework::RegisterTest(TTest_long_word::Suite());
+    Testframework::RegisterTest(TTest_basic_data<vm68k::byte>::Suite());
+    Testframework::RegisterTest(TTest_basic_data<vm68k::word>::Suite());
+    Testframework::RegisterTest(TTest_basic_data<vm68k::long_word>::Suite());
 }
 #pragma startup registerTests 33

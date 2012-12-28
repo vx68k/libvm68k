@@ -100,15 +100,6 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
     </PropertyGroup>
     <ItemGroup>
-        <None Include="..\config\bits\vm68kint_boost.h">
-            <BuildOrder>15</BuildOrder>
-        </None>
-        <None Include="..\config\bits\vm68kint_tr1.h">
-            <BuildOrder>15</BuildOrder>
-        </None>
-        <None Include="..\config\win32\bits\vm68kint1.h">
-            <BuildOrder>14</BuildOrder>
-        </None>
         <None Include="..\README"/>
         <CppCompile Include="bits\vm68kdata.cpp">
             <DependentOn>bits\vm68kdata.h</DependentOn>

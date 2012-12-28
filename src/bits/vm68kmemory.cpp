@@ -28,18 +28,18 @@ using namespace vm68k;
  * memory_exception
  */
 
-memory_exception::memory_exception() throw() {
+memory_exception::memory_exception() _VM68K_NOEXCEPT {
 }
 
-memory_exception::memory_exception(const memory_exception &x) throw() {
+memory_exception::memory_exception(const memory_exception &x) _VM68K_NOEXCEPT {
 }
 
 memory_exception &memory_exception::operator =
-    (const memory_exception & x) throw() {
+    (const memory_exception & x) _VM68K_NOEXCEPT {
     return *this;
 }
 
-const char *memory_exception::what() const throw() {
+const char *memory_exception::what() const _VM68K_NOEXCEPT {
     return "vm68k::memory_exception";
 }
 
@@ -47,17 +47,17 @@ const char *memory_exception::what() const throw() {
  * bus_error
  */
 
-bus_error::bus_error() throw() {
+bus_error::bus_error() _VM68K_NOEXCEPT {
 }
 
-bus_error::bus_error(const bus_error &x) throw() {
+bus_error::bus_error(const bus_error &x) _VM68K_NOEXCEPT {
 }
 
-bus_error &bus_error::operator =(const bus_error & x) throw() {
+bus_error &bus_error::operator =(const bus_error & x) _VM68K_NOEXCEPT {
     return *this;
 }
 
-const char *bus_error::what() const throw() {
+const char *bus_error::what() const _VM68K_NOEXCEPT {
     return "vm68k::bus_error";
 }
 
@@ -65,17 +65,17 @@ const char *bus_error::what() const throw() {
  * address_error
  */
 
-address_error::address_error() throw() {
+address_error::address_error() _VM68K_NOEXCEPT {
 }
 
-address_error::address_error(const address_error &x) throw() {
+address_error::address_error(const address_error &x) _VM68K_NOEXCEPT {
 }
 
-address_error &address_error::operator =(const address_error & x) throw() {
+address_error &address_error::operator =(const address_error & x) _VM68K_NOEXCEPT {
     return *this;
 }
 
-const char *address_error::what() const throw() {
+const char *address_error::what() const _VM68K_NOEXCEPT {
     return "vm68k::address_error";
 }
 

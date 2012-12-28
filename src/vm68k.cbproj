@@ -62,7 +62,6 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\release\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <Defines>constexpr=const;$(Defines)</Defines>
         <IncludePath>..\config\win32;..\config;$(IncludePath)</IncludePath>
         <ILINK_BaseAddress>0x67F80000</ILINK_BaseAddress>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>

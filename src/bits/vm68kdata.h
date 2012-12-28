@@ -99,7 +99,7 @@ namespace vm68k
         basic_data(unsigned_int_type x) : value(to_int(x)) {
         }
 
-        basic_data(const basic_data<N, IntT, UIntT> &x) : value(x.value) {
+        basic_data(const basic_data &x) : value(x.value) {
         }
 
     private:

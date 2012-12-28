@@ -101,6 +101,10 @@ namespace vm68k
             return (int_type)x;
         }
 
+        static _VM68K_CONSTEXPR unsigned_int_type to_unsigned_int(int_type x) {
+            return unsigned_int_type(x) & umax();
+        }
+
         _VM68K_CONSTEXPR basic_data(unsigned_int_type x) : value(to_int(x)) {
         }
 

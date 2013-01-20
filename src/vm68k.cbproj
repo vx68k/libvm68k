@@ -101,6 +101,10 @@
     </PropertyGroup>
     <ItemGroup>
         <None Include="..\README"/>
+        <CppCompile Include="bits\vm68kcontext.cpp">
+            <DependentOn>bits\vm68kcontext.h</DependentOn>
+            <BuildOrder>2</BuildOrder>
+        </CppCompile>
         <CppCompile Include="bits\vm68kdata.cpp">
             <DependentOn>bits\vm68kdata.h</DependentOn>
             <BuildOrder>0</BuildOrder>
@@ -121,7 +125,7 @@
         <None Include="ModelSupport_vm68k\vm68k\default.txvpck"/>
         <None Include="vm68k"/>
         <CppCompile Include="win32dll.cpp">
-            <BuildOrder>2</BuildOrder>
+            <BuildOrder>3</BuildOrder>
         </CppCompile>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

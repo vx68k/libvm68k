@@ -142,6 +142,10 @@
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="..\src\bits\vm68kcontext.cpp">
+            <DependentOn>..\src\bits\vm68kcontext.h</DependentOn>
+            <BuildOrder>5</BuildOrder>
+        </CppCompile>
         <CppCompile Include="..\src\bits\vm68kdata.cpp">
             <DependentOn>..\src\bits\vm68kdata.h</DependentOn>
             <BuildOrder>3</BuildOrder>

@@ -21,12 +21,6 @@
 #ifndef vm68kint_tr1H
 #define vm68kint_tr1H 1
 
-#if __cplusplus >= 201103L
-
-#include <vm68kint_std11.h>
-
-#else
-
 #include <tr1/cstdint>
 
 namespace vm68k
@@ -46,7 +40,5 @@ namespace vm68k
     using std::tr1::uint_fast32_t;
 }
 
-#endif /* __cplusplus < 201103L */
-
-#endif /* once */
+#endif
 

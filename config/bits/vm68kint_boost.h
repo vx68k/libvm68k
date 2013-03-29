@@ -1,5 +1,5 @@
 /*
- * Integral types for older systems.
+ * Integral types based on Boost libraries.
  * Copyright (C) 2012  Kaz Sasa
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,32 +16,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef vm68kint_classicH
-#define vm68kint_classicH 1
+#ifndef vm68kint_boostH
+#define vm68kint_boostH 1
 
-#if __cplusplus >= 201103L
-
-#include <vm68kint_std11.h>
-
-#else
+#include <boost/cstdint.hpp>
 
 namespace vm68k
 {
-    typedef signed char    int_least8_t;
-    typedef unsigned char  uint_least8_t;
-    typedef short          int_least16_t;
-    typedef unsigned short uint_least16_t;
-    typedef int            int_least32_t;
-    typedef unsigned int   uint_least32_t;
+    using boost::int_least8_t;
+    using boost::uint_least8_t;
+    using boost::int_least16_t;
+    using boost::uint_least16_t;
+    using boost::int_least32_t;
+    using boost::uint_least32_t;
 
-    typedef int            int_fast8_t;
-    typedef unsigned int   uint_fast8_t;
-    typedef int            int_fast16_t;
-    typedef unsigned int   uint_fast16_t;
-    typedef int            int_fast32_t;
-    typedef unsigned int   uint_fast32_t;
+    using boost::int_fast8_t;
+    using boost::uint_fast8_t;
+    using boost::int_fast16_t;
+    using boost::uint_fast16_t;
+    using boost::int_fast32_t;
+    using boost::uint_fast32_t;
 }
 
-#endif /* __cplusplus < 201103L */
-
-#endif /* once */
+#endif

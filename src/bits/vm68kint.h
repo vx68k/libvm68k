@@ -1,5 +1,5 @@
 /*
- * Test_vm68kmem - Test cases for libvm68k (interface)
+ * Integral type definitions
  * Copyright (C) 2012  Kaz Sasa
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,8 +16,36 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef Test_vm68kmemH
-#define Test_vm68kmemH 1
+/* TODO: This header is not tested. */
+
+#ifndef vm68kintH
+#define vm68kintH 1
+
+#if __cplusplus >= 201103L
+
+#include <cstdint>
+
+namespace vm68k
+{
+    using std::int_least8_t;
+    using std::uint_least8_t;
+    using std::int_least16_t;
+    using std::uint_least16_t;
+    using std::int_least32_t;
+    using std::uint_least32_t;
+
+    using std::int_fast8_t;
+    using std::uint_fast8_t;
+    using std::int_fast16_t;
+    using std::uint_fast16_t;
+    using std::int_fast32_t;
+    using std::uint_fast32_t;
+}
+
+#else
+
+#include <bits/vm68kint1.h>
+
+#endif /* __cplusplus < 201103L */
 
 #endif
-

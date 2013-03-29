@@ -16,22 +16,43 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef vm68kmemH
-#define vm68kmemH
+#ifndef vm68kmemoryH
+#define vm68kmemoryH 1
 
-#include <vm68kdef.h>
-
-#if _WIN32
-#pragma comment(lib, "vm68k.lib")
-#endif
+#include <bits/vm68kdef.h>
+#include <exception>
 
 namespace vm68k
 {
+    class _VM68K_EXPORT memory_exception : public std::exception {
+    public:
+        memory_exception() _VM68K_NOEXCEPT;
+        memory_exception(const memory_exception &x) _VM68K_NOEXCEPT;
+        memory_exception &operator =(const memory_exception & x) _VM68K_NOEXCEPT;
+        virtual const char *what() const _VM68K_NOEXCEPT;
+    };
+
+    class _VM68K_EXPORT bus_error : public memory_exception {
+    public:
+        bus_error() _VM68K_NOEXCEPT;
+        bus_error(const bus_error &x) _VM68K_NOEXCEPT;
+        bus_error &operator =(const bus_error &x) _VM68K_NOEXCEPT;
+        virtual const char *what() const _VM68K_NOEXCEPT;
+    };
+
+    class _VM68K_EXPORT address_error : public memory_exception {
+    public:
+        address_error() _VM68K_NOEXCEPT;
+        address_error(const address_error &x) _VM68K_NOEXCEPT;
+        address_error &operator =(const address_error &x) _VM68K_NOEXCEPT;
+        virtual const char *what() const _VM68K_NOEXCEPT;
+    };
+
     /**
      * <author>Kaz Sasa</author>
      * <since>2.0</since>
      */
-    class VM68K_EXPORT device
+    class _VM68K_EXPORT device
     {
     protected:
         /**
@@ -52,7 +73,7 @@ namespace vm68k
      * <author>Kaz Sasa</author>
      * <since>2.0</since>
      */
-    class VM68K_EXPORT memory_map
+    class _VM68K_EXPORT memory_map
     {
     public:
         /**
@@ -69,4 +90,4 @@ namespace vm68k
     };
 }
 
-#endif /* once */
+#endif

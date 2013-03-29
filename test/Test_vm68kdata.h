@@ -1,5 +1,5 @@
 /*
- * Integral types based on ISO/IEC 14882:2011 a.k.a. C++11
+ * Test_vm68kdata - Test cases for libvm68k (interface)
  * Copyright (C) 2012  Kaz Sasa
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,28 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* TODO: This header is not tested. */
+#ifndef Test_vm68kdataH
+#define Test_vm68kdataH 1
 
-#ifndef vm68kint_std11H
-#define vm68kint_std11H 1
-
-#include <cstdint>
-
-namespace vm68k
-{
-    using std::int_least8_t;
-    using std::uint_least8_t;
-    using std::int_least16_t;
-    using std::uint_least16_t;
-    using std::int_least32_t;
-    using std::uint_least32_t;
-
-    using std::int_fast8_t;
-    using std::uint_fast8_t;
-    using std::int_fast16_t;
-    using std::uint_fast16_t;
-    using std::int_fast32_t;
-    using std::uint_fast32_t;
-}
-
-#endif /* once */
+#endif

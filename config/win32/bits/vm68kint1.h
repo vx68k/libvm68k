@@ -1,5 +1,5 @@
 /*
- * Integral types based on Boost libraries.
+ * Integral type definitions fow Win32
  * Copyright (C) 2012  Kaz Sasa
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,34 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef vm68kint_boostH
-#define vm68kint_boostH 1
+#ifndef vm68kint1H
+#define vm68kint1H 1
 
-#if __cplusplus >= 201103L
-
-#include <vm68kint_std11.h>
-
+#ifdef __BORLANDC__
+#include <bits/vm68kint_boost.h>
 #else
+#error Unknown compiler
+#endif
 
-#include <boost/cstdint.hpp>
-
-namespace vm68k
-{
-    using boost::int_least8_t;
-    using boost::uint_least8_t;
-    using boost::int_least16_t;
-    using boost::uint_least16_t;
-    using boost::int_least32_t;
-    using boost::uint_least32_t;
-
-    using boost::int_fast8_t;
-    using boost::uint_fast8_t;
-    using boost::int_fast16_t;
-    using boost::uint_fast16_t;
-    using boost::int_fast32_t;
-    using boost::uint_fast32_t;
-}
-
-#endif /* __cplusplus < 201103L */
-
-#endif /* once */
+#endif

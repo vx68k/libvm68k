@@ -1,5 +1,5 @@
 /*
- * Integral type definitions fow Win32.
+ * Base definitions.
  * Copyright (C) 2012  Kaz Sasa
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,13 +16,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef vm68kintH
-#define vm68kintH 1
+#ifndef vm68kdefH
+#define vm68kdefH 1
 
-#ifdef __BORLANDC__
-#include <vm68kint_boost.h>
-#else
-#error Unknown compiler
+#ifndef _VM68K_EXPORT
+#define _VM68K_EXPORT
 #endif
 
-#endif /* once */
+#ifndef _VM68K_CONSTEXPR
+#if __cplusplus >= 201103L
+#define _VM68K_CONSTEXPR constexpr
+#else
+#define _VM68K_CONSTEXPR /*nothing*/
+#endif
+#endif
+
+#ifndef _VM68K_NOEXCEPT
+#if __cplusplus >= 201103L
+#define _VM68K_NOEXCEPT noexcept
+#else
+#define _VM68K_NOEXCEPT throw()
+#endif
+#endif
+
+#endif

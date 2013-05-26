@@ -8,6 +8,6 @@ SUBDIRS = config src test
 
 vm68kincludedir = $(includedir)/vm68k
 
-nodist_vm68kinclude_HEADERS = vm68kint.h
+nodist_vm68kinclude_HEADERS = bits/vm68kint1.h
 
-EXTRA_DIST = libvm68k.groupproj vm68k.cbproj ModelSupport_vm68k
+EXTRA_DIST = libvm68k.groupproj

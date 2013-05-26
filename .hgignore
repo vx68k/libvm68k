@@ -1,5 +1,15 @@
 syntax: glob
 
+#
+configure
+config.h.in
+Makefile.in
+aclocal.m4
+build-aux/
+#
+m4/
+autom4te.cache/
+
 # RAD Studio files and directories
 *.local
 *.tvsconfig

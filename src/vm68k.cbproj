@@ -39,6 +39,7 @@
         <Cfg_2>true</Cfg_2>
         <Base>true</Base>
     </PropertyGroup>
+    <Import Project="..\libvm68k.optset" Condition="'$(Base)'!='' And Exists('..\libvm68k.optset')"/>
     <PropertyGroup Condition="'$(Base)'!=''">
         <BCC_Defines>_VM68K_EXPORT=__declspec(dllexport);$(BCC_Defines)</BCC_Defines>
         <Defines>_VM68K_IMPLEMENTATION=1;$(Defines)</Defines>
@@ -60,6 +61,7 @@
         <BCC_OptimizeForSpeed>true</BCC_OptimizeForSpeed>
         <BCC_ExtendedErrorInfo>true</BCC_ExtendedErrorInfo>
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\release\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
+        <CfgDependentOn>..\libvm68k.optset</CfgDependentOn>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <IncludePath>..\config\win32;..\config;$(IncludePath)</IncludePath>
@@ -133,6 +135,7 @@
         </BuildConfiguration>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
+            <DependentOn>..\libvm68k.optset</DependentOn>
         </BuildConfiguration>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_1</Key>

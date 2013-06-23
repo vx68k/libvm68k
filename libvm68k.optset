@@ -1,5 +1,8 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <PropertyGroup/>
+    <PropertyGroup>
+        <BCC_InstructionSet>6</BCC_InstructionSet>
+        <Defines>PACKAGE_NAME=&quot;libvm68k&quot;;PACKAGE_VERSION=&quot;2.0x&quot;;$(Defines)</Defines>
+    </PropertyGroup>
     <ProjectExtensions>
         <Borland.Personality>CPlusPlusBuilder.Personality.12</Borland.Personality>
         <Borland.ProjectType>OptionSet</Borland.ProjectType>

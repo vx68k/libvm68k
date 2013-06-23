@@ -49,7 +49,6 @@
         <BCC_Defines>_VM68K_EXPORT=__declspec(dllexport);$(BCC_Defines)</BCC_Defines>
         <Defines>_VM68K_IMPLEMENTATION=1;$(Defines)</Defines>
         <IncludePath>.;$(IncludePath)</IncludePath>
-        <BCC_InstructionSet>6</BCC_InstructionSet>
         <BCC_PCHUsage>None</BCC_PCHUsage>
         <ILINK_GenerateImportLibrary>true</ILINK_GenerateImportLibrary>
         <Multithreaded>true</Multithreaded>

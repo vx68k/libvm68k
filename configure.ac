@@ -1,6 +1,6 @@
 # Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.69])
-AC_INIT([libvm68k], [2.0x], [vx68k@googlegroups.com])
+AC_INIT([libvm68k], [2.0x],,, [http://www.vx68k.org/libvm68k])
 AC_CONFIG_SRCDIR([src/bits/vm68kmemory.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])

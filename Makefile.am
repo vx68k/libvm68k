@@ -1,6 +1,5 @@
 ## Process this file with automake to produce Makefile.in.
 
-ACLOCAL_AMFLAGS = -Im4
 # Uses foreign for now.
 AUTOMAKE_OPTIONS = foreign
 

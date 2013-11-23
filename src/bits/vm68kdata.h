@@ -88,6 +88,10 @@ namespace vm68k
     typedef data_size<std::int8_t,  std::int_fast8_t>  byte;
     typedef data_size<std::int16_t, std::int_fast16_t> word;
     typedef data_size<std::int32_t, std::int_fast32_t> lword;
+    // No implicit instantiation.
+    extern template class data_size<std::int8_t,  std::int_fast8_t>;
+    extern template class data_size<std::int16_t, std::int_fast16_t>;
+    extern template class data_size<std::int32_t, std::int_fast32_t>;
 
     /**
      * Data of a specific size.
@@ -130,6 +134,10 @@ namespace vm68k
     typedef basic_data<byte>  byte_data;
     typedef basic_data<word>  word_data;
     typedef basic_data<lword> lword_data;
+    // No implicit instantiation.
+    extern template class basic_data<byte>;
+    extern template class basic_data<word>;
+    extern template class basic_data<lword>;
 }
 
 #endif

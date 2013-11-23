@@ -20,3 +20,15 @@
 #if __BORLANDC__
 #pragma package(smart_init)
 #endif
+
+namespace vm68k {
+    /*
+     * Explicit instantiations.
+     */
+    template class data_size<std::int8_t,  std::int_fast8_t>;
+    template class data_size<std::int16_t, std::int_fast16_t>;
+    template class data_size<std::int32_t, std::int_fast32_t>;
+    template class basic_data<byte>;
+    template class basic_data<word>;
+    template class basic_data<lword>;
+}

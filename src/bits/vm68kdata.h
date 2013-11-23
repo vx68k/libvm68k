@@ -32,7 +32,7 @@ namespace vm68k
         /*
          * Tests if a basic_data object equals to another.
          */
-        friend _VM68K_CONSTEXPR bool operator ==(const basic_data &x,
+        friend constexpr bool operator ==(const basic_data &x,
             const basic_data &y) {
 
             return x.value == y.value;
@@ -41,7 +41,7 @@ namespace vm68k
         /*
          * Tests if a basic_data object does not equal to another.
          */
-        friend _VM68K_CONSTEXPR bool operator !=(const basic_data &x,
+        friend constexpr bool operator !=(const basic_data &x,
             const basic_data &y) {
 
             return x.value != y.value;
@@ -55,40 +55,40 @@ namespace vm68k
         /*
          * Returns the size of this class in bytes.
          */
-        static _VM68K_CONSTEXPR size_type size() {
+        static constexpr size_type size() {
             return (N + 7U) >> 3;
         }
 
         /*
          * Returns the minimum value for signed integers.
          */
-        static _VM68K_CONSTEXPR int_type min() {
+        static constexpr int_type min() {
             return ~(int_type)0 << N - 1;
         }
 
         /*
          * Returns the maximum value for signed integers.
          */
-        static _VM68K_CONSTEXPR int_type max() {
+        static constexpr int_type max() {
             return ~min();
         }
 
         /*
          * Returns the maximum value for unsigned integers.
          */
-        static _VM68K_CONSTEXPR unsigned_int_type umax() {
+        static constexpr unsigned_int_type umax() {
             return ~(~(unsigned_int_type)1 << (N - 1));
         }
 
-        _VM68K_CONSTEXPR int_type get() const {
+        constexpr int_type get() const {
             return value;
         }
 
-        _VM68K_CONSTEXPR unsigned_int_type uget() const {
+        constexpr unsigned_int_type uget() const {
             return (unsigned_int_type)get() & umax();
         }
 
-        _VM68K_CONSTEXPR operator int_type() const {
+        constexpr operator int_type() const {
             return get();
         }
 
@@ -101,17 +101,17 @@ namespace vm68k
             return (int_type)x;
         }
 
-        static _VM68K_CONSTEXPR unsigned_int_type to_unsigned_int(int_type x) {
+        static constexpr unsigned_int_type to_unsigned_int(int_type x) {
             return unsigned_int_type(x) & umax();
         }
 
-        _VM68K_CONSTEXPR basic_data(unsigned_int_type x) : value(to_int(x)) {
+        constexpr basic_data(unsigned_int_type x) : value(to_int(x)) {
         }
 
 #if __cplusplus >= 201103L
         basic_data(const basic_data &x) = default;
 #else
-        _VM68K_CONSTEXPR basic_data(const basic_data &x) : value(x.value) {
+        constexpr basic_data(const basic_data &x) : value(x.value) {
         }
 #endif
 
@@ -126,7 +126,7 @@ namespace vm68k
         typedef basic_data<8, std::int_least8_t, std::uint_least8_t> inherited;
 
     public:
-        _VM68K_CONSTEXPR byte(unsigned_int_type x = 0) : inherited(x) {
+        constexpr byte(unsigned_int_type x = 0) : inherited(x) {
         }
     };
 
@@ -137,7 +137,7 @@ namespace vm68k
         typedef basic_data<16, std::int_least16_t, std::uint_least16_t> inherited;
 
     public:
-        _VM68K_CONSTEXPR word(unsigned_int_type x = 0) : inherited(x) {
+        constexpr word(unsigned_int_type x = 0) : inherited(x) {
         }
     };
 
@@ -148,7 +148,7 @@ namespace vm68k
         typedef basic_data<32, int_least32_t, uint_least32_t> inherited;
 
     public:
-        _VM68K_CONSTEXPR long_word(unsigned_int_type x = 0) : inherited(x) {
+        constexpr long_word(unsigned_int_type x = 0) : inherited(x) {
         }
     };
 }

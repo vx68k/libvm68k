@@ -23,20 +23,4 @@
 #define _VM68K_EXPORT
 #endif
 
-#ifndef _VM68K_CONSTEXPR
-#if __cplusplus >= 201103L
-#define _VM68K_CONSTEXPR constexpr
-#else
-#define _VM68K_CONSTEXPR /*nothing*/
-#endif
-#endif
-
-#ifndef _VM68K_NOEXCEPT
-#if __cplusplus >= 201103L
-#define _VM68K_NOEXCEPT noexcept
-#else
-#define _VM68K_NOEXCEPT throw()
-#endif
-#endif
-
 #endif

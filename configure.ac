@@ -3,10 +3,9 @@ AC_PREREQ([2.69])
 AC_INIT([libvm68k], [2.0x],,, [http://www.vx68k.org/libvm68k])
 AC_CONFIG_SRCDIR([src/bits/vm68kmemory.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
-LT_INIT
-AM_INIT_AUTOMAKE
-AC_CONFIG_FILES([Makefile config/Makefile src/Makefile test/Makefile])
 AC_CONFIG_HEADERS([config.h])
+AM_INIT_AUTOMAKE
+LT_INIT
 
 # Checks for programs.
 AC_PROG_CC
@@ -15,21 +14,10 @@ AC_PROG_CXX
 # Checks for libraries.
 
 # Checks for header files.
-AC_LANG_PUSH([C++])
-AC_CHECK_HEADERS([tr1/cstdint boost/cstdint.hpp],,,
-[// no default includes])
-if test "$ac_cv_header_tr1_cstdint" = yes; then
-    vm68kint1=vm68kint_tr1
-elif test "$ac_cv_header_boost_cstdint_hpp" = yes; then
-    vm68kint1=vm68kint_boost
-else
-    vm68kint1=vm68kint_classic
-fi
-AC_CONFIG_LINKS([bits/vm68kint1.h:config/bits/$vm68kint1.h])
-AC_LANG_POP([C++])
 
 # Checks for typedefs, structures, and compiler characteristics.
 
 # Checks for library functions.
 
+AC_CONFIG_FILES([Makefile config/Makefile src/Makefile test/Makefile])
 AC_OUTPUT

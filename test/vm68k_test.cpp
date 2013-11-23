@@ -1,6 +1,6 @@
 /*
  * DUnit test driver for libvm68k
- * Copyright (C) 2012  Kaz Sasa
+ * Copyright (C) 2012 Kaz Nishimura
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

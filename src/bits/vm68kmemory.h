@@ -1,6 +1,6 @@
 /*
  * Memory components.
- * Copyright (C) 2012  Kaz Sasa
+ * Copyright (C) 2012 Kaz Nishimura
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@ namespace vm68k
     };
 
     /**
-     * <author>Kaz Sasa</author>
+     * <author>Kaz Nishimura</author>
      * <since>2.0</since>
      */
     class _VM68K_EXPORT device
@@ -70,7 +70,7 @@ namespace vm68k
     };
 
     /**
-     * <author>Kaz Sasa</author>
+     * <author>Kaz Nishimura</author>
      * <since>2.0</since>
      */
     class _VM68K_EXPORT memory_map

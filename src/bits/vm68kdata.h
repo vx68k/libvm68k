@@ -21,140 +21,115 @@
 
 #include <bits/vm68kdef.h>
 #include <type_traits>
+#include <limits>
 #include <cstdint>
 
 namespace vm68k
 {
-    /*
-     * Base class for data types.
+    using std::size_t;
+
+    /**
+     * Provides members for the target data sizes.
      */
-    template<unsigned int N, typename IntT>
-    class basic_data {
-        static_assert(std::is_integral<IntT>::value, "IntT must be integral");
+    template<typename IntT, typename IntFastT>
+    struct data_size {
         static_assert(std::is_signed<IntT>::value, "IntT must be signed");
+        static_assert(std::is_signed<IntFastT>::value, "IntT must be signed");
+        static_assert(sizeof (IntFastT) >= sizeof (IntT),
+                "IntFastT must be less shorter than IntT");
 
-        /*
-         * Tests if a basic_data object equals to another.
+        typedef IntT int_type;
+        typedef typename std::make_unsigned<IntT>::type uint_type;
+
+        typedef IntFastT int_fast_type;
+        typedef typename std::make_unsigned<IntFastT>::type uint_fast_type;
+
+        /**
+         * Returns the size in bytes.
+         * @return the size.
          */
-        friend constexpr bool operator ==(const basic_data &x,
-            const basic_data &y) {
-
-            return x.value == y.value;
+        static constexpr size_t size() noexcept {
+            return sizeof (int_type);
         }
 
-        /*
-         * Tests if a basic_data object does not equal to another.
+        /**
+         * Returns the size in bytes when aligned to a word boundary.
+         * @return the word-aligned size.
          */
-        friend constexpr bool operator !=(const basic_data &x,
-            const basic_data &y) {
-
-            return x.value != y.value;
+        static constexpr size_t word_aligned_size() noexcept {
+            return (size() + 1U) & ~1U;
         }
+
+        /**
+         * Returns the minimum signed integral value
+         * @return the minimum value.
+         */
+        static constexpr int_type int_min() noexcept {
+            return std::numeric_limits<int_type>::min();
+        }
+
+        /**
+         * Returns the maximum signed integral value
+         * @return the maximum value.
+         */
+        static constexpr int_type int_max() noexcept {
+            return std::numeric_limits<int_type>::max();
+        }
+
+        /**
+         * Returns the maximum unsigned integral value
+         * @return the maximum value.
+         */
+        static constexpr uint_type uint_max() noexcept {
+            return std::numeric_limits<uint_type>::max();
+        }
+    };
+
+    typedef data_size<std::int8_t,  std::int_fast8_t>  byte;
+    typedef data_size<std::int16_t, std::int_fast16_t> word;
+    typedef data_size<std::int32_t, std::int_fast32_t> lword;
+
+    /**
+     * Data of a specific size.
+     */
+    template<typename Size>
+    class basic_data {
+        typedef basic_data<Size> inherited;
 
     public:
-        typedef std::uint32_t size_type;
-        typedef IntT int_type;
-        typedef typename std::make_unsigned<IntT>::type unsigned_int_type;
-
-        /*
-         * Returns the size of this class in bytes.
+        /**
+         * Constructs this object with an initial value.
+         * @param x optional initial value; if omitted, initialized to 0.
          */
-        static constexpr size_type size() {
-            return (N + 7U) >> 3;
+        constexpr basic_data(typename Size::uint_type x = 0) noexcept :
+        value(x) {
         }
 
-        /*
-         * Returns the minimum value for signed integers.
+        /**
+         * Returns the value of this object as the signed integral type.
+         * @return the signed integral value.
          */
-        static constexpr int_type min() {
-            return ~(int_type)0 << N - 1;
-        }
-
-        /*
-         * Returns the maximum value for signed integers.
-         */
-        static constexpr int_type max() {
-            return ~min();
-        }
-
-        /*
-         * Returns the maximum value for unsigned integers.
-         */
-        static constexpr unsigned_int_type umax() {
-            return ~(~(unsigned_int_type)1 << (N - 1));
-        }
-
-        constexpr int_type get() const {
+        constexpr typename Size::int_type to_int() const noexcept {
             return value;
         }
 
-        constexpr unsigned_int_type uget() const {
-            return (unsigned_int_type)get() & umax();
+        /**
+         * Returns the value of this object as the unsigned integral type.
+         * @return the unsigned integral value.
+         */
+        constexpr typename Size::uint_type to_uint() const noexcept {
+            return value;
         }
 
-        constexpr operator int_type() const {
-            return get();
-        }
-
-    protected:
-        static int_type to_int(unsigned_int_type x) {
-            x &= umax();
-            if (x >= (unsigned_int_type) 1 << (N - 1)) {
-                return -1 - (int_type)(umax() - x);
-            }
-            return (int_type)x;
-        }
-
-        static constexpr unsigned_int_type to_unsigned_int(int_type x) {
-            return unsigned_int_type(x) & umax();
-        }
-
-        constexpr basic_data(unsigned_int_type x) : value(to_int(x)) {
-        }
-
-#if __cplusplus >= 201103L
-        basic_data(const basic_data &x) = default;
-#else
-        constexpr basic_data(const basic_data &x) : value(x.value) {
-        }
-#endif
+        // TODO: Add more members.
 
     private:
-        int_type value;
+        typename Size::uint_type value;
     };
 
-    /*
-     * Target byte type.  This type is 8-bit long.
-     */
-    class byte : public basic_data<8, std::int8_t> {
-        typedef basic_data<8, std::int8_t> inherited;
-
-    public:
-        constexpr byte(unsigned_int_type x = 0) : inherited(x) {
-        }
-    };
-
-    /*
-     * Target word type.  This type is 16-bit long.
-     */
-    class word : public basic_data<16, std::int16_t> {
-        typedef basic_data<16, std::int16_t> inherited;
-
-    public:
-        constexpr word(unsigned_int_type x = 0) : inherited(x) {
-        }
-    };
-
-    /*
-     * Target long word type.  This type is 32-bit long.
-     */
-    class long_word : public basic_data<32, int32_t> {
-        typedef basic_data<32, int32_t> inherited;
-
-    public:
-        constexpr long_word(unsigned_int_type x = 0) : inherited(x) {
-        }
-    };
+    typedef basic_data<byte>  byte_data;
+    typedef basic_data<word>  word_data;
+    typedef basic_data<lword> lword_data;
 }
 
 #endif

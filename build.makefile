@@ -1,5 +1,5 @@
 # -*-Makefile-*- for maintenance jobs
-# Copyright (C) 2013  Kaz Nishimura
+# Copyright (C) 2013 Kaz Nishimura
 
 # Copying and distribution of this file, with or without modification, are
 # permitted in any medium without royalty provided the copyright notice and
@@ -11,19 +11,21 @@
 builddir = build
 
 AUTORECONF = autoreconf
+CXX = g++ -std=gnu++11
 
-CFLAGS = -g -O2 -Wall -Wextra
-CXXFLAGS = $(CFLAGS)
+CXXFLAGS = -g -O2 -Wall -Wextra
+
+export CXX
 
 all: $(builddir)/Makefile
-	cd $(builddir) && $(MAKE) check
+	cd $(builddir) && $(MAKE) CXXFLAGS='$(CXXFLAGS)' check
+	cd $(builddir) && $(MAKE) mostlyclean
 	cd $(builddir) && $(MAKE) distcheck
 
 $(builddir)/Makefile: configure
 	test -d $(builddir) || mkdir $(builddir)
 	srcdir=$$(pwd); \
-	cd $(builddir) && \
-	  CFLAGS='$(CFLAGS)' CXXFLAGS='$(CXXFLAGS)' $$srcdir/configure
+	cd $(builddir) && $$srcdir/configure
 
 configure: stamp-configure
 stamp-configure: configure.ac

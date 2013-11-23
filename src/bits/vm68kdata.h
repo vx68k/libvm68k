@@ -20,6 +20,7 @@
 #define vm68kdataH 1
 
 #include <bits/vm68kdef.h>
+#include <type_traits>
 #include <cstdint>
 
 namespace vm68k
@@ -27,8 +28,11 @@ namespace vm68k
     /*
      * Base class for data types.
      */
-    template<unsigned int N, typename IntT, typename UIntT>
+    template<unsigned int N, typename IntT>
     class basic_data {
+        static_assert(std::is_integral<IntT>::value, "IntT must be integral");
+        static_assert(std::is_signed<IntT>::value, "IntT must be signed");
+
         /*
          * Tests if a basic_data object equals to another.
          */
@@ -50,7 +54,7 @@ namespace vm68k
     public:
         typedef std::uint_least32_t size_type;
         typedef IntT int_type;
-        typedef UIntT unsigned_int_type;
+        typedef typename std::make_unsigned<IntT>::type unsigned_int_type;
 
         /*
          * Returns the size of this class in bytes.
@@ -122,8 +126,8 @@ namespace vm68k
     /*
      * Target byte type.  This type is 8-bit long.
      */
-    class byte : public basic_data<8, std::int_least8_t, std::uint_least8_t> {
-        typedef basic_data<8, std::int_least8_t, std::uint_least8_t> inherited;
+    class byte : public basic_data<8, std::int_least8_t> {
+        typedef basic_data<8, std::int_least8_t> inherited;
 
     public:
         constexpr byte(unsigned_int_type x = 0) : inherited(x) {
@@ -133,8 +137,8 @@ namespace vm68k
     /*
      * Target word type.  This type is 16-bit long.
      */
-    class word : public basic_data<16, std::int_least16_t, std::uint_least16_t> {
-        typedef basic_data<16, std::int_least16_t, std::uint_least16_t> inherited;
+    class word : public basic_data<16, std::int_least16_t> {
+        typedef basic_data<16, std::int_least16_t> inherited;
 
     public:
         constexpr word(unsigned_int_type x = 0) : inherited(x) {
@@ -144,8 +148,8 @@ namespace vm68k
     /*
      * Target long word type.  This type is 32-bit long.
      */
-    class long_word : public basic_data<32, int_least32_t, uint_least32_t> {
-        typedef basic_data<32, int_least32_t, uint_least32_t> inherited;
+    class long_word : public basic_data<32, int_least32_t> {
+        typedef basic_data<32, int_least32_t> inherited;
 
     public:
         constexpr long_word(unsigned_int_type x = 0) : inherited(x) {

@@ -20,7 +20,7 @@
 #define vm68kdataH 1
 
 #include <bits/vm68kdef.h>
-#include <bits/vm68kint.h>
+#include <cstdint>
 
 namespace vm68k
 {
@@ -48,7 +48,7 @@ namespace vm68k
         }
 
     public:
-        typedef uint_least32_t size_type;
+        typedef std::uint_least32_t size_type;
         typedef IntT int_type;
         typedef UIntT unsigned_int_type;
 
@@ -77,7 +77,7 @@ namespace vm68k
          * Returns the maximum value for unsigned integers.
          */
         static _VM68K_CONSTEXPR unsigned_int_type umax() {
-            return ~(~(unsigned_int_type)1 << N - 1);
+            return ~(~(unsigned_int_type)1 << (N - 1));
         }
 
         _VM68K_CONSTEXPR int_type get() const {
@@ -95,7 +95,7 @@ namespace vm68k
     protected:
         static int_type to_int(unsigned_int_type x) {
             x &= umax();
-            if (x >= (unsigned_int_type) 1 << N - 1) {
+            if (x >= (unsigned_int_type) 1 << (N - 1)) {
                 return -1 - (int_type)(umax() - x);
             }
             return (int_type)x;
@@ -122,8 +122,8 @@ namespace vm68k
     /*
      * Target byte type.  This type is 8-bit long.
      */
-    class byte : public basic_data<8, int_least8_t, uint_least8_t> {
-        typedef basic_data<8, int_least8_t, uint_least8_t> inherited;
+    class byte : public basic_data<8, std::int_least8_t, std::uint_least8_t> {
+        typedef basic_data<8, std::int_least8_t, std::uint_least8_t> inherited;
 
     public:
         _VM68K_CONSTEXPR byte(unsigned_int_type x = 0) : inherited(x) {
@@ -133,8 +133,8 @@ namespace vm68k
     /*
      * Target word type.  This type is 16-bit long.
      */
-    class word : public basic_data<16, int_least16_t, uint_least16_t> {
-        typedef basic_data<16, int_least16_t, uint_least16_t> inherited;
+    class word : public basic_data<16, std::int_least16_t, std::uint_least16_t> {
+        typedef basic_data<16, std::int_least16_t, std::uint_least16_t> inherited;
 
     public:
         _VM68K_CONSTEXPR word(unsigned_int_type x = 0) : inherited(x) {

@@ -52,7 +52,7 @@ namespace vm68k
         }
 
     public:
-        typedef std::uint_least32_t size_type;
+        typedef std::uint32_t size_type;
         typedef IntT int_type;
         typedef typename std::make_unsigned<IntT>::type unsigned_int_type;
 
@@ -126,8 +126,8 @@ namespace vm68k
     /*
      * Target byte type.  This type is 8-bit long.
      */
-    class byte : public basic_data<8, std::int_least8_t> {
-        typedef basic_data<8, std::int_least8_t> inherited;
+    class byte : public basic_data<8, std::int8_t> {
+        typedef basic_data<8, std::int8_t> inherited;
 
     public:
         constexpr byte(unsigned_int_type x = 0) : inherited(x) {
@@ -137,8 +137,8 @@ namespace vm68k
     /*
      * Target word type.  This type is 16-bit long.
      */
-    class word : public basic_data<16, std::int_least16_t> {
-        typedef basic_data<16, std::int_least16_t> inherited;
+    class word : public basic_data<16, std::int16_t> {
+        typedef basic_data<16, std::int16_t> inherited;
 
     public:
         constexpr word(unsigned_int_type x = 0) : inherited(x) {
@@ -148,8 +148,8 @@ namespace vm68k
     /*
      * Target long word type.  This type is 32-bit long.
      */
-    class long_word : public basic_data<32, int_least32_t> {
-        typedef basic_data<32, int_least32_t> inherited;
+    class long_word : public basic_data<32, int32_t> {
+        typedef basic_data<32, int32_t> inherited;
 
     public:
         constexpr long_word(unsigned_int_type x = 0) : inherited(x) {

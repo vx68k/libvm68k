@@ -5,7 +5,7 @@
         <FrameworkType>None</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
-        <Platform Condition="'$(Platform)'==''">Win32</Platform>
+        <Platform Condition="'$(Platform)'==''">Win64</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Library</AppType>
     </PropertyGroup>
@@ -111,7 +111,6 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
     </PropertyGroup>
     <ItemGroup>
-        <None Include="..\README"/>
         <CppCompile Include="bits\vm68kcontext.cpp">
             <DependentOn>bits\vm68kcontext.h</DependentOn>
             <BuildOrder>2</BuildOrder>
@@ -120,12 +119,6 @@
             <DependentOn>bits\vm68kdata.h</DependentOn>
             <BuildOrder>0</BuildOrder>
         </CppCompile>
-        <None Include="bits\vm68kdef.h">
-            <BuildOrder>3</BuildOrder>
-        </None>
-        <None Include="bits\vm68kint.h">
-            <BuildOrder>13</BuildOrder>
-        </None>
         <CppCompile Include="bits\vm68kmemory.cpp">
             <DependentOn>bits\vm68kmemory.h</DependentOn>
             <BuildOrder>1</BuildOrder>
@@ -134,7 +127,6 @@
         <None Include="ModelSupport_vm68k\default.txvpck"/>
         <None Include="ModelSupport_vm68k\vm68k\default.txaPackage"/>
         <None Include="ModelSupport_vm68k\vm68k\default.txvpck"/>
-        <None Include="vm68k"/>
         <CppCompile Include="win32dll.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>

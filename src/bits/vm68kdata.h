@@ -32,7 +32,7 @@ namespace vm68k
      * Provides members for the target data sizes.
      */
     template<typename IntT, typename IntFastT>
-    struct data_size {
+    struct _VM68K_EXPORT data_size {
         static_assert(std::is_signed<IntT>::value, "IntT must be signed");
         static_assert(std::is_signed<IntFastT>::value, "IntT must be signed");
         static_assert(sizeof (IntFastT) >= sizeof (IntT),
@@ -97,7 +97,7 @@ namespace vm68k
      * Data of a specific size.
      */
     template<typename Size>
-    class basic_data {
+    class _VM68K_EXPORT basic_data {
         typedef basic_data<Size> inherited;
 
     public:

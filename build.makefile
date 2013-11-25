@@ -13,7 +13,7 @@ builddir = build
 AUTORECONF = autoreconf
 CXX = g++ -std=gnu++11
 
-CXXFLAGS = -g -O2 -Wall -Wextra
+CXXFLAGS = -g -O2 -fvisibility=hidden -Wall -Wextra
 
 export CXX
 

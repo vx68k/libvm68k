@@ -24,7 +24,7 @@
 
 namespace vm68k
 {
-    class _VM68K_EXPORT memory_exception : public std::exception {
+    class _VM68K_PUBLIC memory_exception : public std::exception {
     public:
         memory_exception() noexcept;
         memory_exception(const memory_exception &x) noexcept;
@@ -32,7 +32,7 @@ namespace vm68k
         virtual const char *what() const noexcept;
     };
 
-    class _VM68K_EXPORT bus_error : public memory_exception {
+    class _VM68K_PUBLIC bus_error : public memory_exception {
     public:
         bus_error() noexcept;
         bus_error(const bus_error &x) noexcept;
@@ -40,7 +40,7 @@ namespace vm68k
         virtual const char *what() const noexcept;
     };
 
-    class _VM68K_EXPORT address_error : public memory_exception {
+    class _VM68K_PUBLIC address_error : public memory_exception {
     public:
         address_error() noexcept;
         address_error(const address_error &x) noexcept;
@@ -52,7 +52,7 @@ namespace vm68k
      * <author>Kaz Nishimura</author>
      * <since>2.0</since>
      */
-    class _VM68K_EXPORT device
+    class _VM68K_PUBLIC device
     {
     protected:
         /**
@@ -73,7 +73,7 @@ namespace vm68k
      * <author>Kaz Nishimura</author>
      * <since>2.0</since>
      */
-    class _VM68K_EXPORT memory_map
+    class _VM68K_PUBLIC memory_map
     {
     public:
         /**

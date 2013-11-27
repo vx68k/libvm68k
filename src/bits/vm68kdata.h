@@ -38,7 +38,7 @@ namespace vm68k
     struct size_traits;
 
     template<>
-    struct _VM68K_EXPORT size_traits<1> {
+    struct _VM68K_PUBLIC size_traits<1> {
         typedef std::int8_t      int_type;
         typedef std::int_fast8_t int_fast_type;
 
@@ -51,7 +51,7 @@ namespace vm68k
     };
 
     template<>
-    struct _VM68K_EXPORT size_traits<2> {
+    struct _VM68K_PUBLIC size_traits<2> {
         typedef std::int16_t      int_type;
         typedef std::int_fast16_t int_fast_type;
 
@@ -64,7 +64,7 @@ namespace vm68k
     };
 
     template<>
-    struct _VM68K_EXPORT size_traits<4> {
+    struct _VM68K_PUBLIC size_traits<4> {
         typedef std::int32_t      int_type;
         typedef std::int_fast32_t int_fast_type;
 
@@ -80,7 +80,7 @@ namespace vm68k
      * Data of a specific size.
      */
     template<unsigned int N, typename Traits = size_traits<N>>
-    class _VM68K_EXPORT basic_data {
+    class _VM68K_PUBLIC basic_data {
         typedef basic_data<N, Traits> inherited;
 
     public:

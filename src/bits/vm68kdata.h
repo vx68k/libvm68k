@@ -26,86 +26,85 @@
 
 namespace vm68k
 {
-    using std::size_t;
+    /**
+     * Size type for VM targets.
+     */
+    typedef std::uint32_t target_size_t;
 
     /**
-     * Provides members for the target data sizes.
+     * Defines data size properties.
      */
-    template<typename IntT, typename IntFastT>
-    struct _VM68K_EXPORT data_size {
-        static_assert(std::is_signed<IntT>::value, "IntT must be signed");
-        static_assert(std::is_signed<IntFastT>::value, "IntT must be signed");
-        static_assert(sizeof (IntFastT) >= sizeof (IntT),
-                "IntFastT must be less shorter than IntT");
+    template<target_size_t N>
+    struct size_traits;
 
-        typedef IntT int_type;
-        typedef typename std::make_unsigned<IntT>::type uint_type;
+    template<>
+    struct _VM68K_EXPORT size_traits<1> {
+        typedef std::int8_t      int_type;
+        typedef std::int_fast8_t int_fast_type;
 
-        typedef IntFastT int_fast_type;
-        typedef typename std::make_unsigned<IntFastT>::type uint_fast_type;
+        typedef std::uint8_t      uint_type;
+        typedef std::uint_fast8_t uint_fast_type;
 
-        /**
-         * Returns the size in bytes.
-         * @return the size.
-         */
-        static constexpr size_t size() noexcept {
-            return sizeof (int_type);
-        }
-
-        /**
-         * Returns the size in bytes when aligned to a word boundary.
-         * @return the word-aligned size.
-         */
-        static constexpr size_t word_aligned_size() noexcept {
-            return (size() + 1U) & ~1U;
-        }
-
-        /**
-         * Returns the minimum signed integral value
-         * @return the minimum value.
-         */
-        static constexpr int_type int_min() noexcept {
-            return std::numeric_limits<int_type>::min();
-        }
-
-        /**
-         * Returns the maximum signed integral value
-         * @return the maximum value.
-         */
-        static constexpr int_type int_max() noexcept {
-            return std::numeric_limits<int_type>::max();
-        }
-
-        /**
-         * Returns the maximum unsigned integral value
-         * @return the maximum value.
-         */
-        static constexpr uint_type uint_max() noexcept {
-            return std::numeric_limits<uint_type>::max();
+        static constexpr target_size_t size() noexcept {
+            return 1;
         }
     };
 
-    typedef data_size<std::int8_t,  std::int_fast8_t>  byte;
-    typedef data_size<std::int16_t, std::int_fast16_t> word;
-    typedef data_size<std::int32_t, std::int_fast32_t> lword;
-    // No implicit instantiation.
-    extern template class data_size<std::int8_t,  std::int_fast8_t>;
-    extern template class data_size<std::int16_t, std::int_fast16_t>;
-    extern template class data_size<std::int32_t, std::int_fast32_t>;
+    template<>
+    struct _VM68K_EXPORT size_traits<2> {
+        typedef std::int16_t      int_type;
+        typedef std::int_fast16_t int_fast_type;
+
+        typedef std::uint16_t      uint_type;
+        typedef std::uint_fast16_t uint_fast_type;
+
+        static constexpr target_size_t size() noexcept {
+            return 2;
+        }
+    };
+
+    template<>
+    struct _VM68K_EXPORT size_traits<4> {
+        typedef std::int32_t      int_type;
+        typedef std::int_fast32_t int_fast_type;
+
+        typedef std::uint32_t      uint_type;
+        typedef std::uint_fast32_t uint_fast_type;
+
+        static constexpr target_size_t size() noexcept {
+            return 4;
+        }
+    };
 
     /**
      * Data of a specific size.
      */
-    template<typename Size>
+    template<unsigned int N, typename Traits = size_traits<N>>
     class _VM68K_EXPORT basic_data {
-        typedef basic_data<Size> inherited;
+        typedef basic_data<N, Traits> inherited;
 
     public:
+        typedef Traits traits_type;
+
+        typedef typename Traits::int_type      int_type;
+        typedef typename Traits::int_fast_type int_fast_type;
+
+        typedef typename Traits::uint_type      uint_type;
+        typedef typename Traits::uint_fast_type uint_fast_type;
+
+        /**
+         * Returns the size of this data type.
+         * @return size.
+         */
+        static constexpr target_size_t size() noexcept {
+            return Traits::size();
+        }
+
         /**
          * Constructs this object with an initial value.
          * @param x optional initial value; if omitted, initialized to 0.
          */
-        constexpr basic_data(typename Size::uint_type x = 0) noexcept :
+        constexpr basic_data(uint_type x = 0) noexcept :
         value(x) {
         }
 
@@ -113,7 +112,7 @@ namespace vm68k
          * Returns the value of this object as the signed integral type.
          * @return the signed integral value.
          */
-        constexpr typename Size::int_type to_int() const noexcept {
+        constexpr int_type to_int() const noexcept {
             return value;
         }
 
@@ -121,23 +120,23 @@ namespace vm68k
          * Returns the value of this object as the unsigned integral type.
          * @return the unsigned integral value.
          */
-        constexpr typename Size::uint_type to_uint() const noexcept {
+        constexpr uint_type to_uint() const noexcept {
             return value;
         }
 
         // TODO: Add more members.
 
     private:
-        typename Size::uint_type value;
+        uint_type value;
     };
 
-    typedef basic_data<byte>  byte_data;
-    typedef basic_data<word>  word_data;
-    typedef basic_data<lword> lword_data;
+    typedef basic_data<1> byte_data;
+    typedef basic_data<2> word_data;
+    typedef basic_data<4> long_word_data;
     // No implicit instantiation.
-    extern template class basic_data<byte>;
-    extern template class basic_data<word>;
-    extern template class basic_data<lword>;
+    extern template class basic_data<1>;
+    extern template class basic_data<2>;
+    extern template class basic_data<4>;
 }
 
 #endif

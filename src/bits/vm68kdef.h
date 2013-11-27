@@ -20,11 +20,11 @@
 #define vm68kdefH 1
 
 #ifndef _VM68K_PUBLIC
-#if _WIN32 && !VM68K_STATIC
+#if _WIN32
 #if VM68K_DLL
-#define _VM68K_PUBLIC __declspec(dllexport)
-#else
 #define _VM68K_PUBLIC __declspec(dllimport)
+#else
+#define _VM68K_PUBLIC __declspec(dllexport)
 #endif
 #else /* _WIN32 && !_VM68K_STATIC */
 #if __GNUC__ >= 4

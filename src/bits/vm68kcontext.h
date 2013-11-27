@@ -25,7 +25,7 @@ namespace vm68k {
     /*
      * Execution context.
      */
-    class _VM68K_EXPORT context {
+    class _VM68K_PUBLIC context {
     public:
         context();
         context(const context &x);

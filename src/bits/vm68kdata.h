@@ -34,7 +34,7 @@ namespace vm68k
     /**
      * Defines data size properties.
      */
-    template<target_size_t N>
+    template<target_size_t Size>
     struct size_traits;
 
     template<>
@@ -44,10 +44,6 @@ namespace vm68k
 
         typedef std::uint8_t      uint_type;
         typedef std::uint_fast8_t uint_fast_type;
-
-        static constexpr target_size_t size() noexcept {
-            return 1;
-        }
     };
 
     template<>
@@ -57,10 +53,6 @@ namespace vm68k
 
         typedef std::uint16_t      uint_type;
         typedef std::uint_fast16_t uint_fast_type;
-
-        static constexpr target_size_t size() noexcept {
-            return 2;
-        }
     };
 
     template<>
@@ -70,18 +62,14 @@ namespace vm68k
 
         typedef std::uint32_t      uint_type;
         typedef std::uint_fast32_t uint_fast_type;
-
-        static constexpr target_size_t size() noexcept {
-            return 4;
-        }
     };
 
     /**
      * Data of a specific size.
      */
-    template<unsigned int N, typename Traits = size_traits<N>>
+    template<unsigned int Size, typename Traits = size_traits<Size>>
     class _VM68K_PUBLIC basic_data {
-        typedef basic_data<N, Traits> inherited;
+        typedef basic_data<Size, Traits> inherited;
 
     public:
         typedef Traits traits_type;
@@ -97,7 +85,7 @@ namespace vm68k
          * @return size.
          */
         static constexpr target_size_t size() noexcept {
-            return Traits::size();
+            return Size;
         }
 
         /**

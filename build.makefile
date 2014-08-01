@@ -22,7 +22,11 @@ CXXFLAGS = -g -O2 -fvisibility=hidden -Wall -Wextra
 build: clean install dist
 	hg status || true
 
-all check install uninstall clean distclean: $(builddir)/Makefile
+all check uninstall clean distclean: $(builddir)/Makefile
+	cd $(builddir) && $(MAKE) CFLAGS='$(CFLAGS)' CXXFLAGS='$(CXXFLAGS)' $@
+
+install: $(builddir)/Makefile
+	rm -fr $(prefix)
 	cd $(builddir) && $(MAKE) CFLAGS='$(CFLAGS)' CXXFLAGS='$(CXXFLAGS)' $@
 
 dist distcheck: $(builddir)/Makefile
@@ -39,4 +43,4 @@ stamp-configure: configure.ac
 	$(AUTORECONF) --install
 	touch $@
 
-.PHONY: build all check install uninstall clean distclean dist distcheck
+.PHONY: build all check install uninstall dist distcheck clean distclean

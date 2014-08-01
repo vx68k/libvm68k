@@ -21,6 +21,7 @@
 
 #include <bits/vm68kdef.h>
 #include <exception>
+#include <cstdint>
 
 namespace vm68k
 {
@@ -76,6 +77,8 @@ namespace vm68k
     class _VM68K_PUBLIC memory_map
     {
     public:
+        typedef std::uint32_t address_type;
+
         /**
          * <stereotype>constructor</stereotype>
          */

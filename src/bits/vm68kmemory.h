@@ -29,7 +29,7 @@ namespace vm68k
         memory_exception() noexcept;
         memory_exception(const memory_exception &x) noexcept;
         memory_exception &operator =(const memory_exception &x) noexcept;
-        virtual const char *what() const noexcept;
+        const char *what() const noexcept override;
     };
 
     class _VM68K_PUBLIC bus_error : public memory_exception {
@@ -37,7 +37,7 @@ namespace vm68k
         bus_error() noexcept;
         bus_error(const bus_error &x) noexcept;
         bus_error &operator =(const bus_error &x) noexcept;
-        virtual const char *what() const noexcept;
+        const char *what() const noexcept override;
     };
 
     class _VM68K_PUBLIC address_error : public memory_exception {
@@ -45,7 +45,7 @@ namespace vm68k
         address_error() noexcept;
         address_error(const address_error &x) noexcept;
         address_error &operator =(const address_error &x) noexcept;
-        virtual const char *what() const noexcept;
+        const char *what() const noexcept override;
     };
 
     /**

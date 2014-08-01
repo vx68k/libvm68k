@@ -16,13 +16,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#if __BORLANDC__
 #pragma hdrstop
+#endif
 
 #include "vm68kmemory.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 
 using namespace vm68k;
+
+#if __BORLANDC__
+#pragma package(smart_init)
+#endif
 
 /*
  * memory_exception

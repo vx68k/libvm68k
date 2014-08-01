@@ -19,6 +19,9 @@
 #if HAVE_CONFIG_H
 #include <config.h>
 #endif
+#if __BORLANDC__
+#pragma hdrstop
+#endif
 
 #include "vm68kdata.h"
 #if __BORLANDC__

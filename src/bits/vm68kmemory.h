@@ -25,30 +25,6 @@
 
 namespace vm68k
 {
-    class _VM68K_PUBLIC memory_exception : public std::exception {
-    public:
-        memory_exception() noexcept;
-        memory_exception(const memory_exception &x) noexcept;
-        memory_exception &operator =(const memory_exception &x) noexcept;
-        const char *what() const noexcept override;
-    };
-
-    class _VM68K_PUBLIC bus_error : public memory_exception {
-    public:
-        bus_error() noexcept;
-        bus_error(const bus_error &x) noexcept;
-        bus_error &operator =(const bus_error &x) noexcept;
-        const char *what() const noexcept override;
-    };
-
-    class _VM68K_PUBLIC address_error : public memory_exception {
-    public:
-        address_error() noexcept;
-        address_error(const address_error &x) noexcept;
-        address_error &operator =(const address_error &x) noexcept;
-        const char *what() const noexcept override;
-    };
-
     /**
      * <author>Kaz Nishimura</author>
      * <since>2.0</since>
@@ -90,6 +66,41 @@ namespace vm68k
          * <stereotype>destructor</stereotype>
          */
         virtual ~memory_map();
+    };
+
+    class _VM68K_PUBLIC memory_exception : public std::exception {
+        typedef std::exception inherited;
+
+    public:
+        explicit memory_exception(memory_map::address_type address) noexcept;
+
+        memory_map::address_type error_address() const noexcept {
+            return _error_address;
+        }
+
+        const char *what() const noexcept override;
+    private:
+        memory_map::address_type _error_address;
+    };
+
+    class _VM68K_PUBLIC bus_error : public memory_exception {
+        typedef memory_exception inherited;
+
+    public:
+        explicit bus_error(memory_map::address_type address) noexcept;
+        bus_error(const bus_error &x) noexcept;
+        bus_error &operator =(const bus_error &x) noexcept;
+        const char *what() const noexcept override;
+    };
+
+    class _VM68K_PUBLIC address_error : public memory_exception {
+        typedef memory_exception inherited;
+
+    public:
+        address_error(memory_map::address_type address) noexcept;
+        address_error(const address_error &x) noexcept;
+        address_error &operator =(const address_error &x) noexcept;
+        const char *what() const noexcept override;
     };
 }
 

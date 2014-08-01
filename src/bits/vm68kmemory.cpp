@@ -33,17 +33,9 @@ using namespace vm68k;
  * memory_exception
  */
 
-memory_exception::memory_exception() noexcept {
-}
-
-memory_exception::memory_exception(const memory_exception &x) noexcept
-        : exception(x) {
-}
-
-memory_exception &memory_exception::operator =(
-        const memory_exception &x) noexcept {
-    *static_cast<exception *>(this) = x;
-    return *this;
+memory_exception::memory_exception(memory_map::address_type address)
+        noexcept {
+    _error_address = address;
 }
 
 const char *memory_exception::what() const noexcept {
@@ -54,7 +46,8 @@ const char *memory_exception::what() const noexcept {
  * bus_error
  */
 
-bus_error::bus_error() noexcept {
+bus_error::bus_error(memory_map::address_type address) noexcept
+        : inherited(address) {
 }
 
 bus_error::bus_error(const bus_error &x) noexcept
@@ -74,7 +67,8 @@ const char *bus_error::what() const noexcept {
  * address_error
  */
 
-address_error::address_error() noexcept {
+address_error::address_error(memory_map::address_type address) noexcept
+        : inherited(address) {
 }
 
 address_error::address_error(const address_error &x) noexcept

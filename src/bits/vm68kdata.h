@@ -69,8 +69,6 @@ namespace vm68k
      */
     template<unsigned int Size, typename Traits = size_traits<Size>>
     class _VM68K_PUBLIC basic_data {
-        typedef basic_data<Size, Traits> inherited;
-
     public:
         typedef Traits traits_type;
 

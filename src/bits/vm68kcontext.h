@@ -20,16 +20,36 @@
 #define vm68kcontextH 1
 
 #include <bits/vm68kdef.h>
+#include <bits/vm68kmemory.h>
+#include <memory>
+#include <utility>
 
 namespace vm68k {
+    using std::shared_ptr;
+
     /*
      * Execution context.
      */
     class _VM68K_PUBLIC context {
     public:
-        context();
-        context(const context &x);
+        explicit context(shared_ptr<memory_map> memory);
+        context(const context &) = default;
+
+        /*
+         * Move constructor.
+         */
+        context(context &&__c) {
+            _memory = std::move(__c._memory);
+        }
+
         virtual ~context();
+
+        const shared_ptr<memory_map> &memory() const noexcept {
+            return _memory;
+        }
+
+    private:
+        shared_ptr<memory_map> _memory;
     };
 }
 

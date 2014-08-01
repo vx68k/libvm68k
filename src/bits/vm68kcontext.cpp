@@ -21,17 +21,17 @@
 #endif
 
 #include "vm68kcontext.h"
+#include <utility>
 
+using namespace std;
 using namespace vm68k;
 
 #if __BORLANDC__
 #pragma package(smart_init)
 #endif
 
-context::context() {
-}
-
-context::context(const context &) {
+context::context(shared_ptr<memory_map> memory) {
+    _memory = move(memory);
 }
 
 context::~context() {

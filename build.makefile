@@ -8,39 +8,30 @@
 
 # This file SHOULD NOT be contained in the source package.
 
-builddir = build
-prefix = /tmp/vx68k
+topdir := $(if $(WORKSPACE),$(WORKSPACE),$(shell pwd))
+srcdir = $(topdir)
+builddir = $(topdir)/_build
+prefix = $(topdir)/_usr
 
 AUTORECONF = autoreconf
-CC = gcc -std=gnu99
-CXX = g++ -std=gnu++11
 TAR = tar
 
 CFLAGS = -g -O2 -fvisibility=hidden -Wall -Wextra
 CXXFLAGS = -g -O2 -fvisibility=hidden -Wall -Wextra
 
-export CC CXX CFLAGS CXXFLAGS
-
-build: clean check image dist
+build: clean all dist
 	hg status || true
 
-all check clean dist distcheck: $(builddir)/Makefile
-	cd $(builddir) && $(MAKE) $@
+all check install uninstall clean: $(builddir)/Makefile
+	cd $(builddir) && $(MAKE) CFLAGS='$(CFLAGS)' CXXFLAGS='$(CXXFLAGS)' $@
 
-install: $(builddir)/Makefile
-	cd $(builddir) && $(MAKE) DESTDIR=$$(pwd)/root $@
-
-image: install
-	@rm -f $(builddir)/libvm68k-image.tar.gz
-	(cd $(builddir)/root && $(TAR) -c -f - .) | \
-	  gzip -9c > $(builddir)/libvm68k-image.tar.gz
-	rm -rf $(builddir)/root
+dist distcheck: $(builddir)/Makefile
+	rm -f $(builddir)/libvm68k-*.tar.*
+	cd $(builddir) && $(MAKE) CFLAGS='$(CFLAGS)' CXXFLAGS='$(CXXFLAGS)' $@
 
 $(builddir)/Makefile: configure build.makefile
-	test -d $(builddir) || mkdir $(builddir)
-	rm -f $(builddir)/libvm68k-*.tar.*
-	srcdir=$$(pwd); \
-	cd $(builddir) && $$srcdir/configure --prefix=$(prefix)
+	mkdir -p $(builddir)
+	cd $(builddir) && $(srcdir)/configure --prefix=$(prefix)
 
 configure: stamp-configure
 stamp-configure: configure.ac
@@ -48,4 +39,4 @@ stamp-configure: configure.ac
 	$(AUTORECONF) --install
 	touch $@
 
-.PHONY: build all check clean dist distcheck install image
+.PHONY: build all check install uninstall clean dist distcheck

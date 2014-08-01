@@ -1,7 +1,7 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{804DDB18-F7D0-4B9D-8599-5E050B15AF6D}</ProjectGuid>
-        <ProjectVersion>14.6</ProjectVersion>
+        <ProjectVersion>15.4</ProjectVersion>
         <FrameworkType>None</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
@@ -58,6 +58,7 @@
     </PropertyGroup>
     <Import Project="..\libvm68k.optset" Condition="'$(Base)'!='' And Exists('..\libvm68k.optset')"/>
     <PropertyGroup Condition="'$(Base)'!=''">
+        <SanitizedProjectName>vm68k</SanitizedProjectName>
         <IncludePath>.;$(IncludePath)</IncludePath>
         <BCC_PCHUsage>None</BCC_PCHUsage>
         <ILINK_GenerateImportLibrary>true</ILINK_GenerateImportLibrary>
@@ -203,6 +204,7 @@
                     <ProjectProperties Name="AutoShowDeps">False</ProjectProperties>
                     <ProjectProperties Name="ManagePaths">False</ProjectProperties>
                     <ProjectProperties Name="VerifyPackages">True</ProjectProperties>
+                    <ProjectProperties Name="IndexFiles">False</ProjectProperties>
                 </ProjectProperties>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k180.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>

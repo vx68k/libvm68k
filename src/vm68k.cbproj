@@ -60,7 +60,6 @@
     <PropertyGroup Condition="'$(Base)'!=''">
         <SanitizedProjectName>vm68k</SanitizedProjectName>
         <IncludePath>.;$(IncludePath)</IncludePath>
-        <BCC_PCHUsage>None</BCC_PCHUsage>
         <ILINK_GenerateImportLibrary>true</ILINK_GenerateImportLibrary>
         <Multithreaded>true</Multithreaded>
         <ProjectType>VCppStyleDll</ProjectType>
@@ -85,6 +84,7 @@
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
+        <BCC_PCHName_Clang>vm68kPCH1.h</BCC_PCHName_Clang>
         <IncludePath>..\config\win32;..\config;$(IncludePath)</IncludePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
@@ -144,6 +144,10 @@
         <None Include="ModelSupport_vm68k\default.txvpck"/>
         <None Include="ModelSupport_vm68k\vm68k\default.txaPackage"/>
         <None Include="ModelSupport_vm68k\vm68k\default.txvpck"/>
+        <PCHCompile Include="vm68kPCH1.h">
+            <BuildOrder>0</BuildOrder>
+            <PCH>true</PCH>
+        </PCHCompile>
         <CppCompile Include="win32dll.cpp">
             <BuildOrder>3</BuildOrder>
         </CppCompile>

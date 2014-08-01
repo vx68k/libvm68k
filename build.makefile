@@ -19,10 +19,10 @@ TAR = tar
 CFLAGS = -g -O2 -fvisibility=hidden -Wall -Wextra
 CXXFLAGS = -g -O2 -fvisibility=hidden -Wall -Wextra
 
-build: clean all dist
+build: clean install dist
 	hg status || true
 
-all check install uninstall clean: $(builddir)/Makefile
+all check install uninstall clean distclean: $(builddir)/Makefile
 	cd $(builddir) && $(MAKE) CFLAGS='$(CFLAGS)' CXXFLAGS='$(CXXFLAGS)' $@
 
 dist distcheck: $(builddir)/Makefile
@@ -39,4 +39,4 @@ stamp-configure: configure.ac
 	$(AUTORECONF) --install
 	touch $@
 
-.PHONY: build all check install uninstall clean dist distcheck
+.PHONY: build all check install uninstall clean distclean dist distcheck

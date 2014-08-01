@@ -28,7 +28,7 @@ namespace vm68k
     public:
         memory_exception() noexcept;
         memory_exception(const memory_exception &x) noexcept;
-        memory_exception &operator =(const memory_exception & x) noexcept;
+        memory_exception &operator =(const memory_exception &x) noexcept;
         virtual const char *what() const noexcept;
     };
 

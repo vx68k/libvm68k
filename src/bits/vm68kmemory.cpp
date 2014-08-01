@@ -36,11 +36,13 @@ using namespace vm68k;
 memory_exception::memory_exception() noexcept {
 }
 
-memory_exception::memory_exception(const memory_exception &x) noexcept {
+memory_exception::memory_exception(const memory_exception &x) noexcept
+        : exception(x) {
 }
 
-memory_exception &memory_exception::operator =
-    (const memory_exception & x) noexcept {
+memory_exception &memory_exception::operator =(
+        const memory_exception &x) noexcept {
+    *static_cast<exception *>(this) = x;
     return *this;
 }
 
@@ -55,10 +57,12 @@ const char *memory_exception::what() const noexcept {
 bus_error::bus_error() noexcept {
 }
 
-bus_error::bus_error(const bus_error &x) noexcept {
+bus_error::bus_error(const bus_error &x) noexcept
+        : memory_exception(x) {
 }
 
-bus_error &bus_error::operator =(const bus_error & x) noexcept {
+bus_error &bus_error::operator =(const bus_error &x) noexcept {
+    *static_cast<memory_exception *>(this) = x;
     return *this;
 }
 
@@ -73,10 +77,12 @@ const char *bus_error::what() const noexcept {
 address_error::address_error() noexcept {
 }
 
-address_error::address_error(const address_error &x) noexcept {
+address_error::address_error(const address_error &x) noexcept
+        : address_error(x) {
 }
 
-address_error &address_error::operator =(const address_error & x) noexcept {
+address_error &address_error::operator =(const address_error &x) noexcept {
+    *static_cast<memory_exception *>(this) = x;
     return *this;
 }
 

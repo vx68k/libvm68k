@@ -31,7 +31,7 @@ using namespace vm68k;
 context::context() {
 }
 
-context::context(const context &x) {
+context::context(const context &) {
 }
 
 context::~context() {

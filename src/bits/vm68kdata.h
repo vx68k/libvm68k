@@ -27,14 +27,9 @@
 namespace vm68k
 {
     /**
-     * Size type for VM targets.
-     */
-    typedef std::uint32_t target_size_t;
-
-    /**
      * Defines data size properties.
      */
-    template<target_size_t Size>
+    template<unsigned int Size>
     struct size_traits;
 
     template<>
@@ -82,7 +77,7 @@ namespace vm68k
          * Returns the size of this data type.
          * @return size.
          */
-        static constexpr target_size_t size() noexcept {
+        static constexpr unsigned int size() noexcept {
             return Size;
         }
 

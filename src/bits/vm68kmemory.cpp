@@ -78,7 +78,7 @@ address_error::address_error() noexcept {
 }
 
 address_error::address_error(const address_error &x) noexcept
-        : address_error(x) {
+        : memory_exception(x) {
 }
 
 address_error &address_error::operator =(const address_error &x) noexcept {

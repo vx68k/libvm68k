@@ -18,8 +18,8 @@ endif
 
 EXTRA_PROGRAMS = vm68k_test
 
-runtest_LDADD = $(LDADD) $(CPPUNIT_LIBS)
-runtest_SOURCES = testmain.cpp testdata.cpp
+runtest_LDADD = $(top_builddir)/src/libvm68k.la $(CPPUNIT_LIBS) $(LDADD)
+runtest_SOURCES = testmain.cpp testdata.cpp testmemory.cpp
 
 vm68k_test_SOURCES = vm68k_test.cpp Test_vm68kdata.cpp Test_vm68kmem.cpp
 vm68k_test_LDADD = ../src/libvm68k.la

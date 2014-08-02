@@ -5,7 +5,7 @@ AC_INIT([libvm68k], [2.0],
 [http://www.vx68k.org/libvm68k])
 AC_CONFIG_SRCDIR([src/bits/vm68kmemory.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
-AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([no-define])
 LT_INIT
 
@@ -29,4 +29,5 @@ AM_PATH_CPPUNIT([1.12.1])
 AM_CONDITIONAL([CPPUNIT], [test "$no_cppunit" != yes])
 
 AC_CONFIG_FILES([Makefile config/Makefile src/Makefile test/Makefile])
+AC_CONFIG_HEADERS([config.h])
 AC_OUTPUT

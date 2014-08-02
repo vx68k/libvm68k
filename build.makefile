@@ -40,6 +40,7 @@ $(builddir)/Makefile: configure build.makefile
 configure: stamp-configure
 stamp-configure: configure.ac
 	@rm -f $@
+	mkdir -p m4
 	$(AUTORECONF) --install
 	touch $@
 

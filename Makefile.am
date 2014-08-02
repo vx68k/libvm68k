@@ -3,8 +3,8 @@
 # Uses foreign for now.
 AUTOMAKE_OPTIONS = foreign
 
-SUBDIRS = config src test
+ACLOCAL_AMFLAGS = -Im4
 
-vm68kincludedir = $(includedir)/vm68k
+SUBDIRS = config src test
 
 EXTRA_DIST = libvm68k.groupproj

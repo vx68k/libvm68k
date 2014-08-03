@@ -19,7 +19,7 @@
 #ifndef _VM68K
 #define _VM68K 1
 
-#include <bits/vm68kdata.h>
+#include <bits/vm68kcontext.h>
 #include <bits/vm68kmemory.h>
 
 #endif

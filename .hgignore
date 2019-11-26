@@ -1,8 +1,8 @@
 syntax: regexp
+(^|/)libvm68k\.la$
 (^|/)remove-potcdate\.sed$
 (^|/)Makefile$
 (^|/)config\.status$
-(^|/)config\.log$
 (^|/)config\.h$
 (^|/)libtool$
 (^|/)POTFILES$
@@ -19,6 +19,7 @@ syntax: regexp
 (^|/)nbproject/private$
 @quot\.po$
 @boldquot\.po$
+\.log$
 \.insert-header$
 \.gmo$
 \.lo$

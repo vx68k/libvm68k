@@ -28,6 +28,7 @@ AC_TYPE_INT32_T
 AM_PATH_CPPUNIT([1.12.1])
 AM_CONDITIONAL([CPPUNIT], [test "$no_cppunit" != yes])
 
-AC_CONFIG_FILES([Makefile config/Makefile src/Makefile test/Makefile])
+AC_CONFIG_FILES([Makefile config/Makefile libvm68kapi/Makefile
+src/Makefile test/Makefile])
 AC_CONFIG_HEADERS([config.h])
 AC_OUTPUT

@@ -5,6 +5,6 @@ AUTOMAKE_OPTIONS = foreign
 
 ACLOCAL_AMFLAGS = -Im4
 
-SUBDIRS = config src test
+SUBDIRS = config libvm68kapi src test
 
 EXTRA_DIST = libvm68k.groupproj

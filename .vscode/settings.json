@@ -1,7 +1,9 @@
 {
     "files.exclude": {
+        "**/.libs": true,
         "**/.deps": true,
         "**/*.gmo": true,
+        "**/*.lo": true,
         "**/*.o": true,
         "**/*.tvsconfig": true,
         "**/*.local": true,

@@ -1,7 +1,8 @@
 ## Process this file with automake to produce Makefile.in.
 
 AUTOMAKE_OPTIONS = parallel-tests
-AM_CPPFLAGS = -DTEST -I$(top_builddir)/src -I$(top_srcdir)/src
+AM_CPPFLAGS = -DTEST -I$(top_builddir)/src -I$(top_srcdir)/src \
+-I$(top_srcdir)/libvm68kapi -I$(top_builddir)/libvm68kapi
 AM_CXXFLAGS = $(CPPUNIT_CFLAGS)
 AM_TEST_LOG_FLAGS = -x $(@:.log=.xml)
 

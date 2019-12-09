@@ -1,5 +1,6 @@
 syntax: regexp
 (^|/)libvm68k\.la$
+(^|/)libvm68kapi\.la$
 (^|/)remove-potcdate\.sed$
 (^|/)Makefile$
 (^|/)config\.status$

@@ -11,7 +11,7 @@ libvm68k_la_SOURCES = \
 bits/vm68kdata.cpp bits/vm68kmemory.cpp bits/vm68kcontext.cpp
 EXTRA_libvm68k_la_SOURCES = win32dll.cpp
 
-nobase_vm68kinclude_HEADERS = vm68k bits/vm68kdef.h \
+nobase_vm68kinclude_HEADERS = vm68k \
 bits/vm68kdata.h bits/vm68kcontext.h
 noinst_HEADERS = vm68kPCH1.h
 

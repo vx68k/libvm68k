@@ -3,7 +3,7 @@ AC_PREREQ([2.69])
 AC_INIT([libvm68k], [2.0],
 [https://bitbucket.org/kazssym/libvm68k/issues/new],,
 [http://www.vx68k.org/libvm68k])
-AC_CONFIG_SRCDIR([src/bits/vm68kmemory.cpp])
+AC_CONFIG_SRCDIR([src/bits/vm68kcontext.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([no-define])

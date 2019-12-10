@@ -8,7 +8,7 @@ AM_CPPFLAGS = -I$(top_srcdir)/config \
 lib_LTLIBRARIES = libvm68k.la
 
 libvm68k_la_SOURCES = \
-bits/vm68kdata.cpp bits/vm68kmemory.cpp bits/vm68kcontext.cpp
+bits/vm68kdata.cpp bits/vm68kcontext.cpp
 EXTRA_libvm68k_la_SOURCES = win32dll.cpp
 
 nobase_vm68kinclude_HEADERS = vm68k \

@@ -19,7 +19,7 @@
 #ifndef vm68kmemoryH
 #define vm68kmemoryH 1
 
-#include <bits/vm68kdef.h>
+#include <bits/vm68k/apidef.h>
 #include <exception>
 #include <cstdint>
 

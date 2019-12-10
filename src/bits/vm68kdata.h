@@ -19,7 +19,7 @@
 #ifndef vm68kdataH
 #define vm68kdataH 1
 
-#include <bits/vm68kdef.h>
+#include <bits/vm68k/apidef.h>
 #include <type_traits>
 #include <limits>
 #include <cstdint>

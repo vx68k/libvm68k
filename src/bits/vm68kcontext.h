@@ -20,7 +20,6 @@
 #define vm68kcontextH 1
 
 #include <bits/vm68kmemory.h>
-#include <bits/vm68kdef.h>
 #include <memory>
 #include <utility>
 

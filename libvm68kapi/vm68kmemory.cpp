@@ -23,7 +23,7 @@
 #pragma hdrstop
 #endif
 
-#include <bits/vm68kmemory.h>
+#include <bits/vm68k/memory.h>
 //---------------------------------------------------------------------------
 
 using namespace vm68k;

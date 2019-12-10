@@ -4,6 +4,6 @@ AM_CPPFLAGS =
 
 lib_LTLIBRARIES = libvm68kapi.la
 
-nobase_include_HEADERS = bits/vm68k/apidef.h bits/vm68kmemory.h
+nobase_include_HEADERS = bits/vm68k/apidef.h bits/vm68k/memory.h
 
 libvm68kapi_la_SOURCES = vm68kmemory.cpp

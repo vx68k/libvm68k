@@ -19,6 +19,22 @@
 #ifndef _VM68K_APIDEF_H
 #define _VM68K_APIDEF_H 1
 
+#ifndef _VM68KAPI_PUBLIC
+#if _WIN32
+#if VM68KAPI_DLL
+#define _VM68KAPI_PUBLIC __declspec(dllexport)
+#else
+#define _VM68KAPI_PUBLIC __declspec(dllimport)
+#endif
+#else /* !_WIN32 */
+#if __GNUC__ >= 4
+#define _VM68KAPI_PUBLIC __attribute__((visibility("default")))
+#else
+#define _VM68KAPI_PUBLIC
+#endif
+#endif /* !_WIN32 */
+#endif
+
 #ifndef _VM68K_PUBLIC
 #if _WIN32
 #if VM68K_DLL

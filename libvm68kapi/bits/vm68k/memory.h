@@ -29,7 +29,7 @@ namespace vm68k
      * <author>Kaz Nishimura</author>
      * <since>2.0</since>
      */
-    class _VM68K_PUBLIC device
+    class _VM68KAPI_PUBLIC device
     {
     protected:
         /**
@@ -50,7 +50,7 @@ namespace vm68k
      * <author>Kaz Nishimura</author>
      * <since>2.0</since>
      */
-    class _VM68K_PUBLIC memory_map
+    class _VM68KAPI_PUBLIC memory_map
     {
     public:
         typedef std::uint32_t address_type;
@@ -68,7 +68,7 @@ namespace vm68k
         virtual ~memory_map();
     };
 
-    class _VM68K_PUBLIC memory_exception : public std::exception {
+    class _VM68KAPI_PUBLIC memory_exception : public std::exception {
         typedef std::exception inherited;
 
     public:
@@ -83,7 +83,7 @@ namespace vm68k
         memory_map::address_type _error_address;
     };
 
-    class _VM68K_PUBLIC bus_error : public memory_exception {
+    class _VM68KAPI_PUBLIC bus_error : public memory_exception {
         typedef memory_exception inherited;
 
     public:
@@ -93,7 +93,7 @@ namespace vm68k
         const char *what() const noexcept override;
     };
 
-    class _VM68K_PUBLIC address_error : public memory_exception {
+    class _VM68KAPI_PUBLIC address_error : public memory_exception {
         typedef memory_exception inherited;
 
     public:

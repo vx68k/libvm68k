@@ -11,7 +11,7 @@ FROM gcc:latest
 RUN set -x && \
 apt-get update && \
 apt-get install --assume-yes --no-install-recommends \
-  texinfo texlive && \
+  texinfo texlive libcppunit-dev && \
 apt-get clean && \
 rm -rf /var/lib/apt/lists/*
 

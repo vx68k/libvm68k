@@ -25,7 +25,7 @@ AC_TYPE_INT16_T
 AC_TYPE_INT32_T
 
 # Checks for library functions.
-AM_PATH_CPPUNIT([1.12.1])
+PKG_CHECK_MODULES([CPPUNIT], [cppunit],, [no_cppunit=yes])
 AM_CONDITIONAL([CPPUNIT], [test "$no_cppunit" != yes])
 
 AC_CONFIG_FILES([Makefile config/Makefile src/Makefile test/Makefile])

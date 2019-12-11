@@ -1,6 +1,6 @@
 /*
  * Memory components.
- * Copyright (C) 2012 Kaz Nishimura
+ * Copyright (C) 2012-2019 Kaz Nishimura
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef vm68kmemoryH
-#define vm68kmemoryH 1
+#ifndef _VM68K_MEMORY_H
+#define _VM68K_MEMORY_H 1
 
 #include <bits/vm68k/apidef.h>
 #include <exception>

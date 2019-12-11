@@ -1,6 +1,6 @@
 /*
  * Base definitions
- * Copyright (C) 2012-2013 Kaz Nishimura
+ * Copyright (C) 2012-2019 Kaz Nishimura
  *
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -16,8 +16,8 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef vm68kdefH
-#define vm68kdefH 1
+#ifndef _VM68K_APIDEF_H
+#define _VM68K_APIDEF_H 1
 
 #ifndef _VM68K_PUBLIC
 #if _WIN32

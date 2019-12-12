@@ -32,6 +32,14 @@ using namespace vm68k;
 #pragma package(smart_init)
 #endif
 
+device::~device()
+{
+}
+
+memory_map::~memory_map()
+{
+}
+
 /*
  * memory_exception
  */
@@ -85,11 +93,4 @@ address_error &address_error::operator =(const address_error &x) noexcept {
 
 const char *address_error::what() const noexcept {
     return "vm68k::address_error";
-}
-
-vm68k::device::~device() {
-}
-
-vm68k::memory_map::~memory_map()
-{
 }

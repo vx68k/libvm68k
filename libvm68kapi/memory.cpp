@@ -1,6 +1,6 @@
 /*
  * Memory components.
- * Copyright (C) 2012 Kaz Nishimura
+ * Copyright (C) 2012-2019 Kaz Nishimura
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,8 +23,8 @@
 #pragma hdrstop
 #endif
 
+#define _VM68K_MEMORY_IMPLEMENTATION 1
 #include <bits/vm68k/memory.h>
-//---------------------------------------------------------------------------
 
 using namespace vm68k;
 

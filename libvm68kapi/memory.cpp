@@ -32,7 +32,7 @@ using namespace vm68k;
 #pragma package(smart_init)
 #endif
 
-device::~device()
+memory::~memory()
 {
 }
 

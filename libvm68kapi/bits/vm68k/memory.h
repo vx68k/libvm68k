@@ -29,13 +29,13 @@ namespace vm68k
      * <author>Kaz Nishimura</author>
      * <since>2.0</since>
      */
-    class _VM68KAPI_PUBLIC device
+    class _VM68KAPI_PUBLIC memory
     {
     protected:
         /**
          * <stereotype>constructor</stereotype>
          */
-        device()
+        memory()
         {
         }
 
@@ -43,7 +43,7 @@ namespace vm68k
         /**
          * <stereotype>destructor</stereotype>
          */
-        virtual ~device();
+        virtual ~memory();
     };
 
     /**

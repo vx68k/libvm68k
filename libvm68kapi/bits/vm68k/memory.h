@@ -54,6 +54,15 @@ namespace vm68k
          * <stereotype>destructor</stereotype>
          */
         virtual ~memory();
+
+    public:
+        // Reads a sequence of bytes.
+        virtual void read(std::uint_fast32_t address, std::size_t size,
+            mode m, void *data) const = 0;
+
+        // Writes a sequence of bytes.
+        virtual void write(std::uint_fast32_t address, std::size_t size,
+            mode m, const void *data) const = 0;
     };
 
     /**

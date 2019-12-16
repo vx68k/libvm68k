@@ -46,6 +46,9 @@ namespace vm68k
         {
         }
 
+        memory(const memory &) = delete;
+        memory &operator =(const memory &) = delete;
+
     public:
         /**
          * <stereotype>destructor</stereotype>

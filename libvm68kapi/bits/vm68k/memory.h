@@ -31,6 +31,13 @@ namespace vm68k
      */
     class _VM68KAPI_PUBLIC memory
     {
+    public:
+        enum mode
+        {
+            USER_MODE = 0,
+            SUPERVISOR_MODE,
+        };
+
     protected:
         /**
          * <stereotype>constructor</stereotype>

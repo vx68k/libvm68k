@@ -24,7 +24,7 @@
 #endif
 #undef _GNU_SOURCE
 
-#include <vm68k>
+#include <vm68k/memory>
 
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/TestFixture.h>

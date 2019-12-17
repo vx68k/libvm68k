@@ -31,7 +31,7 @@
 #if __has_attribute(visibility)
 #define _VM68KAPI_PUBLIC __attribute__((visibility("default")))
 #endif
-#endif  /* defined __has_attribute */
+#endif /* defined __has_attribute */
 #endif /* !_WIN32 */
 #endif
 

@@ -33,10 +33,10 @@
 #endif
 #endif /* defined __has_attribute */
 #endif /* !_WIN32 */
-#endif
 
-#if !defined _VM68KAPI_PUBLIC
+#ifndef _VM68KAPI_PUBLIC
 #define _VM68KAPI_PUBLIC
+#endif
 #endif
 
 #ifndef _VM68K_PUBLIC

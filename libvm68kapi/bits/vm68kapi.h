@@ -27,12 +27,16 @@
 #define _VM68KAPI_PUBLIC __declspec(dllimport)
 #endif
 #else /* !_WIN32 */
-#if __GNUC__ >= 4
+#if defined __has_attribute
+#if __has_attribute(visibility)
 #define _VM68KAPI_PUBLIC __attribute__((visibility("default")))
-#else
-#define _VM68KAPI_PUBLIC
 #endif
+#endif  /* defined __has_attribute */
 #endif /* !_WIN32 */
+#endif
+
+#if !defined _VM68KAPI_PUBLIC
+#define _VM68KAPI_PUBLIC
 #endif
 
 #ifndef _VM68K_PUBLIC

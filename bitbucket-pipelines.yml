@@ -10,6 +10,16 @@
 ---
 definitions:
   steps:
+    - step: &configure
+        name: Configure
+        image: kazssym/libvm68k-builder:gcc
+        script:
+          - autoreconf --install
+          - mkdir -p _build
+          - cd _build
+          - ../configure --prefix=/opt/libvm68k
+        artifacts:
+          - _build/**
     - step: &test
         name: Test
         image: kazssym/libvm68k-builder:gcc
@@ -17,14 +27,15 @@ definitions:
           - autoreconf --install
           - mkdir -p _build
           - cd _build
-          - ../configure --prefix=/opt/libvm68k
           - make check
         artifacts:
           - _build/**
 pipelines:
   branches:
     master:
+      - step: *configure
       - step: *test
   pull-requests:
     "**":
+      - step: *configure
       - step: *test

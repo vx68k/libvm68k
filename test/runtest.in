@@ -1,0 +1,5 @@
+#!/bin/sh
+
+test="$1" && shift
+
+exec "$test" -x "$test".xml

@@ -1,34 +1,32 @@
 ## Process this file with automake to produce Makefile.in.
 
-AUTOMAKE_OPTIONS = parallel-tests
 AM_CPPFLAGS = -DTEST -I$(top_builddir)/src -I$(top_srcdir)/src \
 -I$(top_srcdir)/libvm68kapi -I$(top_builddir)/libvm68kapi
 AM_CXXFLAGS = $(CPPUNIT_CFLAGS)
-AM_TEST_LOG_FLAGS = -x $(@:.log=.xml)
 
 TESTS =
 CLEANFILES =
 
 if CPPUNIT
-check_PROGRAMS = runtest
+check_SCRIPTS = runtest
+check_PROGRAMS = memory.test
 TEST_LOG_COMPILER = ./runtest
-
-TESTS += unit.test
-CLEANFILES += unit.test $(TEST_LOGS:.log=.xml)
+TESTS += memory.test
+CLEANFILES += $(check_SCRIPTS) *.test.xml
 endif
 
 EXTRA_PROGRAMS = vm68k_test
 
-runtest_LDADD = $(top_builddir)/src/libvm68k.la \
-$(top_builddir)/libvm68kapi/libvm68kapi.la $(CPPUNIT_LIBS) $(LDADD)
-runtest_SOURCES = testmain.cpp testdata.cpp testmemory.cpp testcontext.cpp
+memory_test_SOURCES = testmain.cpp testmemory.cpp
+memory_test_LDADD = $(top_builddir)/libvm68kapi/libvm68kapi.la $(CPPUNIT_LIBS)
 
 vm68k_test_SOURCES = vm68k_test.cpp Test_vm68kdata.cpp Test_vm68kmem.cpp
 vm68k_test_LDADD = ../src/libvm68k.la
 
 noinst_HEADERS = Test_vm68kdata.h Test_vm68kmem.h
 
-EXTRA_DIST = vm68k_test.cbproj
+EXTRA_DIST = runtest.in vm68k_test.cbproj
 
-unit.test:
-	touch $@
+runtest: runtest.in Makefile
+	cat  < $(srcdir)/runtest.in > $@
+	chmod +x $@

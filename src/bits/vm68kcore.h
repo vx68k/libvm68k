@@ -1,4 +1,4 @@
-// <bits/vm68kapi.h>
+// <bits/vm68kcore.h>
 // Copyright (C) 2012-2019 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -16,26 +16,26 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68KAPI_H
-#define _VM68KAPI_H 1
+#ifndef _VM68KCORE_H
+#define _VM68KCORE_H 1
 
-#ifndef _VM68KAPI_PUBLIC
+#ifndef _VM68KCORE_PUBLIC
 #if _WIN32
-#if VM68KAPI_DLL
-#define _VM68KAPI_PUBLIC __declspec(dllexport)
+#if VM68KCORE_DLL
+#define _VM68KCORE_PUBLIC __declspec(dllexport)
 #else
-#define _VM68KAPI_PUBLIC __declspec(dllimport)
+#define _VM68KCORE_PUBLIC __declspec(dllimport)
 #endif
 #else /* !_WIN32 */
 #if defined __has_attribute
 #if __has_attribute(visibility)
-#define _VM68KAPI_PUBLIC __attribute__((visibility("default")))
+#define _VM68KCORE_PUBLIC __attribute__((visibility("default")))
 #endif
 #endif /* defined __has_attribute */
 #endif /* !_WIN32 */
 
-#ifndef _VM68KAPI_PUBLIC
-#define _VM68KAPI_PUBLIC
+#ifndef _VM68KCORE_PUBLIC
+#define _VM68KCORE_PUBLIC
 #endif
 #endif
 

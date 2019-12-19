@@ -19,7 +19,7 @@
 #ifndef vm68kdataH
 #define vm68kdataH 1
 
-#include <bits/vm68kapi.h>
+#include <bits/vm68kcore.h>
 #include <type_traits>
 #include <limits>
 #include <cstdint>
@@ -33,7 +33,7 @@ namespace vm68k
     struct size_traits;
 
     template<>
-    struct _VM68K_PUBLIC size_traits<1> {
+    struct _VM68KCORE_PUBLIC size_traits<1> {
         typedef std::int8_t      int_type;
         typedef std::int_fast8_t int_fast_type;
 
@@ -42,7 +42,7 @@ namespace vm68k
     };
 
     template<>
-    struct _VM68K_PUBLIC size_traits<2> {
+    struct _VM68KCORE_PUBLIC size_traits<2> {
         typedef std::int16_t      int_type;
         typedef std::int_fast16_t int_fast_type;
 
@@ -51,7 +51,7 @@ namespace vm68k
     };
 
     template<>
-    struct _VM68K_PUBLIC size_traits<4> {
+    struct _VM68KCORE_PUBLIC size_traits<4> {
         typedef std::int32_t      int_type;
         typedef std::int_fast32_t int_fast_type;
 
@@ -63,7 +63,7 @@ namespace vm68k
      * Data of a specific size.
      */
     template<unsigned int Size, typename Traits = size_traits<Size>>
-    class _VM68K_PUBLIC basic_data {
+    class _VM68KCORE_PUBLIC basic_data {
     public:
         typedef Traits traits_type;
 

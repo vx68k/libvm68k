@@ -19,6 +19,7 @@
 #ifndef vm68kcontextH
 #define vm68kcontextH 1
 
+#include <bits/vm68kcore.h>
 #include <bits/vm68k/memory.h>
 #include <memory>
 #include <utility>
@@ -29,7 +30,7 @@ namespace vm68k {
     /*
      * Execution context.
      */
-    class _VM68K_PUBLIC context {
+    class _VM68KCORE_PUBLIC context {
     public:
         explicit context(shared_ptr<memory_map> memory =
                 std::make_shared<memory_map>());

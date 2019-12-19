@@ -42,9 +42,7 @@ namespace vm68k
         /**
          * <stereotype>constructor</stereotype>
          */
-        memory()
-        {
-        }
+        memory();
 
         memory(const memory &) = delete;
         memory &operator =(const memory &) = delete;

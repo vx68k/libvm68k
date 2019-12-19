@@ -32,6 +32,10 @@ using namespace vm68k;
 #pragma package(smart_init)
 #endif
 
+memory::memory()
+{
+}
+
 memory::~memory()
 {
 }

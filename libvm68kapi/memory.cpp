@@ -40,6 +40,10 @@ memory::~memory()
 {
 }
 
+memory_map::memory_map()
+{
+}
+
 memory_map::~memory_map()
 {
 }

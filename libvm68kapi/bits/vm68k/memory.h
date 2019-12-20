@@ -75,9 +75,7 @@ namespace vm68k
         /**
          * <stereotype>constructor</stereotype>
          */
-        memory_map()
-        {
-        }
+        memory_map();
 
         /**
          * <stereotype>destructor</stereotype>

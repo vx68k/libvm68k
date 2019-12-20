@@ -54,6 +54,9 @@ namespace vm68k
         virtual ~memory();
 
     public:
+        // Returns the size of this memory object.
+        virtual std::size_t size() const = 0;
+
         // Reads a sequence of bytes.
         virtual void read(std::uint_fast32_t address, std::size_t size,
             mode m, void *data) = 0;

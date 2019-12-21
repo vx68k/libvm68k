@@ -23,7 +23,7 @@
 #pragma hdrstop
 #endif
 
-#include "vm68kdata.h"
+#include <bits/vm68k/data.h>
 #if __BORLANDC__
 #pragma package(smart_init)
 #endif

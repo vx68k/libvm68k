@@ -75,11 +75,13 @@ namespace vm68k
     public:
         typedef std::uint32_t address_type;
 
+    public:
         /**
          * <stereotype>constructor</stereotype>
          */
         memory_map();
 
+    public:
         /**
          * <stereotype>destructor</stereotype>
          */

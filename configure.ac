@@ -12,7 +12,6 @@ LT_INIT
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_CXX
-XX_PROG_CXX_STD11
 
 # Checks for libraries.
 

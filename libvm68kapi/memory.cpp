@@ -32,7 +32,15 @@ using namespace vm68k;
 #pragma package(smart_init)
 #endif
 
+memory::memory()
+{
+}
+
 memory::~memory()
+{
+}
+
+memory_map::memory_map()
 {
 }
 

@@ -16,8 +16,8 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68K_APIDEF_H
-#define _VM68K_APIDEF_H 1
+#ifndef _VM68KAPI_H
+#define _VM68KAPI_H 1
 
 #ifndef _VM68KAPI_PUBLIC
 #if _WIN32

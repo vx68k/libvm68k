@@ -42,9 +42,7 @@ namespace vm68k
         /**
          * <stereotype>constructor</stereotype>
          */
-        memory()
-        {
-        }
+        memory();
 
         memory(const memory &) = delete;
         memory &operator =(const memory &) = delete;
@@ -56,13 +54,16 @@ namespace vm68k
         virtual ~memory();
 
     public:
+        // Returns the size of this memory object.
+        virtual std::size_t size() const = 0;
+
         // Reads a sequence of bytes.
         virtual void read(std::uint_fast32_t address, std::size_t size,
-            mode m, void *data) const = 0;
+            mode m, void *data) = 0;
 
         // Writes a sequence of bytes.
         virtual void write(std::uint_fast32_t address, std::size_t size,
-            mode m, const void *data) const = 0;
+            mode m, const void *data) = 0;
     };
 
     /**
@@ -74,13 +75,13 @@ namespace vm68k
     public:
         typedef std::uint32_t address_type;
 
+    public:
         /**
          * <stereotype>constructor</stereotype>
          */
-        memory_map()
-        {
-        }
+        memory_map();
 
+    public:
         /**
          * <stereotype>destructor</stereotype>
          */

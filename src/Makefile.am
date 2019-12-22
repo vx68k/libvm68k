@@ -8,8 +8,7 @@ lib_LTLIBRARIES = libvm68k.la
 libvm68k_la_SOURCES = data.cpp context.cpp
 EXTRA_libvm68k_la_SOURCES = win32dll.cpp
 
-nobase_include_HEADERS = vm68k \
-bits/vm68k/data.h bits/vm68k/context.h
+nobase_include_HEADERS = bits/vm68k/data.h bits/vm68k/context.h
 noinst_HEADERS = vm68kPCH1.h
 
 EXTRA_DIST = vm68k.cbproj ModelSupport_vm68k

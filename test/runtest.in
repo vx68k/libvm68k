@@ -2,4 +2,5 @@
 
 test="$1" && shift
 
-exec "$test" -x "$test".xml
+mkdir -p test-reports
+exec "$test" -x test-reports/"`basename \"$test\" .test`".xml

@@ -12,7 +12,7 @@ check_SCRIPTS = runtest
 check_PROGRAMS = memory.test
 TEST_LOG_COMPILER = ./runtest
 TESTS += memory.test
-CLEANFILES += $(check_SCRIPTS) *.test.xml
+CLEANFILES += $(check_SCRIPTS) test-reports/*
 endif
 
 EXTRA_PROGRAMS = vm68k_test

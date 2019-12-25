@@ -32,8 +32,7 @@ namespace vm68k {
      */
     class _VM68KCORE_PUBLIC context {
     public:
-        explicit context(shared_ptr<memory_map> memory =
-                std::make_shared<memory_map>());
+        explicit context(shared_ptr<memory_map> memory);
         context(const context &) = default;
 
         /*

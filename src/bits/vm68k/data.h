@@ -46,6 +46,11 @@ namespace vm68k
         : _value()
         {
         }
+
+        constexpr byte(const uint8_t value)
+        : _value(value)
+        {
+        }
     };
 
     class _VM68KCORE_PUBLIC word
@@ -68,6 +73,11 @@ namespace vm68k
         : _value()
         {
         }
+
+        constexpr word(const uint16_t value)
+        : _value(value)
+        {
+        }
     };
 
     class _VM68KCORE_PUBLIC long_word
@@ -88,6 +98,11 @@ namespace vm68k
     public:
         constexpr long_word()
         : _value()
+        {
+        }
+
+        constexpr long_word(const uint32_t value)
+        : _value(value)
         {
         }
     };

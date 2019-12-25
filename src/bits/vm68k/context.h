@@ -16,8 +16,8 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef vm68kcontextH
-#define vm68kcontextH 1
+#ifndef _VM68K_CONTEXT_H
+#define _VM68K_CONTEXT_H 1
 
 #include <bits/vm68kcore.h>
 #include <bits/vm68k/memory.h>

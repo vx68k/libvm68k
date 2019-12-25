@@ -16,8 +16,8 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef vm68kdataH
-#define vm68kdataH 1
+#ifndef _VM68K_DATA_H
+#define _VM68K_DATA_H 1
 
 #include <bits/vm68kcore.h>
 #include <type_traits>

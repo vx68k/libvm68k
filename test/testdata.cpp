@@ -22,7 +22,6 @@
 #if __BORLANDC__
 #pragma hdrstop
 #endif
-#undef _GNU_SOURCE
 
 #include <bits/vm68k/data.h>
 

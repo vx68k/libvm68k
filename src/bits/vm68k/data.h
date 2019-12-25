@@ -26,6 +26,72 @@
 
 namespace vm68k
 {
+    class _VM68KCORE_PUBLIC byte
+    {
+    public:
+        using int_type = std::int8_t;
+        using uint_type = std::uint8_t;
+
+    private:
+        std::uint8_t _value;
+
+    public:
+        static constexpr std::size_t size()
+        {
+            return 1U;
+        }
+
+    public:
+        constexpr byte()
+        : _value()
+        {
+        }
+    };
+
+    class _VM68KCORE_PUBLIC word
+    {
+    public:
+        using int_type = std::int16_t;
+        using uint_type = std::uint16_t;
+
+    private:
+        std::uint16_t _value;
+
+    public:
+        static constexpr std::size_t size()
+        {
+            return 2U;
+        }
+
+    public:
+        constexpr word()
+        : _value()
+        {
+        }
+    };
+
+    class _VM68KCORE_PUBLIC long_word
+    {
+    public:
+        using int_type = std::int32_t;
+        using uint_type = std::uint32_t;
+
+    private:
+        std::uint32_t _value;
+
+    public:
+        static constexpr std::size_t size()
+        {
+            return 4U;
+        }
+
+    public:
+        constexpr long_word()
+        : _value()
+        {
+        }
+    };
+
     /**
      * Defines data size properties.
      */

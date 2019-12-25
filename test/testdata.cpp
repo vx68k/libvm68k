@@ -24,7 +24,7 @@
 #endif
 #undef _GNU_SOURCE
 
-#include <bits/vm68kdata.h>
+#include <bits/vm68k/data.h>
 
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/TestFixture.h>

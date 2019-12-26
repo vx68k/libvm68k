@@ -27,6 +27,7 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/TestFixture.h>
+#include <type_traits>
 #include <memory>
 
 using namespace vm68k;
@@ -46,6 +47,24 @@ namespace
         }
     };
 }
+
+class MemoryStaticTests: public TestFixture
+{
+    CPPUNIT_TEST_SUITE(MemoryStaticTests);
+    CPPUNIT_TEST(testMemory);
+    CPPUNIT_TEST_SUITE_END();
+
+public:
+    void testMemory()
+    {
+        CPPUNIT_ASSERT(!std::is_copy_constructible<memory>::value);
+        CPPUNIT_ASSERT(!std::is_move_constructible<memory>::value);
+        CPPUNIT_ASSERT(!std::is_copy_assignable<memory>::value);
+        CPPUNIT_ASSERT(!std::is_move_assignable<memory>::value);
+        CPPUNIT_ASSERT(std::has_virtual_destructor<memory>::value);
+    }
+};
+CPPUNIT_TEST_SUITE_REGISTRATION(MemoryStaticTests);
 
 /*
  * Tests for 'memory_map'.

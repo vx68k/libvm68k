@@ -22,10 +22,15 @@ definitions:
           - make dist
         artifacts:
           - _build/**
+    - step: &upload
+        name: Upload to Bitbucket Cloud
+        script:
+          - sh ./upload.sh _build/*.tar.*
 pipelines:
   branches:
     master:
       - step: *build
+      - step: *upload
   pull-requests:
     "**":
       - step: *build

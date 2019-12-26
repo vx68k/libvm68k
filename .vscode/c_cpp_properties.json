@@ -2,7 +2,6 @@
     "configurations": [
         {
             "name": "POSIX",
-            "intelliSenseMode": "clang-x64",
             "includePath": [
                 "${workspaceFolder}",
                 "${workspaceFolder}/libvm68kapi",

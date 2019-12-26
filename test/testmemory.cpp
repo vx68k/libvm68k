@@ -29,9 +29,23 @@
 #include <cppunit/TestFixture.h>
 #include <memory>
 
-using namespace std;
 using namespace vm68k;
 using CppUnit::TestFixture;
+
+namespace
+{
+    class test_memory_map final: public memory_map
+    {
+    public:
+        void read(std::uint_fast32_t, std::size_t, mode, void *) override
+        {
+        }
+
+        void write(std::uint_fast32_t, std::size_t, mode, const void *) override
+        {
+        }
+    };
+}
 
 /*
  * Tests for 'memory_map'.
@@ -42,7 +56,7 @@ class MemoryMapTests : public TestFixture {
 
 public:
     void setUp() override {
-        memory = make_shared<memory_map>();
+        memory = std::make_shared<test_memory_map>();
     }
 
     void tearDown() override {
@@ -50,6 +64,6 @@ public:
     }
 
 protected:
-    shared_ptr<memory_map> memory;
+    std::shared_ptr<memory_map> memory;
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(MemoryMapTests);

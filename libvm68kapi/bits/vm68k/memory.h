@@ -73,6 +73,9 @@ namespace vm68k
     class _VM68KAPI_PUBLIC memory_map
     {
     public:
+        using mode = memory::mode;
+
+    public:
         typedef std::uint32_t address_type;
 
     public:
@@ -86,6 +89,15 @@ namespace vm68k
          * <stereotype>destructor</stereotype>
          */
         virtual ~memory_map();
+
+    public:
+        // Reads a sequence of bytes.
+        virtual void read(std::uint_fast32_t address, std::size_t size,
+            mode m, void *data) = 0;
+
+        // Writes a sequence of bytes.
+        virtual void write(std::uint_fast32_t address, std::size_t size,
+            mode m, const void *data) = 0;
     };
 
     class _VM68KAPI_PUBLIC memory_exception : public std::exception {

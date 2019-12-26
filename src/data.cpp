@@ -27,12 +27,3 @@
 #if __BORLANDC__
 #pragma package(smart_init)
 #endif
-
-namespace vm68k {
-    /*
-     * Explicit instantiations.
-     */
-    template class basic_data<1>;
-    template class basic_data<2>;
-    template class basic_data<4>;
-}

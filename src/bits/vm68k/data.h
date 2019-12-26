@@ -42,14 +42,25 @@ namespace vm68k
         }
 
     public:
-        constexpr byte()
+        constexpr byte() noexcept
         : _value()
         {
         }
 
-        constexpr byte(const uint8_t value)
+        constexpr byte(const std::uint8_t value) noexcept
         : _value(value)
         {
+        }
+
+    public:
+        constexpr std::int_least8_t to_int() const noexcept
+        {
+            return std::int8_t(_value);
+        }
+
+        constexpr std::uint_least8_t to_uint() const noexcept
+        {
+            return _value;
         }
     };
 
@@ -69,14 +80,25 @@ namespace vm68k
         }
 
     public:
-        constexpr word()
+        constexpr word() noexcept
         : _value()
         {
         }
 
-        constexpr word(const uint16_t value)
+        constexpr word(const std::uint16_t value) noexcept
         : _value(value)
         {
+        }
+
+    public:
+        constexpr std::int_least16_t to_int() const noexcept
+        {
+            return std::int16_t(_value);
+        }
+
+        constexpr std::uint_least16_t to_uint() const noexcept
+        {
+            return _value;
         }
     };
 
@@ -96,16 +118,15 @@ namespace vm68k
         }
 
     public:
-        constexpr long_word()
+        constexpr long_word() noexcept
         : _value()
         {
         }
 
-        constexpr long_word(const uint32_t value)
+        constexpr long_word(const std::uint32_t value) noexcept
         : _value(value)
         {
         }
-    };
 
     /**
      * Defines data size properties.

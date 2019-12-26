@@ -20,8 +20,6 @@
 #define _VM68K_DATA_H 1
 
 #include <bits/vm68kcore.h>
-#include <type_traits>
-#include <limits>
 #include <cstdint>
 
 namespace vm68k

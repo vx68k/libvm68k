@@ -40,6 +40,32 @@ memory::~memory()
 {
 }
 
+// Class 'read_write_memory' implementation.
+
+read_write_memory::read_write_memory(const std::size_t size)
+    : _size(size), _data(new unsigned char[size])
+{
+}
+
+read_write_memory::~read_write_memory()
+{
+}
+
+std::size_t read_write_memory::size() const noexcept
+{
+    return _size;
+}
+
+void read_write_memory::read(const mode m, const std::uint_fast32_t address,
+    const std::size_t n, void *const bytes)
+{
+}
+
+void read_write_memory::write(const mode m, const std::uint_fast32_t address,
+    const std::size_t n, const void *const bytes)
+{
+}
+
 memory_map::memory_map()
 {
 }

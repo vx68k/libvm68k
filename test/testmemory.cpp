@@ -35,14 +35,14 @@ using CppUnit::TestFixture;
 
 namespace
 {
-    class test_memory_map final: public memory_map
+    class test_memory_map final : public memory_map
     {
     public:
-        void read(std::uint_fast32_t, std::size_t, mode, void *) override
+        void read(mode, std::uint_fast32_t, std::size_t, void *) override
         {
         }
 
-        void write(std::uint_fast32_t, std::size_t, mode, const void *) override
+        void write(mode, std::uint_fast32_t, std::size_t, const void *) override
         {
         }
     };
@@ -52,6 +52,7 @@ class MemoryStaticTests: public TestFixture
 {
     CPPUNIT_TEST_SUITE(MemoryStaticTests);
     CPPUNIT_TEST(testMemory);
+    CPPUNIT_TEST(testReadWriteMemory);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -62,6 +63,16 @@ public:
         CPPUNIT_ASSERT(!std::is_copy_assignable<memory>::value);
         CPPUNIT_ASSERT(!std::is_move_assignable<memory>::value);
         CPPUNIT_ASSERT(std::has_virtual_destructor<memory>::value);
+    }
+
+    void testReadWriteMemory()
+    {
+        CPPUNIT_ASSERT((std::is_constructible<read_write_memory, std::size_t>::value));
+        CPPUNIT_ASSERT(!std::is_copy_constructible<read_write_memory>::value);
+        CPPUNIT_ASSERT(!std::is_move_constructible<read_write_memory>::value);
+        CPPUNIT_ASSERT(!std::is_copy_assignable<read_write_memory>::value);
+        CPPUNIT_ASSERT(!std::is_move_assignable<read_write_memory>::value);
+        CPPUNIT_ASSERT(std::has_virtual_destructor<read_write_memory>::value);
     }
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(MemoryStaticTests);

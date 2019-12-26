@@ -20,6 +20,7 @@
 #define _VM68K_MEMORY_H 1
 
 #include <bits/vm68kapi.h>
+#include <memory>
 #include <exception>
 #include <cstdint>
 
@@ -55,15 +56,40 @@ namespace vm68k
 
     public:
         // Returns the size of this memory object.
-        virtual std::size_t size() const = 0;
+        virtual std::size_t size() const noexcept = 0;
 
         // Reads a sequence of bytes.
-        virtual void read(std::uint_fast32_t address, std::size_t size,
-            mode m, void *data) = 0;
+        virtual void read(mode m, std::uint_fast32_t address, std::size_t n,
+            void *bytes) = 0;
 
         // Writes a sequence of bytes.
-        virtual void write(std::uint_fast32_t address, std::size_t size,
-            mode m, const void *data) = 0;
+        virtual void write(mode m, std::uint_fast32_t address, std::size_t n,
+            const void *bytes) = 0;
+    };
+
+    // Read-write memory.
+    class _VM68KAPI_PUBLIC read_write_memory : public memory
+    {
+        using inherited = memory;
+
+    private:
+        std::size_t _size;
+        std::unique_ptr<unsigned char []> _data;
+
+    public:
+        explicit read_write_memory(std::size_t size);
+
+    public:
+        virtual ~read_write_memory();
+
+    public:
+        std::size_t size() const noexcept override final;
+
+        void read(mode m, std::uint_fast32_t address, std::size_t n,
+            void *bytes) override final;
+
+        void write(mode m, std::uint_fast32_t address, std::size_t n,
+            const void *bytes) override final;
     };
 
     /**
@@ -92,12 +118,12 @@ namespace vm68k
 
     public:
         // Reads a sequence of bytes.
-        virtual void read(std::uint_fast32_t address, std::size_t size,
-            mode m, void *data) = 0;
+        virtual void read(mode m, std::uint_fast32_t address, std::size_t n,
+            void *bytes) = 0;
 
         // Writes a sequence of bytes.
-        virtual void write(std::uint_fast32_t address, std::size_t size,
-            mode m, const void *data) = 0;
+        virtual void write(mode m, std::uint_fast32_t address, std::size_t n,
+            const void *bytes) = 0;
     };
 
     class _VM68KAPI_PUBLIC memory_exception : public std::exception {

@@ -38,11 +38,11 @@ namespace
     class test_memory_map final : public memory_map
     {
     public:
-        void read(mode, std::uint_fast32_t, std::size_t, void *) override
+        void read(mode, address_type, size_type, void *) override
         {
         }
 
-        void write(mode, std::uint_fast32_t, std::size_t, const void *) override
+        void write(mode, address_type, size_type, const void *) override
         {
         }
     };

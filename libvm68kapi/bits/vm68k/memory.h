@@ -39,6 +39,9 @@ namespace vm68k
             SUPERVISOR_MODE,
         };
 
+        using address_type = std::uint_fast32_t;
+        using size_type = std::size_t;
+
     protected:
         /**
          * <stereotype>constructor</stereotype>
@@ -56,14 +59,14 @@ namespace vm68k
 
     public:
         // Returns the size of this memory object.
-        virtual std::size_t size() const noexcept = 0;
+        virtual size_type size() const noexcept = 0;
 
         // Reads a sequence of bytes.
-        virtual void read(mode m, std::uint_fast32_t address, std::size_t n,
+        virtual void read(mode m, address_type address, size_type n,
             void *bytes) = 0;
 
         // Writes a sequence of bytes.
-        virtual void write(mode m, std::uint_fast32_t address, std::size_t n,
+        virtual void write(mode m, address_type address, size_type n,
             const void *bytes) = 0;
     };
 
@@ -73,22 +76,22 @@ namespace vm68k
         using inherited = memory;
 
     private:
-        std::size_t _size;
+        size_type _size;
         std::unique_ptr<unsigned char []> _data;
 
     public:
-        explicit read_write_memory(std::size_t size);
+        explicit read_write_memory(size_type size);
 
     public:
         virtual ~read_write_memory();
 
     public:
-        std::size_t size() const noexcept override final;
+        size_type size() const noexcept override final;
 
-        void read(mode m, std::uint_fast32_t address, std::size_t n,
+        void read(mode m, address_type address, size_type n,
             void *bytes) override final;
 
-        void write(mode m, std::uint_fast32_t address, std::size_t n,
+        void write(mode m, address_type address, size_type n,
             const void *bytes) override final;
     };
 
@@ -100,9 +103,8 @@ namespace vm68k
     {
     public:
         using mode = memory::mode;
-
-    public:
-        typedef std::uint32_t address_type;
+        using address_type = memory::address_type;
+        using size_type = memory::size_type;
 
     public:
         /**
@@ -118,11 +120,11 @@ namespace vm68k
 
     public:
         // Reads a sequence of bytes.
-        virtual void read(mode m, std::uint_fast32_t address, std::size_t n,
+        virtual void read(mode m, address_type address, size_type n,
             void *bytes) = 0;
 
         // Writes a sequence of bytes.
-        virtual void write(mode m, std::uint_fast32_t address, std::size_t n,
+        virtual void write(mode m, address_type address, size_type n,
             const void *bytes) = 0;
     };
 

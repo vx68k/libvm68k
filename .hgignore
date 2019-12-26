@@ -1,4 +1,5 @@
 syntax: regexp
+(^|/)test-reports$
 (^|/)runtest$
 (^|/)libvm68k\.la$
 (^|/)libvm68kapi\.la$
@@ -21,9 +22,10 @@ syntax: regexp
 (^|/)nbproject/private$
 @quot\.po$
 @boldquot\.po$
-\.log$
 \.insert-header$
 \.gmo$
+\.trs$
+\.log$
 \.lo$
 \.o$
 \.tvsconfig$

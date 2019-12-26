@@ -33,9 +33,11 @@ using namespace vm68k;
 #pragma package(smart_init)
 #endif
 
-context::context(shared_ptr<memory_map> memory) {
-    _memory = move(memory);
+context::context(const shared_ptr<memory_map> &memory)
+: _memory(memory)
+{
 }
 
-context::~context() {
+context::~context()
+{
 }

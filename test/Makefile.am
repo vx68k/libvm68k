@@ -22,7 +22,7 @@ memory_test_SOURCES = testmain.cpp testmemory.cpp
 memory_test_LDADD = $(top_builddir)/libvm68kapi/libvm68kapi.la $(CPPUNIT_LIBS)
 
 data_test_SOURCES = testmain.cpp testdata.cpp
-data_test_LDADD = $(top_builddir)/src/libvm68k.la $(CPPUNIT_LIBS)
+data_test_LDADD = $(top_builddir)/libvm68kapi/libvm68kapi.la $(CPPUNIT_LIBS)
 
 vm68k_test_SOURCES = vm68k_test.cpp Test_vm68kdata.cpp Test_vm68kmem.cpp
 vm68k_test_LDADD = ../src/libvm68k.la

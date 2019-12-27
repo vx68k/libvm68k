@@ -19,12 +19,12 @@
 #ifndef _VM68K_DATA_H
 #define _VM68K_DATA_H 1
 
-#include <bits/vm68kcore.h>
+#include <bits/vm68kapi.h>
 #include <cstdint>
 
 namespace vm68k
 {
-    class _VM68KCORE_PUBLIC byte
+    class _VM68KAPI_PUBLIC byte
     {
     public:
         using int_type = std::int8_t;
@@ -62,7 +62,7 @@ namespace vm68k
         }
     };
 
-    class _VM68KCORE_PUBLIC word
+    class _VM68KAPI_PUBLIC word
     {
     public:
         using int_type = std::int16_t;
@@ -100,7 +100,7 @@ namespace vm68k
         }
     };
 
-    class _VM68KCORE_PUBLIC long_word
+    class _VM68KAPI_PUBLIC long_word
     {
     public:
         using int_type = std::int32_t;

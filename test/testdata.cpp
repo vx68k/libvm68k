@@ -27,9 +27,35 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/TestFixture.h>
+#include <type_traits>
 
 using namespace vm68k;
 using CppUnit::TestFixture;
+
+// Tests for static properties.
+class DataStaticTests : public TestFixture
+{
+    CPPUNIT_TEST_SUITE(DataStaticTests);
+    CPPUNIT_TEST(testByteType);
+    CPPUNIT_TEST(testWordType);
+    CPPUNIT_TEST(testLongWordType);
+    CPPUNIT_TEST_SUITE_END();
+
+public:
+    void testByteType()
+    {
+        CPPUNIT_ASSERT(std::is_trivial<byte>::value);
+    }
+
+    void testWordType()
+    {
+        CPPUNIT_ASSERT(std::is_trivial<word>::value);
+    }
+    void testLongWordType()
+    {
+        CPPUNIT_ASSERT(std::is_trivial<long_word>::value);
+    }};
+CPPUNIT_TEST_SUITE_REGISTRATION(DataStaticTests);
 
 /*
  * Tests for data types.

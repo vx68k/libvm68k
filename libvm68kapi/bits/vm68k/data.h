@@ -43,7 +43,7 @@ namespace vm68k
         byte() = default;
 
         constexpr byte(const std::uint8_t value) noexcept
-        : _value(value)
+            : _value(value)
         {
         }
 
@@ -78,7 +78,7 @@ namespace vm68k
         word() = default;
 
         constexpr word(const std::uint16_t value) noexcept
-        : _value(value)
+            : _value(value)
         {
         }
 
@@ -113,7 +113,7 @@ namespace vm68k
         long_word() = default;
 
         constexpr long_word(const std::uint32_t value) noexcept
-        : _value(value)
+            : _value(value)
         {
         }
 

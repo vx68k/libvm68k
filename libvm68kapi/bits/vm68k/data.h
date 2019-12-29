@@ -48,12 +48,12 @@ namespace vm68k
         }
 
     public:
-        constexpr std::int_least8_t to_int() const noexcept
+        constexpr std::int8_t to_int() const noexcept
         {
             return std::int8_t(_value);
         }
 
-        constexpr std::uint_least8_t to_uint() const noexcept
+        constexpr std::uint8_t to_uint() const noexcept
         {
             return _value;
         }
@@ -83,12 +83,12 @@ namespace vm68k
         }
 
     public:
-        constexpr std::int_least16_t to_int() const noexcept
+        constexpr std::int16_t to_int() const noexcept
         {
             return std::int16_t(_value);
         }
 
-        constexpr std::uint_least16_t to_uint() const noexcept
+        constexpr std::uint16_t to_uint() const noexcept
         {
             return _value;
         }
@@ -118,12 +118,12 @@ namespace vm68k
         }
 
     public:
-        constexpr std::int_least32_t to_int() const noexcept
+        constexpr std::int32_t to_int() const noexcept
         {
             return std::int32_t(_value);
         }
 
-        constexpr std::uint_least32_t to_uint() const noexcept
+        constexpr std::uint32_t to_uint() const noexcept
         {
             return _value;
         }

@@ -19,7 +19,7 @@ definitions:
           - cd _build
           - ../configure --prefix=/opt/libvm68k
           - make check
-          - make dist
+          - make dist VERSION="`sh ./config.status --version | sed -n '1s/^.* config\.status //p'`-snapshot.$BITBUCKET_BUILD_NUMBER"
         artifacts:
           - _build/**
     - step: &upload

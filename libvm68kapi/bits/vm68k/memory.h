@@ -75,9 +75,15 @@ namespace vm68k
     {
         using inherited = memory;
 
+    protected:
+        using byte_type = unsigned char;
+
+    protected:
+        static std::unique_ptr<byte_type []> allocate(size_type size);
+
     private:
         size_type _size;
-        std::unique_ptr<unsigned char []> _data;
+        std::unique_ptr<byte_type []> _data;
 
     public:
         explicit read_write_memory(size_type size);

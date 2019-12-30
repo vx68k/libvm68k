@@ -42,8 +42,14 @@ memory::~memory()
 
 // Class 'read_write_memory' implementation.
 
+std::unique_ptr<read_write_memory::byte_type []>
+read_write_memory::allocate(const size_type size)
+{
+    return std::unique_ptr<byte_type []>(new byte_type [size]);
+}
+
 read_write_memory::read_write_memory(const size_type size)
-    : _size(size), _data(new unsigned char[size])
+    : _size(size), _data(allocate(size))
 {
 }
 

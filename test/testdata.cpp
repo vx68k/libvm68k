@@ -44,17 +44,22 @@ class DataStaticTests : public TestFixture
 public:
     void testByteType()
     {
-        CPPUNIT_ASSERT(std::is_trivial<byte>::value);
+        CPPUNIT_ASSERT_EQUAL(true, std::is_trivial<byte>::value);
+        CPPUNIT_ASSERT_EQUAL(std::size_t(1), byte::size());
     }
 
     void testWordType()
     {
-        CPPUNIT_ASSERT(std::is_trivial<word>::value);
+        CPPUNIT_ASSERT_EQUAL(true, std::is_trivial<word>::value);
+        CPPUNIT_ASSERT_EQUAL(std::size_t(2), word::size());
     }
+
     void testLongWordType()
     {
-        CPPUNIT_ASSERT(std::is_trivial<long_word>::value);
-    }};
+        CPPUNIT_ASSERT_EQUAL(true, std::is_trivial<long_word>::value);
+        CPPUNIT_ASSERT_EQUAL(std::size_t(4), long_word::size());
+    }
+};
 CPPUNIT_TEST_SUITE_REGISTRATION(DataStaticTests);
 
 /*

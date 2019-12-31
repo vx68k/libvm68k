@@ -23,7 +23,7 @@
 #pragma hdrstop
 #endif
 
-#include <vm68k>
+#include <bits/vm68k/context.h>
 
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/TestFixture.h>
@@ -44,8 +44,8 @@ class ContextTests : public TestFixture {
 
 public:
     void setUp() override {
-        auto memory = make_shared<memory_map>();
-        context = make_shared<class context>(move(memory));
+        // auto memory = make_shared<memory_map>();
+        // context = make_shared<class context>(move(memory));
     }
 
     void tearDown() override {

@@ -70,7 +70,7 @@ namespace vm68k
             const void *bytes) = 0;
     };
 
-    // Read-write memory.
+    /// Read-write memory.
     class _VM68KAPI_PUBLIC read_write_memory : public memory
     {
         using inherited = memory;

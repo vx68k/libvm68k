@@ -99,6 +99,19 @@ namespace vm68k
 
         void write(mode m, address_type address, size_type n,
             const void *bytes) override final;
+
+    protected:
+        /// Checks read access on a region.
+        ///
+        /// This implementation does nothing.
+        virtual void check_read_access(mode m, address_type address,
+            size_type n);
+
+        /// Checks write access on a region.
+        ///
+        /// This implementation does nothing.
+        virtual void check_write_access(mode m, address_type address,
+            size_type n);
     };
 
     /**

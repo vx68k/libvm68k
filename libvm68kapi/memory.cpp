@@ -65,10 +65,22 @@ memory::size_type read_write_memory::size() const noexcept
 void read_write_memory::read(const mode m, const address_type address,
     const size_type n, void *const bytes)
 {
+    check_read_access(m, address, n);
 }
 
 void read_write_memory::write(const mode m, const address_type address,
     const size_type n, const void *const bytes)
+{
+    check_write_access(m, address, n);
+}
+
+void read_write_memory::check_read_access(const mode, const address_type,
+    const size_type)
+{
+}
+
+void read_write_memory::check_write_access(const mode, const address_type,
+    const size_type)
 {
 }
 

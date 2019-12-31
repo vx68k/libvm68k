@@ -63,12 +63,12 @@ memory::size_type read_write_memory::size() const noexcept
 }
 
 void read_write_memory::read(const mode m, const address_type address,
-    const std::size_t n, void *const bytes)
+    const size_type n, void *const bytes)
 {
 }
 
 void read_write_memory::write(const mode m, const address_type address,
-    const std::size_t n, const void *const bytes)
+    const size_type n, const void *const bytes)
 {
 }
 

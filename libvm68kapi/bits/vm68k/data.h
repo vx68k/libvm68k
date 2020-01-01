@@ -24,6 +24,9 @@
 
 namespace vm68k
 {
+    /// Byte (8-bit) data.
+    ///
+    /// This type is trivial.
     class _VM68KAPI_PUBLIC byte
     {
     public:
@@ -59,6 +62,9 @@ namespace vm68k
         }
     };
 
+    /// Word (16-bit) data.
+    ///
+    /// This type is trivial.
     class _VM68KAPI_PUBLIC word
     {
     public:
@@ -94,6 +100,9 @@ namespace vm68k
         }
     };
 
+    /// Long word (32-bit) data.
+    ///
+    /// This type is trivial.
     class _VM68KAPI_PUBLIC long_word
     {
     public:

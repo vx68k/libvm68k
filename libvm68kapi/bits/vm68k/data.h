@@ -24,9 +24,9 @@
 
 namespace vm68k
 {
-    /// Byte (8-bit) data.
+    /// Byte (8-bit-wide) data.
     ///
-    /// This type is trivial.
+    /// This type is trivial and standard-layout.
     class _VM68KAPI_PUBLIC byte
     {
     public:
@@ -37,6 +37,7 @@ namespace vm68k
         std::uint8_t _value;
 
     public:
+        /// Returns the size of a byte, which is 1.
         static constexpr std::size_t size()
         {
             return 1U;
@@ -48,6 +49,12 @@ namespace vm68k
         constexpr byte(const std::uint8_t value) noexcept
             : _value(value)
         {
+        }
+
+        byte &operator =(const std::uint8_t value) noexcept
+        {
+            _value = value;
+            return *this;
         }
 
     public:
@@ -62,9 +69,9 @@ namespace vm68k
         }
     };
 
-    /// Word (16-bit) data.
+    /// Word (16-bit-wide) data.
     ///
-    /// This type is trivial.
+    /// This type is trivial and standard-layout.
     class _VM68KAPI_PUBLIC word
     {
     public:
@@ -75,6 +82,7 @@ namespace vm68k
         std::uint16_t _value;
 
     public:
+        /// Returns the size of a word, which is 2.
         static constexpr std::size_t size()
         {
             return 2U;
@@ -86,6 +94,12 @@ namespace vm68k
         constexpr word(const std::uint16_t value) noexcept
             : _value(value)
         {
+        }
+
+        word &operator =(const std::uint16_t value) noexcept
+        {
+            _value = value;
+            return *this;
         }
 
     public:
@@ -100,9 +114,9 @@ namespace vm68k
         }
     };
 
-    /// Long word (32-bit) data.
+    /// Long word (32-bit-wide) data.
     ///
-    /// This type is trivial.
+    /// This type is trivial and standard-layout.
     class _VM68KAPI_PUBLIC long_word
     {
     public:
@@ -113,6 +127,7 @@ namespace vm68k
         std::uint32_t _value;
 
     public:
+        /// Returns the size of a long word, which is 4.
         static constexpr std::size_t size()
         {
             return 4U;
@@ -124,6 +139,12 @@ namespace vm68k
         constexpr long_word(const std::uint32_t value) noexcept
             : _value(value)
         {
+        }
+
+        long_word &operator =(const std::uint32_t value) noexcept
+        {
+            _value = value;
+            return *this;
         }
 
     public:

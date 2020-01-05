@@ -44,20 +44,26 @@ class DataStaticTests : public TestFixture
 public:
     void testByteType()
     {
-        CPPUNIT_ASSERT_EQUAL(true, std::is_trivial<byte>::value);
-        CPPUNIT_ASSERT_EQUAL(std::size_t(1), byte::size());
+        using T = byte;
+        CPPUNIT_ASSERT_EQUAL(true, std::is_trivial<T>::value);
+        CPPUNIT_ASSERT_EQUAL(true, std::is_standard_layout<T>::value);
+        CPPUNIT_ASSERT_EQUAL(std::size_t(1), T::size());
     }
 
     void testWordType()
     {
-        CPPUNIT_ASSERT_EQUAL(true, std::is_trivial<word>::value);
-        CPPUNIT_ASSERT_EQUAL(std::size_t(2), word::size());
+        using T = word;
+        CPPUNIT_ASSERT_EQUAL(true, std::is_trivial<T>::value);
+        CPPUNIT_ASSERT_EQUAL(true, std::is_standard_layout<T>::value);
+        CPPUNIT_ASSERT_EQUAL(std::size_t(2), T::size());
     }
 
     void testLongWordType()
     {
-        CPPUNIT_ASSERT_EQUAL(true, std::is_trivial<long_word>::value);
-        CPPUNIT_ASSERT_EQUAL(std::size_t(4), long_word::size());
+        using T = long_word;
+        CPPUNIT_ASSERT_EQUAL(true, std::is_trivial<T>::value);
+        CPPUNIT_ASSERT_EQUAL(true, std::is_standard_layout<T>::value);
+        CPPUNIT_ASSERT_EQUAL(std::size_t(4), T::size());
     }
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(DataStaticTests);

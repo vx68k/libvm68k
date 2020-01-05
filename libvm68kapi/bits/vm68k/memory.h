@@ -35,8 +35,8 @@ namespace vm68k
     public:
         enum mode
         {
-            USER_MODE = 0,
-            SUPERVISOR_MODE,
+            user = 0,
+            supervisor,
         };
 
         using address_type = std::uint_fast32_t;
@@ -55,7 +55,7 @@ namespace vm68k
         /**
          * <stereotype>destructor</stereotype>
          */
-        virtual ~memory();
+        virtual ~memory() = 0;
 
     public:
         // Returns the size of this memory object.

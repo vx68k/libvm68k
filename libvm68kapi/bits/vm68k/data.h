@@ -67,6 +67,13 @@ namespace vm68k
         {
             return _value;
         }
+
+        void *serialize(void *const to) const
+        {
+            auto i = static_cast<unsigned char *>(to);
+            *(i++) = _value;
+            return i;
+        }
     };
 
     /// Word (16-bit-wide) data.
@@ -112,6 +119,14 @@ namespace vm68k
         {
             return _value;
         }
+
+        void *serialize(void *const to) const
+        {
+            auto i = static_cast<unsigned char *>(to);
+            *(i++) = std::uint8_t(_value >> 8);
+            *(i++) = std::uint8_t(_value);
+            return i;
+        }
     };
 
     /// Long word (32-bit-wide) data.
@@ -156,6 +171,16 @@ namespace vm68k
         constexpr std::uint32_t to_uint() const noexcept
         {
             return _value;
+        }
+
+        void *serialize(void *const to) const
+        {
+            auto i = static_cast<unsigned char *>(to);
+            *(i++) = std::uint8_t(_value >> 24);
+            *(i++) = std::uint8_t(_value >> 16);
+            *(i++) = std::uint8_t(_value >> 8);
+            *(i++) = std::uint8_t(_value);
+            return i;
         }
     };
 }

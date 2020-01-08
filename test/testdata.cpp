@@ -68,61 +68,128 @@ public:
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(DataStaticTests);
 
-/*
- * Tests for data types.
- */
-class DataTests : public TestFixture {
-    CPPUNIT_TEST_SUITE(DataTests);
-    CPPUNIT_TEST(testByteBasic);
-    CPPUNIT_TEST(testWordBasic);
-    CPPUNIT_TEST(testLongWordBasic);
+class ByteTests : public TestFixture
+{
+    CPPUNIT_TEST_SUITE(ByteTests);
+    CPPUNIT_TEST(testToInt);
+    CPPUNIT_TEST(testToUint);
     CPPUNIT_TEST_SUITE_END();
 
+private:
+    using T = byte;
+
+    T data;
+
 public:
-    void setUp() override {
+    void setUp() override
+    {
+        data = T();
     }
 
-    void tearDown() override {
+    void testToInt()
+    {
+        CPPUNIT_ASSERT_EQUAL(std::int8_t(0), data.to_int());
+        data = T(0x01);
+        CPPUNIT_ASSERT_EQUAL(std::int8_t(0x01), data.to_int());
+        data = 0x7f;
+        CPPUNIT_ASSERT_EQUAL(std::int8_t(0x7f), data.to_int());
+        data = 0x80;
+        CPPUNIT_ASSERT_EQUAL(std::int8_t(-0x80), data.to_int());
     }
 
-    void testByteBasic() {
-        CPPUNIT_ASSERT_EQUAL(std::size_t(1U), byte::size());
-        CPPUNIT_ASSERT_EQUAL(std::int8_t(0), byte().to_int());
-        CPPUNIT_ASSERT_EQUAL(std::int8_t(0), byte(0).to_int());
-        CPPUNIT_ASSERT_EQUAL(std::int8_t(0x7f), byte(0x7f).to_int());
-        CPPUNIT_ASSERT_EQUAL(std::int8_t(-0x80), byte(0x80).to_int());
-        CPPUNIT_ASSERT_EQUAL(std::int8_t(-1), byte(0xff).to_int());
-        CPPUNIT_ASSERT_EQUAL(std::uint8_t(0), byte().to_uint());
-        CPPUNIT_ASSERT_EQUAL(std::uint8_t(0), byte(0).to_uint());
-        CPPUNIT_ASSERT_EQUAL(std::uint8_t(0xff), byte(0xff).to_uint());
-    }
-
-    void testWordBasic() {
-        CPPUNIT_ASSERT_EQUAL(std::size_t(2U), word::size());
-        CPPUNIT_ASSERT_EQUAL(std::int16_t(0), word().to_int());
-        CPPUNIT_ASSERT_EQUAL(std::int16_t(0), word(0).to_int());
-        CPPUNIT_ASSERT_EQUAL(std::int16_t(0x7fff), word(0x7fff).to_int());
-        CPPUNIT_ASSERT_EQUAL(std::int16_t(-0x8000), word(0x8000).to_int());
-        CPPUNIT_ASSERT_EQUAL(std::int16_t(-1), word(0xffff).to_int());
-        CPPUNIT_ASSERT_EQUAL(std::uint16_t(0), word().to_uint());
-        CPPUNIT_ASSERT_EQUAL(std::uint16_t(0), word(0).to_uint());
-        CPPUNIT_ASSERT_EQUAL(std::uint16_t(0xffff), word(0xffff).to_uint());
-    }
-
-    void testLongWordBasic() {
-        CPPUNIT_ASSERT_EQUAL(std::size_t(4U), long_word::size());
-        CPPUNIT_ASSERT_EQUAL(std::int32_t(0), long_word().to_int());
-        CPPUNIT_ASSERT_EQUAL(std::int32_t(0), long_word(0).to_int());
-        CPPUNIT_ASSERT_EQUAL(std::int32_t(0x7fffffffL),
-                long_word(0x7fffffffL).to_int());
-        CPPUNIT_ASSERT_EQUAL(std::int32_t(-0x80000000L),
-                long_word(0x80000000L).to_int());
-        CPPUNIT_ASSERT_EQUAL(std::int32_t(-1),
-                long_word(0xffffffffL).to_int());
-        CPPUNIT_ASSERT_EQUAL(std::uint32_t(0), long_word().to_uint());
-        CPPUNIT_ASSERT_EQUAL(std::uint32_t(0), long_word(0).to_uint());
-        CPPUNIT_ASSERT_EQUAL(std::uint32_t(0xffffffffL),
-                long_word(0xffffffffL).to_uint());
+    void testToUint()
+    {
+        CPPUNIT_ASSERT_EQUAL(std::uint8_t(0), data.to_uint());
+        data = T(0x01);
+        CPPUNIT_ASSERT_EQUAL(std::uint8_t(0x01), data.to_uint());
+        data = 0x00;
+        CPPUNIT_ASSERT_EQUAL(std::uint8_t(0x00), data.to_uint());
+        data = 0xff;
+        CPPUNIT_ASSERT_EQUAL(std::uint8_t(0xff), data.to_uint());
     }
 };
-CPPUNIT_TEST_SUITE_REGISTRATION(DataTests);
+CPPUNIT_TEST_SUITE_REGISTRATION(ByteTests);
+
+class WordTests : public TestFixture
+{
+    CPPUNIT_TEST_SUITE(WordTests);
+    CPPUNIT_TEST(testToInt);
+    CPPUNIT_TEST(testToUint);
+    CPPUNIT_TEST_SUITE_END();
+
+private:
+    using T = word;
+
+    T data;
+
+public:
+    void setUp() override
+    {
+        data = T();
+    }
+
+    void testToInt()
+    {
+        CPPUNIT_ASSERT_EQUAL(std::int16_t(0), data.to_int());
+        data = T(0x0102);
+        CPPUNIT_ASSERT_EQUAL(std::int16_t(0x0102), data.to_int());
+        data = 0x7fff;
+        CPPUNIT_ASSERT_EQUAL(std::int16_t(0x7fff), data.to_int());
+        data = 0x8000;
+        CPPUNIT_ASSERT_EQUAL(std::int16_t(-0x8000), data.to_int());
+    }
+
+    void testToUint()
+    {
+        CPPUNIT_ASSERT_EQUAL(std::uint16_t(0), data.to_uint());
+        data = T(0x0102);
+        CPPUNIT_ASSERT_EQUAL(std::uint16_t(0x0102), data.to_uint());
+        data = 0x0000;
+        CPPUNIT_ASSERT_EQUAL(std::uint16_t(0x0000), data.to_uint());
+        data = 0xffff;
+        CPPUNIT_ASSERT_EQUAL(std::uint16_t(0xffff), data.to_uint());
+    }
+};
+CPPUNIT_TEST_SUITE_REGISTRATION(WordTests);
+
+class LongWordTests : public TestFixture
+{
+    CPPUNIT_TEST_SUITE(LongWordTests);
+    CPPUNIT_TEST(testToInt);
+    CPPUNIT_TEST(testToUint);
+    CPPUNIT_TEST_SUITE_END();
+
+private:
+    using T = long_word;
+
+    T data;
+
+public:
+    void setUp() override
+    {
+        data = T();
+    }
+
+    void testToInt()
+    {
+        CPPUNIT_ASSERT_EQUAL(std::int32_t(0), data.to_int());
+        data = T(0x01020304);
+        CPPUNIT_ASSERT_EQUAL(std::int32_t(0x01020304), data.to_int());
+        data = 0x7fffffff;
+        CPPUNIT_ASSERT_EQUAL(std::int32_t(0x7fffffff), data.to_int());
+        data = 0x80000000;
+        CPPUNIT_ASSERT_EQUAL(std::int32_t(-0x80000000), data.to_int());
+    }
+
+    void testToUint()
+    {
+        CPPUNIT_ASSERT_EQUAL(std::uint32_t(0), data.to_uint());
+        data = T(0x01020304);
+        CPPUNIT_ASSERT_EQUAL(std::uint32_t(0x01020304), data.to_uint());
+        data = 0x00000000;
+        CPPUNIT_ASSERT_EQUAL(std::uint32_t(0x00000000), data.to_uint());
+        data = 0xffffffff;
+        CPPUNIT_ASSERT_EQUAL(std::uint32_t(0xffffffff), data.to_uint());
+    }
+};
+CPPUNIT_TEST_SUITE_REGISTRATION(LongWordTests);

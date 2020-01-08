@@ -68,16 +68,18 @@ namespace vm68k
             return _value;
         }
 
-        void *serialize(void *const to) const
+        template<class Iterator>
+        Iterator serialize(const Iterator output) const
         {
-            auto i = static_cast<unsigned char *>(to);
+            auto i = output;
             *(i++) = _value;
             return i;
         }
 
-        const void *deserialize(const void *const from)
+        template<class Iterator>
+        Iterator deserialize(const Iterator input)
         {
-            auto i = static_cast<const unsigned char *>(from);
+            auto i = input;
             _value = *(i++);
             return i;
         }
@@ -127,17 +129,19 @@ namespace vm68k
             return _value;
         }
 
-        void *serialize(void *const to) const
+        template<class Iterator>
+        Iterator serialize(const Iterator output) const
         {
-            auto i = static_cast<unsigned char *>(to);
+            auto i = output;
             *(i++) = std::uint8_t(_value >> 8);
             *(i++) = std::uint8_t(_value);
             return i;
         }
 
-        const void *deserialize(const void *const from)
+        template<class Iterator>
+        Iterator deserialize(const Iterator input)
         {
-            auto i = static_cast<const unsigned char *>(from);
+            auto i = input;
             _value  = std::uint8_t(*(i++)) << 8;
             _value |= std::uint8_t(*(i++));
             return i;
@@ -188,9 +192,10 @@ namespace vm68k
             return _value;
         }
 
-        void *serialize(void *const to) const
+        template<class Iterator>
+        Iterator serialize(const Iterator output) const
         {
-            auto i = static_cast<unsigned char *>(to);
+            auto i = output;
             *(i++) = std::uint8_t(_value >> 24);
             *(i++) = std::uint8_t(_value >> 16);
             *(i++) = std::uint8_t(_value >> 8);
@@ -198,9 +203,10 @@ namespace vm68k
             return i;
         }
 
-        const void *deserialize(const void *const from)
+        template<class Iterator>
+        Iterator deserialize(const Iterator input)
         {
-            auto i = static_cast<const unsigned char *>(from);
+            auto i = input;
             _value  = std::uint8_t(*(i++)) << 24;
             _value |= std::uint8_t(*(i++)) << 16;
             _value |= std::uint8_t(*(i++)) << 8;

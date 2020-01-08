@@ -10,7 +10,7 @@ CLEANFILES =
 
 if CPPUNIT
 check_SCRIPTS = runtest
-check_PROGRAMS = memory.test data.test context.test
+check_PROGRAMS = data.test memory.test context.test
 TEST_LOG_COMPILER = ./runtest
 
 TESTS += $(check_PROGRAMS)
@@ -20,11 +20,11 @@ endif
 
 EXTRA_PROGRAMS = vm68k_test
 
-memory_test_SOURCES = testmain.cpp testmemory.cpp
-memory_test_LDADD = $(top_builddir)/libvm68kapi/libvm68kapi.la $(CPPUNIT_LIBS)
-
 data_test_SOURCES = testmain.cpp testdata.cpp
 data_test_LDADD = $(top_builddir)/libvm68kapi/libvm68kapi.la $(CPPUNIT_LIBS)
+
+memory_test_SOURCES = testmain.cpp testmemory.cpp
+memory_test_LDADD = $(top_builddir)/libvm68kapi/libvm68kapi.la $(CPPUNIT_LIBS)
 
 context_test_SOURCES = testmain.cpp testcontext.cpp
 context_test_LDADD = $(top_builddir)/src/libvm68k.la \

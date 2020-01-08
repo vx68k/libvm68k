@@ -74,6 +74,13 @@ namespace vm68k
             *(i++) = _value;
             return i;
         }
+
+        const void *deserialize(const void *const from)
+        {
+            auto i = static_cast<const unsigned char *>(from);
+            _value = *(i++);
+            return i;
+        }
     };
 
     /// Word (16-bit-wide) data.
@@ -125,6 +132,14 @@ namespace vm68k
             auto i = static_cast<unsigned char *>(to);
             *(i++) = std::uint8_t(_value >> 8);
             *(i++) = std::uint8_t(_value);
+            return i;
+        }
+
+        const void *deserialize(const void *const from)
+        {
+            auto i = static_cast<const unsigned char *>(from);
+            _value  = std::uint8_t(*(i++)) << 8;
+            _value |= std::uint8_t(*(i++));
             return i;
         }
     };
@@ -180,6 +195,16 @@ namespace vm68k
             *(i++) = std::uint8_t(_value >> 16);
             *(i++) = std::uint8_t(_value >> 8);
             *(i++) = std::uint8_t(_value);
+            return i;
+        }
+
+        const void *deserialize(const void *const from)
+        {
+            auto i = static_cast<const unsigned char *>(from);
+            _value  = std::uint8_t(*(i++)) << 24;
+            _value |= std::uint8_t(*(i++)) << 16;
+            _value |= std::uint8_t(*(i++)) << 8;
+            _value |= std::uint8_t(*(i++));
             return i;
         }
     };

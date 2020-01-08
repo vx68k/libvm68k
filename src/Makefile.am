@@ -5,6 +5,7 @@ AM_CPPFLAGS = -I$(top_srcdir)/config \
 
 lib_LTLIBRARIES = libvm68k.la
 
+libvm68k_la_LDFLAGS = -version-info 1:0:0
 libvm68k_la_SOURCES = context.cpp
 EXTRA_libvm68k_la_SOURCES = win32dll.cpp
 

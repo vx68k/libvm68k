@@ -82,7 +82,7 @@ namespace vm68k
         static std::unique_ptr<byte_type []> allocate(size_type size);
 
     private:
-        size_type _size;
+        const size_type _size;
         std::unique_ptr<byte_type []> _data;
 
     public:

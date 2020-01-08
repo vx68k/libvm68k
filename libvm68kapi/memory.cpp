@@ -51,10 +51,12 @@ read_write_memory::allocate(const size_type size)
 read_write_memory::read_write_memory(const size_type size)
     : _size(size), _data(allocate(size))
 {
+    std::declare_no_pointers(reinterpret_cast<char *>(_data.get()), _size);
 }
 
 read_write_memory::~read_write_memory()
 {
+    std::undeclare_no_pointers(reinterpret_cast<char *>(_data.get()), _size);
 }
 
 memory::size_type read_write_memory::size() const noexcept

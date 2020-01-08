@@ -4,7 +4,7 @@ AM_CPPFLAGS =
 
 lib_LTLIBRARIES = libvm68kapi.la
 
-nobase_include_HEADERS = vm68k/memory \
+nobase_include_HEADERS = vm68k/data vm68k/memory \
 bits/vm68kapi.h bits/vm68k/data.h bits/vm68k/memory.h
 
 libvm68kapi_la_LDFLAGS = -version-info 1:0:0

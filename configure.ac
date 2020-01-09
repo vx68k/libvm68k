@@ -18,10 +18,6 @@ AC_PROG_CXX
 # Checks for header files.
 
 # Checks for typedefs, structures, and compiler characteristics.
-AC_TYPE_SIZE_T
-AC_TYPE_INT8_T
-AC_TYPE_INT16_T
-AC_TYPE_INT32_T
 
 # Checks for library functions.
 PKG_CHECK_MODULES([CPPUNIT], [cppunit],, [no_cppunit=yes])

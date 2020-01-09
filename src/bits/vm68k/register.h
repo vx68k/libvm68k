@@ -1,5 +1,5 @@
-// <bits/vm68k/context.h>
-// Copyright (C) 2012-2019 Kaz Nishimura
+// <bits/vm68k/register.h>
+// Copyright (C) 2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -16,36 +16,30 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68K_CONTEXT_H
-#define _VM68K_CONTEXT_H 1
+#ifndef _VM68K_REGISTER_H
+#define _VM68K_REGISTER_H 1
 
-#include <bits/vm68k/register.h>
 #include <bits/vm68kcore.h>
-#include <vm68k/memory>
-#include <memory>
-#include <utility>
+#include <cstdint>
 
 namespace vm68k
 {
-    /*
-     * Execution context.
-     */
-    class _VM68KCORE_PUBLIC context
+    class _VM68KCORE_PUBLIC d_register
     {
     private:
-        std::shared_ptr<memory_map> _memory;
+        std::uint32_t _value;
 
     public:
-        explicit context(const std::shared_ptr<memory_map> &memory);
+        d_register() = default;
+    };
+
+    class _VM68KCORE_PUBLIC a_register
+    {
+    private:
+        std::uint32_t _value;
 
     public:
-        virtual ~context();
-
-    public:
-        const std::shared_ptr<memory_map> &memory() const noexcept
-        {
-            return _memory;
-        }
+        a_register() = default;
     };
 }
 

@@ -1,5 +1,5 @@
 # bitbucket-pipelines.yml - Bitbucket Pipelines configuration
-# Copyright (C) 2019 Kaz Nishimura
+# Copyright (C) 2019-2020 Kaz Nishimura
 #
 # Copying and distribution of this file, with or without modification, are
 # permitted in any medium without royalty provided the copyright notice and
@@ -21,7 +21,11 @@ definitions:
           - make check
           - make dist VERSION="`sh ./config.status --version | sed -n '1s/^.* config\.status //p'`-snapshot.$BITBUCKET_BUILD_NUMBER"
         artifacts:
-          - _build/**
+          - aclocal.m4
+          - configure
+          - config.h.in
+          - "**/Makefile.in"
+          - "_build/**"
     - step: &upload
         name: Upload to Bitbucket Cloud
         script:

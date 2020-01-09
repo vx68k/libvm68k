@@ -1,8 +1,8 @@
 # Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.69])
 AC_INIT([libvm68k], [2.0],
-[https://bitbucket.org/kazssym/libvm68k/issues/new],,
-[http://www.vx68k.org/libvm68k])
+[https://bitbucket.org/vx68k/libvm68k/issues/new],,
+[https://www.vx68k.org/vx68k/libvm68k])
 AC_CONFIG_SRCDIR([src/context.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])

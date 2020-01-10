@@ -73,6 +73,8 @@ class ByteTests : public TestFixture
     CPPUNIT_TEST_SUITE(ByteTests);
     CPPUNIT_TEST(testToInt);
     CPPUNIT_TEST(testToUint);
+    CPPUNIT_TEST(testSerialize);
+    CPPUNIT_TEST(testDeserialize);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -107,6 +109,16 @@ public:
         data = 0xff;
         CPPUNIT_ASSERT_EQUAL(std::uint8_t(0xff), data.to_uint());
     }
+
+    void testSerialize()
+    {
+        // TODO: Write assertions.
+    }
+
+    void testDeserialize()
+    {
+        // TODO: Write assertions.
+    }
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(ByteTests);
 
@@ -115,6 +127,8 @@ class WordTests : public TestFixture
     CPPUNIT_TEST_SUITE(WordTests);
     CPPUNIT_TEST(testToInt);
     CPPUNIT_TEST(testToUint);
+    CPPUNIT_TEST(testSerialize);
+    CPPUNIT_TEST(testDeserialize);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -149,6 +163,17 @@ public:
         data = 0xffff;
         CPPUNIT_ASSERT_EQUAL(std::uint16_t(0xffff), data.to_uint());
     }
+
+    void testSerialize()
+    {
+        // TODO: Write assertions.
+    }
+
+    void testDeserialize()
+    {
+        // TODO: Write assertions.
+    }
+
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(WordTests);
 
@@ -157,6 +182,8 @@ class LongWordTests : public TestFixture
     CPPUNIT_TEST_SUITE(LongWordTests);
     CPPUNIT_TEST(testToInt);
     CPPUNIT_TEST(testToUint);
+    CPPUNIT_TEST(testSerialize);
+    CPPUNIT_TEST(testDeserialize);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -190,6 +217,16 @@ public:
         CPPUNIT_ASSERT_EQUAL(std::uint32_t(0x00000000), data.to_uint());
         data = 0xffffffff;
         CPPUNIT_ASSERT_EQUAL(std::uint32_t(0xffffffff), data.to_uint());
+    }
+
+    void testSerialize()
+    {
+        // TODO: Write assertions.
+    }
+
+    void testDeserialize()
+    {
+        // TODO: Write assertions.
     }
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(LongWordTests);

@@ -1,6 +1,7 @@
 syntax: regexp
-(^|/)test-reports$
-(^|/)runtest$
+^test/test-reports/
+^test/[^/]*\.test$
+^test/runtest$
 (^|/)libvm68k\.la$
 (^|/)libvm68kapi\.la$
 (^|/)remove-potcdate\.sed$

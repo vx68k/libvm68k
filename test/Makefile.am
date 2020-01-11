@@ -20,12 +20,15 @@ endif
 
 EXTRA_PROGRAMS = vm68k_test
 
+data_test_LDFLAGS = -no-install
 data_test_SOURCES = testmain.cpp testdata.cpp
 data_test_LDADD = $(top_builddir)/libvm68kapi/libvm68kapi.la $(CPPUNIT_LIBS)
 
+memory_test_LDFLAGS = -no-install
 memory_test_SOURCES = testmain.cpp testmemory.cpp
 memory_test_LDADD = $(top_builddir)/libvm68kapi/libvm68kapi.la $(CPPUNIT_LIBS)
 
+context_test_LDFLAGS = -no-install
 context_test_SOURCES = testmain.cpp testcontext.cpp
 context_test_LDADD = $(top_builddir)/src/libvm68k.la \
 $(top_builddir)/libvm68kapi/libvm68kapi.la $(CPPUNIT_LIBS)

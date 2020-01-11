@@ -1,5 +1,5 @@
 // testdata.cpp
-// Copyright (C) 2012-2019 Kaz Nishimura
+// Copyright (C) 2012-2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -27,6 +27,7 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/TestFixture.h>
+#include <iterator>
 #include <type_traits>
 
 using namespace vm68k;
@@ -112,7 +113,11 @@ public:
 
     void testSerialize()
     {
-        // TODO: Write assertions.
+        data = 0x81;
+        int serial[T::size()] = {};
+        auto end = data.serialize(serial);
+        CPPUNIT_ASSERT_EQUAL(std::ptrdiff_t(1), std::distance(serial, end));
+        CPPUNIT_ASSERT_EQUAL(0x81, serial[0]);
     }
 
     void testDeserialize()
@@ -166,7 +171,12 @@ public:
 
     void testSerialize()
     {
-        // TODO: Write assertions.
+        data = 0x8182;
+        int serial[T::size()] = {};
+        auto end = data.serialize(serial);
+        CPPUNIT_ASSERT_EQUAL(std::ptrdiff_t(2), std::distance(serial, end));
+        CPPUNIT_ASSERT_EQUAL(0x81, serial[0]);
+        CPPUNIT_ASSERT_EQUAL(0x82, serial[1]);
     }
 
     void testDeserialize()
@@ -221,7 +231,14 @@ public:
 
     void testSerialize()
     {
-        // TODO: Write assertions.
+        data = 0x81828384;
+        int serial[T::size()] = {};
+        auto end = data.serialize(serial);
+        CPPUNIT_ASSERT_EQUAL(std::ptrdiff_t(4), std::distance(serial, end));
+        CPPUNIT_ASSERT_EQUAL(0x81, serial[0]);
+        CPPUNIT_ASSERT_EQUAL(0x82, serial[1]);
+        CPPUNIT_ASSERT_EQUAL(0x83, serial[2]);
+        CPPUNIT_ASSERT_EQUAL(0x84, serial[3]);
     }
 
     void testDeserialize()

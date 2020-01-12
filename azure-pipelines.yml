@@ -1,0 +1,25 @@
+# azure-pipelines.yml - configuration for Azure Pipelines
+# Copyright (C) 2020 Kaz Nishimura
+#
+# Copying and distribution of this file, with or without modification, are
+# permitted in any medium without royalty provided the copyright notice and
+# this notice are preserved.  This file is offered as-is, without any warranty.
+---
+trigger:
+  - master
+  - "feature/**"
+jobs:
+  - job: build
+    pool:
+      vmImage: ubuntu-16.04
+    container: kazssym/libvm68k-builder:gcc
+    steps:
+      - bash: |
+          autoreconf
+      - bash: |
+          mkdir -p _build
+          cd _build
+          ../configure
+      - bash: |
+          cd _build
+          make check

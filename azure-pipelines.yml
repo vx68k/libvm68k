@@ -26,3 +26,7 @@ jobs:
           cd _build
           make check
         displayName: Build
+      - task: PublishTestResults@2
+        condition: succeededOrFailed()
+        inputs:
+          testResultsFiles: "**/test-reports/*.xml"

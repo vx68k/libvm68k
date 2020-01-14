@@ -30,10 +30,15 @@
 #include <iterator>
 #include <type_traits>
 
+using std::uint8_t;
+using std::uint16_t;
+using std::uint32_t;
+using std::is_constructible;
+using std::is_assignable;
 using namespace vm68k;
 using CppUnit::TestFixture;
 
-// Tests for static properties.
+// Test case for the static properties of the data types.
 class DataStaticTests : public TestFixture
 {
     CPPUNIT_TEST_SUITE(DataStaticTests);
@@ -43,27 +48,36 @@ class DataStaticTests : public TestFixture
     CPPUNIT_TEST_SUITE_END();
 
 public:
+    /// Tests the static properties of 'byte'.
     void testByteType()
     {
         using T = byte;
         CPPUNIT_ASSERT_EQUAL(true, std::is_trivial<T>::value);
         CPPUNIT_ASSERT_EQUAL(true, std::is_standard_layout<T>::value);
+        CPPUNIT_ASSERT_EQUAL(true, (is_constructible<T, uint8_t>::value));
+        CPPUNIT_ASSERT_EQUAL(true, (is_assignable<T, uint8_t>::value));
         CPPUNIT_ASSERT_EQUAL(std::size_t(1), T::size());
     }
 
+    /// Tests the static properties of 'word'.
     void testWordType()
     {
         using T = word;
         CPPUNIT_ASSERT_EQUAL(true, std::is_trivial<T>::value);
         CPPUNIT_ASSERT_EQUAL(true, std::is_standard_layout<T>::value);
+        CPPUNIT_ASSERT_EQUAL(true, (is_constructible<T, uint16_t>::value));
+        CPPUNIT_ASSERT_EQUAL(true, (is_assignable<T, uint16_t>::value));
         CPPUNIT_ASSERT_EQUAL(std::size_t(2), T::size());
     }
 
+    /// Tests the static properties of 'long_word'.
     void testLongWordType()
     {
         using T = long_word;
         CPPUNIT_ASSERT_EQUAL(true, std::is_trivial<T>::value);
         CPPUNIT_ASSERT_EQUAL(true, std::is_standard_layout<T>::value);
+        CPPUNIT_ASSERT_EQUAL(true, (is_constructible<T, uint32_t>::value));
+        CPPUNIT_ASSERT_EQUAL(true, (is_assignable<T, uint32_t>::value));
         CPPUNIT_ASSERT_EQUAL(std::size_t(4), T::size());
     }
 };

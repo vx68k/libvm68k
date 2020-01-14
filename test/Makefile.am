@@ -21,22 +21,22 @@ endif
 EXTRA_PROGRAMS = vm68k_test
 
 data_test_LDFLAGS = -no-install
-data_test_SOURCES = testmain.cpp testdata.cpp
+data_test_SOURCES = testmain.cpp xmlout.cpp testdata.cpp
 data_test_LDADD = $(top_builddir)/libvm68kapi/libvm68kapi.la $(CPPUNIT_LIBS)
 
 memory_test_LDFLAGS = -no-install
-memory_test_SOURCES = testmain.cpp testmemory.cpp
+memory_test_SOURCES = testmain.cpp xmlout.cpp testmemory.cpp
 memory_test_LDADD = $(top_builddir)/libvm68kapi/libvm68kapi.la $(CPPUNIT_LIBS)
 
 context_test_LDFLAGS = -no-install
-context_test_SOURCES = testmain.cpp testcontext.cpp
+context_test_SOURCES = testmain.cpp xmlout.cpp testcontext.cpp
 context_test_LDADD = $(top_builddir)/src/libvm68k.la \
 $(top_builddir)/libvm68kapi/libvm68kapi.la $(CPPUNIT_LIBS)
 
 vm68k_test_SOURCES = vm68k_test.cpp Test_vm68kdata.cpp Test_vm68kmem.cpp
 vm68k_test_LDADD = ../src/libvm68k.la
 
-noinst_HEADERS = Test_vm68kdata.h Test_vm68kmem.h
+noinst_HEADERS = xmlout.h Test_vm68kdata.h Test_vm68kmem.h
 
 EXTRA_DIST = runtest.in vm68k_test.cbproj
 

@@ -120,9 +120,13 @@ public:
         CPPUNIT_ASSERT_EQUAL(0x81, serial[0]);
     }
 
+    /// Tests 'byte::deserialize'.
     void testDeserialize()
     {
-        // TODO: Write assertions.
+        const int serial[] = {0x81};
+        auto end = data.deserialize(serial);
+        CPPUNIT_ASSERT_EQUAL(std::ptrdiff_t(1), std::distance(serial, end));
+        CPPUNIT_ASSERT_EQUAL(std::uint8_t(0x81), data.to_uint());
     }
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(ByteTests);
@@ -179,9 +183,13 @@ public:
         CPPUNIT_ASSERT_EQUAL(0x82, serial[1]);
     }
 
+    /// Tests 'word::deserialize'.
     void testDeserialize()
     {
-        // TODO: Write assertions.
+        const int serial[] = {0x81, 0x82};
+        auto end = data.deserialize(serial);
+        CPPUNIT_ASSERT_EQUAL(std::ptrdiff_t(2), std::distance(serial, end));
+        CPPUNIT_ASSERT_EQUAL(std::uint16_t(0x8182), data.to_uint());
     }
 
 };
@@ -241,9 +249,13 @@ public:
         CPPUNIT_ASSERT_EQUAL(0x84, serial[3]);
     }
 
+    /// Tests 'long_word::deserialize'.
     void testDeserialize()
     {
-        // TODO: Write assertions.
+        const int serial[] = {0x81, 0x82, 0x83, 0x84};
+        auto end = data.deserialize(serial);
+        CPPUNIT_ASSERT_EQUAL(std::ptrdiff_t(4), std::distance(serial, end));
+        CPPUNIT_ASSERT_EQUAL(std::uint32_t(0x81828384), data.to_uint());
     }
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(LongWordTests);

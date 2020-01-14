@@ -7,7 +7,7 @@ AC_CONFIG_SRCDIR([src/context.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([no-define])
-LT_INIT
+LT_INIT([dlopen])
 
 # Checks for programs.
 AC_PROG_CC

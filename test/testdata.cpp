@@ -29,12 +29,21 @@
 #include <cppunit/TestFixture.h>
 #include <iterator>
 #include <type_traits>
+#include <cstdint>
 
+using std::size_t;
+using std::ptrdiff_t;
+using std::int8_t;
+using std::int16_t;
+using std::int32_t;
 using std::uint8_t;
 using std::uint16_t;
 using std::uint32_t;
+using std::is_trivial;
+using std::is_standard_layout;
 using std::is_constructible;
 using std::is_assignable;
+using std::distance;
 using namespace vm68k;
 using CppUnit::TestFixture;
 
@@ -52,33 +61,33 @@ public:
     void testByteType()
     {
         using T = byte;
-        CPPUNIT_ASSERT_EQUAL(true, std::is_trivial<T>::value);
-        CPPUNIT_ASSERT_EQUAL(true, std::is_standard_layout<T>::value);
+        CPPUNIT_ASSERT_EQUAL(true, is_trivial<T>::value);
+        CPPUNIT_ASSERT_EQUAL(true, is_standard_layout<T>::value);
         CPPUNIT_ASSERT_EQUAL(true, (is_constructible<T, uint8_t>::value));
         CPPUNIT_ASSERT_EQUAL(true, (is_assignable<T, uint8_t>::value));
-        CPPUNIT_ASSERT_EQUAL(std::size_t(1), T::size());
+        CPPUNIT_ASSERT_EQUAL(size_t(1), T::size());
     }
 
     /// Tests the static properties of 'word'.
     void testWordType()
     {
         using T = word;
-        CPPUNIT_ASSERT_EQUAL(true, std::is_trivial<T>::value);
-        CPPUNIT_ASSERT_EQUAL(true, std::is_standard_layout<T>::value);
+        CPPUNIT_ASSERT_EQUAL(true, is_trivial<T>::value);
+        CPPUNIT_ASSERT_EQUAL(true, is_standard_layout<T>::value);
         CPPUNIT_ASSERT_EQUAL(true, (is_constructible<T, uint16_t>::value));
         CPPUNIT_ASSERT_EQUAL(true, (is_assignable<T, uint16_t>::value));
-        CPPUNIT_ASSERT_EQUAL(std::size_t(2), T::size());
+        CPPUNIT_ASSERT_EQUAL(size_t(2), T::size());
     }
 
     /// Tests the static properties of 'long_word'.
     void testLongWordType()
     {
         using T = long_word;
-        CPPUNIT_ASSERT_EQUAL(true, std::is_trivial<T>::value);
-        CPPUNIT_ASSERT_EQUAL(true, std::is_standard_layout<T>::value);
+        CPPUNIT_ASSERT_EQUAL(true, is_trivial<T>::value);
+        CPPUNIT_ASSERT_EQUAL(true, is_standard_layout<T>::value);
         CPPUNIT_ASSERT_EQUAL(true, (is_constructible<T, uint32_t>::value));
         CPPUNIT_ASSERT_EQUAL(true, (is_assignable<T, uint32_t>::value));
-        CPPUNIT_ASSERT_EQUAL(std::size_t(4), T::size());
+        CPPUNIT_ASSERT_EQUAL(size_t(4), T::size());
     }
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(DataStaticTests);
@@ -105,24 +114,24 @@ public:
 
     void testToInt()
     {
-        CPPUNIT_ASSERT_EQUAL(std::int8_t(0), data.to_int());
+        CPPUNIT_ASSERT_EQUAL(int8_t(0), data.to_int());
         data = T(0x01);
-        CPPUNIT_ASSERT_EQUAL(std::int8_t(0x01), data.to_int());
+        CPPUNIT_ASSERT_EQUAL(int8_t(0x01), data.to_int());
         data = 0x7f;
-        CPPUNIT_ASSERT_EQUAL(std::int8_t(0x7f), data.to_int());
+        CPPUNIT_ASSERT_EQUAL(int8_t(0x7f), data.to_int());
         data = 0x80;
-        CPPUNIT_ASSERT_EQUAL(std::int8_t(-0x80), data.to_int());
+        CPPUNIT_ASSERT_EQUAL(int8_t(-0x80), data.to_int());
     }
 
     void testToUint()
     {
-        CPPUNIT_ASSERT_EQUAL(std::uint8_t(0), data.to_uint());
+        CPPUNIT_ASSERT_EQUAL(uint8_t(0), data.to_uint());
         data = T(0x01);
-        CPPUNIT_ASSERT_EQUAL(std::uint8_t(0x01), data.to_uint());
+        CPPUNIT_ASSERT_EQUAL(uint8_t(0x01), data.to_uint());
         data = 0x00;
-        CPPUNIT_ASSERT_EQUAL(std::uint8_t(0x00), data.to_uint());
+        CPPUNIT_ASSERT_EQUAL(uint8_t(0x00), data.to_uint());
         data = 0xff;
-        CPPUNIT_ASSERT_EQUAL(std::uint8_t(0xff), data.to_uint());
+        CPPUNIT_ASSERT_EQUAL(uint8_t(0xff), data.to_uint());
     }
 
     void testSerialize()
@@ -130,7 +139,7 @@ public:
         data = 0x81;
         int serial[T::size()] = {};
         auto end = data.serialize(serial);
-        CPPUNIT_ASSERT_EQUAL(std::ptrdiff_t(1), std::distance(serial, end));
+        CPPUNIT_ASSERT_EQUAL(ptrdiff_t(1), distance(serial, end));
         CPPUNIT_ASSERT_EQUAL(0x81, serial[0]);
     }
 
@@ -139,8 +148,8 @@ public:
     {
         const int serial[] = {0x81};
         auto end = data.deserialize(serial);
-        CPPUNIT_ASSERT_EQUAL(std::ptrdiff_t(1), std::distance(serial, end));
-        CPPUNIT_ASSERT_EQUAL(std::uint8_t(0x81), data.to_uint());
+        CPPUNIT_ASSERT_EQUAL(ptrdiff_t(1), distance(serial, end));
+        CPPUNIT_ASSERT_EQUAL(uint8_t(0x81), data.to_uint());
     }
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(ByteTests);
@@ -167,24 +176,24 @@ public:
 
     void testToInt()
     {
-        CPPUNIT_ASSERT_EQUAL(std::int16_t(0), data.to_int());
+        CPPUNIT_ASSERT_EQUAL(int16_t(0), data.to_int());
         data = T(0x0102);
-        CPPUNIT_ASSERT_EQUAL(std::int16_t(0x0102), data.to_int());
+        CPPUNIT_ASSERT_EQUAL(int16_t(0x0102), data.to_int());
         data = 0x7fff;
-        CPPUNIT_ASSERT_EQUAL(std::int16_t(0x7fff), data.to_int());
+        CPPUNIT_ASSERT_EQUAL(int16_t(0x7fff), data.to_int());
         data = 0x8000;
-        CPPUNIT_ASSERT_EQUAL(std::int16_t(-0x8000), data.to_int());
+        CPPUNIT_ASSERT_EQUAL(int16_t(-0x8000), data.to_int());
     }
 
     void testToUint()
     {
-        CPPUNIT_ASSERT_EQUAL(std::uint16_t(0), data.to_uint());
+        CPPUNIT_ASSERT_EQUAL(uint16_t(0), data.to_uint());
         data = T(0x0102);
-        CPPUNIT_ASSERT_EQUAL(std::uint16_t(0x0102), data.to_uint());
+        CPPUNIT_ASSERT_EQUAL(uint16_t(0x0102), data.to_uint());
         data = 0x0000;
-        CPPUNIT_ASSERT_EQUAL(std::uint16_t(0x0000), data.to_uint());
+        CPPUNIT_ASSERT_EQUAL(uint16_t(0x0000), data.to_uint());
         data = 0xffff;
-        CPPUNIT_ASSERT_EQUAL(std::uint16_t(0xffff), data.to_uint());
+        CPPUNIT_ASSERT_EQUAL(uint16_t(0xffff), data.to_uint());
     }
 
     void testSerialize()
@@ -192,7 +201,7 @@ public:
         data = 0x8182;
         int serial[T::size()] = {};
         auto end = data.serialize(serial);
-        CPPUNIT_ASSERT_EQUAL(std::ptrdiff_t(2), std::distance(serial, end));
+        CPPUNIT_ASSERT_EQUAL(ptrdiff_t(2), distance(serial, end));
         CPPUNIT_ASSERT_EQUAL(0x81, serial[0]);
         CPPUNIT_ASSERT_EQUAL(0x82, serial[1]);
     }
@@ -202,8 +211,8 @@ public:
     {
         const int serial[] = {0x81, 0x82};
         auto end = data.deserialize(serial);
-        CPPUNIT_ASSERT_EQUAL(std::ptrdiff_t(2), std::distance(serial, end));
-        CPPUNIT_ASSERT_EQUAL(std::uint16_t(0x8182), data.to_uint());
+        CPPUNIT_ASSERT_EQUAL(ptrdiff_t(2), distance(serial, end));
+        CPPUNIT_ASSERT_EQUAL(uint16_t(0x8182), data.to_uint());
     }
 
 };
@@ -231,24 +240,24 @@ public:
 
     void testToInt()
     {
-        CPPUNIT_ASSERT_EQUAL(std::int32_t(0), data.to_int());
+        CPPUNIT_ASSERT_EQUAL(int32_t(0), data.to_int());
         data = T(0x01020304);
-        CPPUNIT_ASSERT_EQUAL(std::int32_t(0x01020304), data.to_int());
+        CPPUNIT_ASSERT_EQUAL(int32_t(0x01020304), data.to_int());
         data = 0x7fffffff;
-        CPPUNIT_ASSERT_EQUAL(std::int32_t(0x7fffffff), data.to_int());
+        CPPUNIT_ASSERT_EQUAL(int32_t(0x7fffffff), data.to_int());
         data = 0x80000000;
-        CPPUNIT_ASSERT_EQUAL(std::int32_t(-0x80000000), data.to_int());
+        CPPUNIT_ASSERT_EQUAL(int32_t(-0x80000000), data.to_int());
     }
 
     void testToUint()
     {
-        CPPUNIT_ASSERT_EQUAL(std::uint32_t(0), data.to_uint());
+        CPPUNIT_ASSERT_EQUAL(uint32_t(0), data.to_uint());
         data = T(0x01020304);
-        CPPUNIT_ASSERT_EQUAL(std::uint32_t(0x01020304), data.to_uint());
+        CPPUNIT_ASSERT_EQUAL(uint32_t(0x01020304), data.to_uint());
         data = 0x00000000;
-        CPPUNIT_ASSERT_EQUAL(std::uint32_t(0x00000000), data.to_uint());
+        CPPUNIT_ASSERT_EQUAL(uint32_t(0x00000000), data.to_uint());
         data = 0xffffffff;
-        CPPUNIT_ASSERT_EQUAL(std::uint32_t(0xffffffff), data.to_uint());
+        CPPUNIT_ASSERT_EQUAL(uint32_t(0xffffffff), data.to_uint());
     }
 
     void testSerialize()
@@ -256,7 +265,7 @@ public:
         data = 0x81828384;
         int serial[T::size()] = {};
         auto end = data.serialize(serial);
-        CPPUNIT_ASSERT_EQUAL(std::ptrdiff_t(4), std::distance(serial, end));
+        CPPUNIT_ASSERT_EQUAL(ptrdiff_t(4), distance(serial, end));
         CPPUNIT_ASSERT_EQUAL(0x81, serial[0]);
         CPPUNIT_ASSERT_EQUAL(0x82, serial[1]);
         CPPUNIT_ASSERT_EQUAL(0x83, serial[2]);
@@ -268,8 +277,8 @@ public:
     {
         const int serial[] = {0x81, 0x82, 0x83, 0x84};
         auto end = data.deserialize(serial);
-        CPPUNIT_ASSERT_EQUAL(std::ptrdiff_t(4), std::distance(serial, end));
-        CPPUNIT_ASSERT_EQUAL(std::uint32_t(0x81828384), data.to_uint());
+        CPPUNIT_ASSERT_EQUAL(ptrdiff_t(4), distance(serial, end));
+        CPPUNIT_ASSERT_EQUAL(uint32_t(0x81828384), data.to_uint());
     }
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(LongWordTests);

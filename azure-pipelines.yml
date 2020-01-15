@@ -32,3 +32,4 @@ jobs:
         condition: succeededOrFailed()
         inputs:
           testResultsFiles: "**/test-reports/*.xml"
+      - publish: _build

@@ -10,6 +10,7 @@ trigger:
   - "feature/**"
 jobs:
   - job: build
+    displayName: Build
     pool:
       vmImage: ubuntu-16.04
     container: kazssym/libvm68k-builder:gcc
@@ -27,6 +28,7 @@ jobs:
           make check
         displayName: Build
       - task: PublishTestResults@2
+        displayName: Publish test results
         condition: succeededOrFailed()
         inputs:
           testResultsFiles: "**/test-reports/*.xml"

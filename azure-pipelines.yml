@@ -25,11 +25,16 @@ jobs:
         displayName: Configure
       - bash: |
           cd _build
-          make check
+          make check mostlyclean
         displayName: Build
       - task: PublishTestResults@2
         displayName: Publish test results
         condition: succeededOrFailed()
         inputs:
           testResultsFiles: "**/test-reports/*.xml"
+      - bash: |
+          cd _build
+          make dist
+        displayName: Make source archive
       - publish: _build
+        displayName: Publish artifacts

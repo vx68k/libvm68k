@@ -58,6 +58,11 @@ namespace vm68k
         virtual ~memory() = 0;
 
     public:
+        // Changes the base address of this memory.
+        //
+        // This implementation does nothing.
+        virtual void relocate(address_type base);
+
         // Returns the size of this memory object.
         virtual size_type size() const noexcept = 0;
 

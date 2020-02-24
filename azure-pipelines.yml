@@ -95,4 +95,4 @@ stages:
               vstsFeedPackagePublish: libvm68k
               versionOption: patch
               packagePublishDescription: >
-                This program is a M68000 emulation engine for Virtual X68000.
+                This program is the M68000 emulation engine for Virtual X68000.

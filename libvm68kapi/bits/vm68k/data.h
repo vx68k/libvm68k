@@ -21,6 +21,7 @@
 
 #include <bits/vm68kapi.h>
 #include <cstdint>
+#include <cstddef>
 
 namespace vm68k
 {

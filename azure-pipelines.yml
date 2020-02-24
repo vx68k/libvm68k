@@ -7,32 +7,92 @@
 ---
 trigger:
   - master
-  - "feature/**"
-jobs:
-  - job: build
-    displayName: Build
-    pool:
-      vmImage: ubuntu-16.04
-    container: kazssym/libvm68k-builder:gcc
-    steps:
-      - bash: |
-          autoreconf
-        displayName: Bootstrap
-      - bash: |
-          mkdir -p _build
-          cd _build
-          ../configure
-        displayName: Configure
-      - bash: |
-          cd _build
-          make check mostlyclean
-        displayName: Build
-      - task: PublishTestResults@2
-        displayName: Publish test results
-        condition: succeededOrFailed()
-      - bash: |
-          cd _build
-          make dist
-        displayName: Make source archive
-      - publish: _build
-        displayName: Publish artifacts
+  - release/**
+  - feature/**
+stages:
+  - stage: Default
+    jobs:
+      - job: Build
+        pool:
+          vmImage: ubuntu-16.04
+        container: kazssym/libvm68k-builder:gcc
+        steps:
+          - bash: |
+              autoreconf --install
+            displayName: Bootstrap
+          - bash: |
+              mkdir -p _build
+              cd _build
+              ../configure
+            displayName: Configure
+          - bash: |
+              cd _build
+              make check
+            displayName: Build
+          - task: PublishTestResults@2
+            condition: succeededOrFailed()
+          - bash: |
+              cd _build
+              make dist
+              mkdir -p ../dist
+              mv -f libvm68k-*.tar.* ../dist
+            displayName: Make source archive
+          - publish: dist
+            artifact: dist
+  - stage: Test
+    jobs:
+      - job: Test
+        strategy:
+          matrix:
+            Ubuntu:
+              VM_IMAGE: ubuntu-latest
+              CC: gcc
+              CXX: g++
+            macOS:
+              VM_IMAGE: macOS-latest
+              CC: clang
+              CXX: clang++ -std=c++11
+        continueOnError: true
+        pool:
+          vmImage: $(VM_IMAGE)
+        steps:
+          - checkout: none
+          - download: current
+            artifact: dist
+          - bash: |
+              $CXX --version
+            displayName: Show versions
+          - bash: |
+              gzip -dc $(Pipeline.Workspace)/dist/libvm68k-*.tar.gz | tar -x
+            displayName: Unpack
+          - bash: |
+              cd libvm68k-*
+              ./configure
+            displayName: Configure
+          - bash: |
+              cd libvm68k-*
+              make check
+            displayName: Build
+  - stage: Publish
+    dependsOn: Default
+    condition: >-
+      and(succeeded(),
+        or(eq(variables['Build.SourceBranch'], 'refs/heads/master'),
+          startsWith(variables['Build.SourceBranch'], 'refs/heads/release/')))
+    jobs:
+      - job: Publish
+        pool:
+          vmImage: ubuntu-16.04
+        steps:
+          - checkout: none
+          - download: current
+            artifact: dist
+          - task: UniversalPackages@0
+            inputs:
+              command: publish
+              publishDirectory: $(Pipeline.Workspace)/dist
+              vstsFeedPublish: $(System.TeamProject)/vx68k
+              vstsFeedPackagePublish: libvm68k
+              versionOption: patch
+              packagePublishDescription: >
+                This program is a M68000 emulation engine for Virtual X68000.

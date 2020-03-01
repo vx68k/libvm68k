@@ -73,6 +73,10 @@ stages:
               cd libvm68k-*
               make check
             displayName: Build
+          - bash: |
+              cd libvm68k-*
+              make install installcheck
+            displayName: Install
   - stage: Publish
     dependsOn: Default
     condition: >-

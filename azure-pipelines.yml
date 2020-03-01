@@ -33,7 +33,7 @@ stages:
             condition: succeededOrFailed()
           - bash: |
               cd _build
-              make dist
+              make dist || exit $?
               mkdir -p ../dist
               mv -f libvm68k-*.tar.* ../dist
             displayName: Make source archive

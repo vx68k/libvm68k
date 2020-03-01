@@ -67,7 +67,7 @@ stages:
             displayName: Unpack
           - bash: |
               cd libvm68k-*
-              ./configure
+              ./configure --prefix=$(Build.BinariesDirectory)
             displayName: Configure
           - bash: |
               cd libvm68k-*

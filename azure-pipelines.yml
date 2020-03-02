@@ -14,9 +14,13 @@ stages:
     jobs:
       - job: Build
         pool:
-          vmImage: ubuntu-16.04
-        container: kazssym/libvm68k-builder:gcc
+          vmImage: ubuntu-latest
         steps:
+          - bash: |
+              sudo apt-get install -q --no-install-recommends \
+                  texinfo \
+                  libcppunit-dev
+            displayName: Install build dependencies
           - bash: |
               autoreconf --install
             displayName: Bootstrap
@@ -86,7 +90,7 @@ stages:
     jobs:
       - job: Publish
         pool:
-          vmImage: ubuntu-16.04
+          vmImage: ubuntu-latest
         steps:
           - checkout: none
           - download: current

@@ -5,6 +5,8 @@
 # permitted in any medium without royalty provided the copyright notice and
 # this notice are preserved.  This file is offered as-is, without any warranty.
 ---
+variables:
+  version: "2.0"
 trigger:
   - master
   - release/**
@@ -37,9 +39,9 @@ stages:
             condition: succeededOrFailed()
           - bash: |
               cd _build
-              make dist || exit $?
+              make VERSION=$(version) dist || exit $?
               mkdir -p ../dist
-              mv -f libvm68k-*.tar.* ../dist
+              mv -f libvm68k-$(version).tar.* ../dist
             displayName: Make source archive
           - publish: dist
             artifact: dist
@@ -67,18 +69,19 @@ stages:
               $CXX --version
             displayName: Show versions
           - bash: |
-              gzip -dc $(Pipeline.Workspace)/dist/libvm68k-*.tar.gz | tar -x
+              gzip -dc $(Pipeline.Workspace)/dist/libvm68k-$(version).tar.gz | \
+              tar -x
             displayName: Unpack
           - bash: |
-              cd libvm68k-*
+              cd libvm68k-$(version)
               ./configure --prefix=$(Build.BinariesDirectory)
             displayName: Configure
           - bash: |
-              cd libvm68k-*
+              cd libvm68k-$(version)
               make check
             displayName: Build
           - bash: |
-              cd libvm68k-*
+              cd libvm68k-$(version)
               make install installcheck
             displayName: Install
   - stage: Publish
@@ -100,7 +103,7 @@ stages:
               command: publish
               publishDirectory: $(Pipeline.Workspace)/dist
               vstsFeedPublish: $(System.TeamProject)/vx68k
-              vstsFeedPackagePublish: libvm68k
+              vstsFeedPackagePublish: libvm68k-$(version)
               versionOption: patch
               packagePublishDescription: >
                 This program is the M68000 emulation engine for Virtual X68000.

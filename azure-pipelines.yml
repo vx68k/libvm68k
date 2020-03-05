@@ -25,7 +25,7 @@ stages:
             inputs:
               secureFile: keys.asc
           - bash: |
-              echo '$(GPG_PASSPHRASE)' | \
+              echo '$(gpg.passphrase)' | \
               sh ./setupkeys.sh '$(gpgKeys.secureFilePath)'
             displayName: Set up signing keys
           - bash: |

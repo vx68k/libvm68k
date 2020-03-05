@@ -17,7 +17,17 @@ stages:
       - job: Build
         pool:
           vmImage: ubuntu-latest
+        variables:
+          - group: gpg
         steps:
+          - task: DownloadSecureFile@1
+            name: gpgKeys
+            inputs:
+              secureFile: keys.asc
+          - bash: |
+              echo '$(GPG_PASSPHRASE)' | \
+              sh ./setupkeys.sh '$(gpgKeys.secureFilePath)'
+            displayName: Set up signing keys
           - bash: |
               sudo apt-get install -q --no-install-recommends \
                   texinfo \

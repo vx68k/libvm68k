@@ -88,10 +88,31 @@ stages:
     dependsOn: Default
     condition: >-
       and(succeeded(),
-        or(eq(variables['Build.SourceBranch'], 'refs/heads/master'),
-          startsWith(variables['Build.SourceBranch'], 'refs/heads/release/')))
+        startsWith(variables['Build.SourceBranch'], 'refs/heads/'))
     jobs:
+      - job: UploadToBitbucket
+        displayName: Upload snapshot to Bitbucket
+        condition: >-
+          in(variables['Build.SourceBranch'], 'refs/heads/master')
+        pool:
+          vmImage: ubuntu-latest
+        variables:
+          - group: bitbucket
+          - name: repository
+            value: kazssym/libvm68k
+        steps:
+          - checkout: none
+          - download: current
+            artifact: dist
+          - bash: |
+              curl --user $(BITBUCKET_USERNAME):$(BITBUCKET_PASSWORD) \
+                  --form "files=@$(Pipeline.Workspace)/dist/libvm68k-$(version).tar.gz;\
+                  filename=libvm68k-$(version)-snapshot$(Build.BuildNumber).tar.gz" \
+                  https://api.bitbucket.org/2.0/repositories/$(repository)/downloads
+            displayName: Upload
       - job: Publish
+        condition: >-
+          startsWith(variables['Build.SourceBranch'], 'refs/heads/release/')
         pool:
           vmImage: ubuntu-latest
         steps:

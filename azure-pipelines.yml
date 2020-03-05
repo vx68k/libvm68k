@@ -6,7 +6,7 @@
 # this notice are preserved.  This file is offered as-is, without any warranty.
 ---
 variables:
-  version: "2.0"
+  package.version: "2.0"
 trigger:
   - master
   - release/**
@@ -49,9 +49,9 @@ stages:
             condition: succeededOrFailed()
           - bash: |
               cd _build
-              make VERSION=$(version) dist || exit $?
+              make VERSION=$(package.version) dist || exit $?
               mkdir -p ../dist
-              mv -f libvm68k-$(version).tar.* ../dist
+              mv -f libvm68k-$(package.version).tar.* ../dist
             displayName: Make source archive
           - publish: dist
             artifact: dist
@@ -79,19 +79,19 @@ stages:
               $CXX --version
             displayName: Show versions
           - bash: |
-              gzip -dc $(Pipeline.Workspace)/dist/libvm68k-$(version).tar.gz | \
+              gzip -dc $(Pipeline.Workspace)/dist/libvm68k-$(package.version).tar.gz | \
               tar -x
             displayName: Unpack
           - bash: |
-              cd libvm68k-$(version)
+              cd libvm68k-$(package.version)
               ./configure --prefix=$(Build.BinariesDirectory)
             displayName: Configure
           - bash: |
-              cd libvm68k-$(version)
+              cd libvm68k-$(package.version)
               make check
             displayName: Build
           - bash: |
-              cd libvm68k-$(version)
+              cd libvm68k-$(package.version)
               make install installcheck
             displayName: Install
   - stage: Publish
@@ -116,8 +116,8 @@ stages:
             artifact: dist
           - bash: |
               curl --fail --user '$(BITBUCKET_USERNAME):$(BITBUCKET_PASSWORD)' \
-                  --form 'files=@$(Pipeline.Workspace)/dist/libvm68k-$(version).tar.gz;
-              filename=libvm68k-$(version)-snapshot$(Build.BuildNumber).tar.gz' \
+                  --form 'files=@$(Pipeline.Workspace)/dist/libvm68k-$(package.version).tar.gz;
+              filename=libvm68k-$(package.version)-snapshot$(Build.BuildNumber).tar.gz' \
                   https://api.bitbucket.org/2.0/repositories/$(repository)/downloads
             displayName: Upload
       - job: Publish
@@ -134,7 +134,7 @@ stages:
               command: publish
               publishDirectory: $(Pipeline.Workspace)/dist
               vstsFeedPublish: $(System.TeamProject)/vx68k
-              vstsFeedPackagePublish: libvm68k-$(version)
+              vstsFeedPackagePublish: libvm68k-$(package.version)
               versionOption: patch
               packagePublishDescription: >
                 This program is the M68000 emulation engine for Virtual X68000.

@@ -114,7 +114,7 @@ stages:
               curl --fail --user '$(BITBUCKET_USERNAME):$(BITBUCKET_PASSWORD)' \
                   --form 'files=@"$(Pipeline.Workspace)/dist/libvm68k-$(package.version).tar.gz";
               filename="libvm68k-$(package.version)-snapshot$(Build.BuildNumber).tar.gz"' \
-                  https://api.bitbucket.org/2.0/repositories/$(repository)/downloads
+                  'https://api.bitbucket.org/2.0/repositories/$(repository)/downloads'
             displayName: Upload
       - job: Publish
         condition: >-

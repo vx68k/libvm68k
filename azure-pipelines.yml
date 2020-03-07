@@ -79,17 +79,17 @@ stages:
               tar -x
             displayName: Unpack
           - bash: |
-              cd libvm68k-$(package.version)
               ./configure --prefix='$(Build.BinariesDirectory)'
             displayName: Configure
+            workingDirectory: libvm68k-$(package.version)
           - bash: |
-              cd libvm68k-$(package.version)
               make check
             displayName: Build
+            workingDirectory: libvm68k-$(package.version)
           - bash: |
-              cd libvm68k-$(package.version)
               make install installcheck
             displayName: Install
+            workingDirectory: libvm68k-$(package.version)
   - stage: Publish
     dependsOn: Default
     condition: >-

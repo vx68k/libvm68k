@@ -111,7 +111,7 @@ stages:
           - download: current
             artifact: dist
           - bash: |
-              curl --fail --user '$(BITBUCKET_USERNAME):$(BITBUCKET_PASSWORD)' \
+              curl --fail --user '$(bitbucket.username):$(bitbucket.password)' \
                   --form 'files=@"$(Pipeline.Workspace)/dist/libvm68k-$(package.version).tar.gz";
               filename="libvm68k-$(package.version)-snapshot$(Build.BuildNumber).tar.gz"' \
                   'https://api.bitbucket.org/2.0/repositories/$(repository)/downloads'

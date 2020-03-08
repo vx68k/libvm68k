@@ -10,7 +10,7 @@ libvm68k Reference Manual
    :maxdepth: 2
    :caption: Contents:
 
-   api.data
+   vm68kapi
 
 Indices and tables
 ==================

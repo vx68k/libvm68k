@@ -21,6 +21,7 @@ syntax: regexp
 (^|/)\.libs/
 (^|/)\.deps/
 (^|/)nbproject/private/
+(^|/)_build/
 @quot\.po$
 @boldquot\.po$
 \.insert-header$

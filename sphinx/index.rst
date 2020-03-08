@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to libvm68k's documentation!
-====================================
+libvm68k Reference Manual
+=========================
 
 .. toctree::
    :maxdepth: 2

@@ -38,7 +38,7 @@ namespace vm68k
         std::uint8_t _value;
 
     public:
-        /// Returns the size of a byte, which is 1.
+        /// Returns the size of a `byte` value, which is always 1.
         static constexpr std::size_t size()
         {
             return 1U;
@@ -99,7 +99,7 @@ namespace vm68k
         std::uint16_t _value;
 
     public:
-        /// Returns the size of a word, which is 2.
+        /// Returns the size of a `word` value, which is always 2.
         static constexpr std::size_t size()
         {
             return 2U;
@@ -162,7 +162,7 @@ namespace vm68k
         std::uint32_t _value;
 
     public:
-        /// Returns the size of a long word, which is 4.
+        /// Returns the size of a `long_word` value, which is always 4.
         static constexpr std::size_t size()
         {
             return 4U;

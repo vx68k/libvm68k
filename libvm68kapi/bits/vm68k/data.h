@@ -39,7 +39,7 @@ namespace vm68k
 
     public:
         /// Returns the size of a `byte` value, which is always 1.
-        static constexpr std::size_t size()
+        static constexpr std::size_t size() noexcept
         {
             return 1U;
         }
@@ -100,7 +100,7 @@ namespace vm68k
 
     public:
         /// Returns the size of a `word` value, which is always 2.
-        static constexpr std::size_t size()
+        static constexpr std::size_t size() noexcept
         {
             return 2U;
         }
@@ -163,7 +163,7 @@ namespace vm68k
 
     public:
         /// Returns the size of a `long_word` value, which is always 4.
-        static constexpr std::size_t size()
+        static constexpr std::size_t size() noexcept
         {
             return 4U;
         }

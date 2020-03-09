@@ -38,8 +38,8 @@ namespace vm68k
         std::uint8_t _value;
 
     public:
-        /// Returns the size of a byte, which is 1.
-        static constexpr std::size_t size()
+        /// Returns the size of a `byte` value, which is always 1.
+        static constexpr std::size_t size() noexcept
         {
             return 1U;
         }
@@ -48,7 +48,7 @@ namespace vm68k
         byte() = default;
 
         constexpr byte(const std::uint8_t value) noexcept
-            : _value(value)
+            : _value {value}
         {
         }
 
@@ -99,8 +99,8 @@ namespace vm68k
         std::uint16_t _value;
 
     public:
-        /// Returns the size of a word, which is 2.
-        static constexpr std::size_t size()
+        /// Returns the size of a `word` value, which is always 2.
+        static constexpr std::size_t size() noexcept
         {
             return 2U;
         }
@@ -109,7 +109,7 @@ namespace vm68k
         word() = default;
 
         constexpr word(const std::uint16_t value) noexcept
-            : _value(value)
+            : _value {value}
         {
         }
 
@@ -162,8 +162,8 @@ namespace vm68k
         std::uint32_t _value;
 
     public:
-        /// Returns the size of a long word, which is 4.
-        static constexpr std::size_t size()
+        /// Returns the size of a `long_word` value, which is always 4.
+        static constexpr std::size_t size() noexcept
         {
             return 4U;
         }
@@ -172,7 +172,7 @@ namespace vm68k
         long_word() = default;
 
         constexpr long_word(const std::uint32_t value) noexcept
-            : _value(value)
+            : _value {value}
         {
         }
 

@@ -104,11 +104,9 @@ stages:
           - name: repository
             value: kazssym/libvm68k
         steps:
-          - checkout: none
           - download: current
             artifact: dist
           - bash: |
-              curl --fail --user '$(bitbucket.username):$(bitbucket.password)' \
-                  --form 'files=@"$(Pipeline.Workspace)/dist/$(package.distName).tar.gz"' \
-                  'https://api.bitbucket.org/2.0/repositories/$(repository)/downloads'
+              sh ./upload.sh -u '$(bitbucket.username):$(bitbucket.password)' \
+                  -r '$(repository)' '$(Pipeline.Workspace)'/dist/*
             displayName: Upload

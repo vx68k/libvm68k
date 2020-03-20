@@ -89,16 +89,14 @@ stages:
               make install installcheck
             displayName: Install
             workingDirectory: $(package.distName)
-  - stage: Publish
+  - stage: Release
     dependsOn: Default
     condition: >-
       and(succeeded(),
-        startsWith(variables['Build.SourceBranch'], 'refs/heads/'))
+        startsWith(variables['Build.SourceBranch'], 'refs/heads/release/'))
     jobs:
       - job: UploadToBitbucket
-        displayName: Upload snapshot to Bitbucket
-        condition: >-
-          in(variables['Build.SourceBranch'], 'refs/heads/master')
+        displayName: Upload to Bitbucket
         pool:
           vmImage: ubuntu-latest
         variables:
@@ -111,25 +109,6 @@ stages:
             artifact: dist
           - bash: |
               curl --fail --user '$(bitbucket.username):$(bitbucket.password)' \
-                  --form 'files=@"$(Pipeline.Workspace)/dist/$(package.distName).tar.gz";
-              filename="$(package.distName)-snapshot$(Build.BuildNumber).tar.gz"' \
+                  --form 'files=@"$(Pipeline.Workspace)/dist/$(package.distName).tar.gz"' \
                   'https://api.bitbucket.org/2.0/repositories/$(repository)/downloads'
             displayName: Upload
-      - job: Publish
-        condition: >-
-          startsWith(variables['Build.SourceBranch'], 'refs/heads/release/')
-        pool:
-          vmImage: ubuntu-latest
-        steps:
-          - checkout: none
-          - download: current
-            artifact: dist
-          - task: UniversalPackages@0
-            inputs:
-              command: publish
-              publishDirectory: $(Pipeline.Workspace)/dist
-              vstsFeedPublish: $(System.TeamProject)/vx68k
-              vstsFeedPackagePublish: $(package.distName)
-              versionOption: patch
-              packagePublishDescription: >
-                This program is the M68000 emulation engine for Virtual X68000.

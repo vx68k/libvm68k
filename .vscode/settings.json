@@ -1,0 +1,15 @@
+{
+    "files.exclude": {
+        "**/.libs": true,
+        "**/.deps": true,
+        "**/*.gmo": true,
+        "**/*.lo": true,
+        "**/*.o": true,
+        "**/*.tvsconfig": true,
+        "**/*.local": true,
+        "**/*.cache": true,
+        "**/*.rej": true,
+        "**/*.orig": true,
+        "**/*~": true
+    }
+}

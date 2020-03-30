@@ -1,6 +1,6 @@
 ﻿/*
  * Win32-specific code.
- * Copyright (C) 2012  Kaz Sasa
+ * Copyright (C) 2012 Kaz Nishimura
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,6 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+#if HAVE_CONFIG_H
+#include <config.h>
+#endif
+#if __BORLANDC__
+#pragma hdrstop
+#endif
 
 #include <windows.h>
 //---------------------------------------------------------------------------

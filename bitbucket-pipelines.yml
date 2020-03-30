@@ -1,0 +1,40 @@
+# bitbucket-pipelines.yml - Bitbucket Pipelines configuration
+# Copyright (C) 2019-2020 Kaz Nishimura
+#
+# Copying and distribution of this file, with or without modification, are
+# permitted in any medium without royalty provided the copyright notice and
+# this notice are preserved.  This file is offered as-is, without any warranty.
+
+# See <https://confluence.atlassian.com/bitbucket/configure-bitbucket-pipelines-yml-792298910.html>
+# for details.
+---
+definitions:
+  steps:
+    - step: &build
+        name: Build
+        image: kazssym/libvm68k-builder:gcc
+        script:
+          - autoreconf --install
+          - mkdir -p _build
+          - cd _build
+          - ../configure --prefix=/opt/libvm68k
+          - make check
+          - make dist VERSION="`sh ./config.status --version | sed -n '1s/^.* config\.status //p'`-snapshot.$BITBUCKET_BUILD_NUMBER"
+        artifacts:
+          - aclocal.m4
+          - configure
+          - config.h.in
+          - "**/Makefile.in"
+          - "_build/**"
+    - step: &upload
+        name: Upload to Bitbucket Cloud
+        script:
+          - sh ./upload.sh _build/*.tar.*
+pipelines:
+  branches:
+    master:
+      - step: *build
+      - step: *upload
+  pull-requests:
+    "**":
+      - step: *build

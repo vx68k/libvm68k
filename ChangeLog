@@ -1,0 +1,453 @@
+2013-02-23  Kaz Sasa  <kazssym@vx68k.org>
+
+	* Added more ignore patterns.
+	[a7630c81f7fe] [qparent]
+
+2013-01-20  Kaz Sasa  <kazssym@vx68k.org>
+
+	* src/bits/vm68kcontext.cpp, src/bits/vm68kcontext.h,
+	src/vm68k.cbproj, test/vm68k_test.cbproj:
+	Added a new unit.
+	[89d81ab26d86]
+
+2012-12-28  Kaz Sasa  <kazssym@vx68k.org>
+
+	* src/vm68k.cbproj:
+	Removed the config header files from the project while retaining the
+	files.
+	[4b783b64e0ea]
+
+	* src/bits/vm68kdata.h:
+	Modified to use the trivial copy constructor for basic_data if
+	C++11.
+	[bb20a3e8341b]
+
+	* src/bits/vm68kdata.h:
+	Added a new static function to basic_data.
+	[a477778d3f2e]
+
+	* src/bits/vm68kdata.h:
+	Changed the type names for base classes from base to inherited.
+	[e7f29eea9856]
+
+	* src/bits/vm68kdata.h, src/bits/vm68kdef.h, src/bits/vm68kmemory.cpp,
+	src/bits/vm68kmemory.h, src/vm68k.cbproj, test/vm68k_test.cbproj:
+	Added new portability macros for new C++11 syntax.
+	[5409c6800588]
+
+	* src/bits/vm68kdata.h:
+	Removed a redundant template parameter list.
+	[547e432e51ec]
+
+	* test/Test_vm68kdata.cpp:
+	Rewrote the test cases for basic_data using a template.
+	[89e24aa96f49]
+
+2012-12-26  Kaz Sasa  <kazssym@vx68k.org>
+
+	* config/bits/vm68kint_boost.h, config/bits/vm68kint_tr1.h,
+	config/win32/bits/vm68kint1.h, src/bits/vm68kint.h,
+	src/bits/vm68kmemory.h:
+	Modified preprocessor directives for include-once.
+	[f22902927aff]
+
+	* config/bits/vm68kint_classic.h, src/vm68k.cbproj:
+	Removed classic definitions for int_*_t types.
+	[7b576aa7ef1a]
+
+	* test/vm68k_test.cbproj:
+	Added the Win64 platform to the test project.
+	[9ff43ac0c71f]
+
+	* libvm68k.groupproj, test/vm68k_test.cbproj:
+	Removed dependencies from the test project by recompiling the
+	library code.
+	[503180352149]
+
+2012-12-23  Kaz Sasa  <kazssym@vx68k.org>
+
+	* src/bits/vm68kdata.h:
+	Moved size() to basic_data introducing size_type.
+	[750063b1007f]
+
+	* src/bits/vm68kdata.h:
+	Removed the constructor stereotypes.
+	[8e0281003e24]
+
+	* src/bits/vm68kdata.h, src/vm68k.cbproj, test/vm68k_test.cbproj:
+	Added the constexpr keywords to functions that returns constants.
+	Defined constexpr as const in the project options for compatibility.
+	[6303506e2ba4]
+
+2012-12-22  Kaz Sasa  <kazssym@vx68k.org>
+
+	* test/vm68k_test.cpp:
+	Adjusted the precompiled header.
+	[646dff8a3d52]
+
+	* test/Test_vm68kdata.cpp, test/Test_vm68kdata.h,
+	test/Test_vm68kmem.cpp, test/Test_vm68kmem.h, test/vm68k_test.cpp:
+	Added header comments to the test project and reformatted.
+	[7fdb54754a67]
+
+	* test/Test_vm68kdata.cpp:
+	Updated unit tests.
+	[9bd438dcc87a]
+
+	* src/bits/vm68kmemory.cpp, src/bits/vm68kmemory.h:
+	Added exception classes for the memory subsystem.
+	[9374d6714e9b]
+
+	* src/bits/vm68kdef.h, src/bits/vm68kmemory.h, src/vm68k.cbproj:
+	Renamed VM68K_EXPORT to _VM68K_EXPORT with a defnition change.
+	[5325b5880a20]
+
+	* test/Test_vm68kdata.cpp, test/Test_vm68kmem.cpp:
+	Changed to use <vm68k>.
+	[f3a2d1f9a09c]
+
+	* src/vm68k, src/vm68k.cbproj:
+	Added the <vm68k> header file.
+	[0fb428011918]
+
+	* src/bits/vm68kmemory.cpp, src/bits/vm68kmemory.h, src/vm68k.cbproj,
+	src/vm68kmem.cpp, src/vm68kmem.h, test/Test_vm68kmem.cpp:
+	Renamed the vm68kmem unit.
+	[e0287374edda]
+
+	* src/vm68k.cbproj:
+	Changed the target CPU.
+	[815990b7b08b]
+
+	* libvm68k.groupproj:
+	Upgraded the project group.
+	[bb23ee36bcc4]
+
+	* src/vm68k.cbproj, test/vm68k_test.cbproj:
+	Upgraded C++ projects.
+	[8522327e76ae]
+
+2012-12-19  Kaz Sasa  <kazssym@vx68k.org>
+
+	* src/vm68k.cbproj:
+	Specified the DLL base address explicitly.
+	[d4d85409485c]
+
+	* src/bits/vm68kdata.h:
+	Added equality test operators to basic_data.
+	[6d8c4b8b077a]
+
+2012-12-13  Kaz Sasa  <kazssym@vx68k.org>
+
+	* src/bits/vm68kdef.h, src/vm68k.cbproj, src/vm68kdef.h,
+	src/vm68kmem.h:
+	Renamed a header file.
+	[dad894e9de14]
+
+	* libvm68k.groupproj, src/ModelSupport_vm68k/default.txaPackage,
+	src/ModelSupport_vm68k/default.txvpck,
+	src/ModelSupport_vm68k/vm68k/default.txaPackage,
+	src/ModelSupport_vm68k/vm68k/default.txvpck,
+	src/ModelSupport_vm68k2/default.txaPackage,
+	src/ModelSupport_vm68k2/default.txvpck,
+	src/ModelSupport_vm68k2/vm68k/default.txaPackage,
+	src/ModelSupport_vm68k2/vm68k/default.txvpck, src/vm68k.cbproj,
+	src/vm68k2.cbproj:
+	Renamed a project file.
+	[2f02d579a2a7]
+
+2012-12-12  Kaz Sasa  <kazssym@vx68k.org>
+
+	* test/Test_vm68kdata.cpp, test/Test_vm68kdata.h,
+	test/Test_vm68kdef.cpp, test/Test_vm68kdef.h,
+	test/vm68k_test.cbproj:
+	Updated unit tests.
+	[f95c22ab1a6c]
+
+	* src/bits/vm68kdata.cpp, src/bits/vm68kdata.h, src/vm68k2.cbproj,
+	src/vm68kdef.h:
+	Moved the target data type definitions to a new file.
+	[f1acfd0bd587]
+
+2012-09-17  Kaz Sasa  <kazssym@vx68k.org>
+
+	* src/vm68kmem.h, test/vm68k_test.cbproj:
+	Corrected references to the renamed library. Also removed the
+	library name pragma.
+	[a57f854777f9]
+
+	* libvm68k.groupproj, src/ModelSupport_vm68k/default.txaPackage,
+	src/ModelSupport_vm68k/default.txvpck,
+	src/ModelSupport_vm68k/vm68k/default.txaPackage,
+	src/ModelSupport_vm68k/vm68k/default.txvpck,
+	src/ModelSupport_vm68k2/default.txaPackage,
+	src/ModelSupport_vm68k2/default.txvpck,
+	src/ModelSupport_vm68k2/vm68k/default.txaPackage,
+	src/ModelSupport_vm68k2/vm68k/default.txvpck, src/vm68k.cbproj,
+	src/vm68k2.cbproj:
+	Renamed a project.
+	[b73475b3225e]
+
+	* config/vm68kint_boost.h, config/vm68kint_classic.h,
+	config/vm68kint_std11.h, config/vm68kint_tr1.h,
+	config/win32/vm68kint.h:
+	Removed old headers.
+	[c06b196a5a19]
+
+	* config/bits/vm68kint_boost.h, config/bits/vm68kint_classic.h,
+	config/bits/vm68kint_tr1.h, config/win32/bits/vm68kint1.h,
+	src/bits/vm68kint.h, src/vm68k.cbproj, src/vm68kdef.h:
+	Added new headers.
+	[68d74596d348]
+
+2012-06-13  Kaz Sasa  <kazssym@vx68k.org>
+
+	* ModelSupport_vm68k/default.txaPackage,
+	ModelSupport_vm68k/default.txvpck,
+	ModelSupport_vm68k/vm68k/default.txaPackage,
+	ModelSupport_vm68k/vm68k/default.txvpck, libvm68k.groupproj,
+	src/ModelSupport_vm68k/default.txaPackage,
+	src/ModelSupport_vm68k/default.txvpck,
+	src/ModelSupport_vm68k/vm68k/default.txaPackage,
+	src/ModelSupport_vm68k/vm68k/default.txvpck, src/vm68k.cbproj,
+	src/vm68kmem.h, vm68k.cbproj:
+	Moved a project file into src. Also fixed a self-linkage problem.
+	[59ab63130309]
+
+2012-06-12  Kaz Sasa  <kazssym@vx68k.org>
+
+	* .hgignore:
+	Added *.tvsconfig to ignore patterns.
+	[38dfd9659198]
+
+	* config/vm68kint_tr1.h:
+	Fixed vm68kint_tr1.h.
+	[d1eadd5d4526]
+
+2012-05-27  Kaz Sasa  <kazssym@vx68k.org>
+
+	* test/vm68k_test.cbproj, vm68k.cbproj:
+	Changed project settings.
+	[51774e480134]
+
+2012-05-23  Kaz Sasa  <kazssym@vx68k.org>
+
+	* config/vm68kint_boost.h, config/vm68kint_classic.h,
+	config/vm68kint_std11.h, config/vm68kint_tr1.h:
+	Added support for C++11.
+	[609a437a0081]
+
+	* config/vm68kint_tr1.h, vm68k.cbproj:
+	Added a new header: vm68kint_tr1.h
+	[3de88fe392cf]
+
+	* README, vm68k.cbproj:
+	Added the README file.
+	[19c056c6d2a2]
+
+	* .hgeol:
+	Marked *.res files as binary.
+	[726ec2507960]
+
+2012-05-21  Kaz Sasa  <kazssym@vx68k.org>
+
+	* test/Test_vm68kmem.cpp:
+	Added test code.
+	[915a3d3ec230]
+
+	* config/vm68kint_std11.h, vm68k.cbproj:
+	Added a vm68kint header for C++11.
+	[20100ba39fa9]
+
+2012-05-20  Kaz Sasa  <kazssym@vx68k.org>
+
+	* test/Test_vm68kmem.cpp, test/Test_vm68kmem.h,
+	test/vm68k_test.cbproj:
+	Added a test case for vm68kmem.
+	[eb207bec9ace]
+
+	* src/vm68kdef.h:
+	Changed function signatures.
+	[4b2fc7076dfa]
+
+	* test/Test_vm68kdef.cpp:
+	Added an include directive.
+	[a47261f968f6]
+
+	* src/vm68kmem.h:
+	Changed memory_map constructor to public.
+	[a3d82bc307a8]
+
+	* ModelSupport_vm68k/vm68k/default.txvpck, src/vm68kmem.cpp,
+	src/vm68kmem.h:
+	Added minimal classes in vm68kmem.h.
+	[ba23a9f0cf13]
+
+	* src/vm68kdef.h:
+	Backed out changeset: 4d3d3493a3b4
+	[bb6e835820c8]
+
+2012-05-18  Kaz Sasa  <kazssym@vx68k.org>
+
+	* src/vm68kdef.h:
+	Added a pragma to link the library.
+	[4d3d3493a3b4]
+
+	* test/vm68k_test.cbproj:
+	Added a directory to the link path.
+	[177459366e41]
+
+2012-05-17  Kaz Sasa  <kazssym@vx68k.org>
+
+	* src/vm68kdef.h, test/Test_vm68kdef.cpp:
+	Moved the integral min/man functions to traits. Fixed #1.
+	[79e8315af8c5]
+
+2012-05-16  Kaz Sasa  <kazssym@vx68k.org>
+
+	* src/vm68kdef.h:
+	Avoided throw() due to conflicts with optimization.
+	[9331568800e5]
+
+	* ModelSupport_vm68k/vm68k/default.txvpck, src/vm68kdef.h,
+	test/Test_vm68kdef.cpp, test/Test_vm68kdef.h,
+	test/vm68k_test.cbproj:
+	Added the data class templates.
+	[d5b367734851]
+
+2012-05-14  Kaz Sasa  <kazssym@vx68k.org>
+
+	* test/vm68k_test.cbproj:
+	Disabled modeling in vm68k_test.
+	[735004e1518c]
+
+	* config/win32/vm68kint.h, src/vm68kdef.h, src/vm68kmem.cpp,
+	src/vm68kmem.h, src/win32dll.cpp:
+	Added header comments.
+	[9cd961a86d79]
+
+	* .hgignore:
+	Added ignore patterns.
+	[c9ef5a62e5f5]
+
+	* ModelSupport_vm68k/default.txvpck:
+	Updated the model view.
+	[596264206a63]
+
+2012-05-13  Kaz Sasa  <kazssym@vx68k.org>
+
+	* libvm68k.groupproj:
+	Added a project group.
+	[a4d346bb658d]
+
+2012-05-12  Kaz Sasa  <kazssym@vx68k.org>
+
+	* config/vm68kint_boost.h, config/vm68kint_classic.h:
+	Added header comments.
+	[ed94d024e455]
+
+2012-05-11  Kaz Sasa  <kazssym@vx68k.org>
+
+	* ModelSupport_vm68k/vm68k/default.txvpck:
+	Updated the model view.
+	[79565dc6108a]
+
+	* src/vm68kdef.h:
+	Added methods.
+	[89fa9ae723e2]
+
+	* vm68k.cbproj:
+	Modified project settings.
+	[42fc72e8577f]
+
+	* config/vm68kint_boost.h, config/vm68kint_classic.h:
+	Removed tabs.
+	[4ca813b0524c]
+
+	* ModelSupport_vm68k/vm68k/default.txaPackage,
+	ModelSupport_vm68k/vm68k/default.txvpck, vm68k.cbproj:
+	Added more modeling support files.
+	[3e87d4cb053c]
+
+	* vm68k.cbproj:
+	Updated with the test project.
+	[4deee0efb22f]
+
+	* test/vm68k_test.cbproj, test/vm68k_test.cpp:
+	Added a test project.
+	[b0c8aafbe19d]
+
+2012-05-10  Kaz Sasa  <kazssym@vx68k.org>
+
+	* COPYING:
+	Added a license file.
+	[49f888fcd0c3]
+
+	* src/vm68kdef.h, vm68k.cbproj:
+	Added the VM68K_EXPORT macro.
+	[6486a3d10fec]
+
+	* src/vm68kdef.h:
+	Added classes.
+	[a19515cb6e1a]
+
+	* vm68k.cbproj:
+	Updated the project.
+	[a0fb93d52765]
+
+	* src/vm68kmem.cpp, src/vm68kmem.h:
+	Added the vm68kmem unit.
+	[d47aef3c0d5f]
+
+	* config/vm68kint_boost.h, config/vm68kint_classic.h,
+	config/win32/vm68kint.h:
+	Added compiler-dependent headers for <vm68kint.h>.
+	[fa60e34a9688]
+
+2012-05-09  Kaz Sasa  <kazssym@vx68k.org>
+
+	* vm68k.cbproj:
+	updated the project.
+	[43391f4251c3]
+
+	* bits/win32dll.cpp, src/win32dll.cpp:
+	Moved win32dll.cpp file.
+	[ad9f9d057207]
+
+	* src/vm68kdef.h:
+	Added vm68kdef.h file.
+	[74bd54b5fea4]
+
+	* config/win32/bits/vm68kint.h, config/win32/vm68kint.h:
+	Moved vm68kint.h file.
+	[e6145122c4a2]
+
+	* vm68k.cbproj:
+	Modified project settings.
+	[b1a85ab11b16]
+
+	* ModelSupport_vm68k/default.txaPackage,
+	ModelSupport_vm68k/default.txvpck:
+	Added modelling support files.
+	[b13ac5eff1fa]
+
+	* config/win32/bits/vm68kint.h:
+	Added vm68kint.h file for Win32.
+	[77c7d9e43e95]
+
+2012-05-08  Kaz Sasa  <kazssym@vx68k.org>
+
+	* bits/win32dll.cpp, win32dll.cpp:
+	Moved win32dll.cpp file.
+	[c7b34465eac8]
+
+	* vm68k.cbproj, win32dll.cpp:
+	Adds a RAD Studio project.
+	[9fb0b103f755]
+
+2012-05-08  Kaz Sasa  <kazssym@gmail.com>
+
+	* .hgeol, .hgignore:
+	Adds the .hg* files from the parent.
+	[aebc0766b3a9]
+

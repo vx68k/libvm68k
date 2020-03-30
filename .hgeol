@@ -1,6 +1,9 @@
+;; .hgeol - Mercurial EOL conversion rules
+
 [patterns]
+;; Images are binary.
+**/*.jpg = BIN
+**/*.png = BIN
 
-**.res = BIN
-
-# The default is native.  DO NOT put any patterns below the next line.
-** = native
+;; The default is set to LF.  This MUST be the last pattern.
+**/* = LF

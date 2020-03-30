@@ -4,32 +4,109 @@
     <property name="$defaultDiagram" value="true" />
     <property name="$metaclass" value="Package Diagram" />
     <property name="$name" value="default" />
+    <reference referencedUin="cpp:e_class:src:vm68k2:vm68k.device">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="10,10,156,84" />
+      <reference referencedUin="cpp:e_method:src:vm68k2:vm68k.device.~device()" />
+      <reference referencedUin="cpp:e_method:src:vm68k2:vm68k.device.device()" />
+    </reference>
+    <reference referencedUin="cpp:e_class:src:vm68k2:vm68k.memory_map">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="176,10,196,84" />
+      <reference referencedUin="cpp:e_method:src:vm68k2:vm68k.memory_map.~memory_map()" />
+      <reference referencedUin="cpp:e_method:src:vm68k2:vm68k.memory_map.memory_map()" />
+    </reference>
+    <reference referencedUin="cpp:e_class:src:vm68k2:vm68k.size_traits&lt;1&gt;">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="10,10,95,85" />
+      <reference referencedUin="cpp:e_field:src:vm68k2:vm68k.size_traits&lt;1&gt;.int_fast_type" />
+      <reference referencedUin="cpp:e_class:src:vm68k2:vm68k.size_traits&lt;1&gt;.uint_fast8_t" />
+      <reference referencedUin="cpp:e_class:src:vm68k2:vm68k.size_traits&lt;1&gt;.int_fast8_t" />
+      <reference referencedUin="cpp:e_class:src:vm68k2:vm68k.size_traits&lt;1&gt;.uint_least8_t" />
+      <reference referencedUin="cpp:e_class:src:vm68k2:vm68k.size_traits&lt;1&gt;.int_least8_t" />
+    </reference>
+    <reference referencedUin="cpp:e_class:src:vm68k2:vm68k.size_traits&lt;Size&gt;">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="10,104,113,72" />
+    </reference>
     <reference referencedUin="cpp:e_class:src:vm68k:vm68k.memory_map">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="10,10,196,84" />
+      <property name="bounds" value="211,342,196,84" />
       <reference referencedUin="cpp:e_method:src:vm68k:vm68k.memory_map.~memory_map()" />
       <reference referencedUin="cpp:e_method:src:vm68k:vm68k.memory_map.memory_map()" />
     </reference>
+    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.basic_data&lt;8,undefined,undefined&gt;">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="11,342,168,116" />
+      <reference referencedUin="cpp:e_field:src:vm68k:vm68k.basic_data&lt;8,undefined,undefined&gt;._VM68K_CONSTEXPR" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.basic_data&lt;8,undefined,undefined&gt;.unsigned_int_type" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.basic_data&lt;8,undefined,undefined&gt;.int_type" />
+    </reference>
+    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.basic_data&lt;N,IntT,UIntT&gt;">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="519,10,168,122" />
+      <reference referencedUin="cpp:e_field:src:vm68k:vm68k.basic_data&lt;N,IntT,UIntT&gt;._VM68K_CONSTEXPR" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.basic_data&lt;N,IntT,UIntT&gt;.unsigned_int_type" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.basic_data&lt;N,IntT,UIntT&gt;.int_type" />
+    </reference>
+    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.memory_exception">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="131,10,249,128" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.memory_exception.what()" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.memory_exception.operator =(::vm68k::memory_exception const &amp;)" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.memory_exception.memory_exception(::vm68k::memory_exception const &amp;)" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.memory_exception.memory_exception()" />
+    </reference>
+    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.address_error">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="11,198,221,114" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.address_error.what()" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.address_error.operator =(::vm68k::address_error const &amp;)" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.address_error.address_error(::vm68k::address_error const &amp;)" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.address_error.address_error()" />
+      <reference referencedUin="cpp:l_gnt:src:vm68k:vm68k.address_error:vm68k.memory_exception">
+        <property name="sourceAnchor" value="181,198" />
+        <property name="targetAnchor" value="181,138" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.bus_error">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="292,198,197,114" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.bus_error.what()" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.bus_error.operator =(::vm68k::bus_error const &amp;)" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.bus_error.bus_error(::vm68k::bus_error const &amp;)" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.bus_error.bus_error()" />
+      <reference referencedUin="cpp:l_gnt:src:vm68k:vm68k.bus_error:vm68k.memory_exception">
+        <property name="sourceAnchor" value="336,198" />
+        <property name="targetAnchor" value="336,138" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
     <reference referencedUin="cpp:e_class:src:vm68k:vm68k.device">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="216,10,156,84" />
+      <property name="bounds" value="519,162,156,84" />
       <reference referencedUin="cpp:e_method:src:vm68k:vm68k.device.~device()" />
       <reference referencedUin="cpp:e_method:src:vm68k:vm68k.device.device()" />
     </reference>
-    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;Size&gt;">
-      <property name="$hidden" value="True" />
+    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.context">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="225,104,113,66" />
+      <property name="bounds" value="519,276,82,99" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.context.~context()" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.context.context(::vm68k::context const &amp;)" />
+      <reference referencedUin="cpp:e_method:src:vm68k:vm68k.context.context()" />
     </reference>
-    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;1&gt;">
-      <property name="$hidden" value="True" />
+    <reference referencedUin="cpp:e_class:src:vm68k:vm68k.byte">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="106,113,95,85" />
-      <reference referencedUin="cpp:e_field:src:vm68k:vm68k.size_traits&lt;1&gt;.int_fast_type" />
-      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;1&gt;.uint_fast8_t" />
-      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;1&gt;.int_fast8_t" />
-      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;1&gt;.uint_least8_t" />
-      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;1&gt;.int_least8_t" />
+      <property name="bounds" value="10,518,171,101" />
+      <reference referencedUin="cpp:e_field:src:vm68k:vm68k.byte._VM68K_CONSTEXPR" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.byte.inherited" />
+      <reference referencedUin="cpp:l_gnt:src:vm68k:vm68k.byte:vm68k.basic_data&lt;8,undefined,undefined&gt;">
+        <property name="sourceAnchor" value="95,518" />
+        <property name="targetAnchor" value="95,458" />
+        <property name="bendpoints" value="" />
+      </reference>
     </reference>
   </view>
 </nodeSet>

@@ -1,6 +1,6 @@
 /*
- * Memory components.
- * Copyright (C) 2012  Kaz Sasa
+ * Test_vm68kdata - Test cases for libvm68k (interface)
+ * Copyright (C) 2012 Kaz Nishimura
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,16 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma hdrstop
+#ifndef Test_vm68kdataH
+#define Test_vm68kdataH 1
 
-#include "vm68kmem.h"
-//---------------------------------------------------------------------------
-#pragma package(smart_init)
-
-vm68k::device::~device()
-{
-}
-
-vm68k::memory_map::~memory_map()
-{
-}
+#endif

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <nodeSet version="1.0">
-  <view uin="hwp0tv4uvcwno9op_v">
+  <view uin="25kspih33fl_v">
     <property name="$defaultDiagram" value="true" />
     <property name="$metaclass" value="Package Diagram" />
     <property name="$name" value="default" />
@@ -13,11 +13,40 @@
     </reference>
     <reference referencedUin="design:view:::nr34mpr4nrg_v">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="10,10,107,149" />
+      <property name="bounds" value="10,10,117,224" />
       <reference referencedUin="cpp:e_class:src:vm68k:vm68k.memory_map" />
-      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;1&gt;" />
-      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.size_traits&lt;Size&gt;" />
       <reference referencedUin="cpp:e_class:src:vm68k:vm68k.device" />
+      <reference referencedUin="cpp:e_class:src:vm68k2:vm68k.size_traits&lt;1&gt;" />
+      <reference referencedUin="cpp:e_class:src:vm68k2:vm68k.size_traits&lt;Size&gt;" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.word" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.basic_data&lt;N,IntT,UIntT&gt;" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.basic_data&lt;32,undefined,undefined&gt;" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.basic_data&lt;16,undefined,undefined&gt;" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.long_word" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.byte" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.basic_data&lt;8,undefined,undefined&gt;" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.bus_error" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.address_error" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.memory_exception" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.basic_data&lt;32,undefined,int&gt;" />
+      <reference referencedUin="cpp:e_class:src:vm68k:vm68k.context" />
+    </reference>
+    <reference referencedUin="cpp:e_class:src:vm68k:data">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="127,10,62,36" />
+    </reference>
+    <reference referencedUin="cpp:e_class:src:vm68k:word">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="146,1,171,101" />
+      <reference referencedUin="cpp:e_field:src:vm68k:word._VM68K_CONSTEXPR" />
+      <reference referencedUin="cpp:e_class:src:vm68k:word.basic_data" />
+    </reference>
+    <reference referencedUin="cpp:e_class:src:vm68k:long_word">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="336,1,171,101" />
+      <reference referencedUin="cpp:e_field:src:vm68k:long_word._VM68K_CONSTEXPR" />
+      <reference referencedUin="cpp:e_class:src:vm68k:long_word.basic_data" />
     </reference>
   </view>
 </nodeSet>

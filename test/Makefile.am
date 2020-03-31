@@ -14,7 +14,6 @@ check_PROGRAMS = data.test memory.test context.test
 TEST_LOG_COMPILER = ./runtest
 
 TESTS += $(check_PROGRAMS)
-XFAIL_TESTS += context.test
 CLEANFILES += $(check_SCRIPTS) test-reports/*
 endif
 

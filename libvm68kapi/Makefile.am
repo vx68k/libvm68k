@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in.
 
-AM_CPPFLAGS =
+AM_CPPFLAGS = -D_VM68KAPI_IMPLEMENTATION
 
 lib_LTLIBRARIES = libvm68kapi.la
 

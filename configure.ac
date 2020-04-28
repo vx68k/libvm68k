@@ -8,7 +8,7 @@ AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 LT_PREREQ([2.4.6])
 LT_INIT()
-AM_INIT_AUTOMAKE([no-define])
+AM_INIT_AUTOMAKE([foreign no-define tar-ustar])
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_CXX

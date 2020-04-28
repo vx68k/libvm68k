@@ -12,17 +12,13 @@ AM_INIT_AUTOMAKE([no-define])
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_CXX
-
 # Checks for libraries.
-
 # Checks for header files.
-
 # Checks for typedefs, structures, and compiler characteristics.
-
 # Checks for library functions.
 PKG_CHECK_MODULES([CPPUNIT], [cppunit],, [no_cppunit=yes])
 AM_CONDITIONAL([CPPUNIT], [test "$no_cppunit" != yes])
-
+# Configuration actions.
 AC_CONFIG_FILES([Makefile config/Makefile libvm68kapi/Makefile
 src/Makefile test/Makefile])
 AC_CONFIG_HEADERS([config.h])

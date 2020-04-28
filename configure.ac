@@ -6,9 +6,9 @@ AC_INIT([libvm68k], [2-alpha.2],
 AC_CONFIG_SRCDIR([src/context.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
+LT_PREREQ([2.4.6])
+LT_INIT()
 AM_INIT_AUTOMAKE([no-define])
-LT_INIT
-
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_CXX

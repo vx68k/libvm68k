@@ -21,22 +21,22 @@ CLEANFILES += $(check_SCRIPTS)
 endif
 
 EXTRA_PROGRAMS = vm68k_test
-noinst_HEADERS = xmlout.h Test_vm68kdata.h Test_vm68kmem.h
+noinst_HEADERS = xmlreport.h Test_vm68kdata.h Test_vm68kmem.h
 
 test_data_exec_LDFLAGS = -no-install
-test_data_exec_SOURCES = testmain.cpp xmlout.cpp testdata.cpp
 test_data_exec_LDADD = $(top_builddir)/libvm68kapi/libvm68kapi.la \
 $(CPPUNIT_LIBS)
+test_data_exec_SOURCES = main.cpp xmlreport.cpp test_data.cpp
 
 test_memory_exec_LDFLAGS = -no-install
-test_memory_exec_SOURCES = testmain.cpp xmlout.cpp testmemory.cpp
 test_memory_exec_LDADD = $(top_builddir)/libvm68kapi/libvm68kapi.la \
 $(CPPUNIT_LIBS)
+test_memory_exec_SOURCES = main.cpp xmlreport.cpp test_memory.cpp
 
 test_context_exec_LDFLAGS = -no-install
-test_context_exec_SOURCES = testmain.cpp xmlout.cpp testcontext.cpp
 test_context_exec_LDADD = $(top_builddir)/src/libvm68k.la \
 $(top_builddir)/libvm68kapi/libvm68kapi.la $(CPPUNIT_LIBS)
+test_context_exec_SOURCES = main.cpp xmlreport.cpp test_context.cpp
 
 vm68k_test_SOURCES = vm68k_test.cpp Test_vm68kdata.cpp Test_vm68kmem.cpp
 vm68k_test_LDADD = ../src/libvm68k.la

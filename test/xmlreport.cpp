@@ -1,4 +1,4 @@
-// xmlout.cpp
+// xmlreport.cpp
 // Copyright (C) 2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -20,7 +20,7 @@
 #include <config.h>
 #endif
 
-#include "xmlout.h"
+#include "xmlreport.h"
 #include <cppunit/TestFailure.h>
 #include <cppunit/Test.h>
 #include <cppunit/Exception.h>

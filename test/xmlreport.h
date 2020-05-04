@@ -1,4 +1,4 @@
-// xmlout.h
+// xmlreport.h
 // Copyright (C) 2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -16,8 +16,8 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef XMLOUT_H
-#define XMLOUT_H 1
+#ifndef XMLREPORT_H
+#define XMLREPORT_H 1
 
 #include <cppunit/Outputter.h>
 #include <cppunit/TestResultCollector.h>

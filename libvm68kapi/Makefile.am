@@ -21,3 +21,7 @@ CLEANFILES = $(pkgconfig_DATA)
 
 vm68kapi.pc: $(srcdir)/vm68kapi.pc.in $(top_builddir)/config.status
 	cd $(top_builddir) && $(SHELL) ./config.status --file=$(subdir)/$@
+
+installcheck-local:
+	export PKG_CONFIG_PATH=$(pkgconfigdir); \
+	pkg-config --exists --exact-version=$(VERSION) vm68kapi

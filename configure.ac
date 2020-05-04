@@ -8,6 +8,8 @@ AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 LT_PREREQ([2.4.6])
 LT_INIT([dlopen])
+LT_CONFIG_LTDL_DIR([libltdl])
+LTDL_INIT([recursive])
 AM_INIT_AUTOMAKE([foreign no-define tar-ustar])
 # Checks for programs.
 AC_PROG_CC

@@ -18,7 +18,7 @@ libvm68k API
    Returns the size of a :cpp:class:`byte` value on the architecture,
    which is always 1.
 
-.. cpp:function:: byte::byte() = default
+.. cpp:function:: byte::byte() noexcept
 
    Constructs a :cpp:class:`byte` object with its default value.
 
@@ -40,7 +40,7 @@ libvm68k API
    Returns the size of a :cpp:class:`word` value on the architecture,
    which is always 2.
 
-.. cpp:function:: word::word() = default
+.. cpp:function:: word::word() noexcept
 
    Constructs a :cpp:class:`word` object with its default value.
 
@@ -62,7 +62,7 @@ libvm68k API
    Returns the size of a :cpp:class:`long_word` value on the architecture,
    which is always 4.
 
-.. cpp:function:: long_word::long_word() = default
+.. cpp:function:: long_word::long_word() noexcept
 
    Constructs a :cpp:class:`long_word` object with its default value.
 

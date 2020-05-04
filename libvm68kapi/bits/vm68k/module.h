@@ -26,11 +26,11 @@ namespace vm68k
 {
     namespace module
     {
-        class _VM68KAPI_PUBLIC module_loader
+        class _VM68K_API_PUBLIC module_loader
         {
         };
 
-        struct _VM68KAPI_PUBLIC module
+        struct _VM68K_API_PUBLIC module
         {
             std::uint_least16_t major;
             std::uint_least16_t minor;

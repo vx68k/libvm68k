@@ -8,10 +8,7 @@
             "args": [
                 "check"
             ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "group": "build",
             "problemMatcher": [
                 "$gcc"
             ]
@@ -24,7 +21,7 @@
                 "clean",
                 "check"
             ],
-            "group": "build",
+            "group": "none",
             "problemMatcher": [
                 "$gcc"
             ]

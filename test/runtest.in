@@ -1,6 +1,7 @@
 #!/bin/sh
+# @configure_input@
 
 test="$1" && shift
 
 mkdir -p test-reports
-exec "$test" -x test-reports/"`basename \"$test\" .test`".xml
+exec "$test" -x test-reports/TEST-"`basename \"$test\" .test`".xml

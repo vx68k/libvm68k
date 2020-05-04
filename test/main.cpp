@@ -1,5 +1,5 @@
-// testmain.cpp
-// Copyright (C) 2012-2019 Kaz Nishimura
+// main.cpp
+// Copyright (C) 2012-2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -23,19 +23,18 @@
 #pragma hdrstop
 #endif
 
+#include "xmlreport.h"
 #include <cppunit/extensions/TestFactoryRegistry.h>
-#include <cppunit/XmlOutputter.h>
 #include <cppunit/ui/text/TestRunner.h>
 #include <sysexits.h>
 #if HAVE_UNISTD_H
 #include <unistd.h>
 #endif
-#include <iostream>
+#include <fstream>
 #include <cstdlib>
 
 using namespace std;
 using CppUnit::TextUi::TestRunner;
-using CppUnit::XmlOutputter;
 using CppUnit::TestFactoryRegistry;
 
 #if __BORLANDC__
@@ -63,7 +62,7 @@ int main(int argc, char *argv[]) {
     ofstream out;
     if (xml_output_name) {
         out.open(xml_output_name);
-        runner.setOutputter(new XmlOutputter(&runner.result(), out, "UTF-8"));
+        runner.setOutputter(new CustomXmlOutputter(&runner.result(), out));
     }
 
     if (!runner.run()) {

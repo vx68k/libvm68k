@@ -1,7 +1,8 @@
 {
     "configurations": [
         {
-            "name": "POSIX",
+            "name": "POSIX (GCC)",
+            "compilerPath": "/usr/bin/gcc",
             "includePath": [
                 "${workspaceFolder}",
                 "${workspaceFolder}/libvm68kapi",

@@ -40,6 +40,10 @@ memory::~memory()
 {
 }
 
+void memory::relocate(address_type)
+{
+}
+
 // Class 'read_write_memory' implementation.
 
 std::unique_ptr<read_write_memory::byte_type []>

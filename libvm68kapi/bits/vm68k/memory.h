@@ -30,7 +30,7 @@ namespace vm68k
      * <author>Kaz Nishimura</author>
      * <since>2.0</since>
      */
-    class _VM68KAPI_PUBLIC memory
+    class _VM68K_API_PUBLIC memory
     {
     public:
         enum mode
@@ -58,6 +58,11 @@ namespace vm68k
         virtual ~memory() = 0;
 
     public:
+        // Changes the base address of this memory.
+        //
+        // This implementation does nothing.
+        virtual void relocate(address_type base);
+
         // Returns the size of this memory object.
         virtual size_type size() const noexcept = 0;
 
@@ -71,7 +76,7 @@ namespace vm68k
     };
 
     /// Read-write memory.
-    class _VM68KAPI_PUBLIC read_write_memory : public memory
+    class _VM68K_API_PUBLIC read_write_memory : public memory
     {
         using inherited = memory;
 
@@ -118,7 +123,7 @@ namespace vm68k
      * <author>Kaz Nishimura</author>
      * <since>2.0</since>
      */
-    class _VM68KAPI_PUBLIC memory_map
+    class _VM68K_API_PUBLIC memory_map
     {
     public:
         using mode = memory::mode;
@@ -147,7 +152,7 @@ namespace vm68k
             const void *bytes) = 0;
     };
 
-    class _VM68KAPI_PUBLIC memory_exception : public std::exception {
+    class _VM68K_API_PUBLIC memory_exception : public std::exception {
         typedef std::exception inherited;
 
     public:
@@ -162,7 +167,7 @@ namespace vm68k
         memory_map::address_type _error_address;
     };
 
-    class _VM68KAPI_PUBLIC bus_error : public memory_exception {
+    class _VM68K_API_PUBLIC bus_error : public memory_exception {
         typedef memory_exception inherited;
 
     public:
@@ -172,7 +177,7 @@ namespace vm68k
         const char *what() const noexcept override;
     };
 
-    class _VM68KAPI_PUBLIC address_error : public memory_exception {
+    class _VM68K_API_PUBLIC address_error : public memory_exception {
         typedef memory_exception inherited;
 
     public:

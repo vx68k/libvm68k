@@ -13,7 +13,7 @@ if CPPUNIT
 check_PROGRAMS = test_data.exec test_memory.exec test_context.exec
 check_SCRIPTS = runtest
 
-EXEC_TEST_LOG_COMPILER = ./runtest
+EXEC_TEST_LOG_COMPILER = $(SHELL) ./runtest
 TESTS += $(check_PROGRAMS)
 CLEANFILES += $(check_SCRIPTS)
 endif

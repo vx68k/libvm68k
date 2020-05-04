@@ -10,6 +10,7 @@ libvm68k Reference Manual
    :maxdepth: 2
    :caption: Contents:
 
+   intro
    vm68kapi
 
 Indices and tables

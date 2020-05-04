@@ -4,7 +4,7 @@ ACLOCAL_AMFLAGS = -Im4
 
 EXTRA_DIST = libvm68k.groupproj
 
-SUBDIRS = libvm68kapi libvm68k test
+SUBDIRS = libltdl libvm68kapi libvm68k test
 
 dist-hook: $(distdir)/SHA256SUMS
 	if test -n "$$GPG_USERNAME"; then \

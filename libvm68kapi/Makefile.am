@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in.
 
-AM_CPPFLAGS = -D_VM68KAPI_IMPLEMENTATION
+AM_CPPFLAGS = -D_VM68K_API_LIBRARY
 
 pkgconfigdir = $(libdir)/pkgconfig
 

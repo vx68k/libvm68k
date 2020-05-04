@@ -3,7 +3,7 @@ AC_PREREQ([2.69])
 AC_INIT([libvm68k], [2-alpha.2],
 [https://bitbucket.org/kazssym/libvm68k/issues/new],,
 [https://www.vx68k.org/vx68k/libvm68k])
-AC_CONFIG_SRCDIR([src/context.cpp])
+AC_CONFIG_SRCDIR([libvm68k/context.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 LT_PREREQ([2.4.6])
@@ -19,7 +19,7 @@ AC_PROG_CXX
 PKG_CHECK_MODULES([CPPUNIT], [cppunit],, [no_cppunit=yes])
 AM_CONDITIONAL([CPPUNIT], [test "$no_cppunit" != yes])
 # Configuration actions.
-AC_CONFIG_FILES([Makefile config/Makefile libvm68kapi/Makefile
-src/Makefile test/Makefile])
+AC_CONFIG_FILES([Makefile libvm68kapi/Makefile libvm68k/Makefile
+test/Makefile])
 AC_CONFIG_HEADERS([config.h])
 AC_OUTPUT

@@ -1,5 +1,5 @@
-// testmain.cpp
-// Copyright (C) 2012-2019 Kaz Nishimura
+// main.cpp
+// Copyright (C) 2012-2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -23,7 +23,7 @@
 #pragma hdrstop
 #endif
 
-#include "xmlout.h"
+#include "xmlreport.h"
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/ui/text/TestRunner.h>
 #include <sysexits.h>

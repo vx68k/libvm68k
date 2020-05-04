@@ -1,6 +1,6 @@
-test/test-reports/
-test/*.test
-test/runtest
+TEST-*.xml
+test_*.exec
+runtest
 libvm68k.la
 libvm68kapi.la
 remove-potcdate.sed

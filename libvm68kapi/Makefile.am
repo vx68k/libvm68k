@@ -24,4 +24,4 @@ vm68kapi.pc: $(srcdir)/vm68kapi.pc.in $(top_builddir)/config.status
 
 installcheck-local:
 	export PKG_CONFIG_PATH=$(pkgconfigdir); \
-	pkg-config --exists --exact-version=$(VERSION) vm68kapi
+	$(PKG_CONFIG) --exists --exact-version=$(VERSION) vm68kapi

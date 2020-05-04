@@ -6,7 +6,7 @@
 # this notice are preserved.  This file is offered as-is, without any warranty.
 ---
 variables:
-  package.distName: libvm68k-2-alpha.2
+  package.distName: libvm68k-2-alpha.3
 trigger:
   - master
   - release/*

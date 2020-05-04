@@ -43,8 +43,8 @@ vm68k_test_LDADD = ../libvm68k/libvm68k.la
 
 EXTRA_DIST = runtest.in vm68k_test.cbproj
 
-runtest: runtest.in Makefile
-	cat  < $(srcdir)/runtest.in > $@
+runtest: $(srcdir)/runtest.in $(top_builddir)/config.status
+	cd $(top_builddir) && $(SHELL) ./config.status --file=$(subdir)/$@
 	chmod +x $@
 
 clean-local:

@@ -27,6 +27,7 @@ syntax: regexp
 \.gmo$
 \.trs$
 \.log$
+\.pc$
 \.lo$
 \.o$
 \.tvsconfig$

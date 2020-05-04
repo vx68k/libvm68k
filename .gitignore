@@ -26,6 +26,7 @@ _build
 *.gmo
 *.trs
 *.log
+*.pc
 *.lo
 *.o
 *.tvsconfig

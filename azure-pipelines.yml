@@ -6,7 +6,7 @@
 # this notice are preserved.  This file is offered as-is, without any warranty.
 ---
 variables:
-  package.distName: libvm68k-2-alpha.1
+  package.distName: libvm68k-2-alpha.2
 trigger:
   - master
   - release/*
@@ -34,7 +34,7 @@ stages:
                   libcppunit-dev
             displayName: Install build dependencies
           - bash: |
-              autoreconf --install
+              autoreconf
             displayName: Bootstrap
           - bash: |
               ./configure --disable-static

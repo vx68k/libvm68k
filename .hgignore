@@ -1,7 +1,7 @@
 syntax: regexp
-^test/test-reports/
-^test/[^/]*\.test$
-^test/runtest$
+(^|/)TEST-[^/]*\.xml$
+(^|/)test_[^/]*\.exec$
+(^|/)runtest$
 (^|/)libvm68k\.la$
 (^|/)libvm68kapi\.la$
 (^|/)remove-potcdate\.sed$
@@ -15,19 +15,19 @@ syntax: regexp
 (^|/)configure$
 (^|/)aclocal\.m4$
 (^|/)stamp-[^/]*$
-(^|/)Debug/
-(^|/)Release/
-(^|/)LibrarySupport/
-(^|/)\.libs/
-(^|/)\.deps/
-(^|/)nbproject/private/
-(^|/)_build/
+(^|/)Debug$
+(^|/)Release$
+(^|/)\.libs$
+(^|/)\.deps$
+(^|/)LibrarySupport$
+(^|/)_build$
 @quot\.po$
 @boldquot\.po$
 \.insert-header$
 \.gmo$
 \.trs$
 \.log$
+\.pc$
 \.lo$
 \.o$
 \.tvsconfig$

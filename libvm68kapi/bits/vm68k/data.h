@@ -28,7 +28,7 @@ namespace vm68k
     /// Byte (8-bit-wide) data.
     ///
     /// This type is trivial and standard-layout.
-    class _VM68KAPI_PUBLIC byte
+    class _VM68K_API_PUBLIC byte
     {
     public:
         using int_type = std::int8_t;
@@ -89,7 +89,7 @@ namespace vm68k
     /// Word (16-bit-wide) data.
     ///
     /// This type is trivial and standard-layout.
-    class _VM68KAPI_PUBLIC word
+    class _VM68K_API_PUBLIC word
     {
     public:
         using int_type = std::int16_t;
@@ -152,7 +152,7 @@ namespace vm68k
     /// Long word (32-bit-wide) data.
     ///
     /// This type is trivial and standard-layout.
-    class _VM68KAPI_PUBLIC long_word
+    class _VM68K_API_PUBLIC long_word
     {
     public:
         using int_type = std::int32_t;

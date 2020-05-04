@@ -1,11 +1,12 @@
 {
     "configurations": [
         {
-            "name": "POSIX",
+            "name": "POSIX (GCC)",
+            "compilerPath": "/usr/bin/gcc",
             "includePath": [
                 "${workspaceFolder}",
                 "${workspaceFolder}/libvm68kapi",
-                "${workspaceFolder}/src"
+                "${workspaceFolder}/libvm68k"
             ],
             "defines": [
                 "HAVE_CONFIG_H"

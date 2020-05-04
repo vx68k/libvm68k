@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+includedir=@includedir@
+libdir=@libdir@
+
+Name: vm68kapi
+Description: libvm68kapi
+Version: @VERSION@
+Cflags: -I${includedir}
+Libs: -L${libdir} -lvm68kapi

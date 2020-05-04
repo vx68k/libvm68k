@@ -1,4 +1,4 @@
-// testcontext.cpp
+// test_context.cpp
 // Copyright (C) 2012-2019 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -30,33 +30,65 @@
 #include <memory>
 #include <utility>
 
-using namespace std;
-using namespace vm68k;
+using std::unique_ptr;
+using std::shared_ptr;
+using std::make_shared;
 using CppUnit::TestFixture;
+using namespace vm68k;
+
+namespace
+{
+    class test_memory_map final : public memory_map
+    {
+        using inherited = memory_map;
+
+    private:
+        unique_ptr<memory> _memory;
+
+    public:
+        test_memory_map()
+            : _memory {new read_write_memory(0x10000)}
+        {
+        }
+
+    public:
+        void read(mode mode, address_type address, size_type size,
+            void *buffer) override
+        {
+            _memory->read(mode, address, size, buffer);
+        }
+
+        void write(mode mode, address_type address, size_type size,
+            const void *buffer) override
+        {
+            _memory->write(mode, address, size, buffer);
+        }
+    };
+}
 
 /*
- * Tests for 'memory_map'.
+ * Tests for class 'context'.
  */
 class ContextTests : public TestFixture {
     CPPUNIT_TEST_SUITE(ContextTests);
     CPPUNIT_TEST(testMemory);
     CPPUNIT_TEST_SUITE_END();
 
+private:
+    shared_ptr<context> _context;
+
 public:
     void setUp() override {
-        // auto memory = make_shared<memory_map>();
-        // context = make_shared<class context>(move(memory));
+        auto memory = make_shared<test_memory_map>();
+        _context.reset(new context(memory));
     }
 
     void tearDown() override {
-        context.reset();
+        _context.reset();
     }
 
     void testMemory() {
-        CPPUNIT_ASSERT(context->memory() != NULL);
+        CPPUNIT_ASSERT(_context->memory() != NULL);
     }
-
-protected:
-    shared_ptr<class context> context;
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(ContextTests);

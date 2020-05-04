@@ -25,5 +25,7 @@ vm68k.pc: $(srcdir)/vm68k.pc.in $(top_builddir)/config.status
 	cd $(top_builddir) && $(SHELL) ./config.status --file=$(subdir)/$@
 
 installcheck-local:
-	export PKG_CONFIG_PATH=$(pkgconfigdir); \
-	$(PKG_CONFIG) --exists --exact-version=$(VERSION) vm68k
+	if test -n '$(PKG_CONFIG)'; then \
+	    export PKG_CONFIG_PATH=$(pkgconfigdir); \
+	    $(PKG_CONFIG) --exists --exact-version=$(VERSION) vm68k; \
+	fi

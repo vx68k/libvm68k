@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in.
 
-AM_CPPFLAGS = -DTEST -I$(top_srcdir)/src -I$(top_builddir)/src \
+AM_CPPFLAGS = -DTEST -I$(top_srcdir)/libvm68k -I$(top_builddir)/libvm68k \
 -I$(top_srcdir)/libvm68kapi -I$(top_builddir)/libvm68kapi
 AM_CXXFLAGS = $(CPPUNIT_CFLAGS)
 
@@ -34,12 +34,12 @@ $(CPPUNIT_LIBS)
 test_memory_exec_SOURCES = main.cpp xmlreport.cpp test_memory.cpp
 
 test_context_exec_LDFLAGS = -no-install
-test_context_exec_LDADD = $(top_builddir)/src/libvm68k.la \
+test_context_exec_LDADD = $(top_builddir)/libvm68k/libvm68k.la \
 $(top_builddir)/libvm68kapi/libvm68kapi.la $(CPPUNIT_LIBS)
 test_context_exec_SOURCES = main.cpp xmlreport.cpp test_context.cpp
 
 vm68k_test_SOURCES = vm68k_test.cpp Test_vm68kdata.cpp Test_vm68kmem.cpp
-vm68k_test_LDADD = ../src/libvm68k.la
+vm68k_test_LDADD = ../libvm68k/libvm68k.la
 
 EXTRA_DIST = runtest.in vm68k_test.cbproj
 

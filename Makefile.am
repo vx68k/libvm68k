@@ -5,9 +5,9 @@ AUTOMAKE_OPTIONS = foreign
 
 ACLOCAL_AMFLAGS = -Im4
 
-SUBDIRS = config libvm68kapi libvm68k test
-
 EXTRA_DIST = libvm68k.groupproj
+
+SUBDIRS = libvm68kapi libvm68k test
 
 dist-hook: $(distdir)/SHA256SUMS
 	if test -n "$$GPG_USERNAME"; then \

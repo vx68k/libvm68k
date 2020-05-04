@@ -17,7 +17,7 @@ EXEC_TEST_LOG_COMPILER = ./runtest
 TEST_EXTENSIONS += .exec
 TESTS += $(check_PROGRAMS)
 
-CLEANFILES += $(check_SCRIPTS) test-reports/*
+CLEANFILES += $(check_SCRIPTS)
 endif
 
 EXTRA_PROGRAMS = vm68k_test
@@ -46,3 +46,6 @@ EXTRA_DIST = runtest.in vm68k_test.cbproj
 runtest: runtest.in Makefile
 	cat  < $(srcdir)/runtest.in > $@
 	chmod +x $@
+
+clean-local:
+	rm -rf test-reports

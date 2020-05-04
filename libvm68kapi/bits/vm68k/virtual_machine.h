@@ -26,7 +26,7 @@
 namespace vm68k
 {
     /// Abstract device.
-    class _VM68KAPI_PUBLIC device
+    class _VM68K_API_PUBLIC device
     {
     protected:
         device();
@@ -43,7 +43,7 @@ namespace vm68k
     };
 
     /// Virtual machine.
-    class _VM68KAPI_PUBLIC virtual_machine
+    class _VM68K_API_PUBLIC virtual_machine
     {
     private:
         std::shared_ptr<memory_map> _memory_map;

@@ -4,7 +4,7 @@ AM_CPPFLAGS = -DTEST -I$(top_srcdir)/libvm68k -I$(top_builddir)/libvm68k \
 -I$(top_srcdir)/libvm68kapi -I$(top_builddir)/libvm68kapi
 AM_CXXFLAGS = $(CPPUNIT_CFLAGS)
 
-TEST_EXTENSIONS =
+TEST_EXTENSIONS = .exec
 TESTS =
 XFAIL_TESTS =
 CLEANFILES =
@@ -14,9 +14,7 @@ check_PROGRAMS = test_data.exec test_memory.exec test_context.exec
 check_SCRIPTS = runtest
 
 EXEC_TEST_LOG_COMPILER = ./runtest
-TEST_EXTENSIONS += .exec
 TESTS += $(check_PROGRAMS)
-
 CLEANFILES += $(check_SCRIPTS)
 endif
 

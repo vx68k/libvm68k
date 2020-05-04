@@ -45,7 +45,7 @@ namespace vm68k
         }
 
     public:
-        byte() = default;
+        byte() noexcept = default;
 
         constexpr byte(const std::uint8_t value) noexcept
             : _value {value}
@@ -106,7 +106,7 @@ namespace vm68k
         }
 
     public:
-        word() = default;
+        word() noexcept = default;
 
         constexpr word(const std::uint16_t value) noexcept
             : _value {value}
@@ -169,7 +169,7 @@ namespace vm68k
         }
 
     public:
-        long_word() = default;
+        long_word() noexcept = default;
 
         constexpr long_word(const std::uint32_t value) noexcept
             : _value {value}

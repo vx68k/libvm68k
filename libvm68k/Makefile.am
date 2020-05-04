@@ -3,7 +3,13 @@
 AM_CPPFLAGS = -I$(top_srcdir)/config \
 -I$(top_srcdir)/libvm68kapi -I$(top_builddir)/libvm68kapi
 
+pkgconfigdir = $(libdir)/pkgconfig
+
 lib_LTLIBRARIES = libvm68k.la
+
+EXTRA_DIST = vm68k.pc.in vm68k.cbproj ModelSupport_vm68k
+
+pkgconfig_DATA = vm68k.pc
 
 libvm68k_la_LDFLAGS = -version-info 1:0:0
 libvm68k_la_SOURCES = context.cpp
@@ -13,4 +19,11 @@ nobase_include_HEADERS = \
 bits/vm68kcore.h bits/vm68k/register.h bits/vm68k/context.h
 noinst_HEADERS = vm68kPCH1.h
 
-EXTRA_DIST = vm68k.cbproj ModelSupport_vm68k
+CLEANFILES = $(pkgconfig_DATA)
+
+vm68k.pc: $(srcdir)/vm68k.pc.in $(top_builddir)/config.status
+	cd $(top_builddir) && $(SHELL) ./config.status --file=$(subdir)/$@
+
+installcheck-local:
+	export PKG_CONFIG_PATH=$(pkgconfigdir); \
+	$(PKG_CONFIG) --exists --exact-version=$(VERSION) vm68k

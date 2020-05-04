@@ -10,7 +10,7 @@ LT_PREREQ([2.4.6])
 LT_INIT([dlopen])
 LT_CONFIG_LTDL_DIR([libltdl])
 LTDL_INIT([recursive])
-AM_INIT_AUTOMAKE([foreign no-define tar-ustar])
+AM_INIT_AUTOMAKE([foreign no-define subdir-objects tar-ustar])
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_CXX

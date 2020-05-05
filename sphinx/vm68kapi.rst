@@ -28,6 +28,13 @@ libvm68k API
 
    Constructs a :cpp:class:`byte` object with an initial value.
 
+.. cpp:function:: bool operator ==(byte x, byte y) noexcept
+.. cpp:function:: bool operator !=(byte x, byte y) noexcept
+
+   Tests equality of :cpp:class:`byte` values.
+
+   *These functions are not implemented yet*.
+
 .. cpp:class:: word
 
    Word class on the architecture.
@@ -50,6 +57,13 @@ libvm68k API
 
    Constructs a :cpp:class:`word` object with an initial value.
 
+.. cpp:function:: bool operator ==(word x, word y) noexcept
+.. cpp:function:: bool operator !=(word x, word y) noexcept
+
+   Tests equality of :cpp:class:`word` values.
+
+   *These functions are not implemented yet*.
+
 .. cpp:class:: long_word
 
    Long word class on the architecture.
@@ -71,6 +85,13 @@ libvm68k API
 .. cpp:function:: constexpr long_word::long_word(std::uint32_t value) noexcept
 
    Constructs a :cpp:class:`long_word` object with an initial value.
+
+.. cpp:function:: bool operator ==(long_word x, long_word y) noexcept
+.. cpp:function:: bool operator !=(long_word x, long_word y) noexcept
+
+   Tests equality of :cpp:class:`long_word` values.
+
+   *These functions are not implemented yet*.
 
 
 <vm68k/memory>

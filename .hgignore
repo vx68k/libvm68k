@@ -15,6 +15,7 @@ syntax: regexp
 (^|/)configure$
 (^|/)aclocal\.m4$
 (^|/)stamp-[^/]*$
+(^|/)\.dirstamp$
 (^|/)Debug$
 (^|/)Release$
 (^|/)\.libs$

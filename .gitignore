@@ -14,6 +14,7 @@ config.h.in
 configure
 aclocal.m4
 stamp-*
+.dirstamp
 Debug
 Release
 .libs

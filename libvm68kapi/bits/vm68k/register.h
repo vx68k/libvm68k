@@ -56,6 +56,14 @@ namespace vm68k
             }
 
         public:
+            ~pointer() noexcept
+            {
+                if (_ptr != nullptr) {
+                    (_ptr->_use_count)--;
+                }
+            }
+
+        public:
             physical_register *get() const noexcept
             {
                 return _ptr;

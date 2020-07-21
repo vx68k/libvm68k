@@ -67,9 +67,13 @@ namespace vm68k
             pointer &operator =(const pointer &other) noexcept
             {
                 if (this != &other) {
-                    (_ptr->_use_count)--;
+                    if (_ptr != nullptr) {
+                        (_ptr->_use_count)--;
+                    }
                     _ptr = other._ptr;
-                    (_ptr->_use_count)++;
+                    if (_ptr != nullptr) {
+                        (_ptr->_use_count)++;
+                    }
                 }
                 return *this;
             }

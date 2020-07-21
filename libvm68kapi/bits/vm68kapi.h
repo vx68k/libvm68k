@@ -21,18 +21,20 @@
 
 #ifndef _VM68K_API_PUBLIC
 #if _WIN32
-#if VM68KAPI_DLL
+#if _LIBVX68KAPI
+#if DLL_EXPORT
 #define _VM68K_API_PUBLIC __declspec(dllexport)
-#else
-#define _VM68K_API_PUBLIC __declspec(dllimport)
 #endif
-#else /* !_WIN32 */
+#else /* not _LIBVM68KAPI */
+#define _VM68K_API_PUBLIC __declspec(dllimport)
+#endif /* not _LIBVM68KAPI */
+#else /* not _WIN32 */
 #if defined __has_attribute
 #if __has_attribute(visibility)
 #define _VM68K_API_PUBLIC __attribute__((visibility("default")))
 #endif
 #endif /* defined __has_attribute */
-#endif /* !_WIN32 */
+#endif /* not _WIN32 */
 #endif
 
 #ifndef _VM68K_API_PUBLIC

@@ -53,7 +53,7 @@ namespace vm68k
 
             pointer(const pointer &other) noexcept
             :
-                pointer(other.get())
+                pointer(other._ptr)
             {
                 // Nothing to do.
             }
@@ -61,6 +61,23 @@ namespace vm68k
             pointer(pointer &&other) noexcept
             {
                 swap(other);
+            }
+
+        public:
+            pointer &operator =(const pointer &other) noexcept
+            {
+                if (this != &other) {
+                    (_ptr->_use_count)--;
+                    _ptr = other._ptr;
+                    (_ptr->_use_count)++;
+                }
+                return *this;
+            }
+
+            pointer &operator =(pointer &&other) noexcept
+            {
+                swap(other);
+                return *this;
             }
 
         public:

@@ -21,6 +21,7 @@
 
 #include <bits/vm68kapi.h>
 #include <array>
+#include <utility>
 #include <cstdint>
 
 namespace vm68k
@@ -30,6 +31,8 @@ namespace vm68k
     public:
         /**
          * Use-counting pointers.
+         *
+         * This class should work as 'std::shared_ptr'.
          */
         class _VM68KAPI_PUBLIC pointer
         {
@@ -55,12 +58,23 @@ namespace vm68k
                 // Nothing to do.
             }
 
+            pointer(pointer &&other) noexcept
+            {
+                swap(other);
+            }
+
         public:
             ~pointer() noexcept
             {
                 if (_ptr != nullptr) {
                     (_ptr->_use_count)--;
                 }
+            }
+
+        public:
+            void swap(pointer &other) noexcept
+            {
+                std::swap(_ptr, other._ptr);
             }
 
         public:

@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in.
 
-AM_CPPFLAGS = -I$(top_srcdir)/config \
+AM_CPPFLAGS = -D_LIBVM68K -I$(top_srcdir)/config \
 -I$(top_srcdir)/libvm68kapi -I$(top_builddir)/libvm68kapi
 
 pkgconfigdir = $(libdir)/pkgconfig

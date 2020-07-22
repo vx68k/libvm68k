@@ -35,7 +35,7 @@ namespace vm68k
         register_file(const register_file &) noexcept = default;
 
     public:
-        virtual ~register_file();
+        virtual ~register_file() = default;
 
     public:
         virtual long_word d(int regno) const = 0;

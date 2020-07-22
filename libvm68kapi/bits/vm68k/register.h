@@ -19,7 +19,8 @@
 #ifndef _VM68K_REGISTER_H
 #define _VM68K_REGISTER_H 1
 
-#include <bits/vm68k/data.h>
+#include <vm68k/data>
+#include <bits/vm68kapi.h>
 #include <array>
 #include <utility>
 #include <cstdint>

@@ -19,7 +19,7 @@
 #ifndef _VM68K_REGISTER_H
 #define _VM68K_REGISTER_H 1
 
-#include <bits/vm68kapi.h>
+#include <bits/vm68k/data.h>
 #include <array>
 #include <utility>
 #include <cstdint>
@@ -153,12 +153,36 @@ namespace vm68k
     };
 
     /**
-     * Register files.
+     * Abstract class of register files.
      */
     class _VM68KAPI_PUBLIC register_file
     {
-    private:
-        std::array<physical_register, 32> _physical_registers;
+    protected:
+        register_file() noexcept = default;
+
+        register_file(const register_file &) noexcept = default;
+
+    public:
+        virtual ~register_file();
+
+    public:
+        virtual long_word d(int regno) const = 0;
+
+        virtual void set_d(int regno, long_word value) = 0;
+
+        virtual void set_d(int regno, word value) = 0;
+
+        virtual void set_d(int regno, byte value) = 0;
+
+    public:
+        virtual long_word a(int regno) const = 0;
+
+        virtual void set_a(int regno, long_word value) = 0;
+
+        void set_a(int regno, word value)
+        {
+            set_a(regno, long_word(value.to_int()));
+        }
     };
 }
 

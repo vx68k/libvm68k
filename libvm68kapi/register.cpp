@@ -21,3 +21,10 @@
 #endif
 
 #include <bits/vm68k/register.h>
+
+using namespace vm68k;
+
+register_file::~register_file()
+{
+    // Nothing to do.
+}

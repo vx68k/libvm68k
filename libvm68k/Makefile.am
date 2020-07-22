@@ -12,7 +12,9 @@ EXTRA_DIST = vm68k.pc.in vm68k.cbproj ModelSupport_vm68k
 pkgconfig_DATA = vm68k.pc
 
 libvm68k_la_LDFLAGS = -version-info 1:0:0
-libvm68k_la_SOURCES = context.cpp
+libvm68k_la_SOURCES = \
+runtime_register.cpp \
+context.cpp
 EXTRA_libvm68k_la_SOURCES = win32dll.cpp
 
 nobase_include_HEADERS = \

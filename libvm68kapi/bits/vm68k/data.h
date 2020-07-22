@@ -47,9 +47,11 @@ namespace vm68k
     public:
         byte() noexcept = default;
 
-        constexpr byte(const std::uint8_t value) noexcept
-            : _value {value}
+        constexpr explicit byte(const std::uint8_t value) noexcept
+        :
+            _value {value}
         {
+            // Nothing to do.
         }
 
         byte &operator =(const std::uint8_t value) noexcept
@@ -108,9 +110,11 @@ namespace vm68k
     public:
         word() noexcept = default;
 
-        constexpr word(const std::uint16_t value) noexcept
-            : _value {value}
+        constexpr explicit word(const std::uint16_t value) noexcept
+        :
+            _value {value}
         {
+            // Nothing to do.
         }
 
         word &operator =(const std::uint16_t value) noexcept
@@ -171,9 +175,11 @@ namespace vm68k
     public:
         long_word() noexcept = default;
 
-        constexpr long_word(const std::uint32_t value) noexcept
-            : _value {value}
+        constexpr explicit long_word(const std::uint32_t value) noexcept
+        :
+            _value {value}
         {
+            // Nothing to do.
         }
 
         long_word &operator =(const std::uint32_t value) noexcept

@@ -24,6 +24,16 @@
 
 using namespace vm68k;
 
+runtime_register_file::runtime_register_file()
+{
+    // TODO: Implement this function.
+}
+
+runtime_register_file::~runtime_register_file()
+{
+    // Nothing to do.
+}
+
 long_word runtime_register_file::d(const int regno) const
 {
     return long_word(0); // TODO: Implement this function.

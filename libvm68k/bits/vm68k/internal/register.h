@@ -175,6 +175,17 @@ namespace vm68k
         std::array<address_register, 8> _a;
 
     public:
+        runtime_register_file();
+
+        runtime_register_file(const runtime_register_file &) = delete;
+
+    public:
+        void operator =(const runtime_register_file &) = delete;
+
+    public:
+        virtual ~runtime_register_file();
+
+    public:
         long_word d(int regno) const override;
 
         void set_d(int regno, long_word value) override;

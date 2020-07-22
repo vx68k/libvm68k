@@ -30,7 +30,7 @@ namespace vm68k
     /*
      * Execution context.
      */
-    class _VM68KCORE_PUBLIC context
+    class _VM68K_PUBLIC context
     {
     private:
         std::shared_ptr<memory_map> _memory;

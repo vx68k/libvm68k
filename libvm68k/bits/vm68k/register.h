@@ -24,7 +24,7 @@
 
 namespace vm68k
 {
-    class _VM68KCORE_PUBLIC d_register
+    class _VM68K_PUBLIC d_register
     {
     private:
         std::uint32_t _value;
@@ -33,7 +33,7 @@ namespace vm68k
         d_register() = default;
     };
 
-    class _VM68KCORE_PUBLIC a_register
+    class _VM68K_PUBLIC a_register
     {
     private:
         std::uint32_t _value;

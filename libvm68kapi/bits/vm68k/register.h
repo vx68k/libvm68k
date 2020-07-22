@@ -21,6 +21,7 @@
 
 #include <vm68k/data>
 #include <bits/vm68kapi.h>
+#include <cstddef>
 
 namespace vm68k
 {
@@ -29,6 +30,17 @@ namespace vm68k
      */
     class _VM68KAPI_PUBLIC register_file
     {
+    public:
+        /**
+         * Number of the data registers.
+         */
+        static const std::size_t D_REGISTER_MAX = 8;
+
+        /**
+         * Number of the address registers.
+         */
+        static const std::size_t A_REGISTER_MAX = 8;
+
     protected:
         register_file() noexcept = default;
 

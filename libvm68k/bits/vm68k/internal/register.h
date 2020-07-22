@@ -21,6 +21,7 @@
 
 #include <vm68k/register>
 #include <bits/vm68kcore.h>
+#include <array>
 #include <utility>
 #include <cstdint>
 
@@ -184,6 +185,13 @@ namespace vm68k
 
     class _VM68K_PUBLIC runtime_register_file: public register_file
     {
+    private:
+        // Array of the data registers.
+        std::array<data_register, 8> _d;
+
+        // Array of the address registers.
+        std::array<address_register, 8> _a;
+
     public:
         long_word d(int regno) const override;
 

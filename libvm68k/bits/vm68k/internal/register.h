@@ -165,24 +165,6 @@ namespace vm68k
         physical_register::pointer _physical;
     };
 
-    class _VM68K_PUBLIC d_register
-    {
-    private:
-        std::uint32_t _value;
-
-    public:
-        d_register() = default;
-    };
-
-    class _VM68K_PUBLIC a_register
-    {
-    private:
-        std::uint32_t _value;
-
-    public:
-        a_register() = default;
-    };
-
     class _VM68K_PUBLIC runtime_register_file: public register_file
     {
     private:

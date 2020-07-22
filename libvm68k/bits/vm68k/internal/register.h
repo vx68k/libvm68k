@@ -19,11 +19,21 @@
 #ifndef _VM68K_INTERNAL_REGISTER_H
 #define _VM68K_INTERNAL_REGISTER_H 1
 
+#include <vm68k/register>
 #include <bits/vm68kcore.h>
 #include <cstdint>
 
 namespace vm68k
 {
+    /**
+     * Data registers.
+     */
+    class _VM68K_PUBLIC data_register
+    {
+    private:
+        physical_register::pointer _physical;
+    };
+
     class _VM68K_PUBLIC d_register
     {
     private:

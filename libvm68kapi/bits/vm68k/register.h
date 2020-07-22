@@ -144,15 +144,6 @@ namespace vm68k
     };
 
     /**
-     * Data registers.
-     */
-    class _VM68KAPI_PUBLIC data_register
-    {
-    private:
-        physical_register::pointer _physical;
-    };
-
-    /**
      * Abstract class of register files.
      */
     class _VM68KAPI_PUBLIC register_file

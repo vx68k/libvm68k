@@ -172,6 +172,23 @@ namespace vm68k
     public:
         a_register() = default;
     };
+
+    class _VM68K_PUBLIC runtime_register_file: public register_file
+    {
+    public:
+        long_word d(int regno) const override;
+
+        void set_d(int regno, long_word value) override;
+
+        void set_d(int regno, word value) override;
+
+        void set_d(int regno, byte) override;
+
+    public:
+        long_word a(int regno) const override;
+
+        void set_a(int regno, long_word value) override;
+    };
 }
 
 #endif

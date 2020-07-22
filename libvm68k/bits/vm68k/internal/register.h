@@ -155,6 +155,15 @@ namespace vm68k
         physical_register::pointer _physical;
     };
 
+    /**
+     * Address registers.
+     */
+    class _VM68K_PUBLIC address_register
+    {
+    private:
+        physical_register::pointer _physical;
+    };
+
     class _VM68K_PUBLIC d_register
     {
     private:

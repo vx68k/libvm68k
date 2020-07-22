@@ -21,7 +21,6 @@
 
 #include <vm68k/data>
 #include <bits/vm68kapi.h>
-#include <array>
 #include <utility>
 #include <cstdint>
 

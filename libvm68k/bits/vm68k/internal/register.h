@@ -168,6 +168,10 @@ namespace vm68k
     class _VM68K_PUBLIC runtime_register_file: public register_file
     {
     private:
+        // Array of the physical registers.
+        std::array<physical_register, 32> _physical_registers;
+
+    private:
         // Array of the data registers.
         std::array<data_register, 8> _d;
 

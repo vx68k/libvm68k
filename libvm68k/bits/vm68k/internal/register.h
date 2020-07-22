@@ -173,10 +173,10 @@ namespace vm68k
 
     private:
         // Array of the data registers.
-        std::array<data_register, 8> _d;
+        std::array<data_register, D_REGISTER_MAX> _d;
 
         // Array of the address registers.
-        std::array<address_register, 8> _a;
+        std::array<address_register, A_REGISTER_MAX> _a;
 
     public:
         runtime_register_file();

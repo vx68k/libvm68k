@@ -122,7 +122,7 @@ namespace vm68k
         };
 
     private:
-        std::uint32_t _value = 0;
+        long_word _value;
 
         unsigned int _use_count = 0;
 
@@ -135,7 +135,7 @@ namespace vm68k
         void operator =(const physical_register &) = delete;
 
     public:
-        constexpr explicit operator std::uint32_t() const noexcept
+        constexpr operator long_word() const noexcept
         {
             return _value;
         }
@@ -154,6 +154,12 @@ namespace vm68k
     {
     private:
         physical_register::pointer _physical;
+
+    public:
+        operator long_word() const noexcept
+        {
+            return *_physical;
+        }
     };
 
     /**
@@ -163,6 +169,12 @@ namespace vm68k
     {
     private:
         physical_register::pointer _physical;
+
+    public:
+        operator long_word() const noexcept
+        {
+            return *_physical;
+        }
     };
 
     class _VM68K_PUBLIC runtime_register_file: public register_file

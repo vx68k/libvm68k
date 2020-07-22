@@ -16,8 +16,8 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68K_REGISTER_H
-#define _VM68K_REGISTER_H 1
+#ifndef _VM68K_INTERNAL_REGISTER_H
+#define _VM68K_INTERNAL_REGISTER_H 1
 
 #include <bits/vm68kcore.h>
 #include <cstdint>

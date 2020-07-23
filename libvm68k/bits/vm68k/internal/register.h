@@ -129,9 +129,22 @@ namespace vm68k
     public:
         physical_register() noexcept = default;
 
+        physical_register(const long_word value) noexcept
+        :
+            _value {value}
+        {
+            // Nothing to do.
+        }
+
         physical_register(const physical_register &) = delete;
 
     public:
+        physical_register &operator =(const long_word value) noexcept
+        {
+            _value = value;
+            return *this;
+        }
+
         void operator =(const physical_register &) = delete;
 
     public:

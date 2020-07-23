@@ -36,7 +36,7 @@ runtime_register_file::~runtime_register_file()
 
 long_word runtime_register_file::d(const int regno) const
 {
-    return long_word(0); // TODO: Implement this function.
+    return _d[regno];
 }
 
 void runtime_register_file::set_d(const int regno, const long_word value)
@@ -56,7 +56,7 @@ void runtime_register_file::set_d(const int regno, const byte value)
 
 long_word runtime_register_file::a(const int regno) const
 {
-    return long_word(0); // TODO: Implement this function.
+    return _a[regno];
 }
 
 void runtime_register_file::set_a(const int regno, const long_word value)

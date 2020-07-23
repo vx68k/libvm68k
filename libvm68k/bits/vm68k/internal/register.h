@@ -148,7 +148,7 @@ namespace vm68k
         void operator =(const physical_register &) = delete;
 
     public:
-        constexpr operator long_word() const noexcept
+        operator long_word() const noexcept
         {
             return _value;
         }

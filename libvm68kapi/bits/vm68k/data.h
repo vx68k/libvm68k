@@ -54,12 +54,6 @@ namespace vm68k
             // Nothing to do.
         }
 
-        byte &operator =(const std::uint8_t value) noexcept
-        {
-            _value = value;
-            return *this;
-        }
-
     public:
         constexpr std::int8_t to_int() const noexcept
         {
@@ -115,12 +109,6 @@ namespace vm68k
             _value {value}
         {
             // Nothing to do.
-        }
-
-        word &operator =(const std::uint16_t value) noexcept
-        {
-            _value = value;
-            return *this;
         }
 
     public:
@@ -180,12 +168,6 @@ namespace vm68k
             _value {value}
         {
             // Nothing to do.
-        }
-
-        long_word &operator =(const std::uint32_t value) noexcept
-        {
-            _value = value;
-            return *this;
         }
 
     public:

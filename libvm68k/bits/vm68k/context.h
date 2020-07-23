@@ -19,9 +19,9 @@
 #ifndef _VM68K_CONTEXT_H
 #define _VM68K_CONTEXT_H 1
 
-#include <bits/vm68k/register.h>
-#include <bits/vm68kcore.h>
+#include <vm68k/register>
 #include <vm68k/memory>
+#include <bits/vm68kcore.h>
 #include <memory>
 #include <utility>
 

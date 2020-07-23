@@ -19,6 +19,10 @@
 #ifndef _VM68K_REGISTER_H
 #define _VM68K_REGISTER_H 1
 
+#if !(_VM68K_REGISTER || _LIBVM68KAPI)
+#error "internal header <bits/vm68k/register.h> included directly"
+#endif
+
 #include <vm68k/data>
 #include <bits/vm68kapi.h>
 #include <cstddef>

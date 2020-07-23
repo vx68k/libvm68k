@@ -163,6 +163,13 @@ namespace vm68k
         physical_register::pointer _physical;
 
     public:
+        data_register &operator =(const long_word value)
+        {
+            *_physical = value;
+            return *this;
+        }
+
+    public:
         operator long_word() const noexcept
         {
             return *_physical;
@@ -176,6 +183,13 @@ namespace vm68k
     {
     private:
         physical_register::pointer _physical;
+
+    public:
+        address_register &operator =(const long_word value)
+        {
+            *_physical = value;
+            return *this;
+        }
 
     public:
         operator long_word() const noexcept

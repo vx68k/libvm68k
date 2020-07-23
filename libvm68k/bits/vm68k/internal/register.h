@@ -139,12 +139,6 @@ namespace vm68k
         {
             return _value;
         }
-
-    public:
-        constexpr unsigned int use_count() const
-        {
-            return _use_count;
-        }
     };
 
     /**

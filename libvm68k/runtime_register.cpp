@@ -26,7 +26,7 @@ using namespace vm68k;
 
 runtime_register_file::runtime_register_file()
 {
-    // TODO: Implement this function.
+    // Nothing to do.
 }
 
 runtime_register_file::~runtime_register_file()

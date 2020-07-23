@@ -41,7 +41,8 @@ long_word runtime_register_file::d(const int regno) const
 
 void runtime_register_file::set_d(const int regno, const long_word value)
 {
-    // TODO: Implement this funcction.
+    // TODO: Rename the register as necessary.
+    _d[regno] = value;
 }
 
 void runtime_register_file::set_d(const int regno, const word value)
@@ -61,5 +62,6 @@ long_word runtime_register_file::a(const int regno) const
 
 void runtime_register_file::set_a(const int regno, const long_word value)
 {
-    // TODO: Implement this funcction.
+    // TODO: Rename the register as necessary.
+    _a[regno] = value;
 }

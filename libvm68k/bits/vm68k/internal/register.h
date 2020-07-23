@@ -42,6 +42,20 @@ namespace vm68k
             return *this;
         }
 
+        data_register &operator =(const word value)
+        {
+            auto preserved = _value.to_uint() & 0xffff0000U;
+            _value = long_word(preserved | value.to_uint());
+            return *this;
+        }
+
+        data_register &operator =(const byte value)
+        {
+            auto preserved = _value.to_uint() & 0xffffff00U;
+            _value = long_word(preserved | value.to_uint());
+            return *this;
+        }
+
     public:
         operator long_word() const noexcept
         {

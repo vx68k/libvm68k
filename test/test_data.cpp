@@ -64,7 +64,6 @@ public:
         CPPUNIT_ASSERT_EQUAL(true, is_trivial<T>::value);
         CPPUNIT_ASSERT_EQUAL(true, is_standard_layout<T>::value);
         CPPUNIT_ASSERT_EQUAL(true, (is_constructible<T, uint8_t>::value));
-        CPPUNIT_ASSERT_EQUAL(true, (is_assignable<T, uint8_t>::value));
         CPPUNIT_ASSERT_EQUAL(size_t(1), T::size());
     }
 
@@ -75,7 +74,6 @@ public:
         CPPUNIT_ASSERT_EQUAL(true, is_trivial<T>::value);
         CPPUNIT_ASSERT_EQUAL(true, is_standard_layout<T>::value);
         CPPUNIT_ASSERT_EQUAL(true, (is_constructible<T, uint16_t>::value));
-        CPPUNIT_ASSERT_EQUAL(true, (is_assignable<T, uint16_t>::value));
         CPPUNIT_ASSERT_EQUAL(size_t(2), T::size());
     }
 
@@ -86,7 +84,6 @@ public:
         CPPUNIT_ASSERT_EQUAL(true, is_trivial<T>::value);
         CPPUNIT_ASSERT_EQUAL(true, is_standard_layout<T>::value);
         CPPUNIT_ASSERT_EQUAL(true, (is_constructible<T, uint32_t>::value));
-        CPPUNIT_ASSERT_EQUAL(true, (is_assignable<T, uint32_t>::value));
         CPPUNIT_ASSERT_EQUAL(size_t(4), T::size());
     }
 };
@@ -117,9 +114,9 @@ public:
         CPPUNIT_ASSERT_EQUAL(int8_t(0), data.to_int());
         data = T(0x01);
         CPPUNIT_ASSERT_EQUAL(int8_t(0x01), data.to_int());
-        data = 0x7f;
+        data = T(0x7f);
         CPPUNIT_ASSERT_EQUAL(int8_t(0x7f), data.to_int());
-        data = 0x80;
+        data = T(0x80);
         CPPUNIT_ASSERT_EQUAL(int8_t(-0x80), data.to_int());
     }
 
@@ -128,15 +125,15 @@ public:
         CPPUNIT_ASSERT_EQUAL(uint8_t(0), data.to_uint());
         data = T(0x01);
         CPPUNIT_ASSERT_EQUAL(uint8_t(0x01), data.to_uint());
-        data = 0x00;
+        data = T(0x00);
         CPPUNIT_ASSERT_EQUAL(uint8_t(0x00), data.to_uint());
-        data = 0xff;
+        data = T(0xff);
         CPPUNIT_ASSERT_EQUAL(uint8_t(0xff), data.to_uint());
     }
 
     void testSerialize()
     {
-        data = 0x81;
+        data = T(0x81);
         int serial[T::size()] = {};
         auto end = data.serialize(serial);
         CPPUNIT_ASSERT_EQUAL(ptrdiff_t(1), distance(serial, end));
@@ -179,9 +176,9 @@ public:
         CPPUNIT_ASSERT_EQUAL(int16_t(0), data.to_int());
         data = T(0x0102);
         CPPUNIT_ASSERT_EQUAL(int16_t(0x0102), data.to_int());
-        data = 0x7fff;
+        data = T(0x7fff);
         CPPUNIT_ASSERT_EQUAL(int16_t(0x7fff), data.to_int());
-        data = 0x8000;
+        data = T(0x8000);
         CPPUNIT_ASSERT_EQUAL(int16_t(-0x8000), data.to_int());
     }
 
@@ -190,15 +187,15 @@ public:
         CPPUNIT_ASSERT_EQUAL(uint16_t(0), data.to_uint());
         data = T(0x0102);
         CPPUNIT_ASSERT_EQUAL(uint16_t(0x0102), data.to_uint());
-        data = 0x0000;
+        data = T(0x0000);
         CPPUNIT_ASSERT_EQUAL(uint16_t(0x0000), data.to_uint());
-        data = 0xffff;
+        data = T(0xffff);
         CPPUNIT_ASSERT_EQUAL(uint16_t(0xffff), data.to_uint());
     }
 
     void testSerialize()
     {
-        data = 0x8182;
+        data = T(0x8182);
         int serial[T::size()] = {};
         auto end = data.serialize(serial);
         CPPUNIT_ASSERT_EQUAL(ptrdiff_t(2), distance(serial, end));
@@ -243,9 +240,9 @@ public:
         CPPUNIT_ASSERT_EQUAL(int32_t(0), data.to_int());
         data = T(0x01020304);
         CPPUNIT_ASSERT_EQUAL(int32_t(0x01020304), data.to_int());
-        data = 0x7fffffff;
+        data = T(0x7fffffff);
         CPPUNIT_ASSERT_EQUAL(int32_t(0x7fffffff), data.to_int());
-        data = 0x80000000;
+        data = T(0x80000000);
         CPPUNIT_ASSERT_EQUAL(int32_t(-0x80000000), data.to_int());
     }
 
@@ -254,15 +251,15 @@ public:
         CPPUNIT_ASSERT_EQUAL(uint32_t(0), data.to_uint());
         data = T(0x01020304);
         CPPUNIT_ASSERT_EQUAL(uint32_t(0x01020304), data.to_uint());
-        data = 0x00000000;
+        data = T(0x00000000);
         CPPUNIT_ASSERT_EQUAL(uint32_t(0x00000000), data.to_uint());
-        data = 0xffffffff;
+        data = T(0xffffffff);
         CPPUNIT_ASSERT_EQUAL(uint32_t(0xffffffff), data.to_uint());
     }
 
     void testSerialize()
     {
-        data = 0x81828384;
+        data = T(0x81828384);
         int serial[T::size()] = {};
         auto end = data.serialize(serial);
         CPPUNIT_ASSERT_EQUAL(ptrdiff_t(4), distance(serial, end));

@@ -28,124 +28,19 @@
 namespace vm68k
 {
     /**
-     * Physical registers.
+     * Data registers.
      */
-    class _VM68KAPI_PUBLIC physical_register
+    class _VM68K_PUBLIC data_register
     {
-    public:
-        /**
-         * Use-counting pointers.
-         *
-         * This class should work as 'std::shared_ptr'.
-         */
-        class _VM68KAPI_PUBLIC pointer
-        {
-        private:
-            physical_register *_ptr = nullptr;
-
-        public:
-            pointer() noexcept = default;
-
-            explicit pointer(physical_register *x) noexcept
-            :
-                _ptr {x}
-            {
-                if (_ptr != nullptr) {
-                    (_ptr->_use_count)++;
-                }
-            }
-
-            pointer(const pointer &other) noexcept
-            :
-                pointer(other._ptr)
-            {
-                // Nothing to do.
-            }
-
-            pointer(pointer &&other) noexcept
-            {
-                swap(other);
-            }
-
-        public:
-            pointer &operator =(const pointer &other) noexcept
-            {
-                if (this != &other) {
-                    if (_ptr != nullptr) {
-                        (_ptr->_use_count)--;
-                    }
-                    _ptr = other._ptr;
-                    if (_ptr != nullptr) {
-                        (_ptr->_use_count)++;
-                    }
-                }
-                return *this;
-            }
-
-            pointer &operator =(pointer &&other) noexcept
-            {
-                swap(other);
-                return *this;
-            }
-
-        public:
-            ~pointer() noexcept
-            {
-                if (_ptr != nullptr) {
-                    (_ptr->_use_count)--;
-                }
-            }
-
-        public:
-            void swap(pointer &other) noexcept
-            {
-                std::swap(_ptr, other._ptr);
-            }
-
-        public:
-            physical_register *get() const noexcept
-            {
-                return _ptr;
-            }
-
-        public:
-            physical_register &operator *() const noexcept
-            {
-                return *_ptr;
-            }
-
-        public:
-            physical_register *operator ->() const noexcept
-            {
-                return _ptr;
-            }
-        };
-
     private:
         long_word _value;
 
-        unsigned int _use_count = 0;
-
     public:
-        physical_register() noexcept = default;
-
-        physical_register(const long_word value) noexcept
-        :
-            _value {value}
-        {
-            // Nothing to do.
-        }
-
-        physical_register(const physical_register &) = delete;
-
-    public:
-        physical_register &operator =(const long_word value) noexcept
+        data_register &operator =(const long_word value)
         {
             _value = value;
             return *this;
         }
-
-        void operator =(const physical_register &) = delete;
 
     public:
         operator long_word() const noexcept
@@ -155,55 +50,29 @@ namespace vm68k
     };
 
     /**
-     * Data registers.
-     */
-    class _VM68K_PUBLIC data_register
-    {
-    private:
-        physical_register::pointer _physical;
-
-    public:
-        data_register &operator =(const long_word value)
-        {
-            *_physical = value;
-            return *this;
-        }
-
-    public:
-        operator long_word() const noexcept
-        {
-            return *_physical;
-        }
-    };
-
-    /**
      * Address registers.
      */
     class _VM68K_PUBLIC address_register
     {
     private:
-        physical_register::pointer _physical;
+        long_word _value;
 
     public:
         address_register &operator =(const long_word value)
         {
-            *_physical = value;
+            _value = value;
             return *this;
         }
 
     public:
         operator long_word() const noexcept
         {
-            return *_physical;
+            return _value;
         }
     };
 
     class _VM68K_PUBLIC runtime_register_file: public register_file
     {
-    private:
-        // Array of the physical registers.
-        std::array<physical_register, 32> _physical_registers;
-
     private:
         // Array of the data registers.
         std::array<data_register, D_REGISTER_MAX> _d;

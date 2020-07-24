@@ -14,11 +14,13 @@ nobase_include_HEADERS = vm68k/data vm68k/memory \
 vm68k/register \
 bits/vm68kapi.h bits/vm68k/data.h bits/vm68k/memory.h \
 bits/vm68k/register.h \
+bits/vm68k/instruction.h \
 bits/vm68k/virtual_machine.h
 
 libvm68kapi_la_LDFLAGS = -version-info 1:0:0
 libvm68kapi_la_SOURCES = data.cpp memory.cpp \
 register.cpp \
+instruction.cpp \
 virtual_machine.cpp
 
 CLEANFILES = $(pkgconfig_DATA)

@@ -24,8 +24,8 @@
 #endif
 
 #include <vm68k/data>
-#include <bits/vm68kapi.h>
 #include <cstddef>
+#include <bits/vm68kapi.h>
 
 namespace vm68k
 {

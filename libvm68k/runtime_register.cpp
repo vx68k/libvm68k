@@ -22,6 +22,7 @@
 
 #include <bits/vm68k/internal/register.h>
 
+using std::size_t;
 using namespace vm68k;
 
 runtime_register_file::runtime_register_file()
@@ -34,32 +35,32 @@ runtime_register_file::~runtime_register_file()
     // Nothing to do.
 }
 
-long_word runtime_register_file::d(const int regno) const
+long_word runtime_register_file::d(const size_t regno) const
 {
     return _d[regno];
 }
 
-void runtime_register_file::set_d(const int regno, const long_word value)
+void runtime_register_file::set_d(const size_t regno, const long_word value)
 {
     _d[regno] = value;
 }
 
-void runtime_register_file::set_d(const int regno, const word value)
+void runtime_register_file::set_d(const size_t regno, const word value)
 {
     _d[regno] = value;
 }
 
-void runtime_register_file::set_d(const int regno, const byte value)
+void runtime_register_file::set_d(const size_t regno, const byte value)
 {
     _d[regno] = value;
 }
 
-long_word runtime_register_file::a(const int regno) const
+long_word runtime_register_file::a(const size_t regno) const
 {
     return _a[regno];
 }
 
-void runtime_register_file::set_a(const int regno, const long_word value)
+void runtime_register_file::set_a(const size_t regno, const long_word value)
 {
     _a[regno] = value;
 }

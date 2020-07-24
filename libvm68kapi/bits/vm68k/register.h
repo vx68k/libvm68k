@@ -54,20 +54,20 @@ namespace vm68k
         virtual ~register_file() = default;
 
     public:
-        virtual long_word d(int regno) const = 0;
+        virtual long_word d(std::size_t regno) const = 0;
 
-        virtual void set_d(int regno, long_word value) = 0;
+        virtual void set_d(std::size_t regno, long_word value) = 0;
 
-        virtual void set_d(int regno, word value) = 0;
+        virtual void set_d(std::size_t regno, word value) = 0;
 
-        virtual void set_d(int regno, byte value) = 0;
+        virtual void set_d(std::size_t regno, byte value) = 0;
 
     public:
-        virtual long_word a(int regno) const = 0;
+        virtual long_word a(std::size_t regno) const = 0;
 
-        virtual void set_a(int regno, long_word value) = 0;
+        virtual void set_a(std::size_t regno, long_word value) = 0;
 
-        void set_a(int regno, word value)
+        void set_a(std::size_t regno, word value)
         {
             set_a(regno, long_word(value.to_int()));
         }

@@ -66,13 +66,13 @@ namespace vm68k
         virtual ~execution_context() = default;
 
     public:
-        const std::shared_ptr<memory_map> &memory() const noexcept
+        auto memory() const noexcept -> const std::shared_ptr<memory_map> &
         {
             return _memory;
         }
 
     public:
-        const std::shared_ptr<register_file> &registers() const noexcept
+        auto registers() const noexcept -> const std::shared_ptr<register_file> &
         {
             return _registers;
         }

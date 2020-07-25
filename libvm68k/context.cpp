@@ -1,5 +1,5 @@
 // context.cpp
-// Copyright (C) 2012-2019 Kaz Nishimura
+// Copyright (C) 2012-2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -34,9 +34,11 @@ using namespace vm68k;
 #pragma package(smart_init)
 #endif
 
-runtime_execution_context::runtime_execution_context(const shared_ptr<memory_map> &memory)
+runtime_execution_context::runtime_execution_context(
+    const shared_ptr<memory_map> &memory, const long_word pc)
 :
-    execution_context(memory, new runtime_register_file())
+    execution_context(memory, new runtime_register_file()),
+    _pc {pc}
 {
     // Nothing to do.
 }
@@ -48,10 +50,10 @@ runtime_execution_context::~runtime_execution_context()
 
 long_word runtime_execution_context::pc() const
 {
-    return long_word(0); // TODO: Implement this function.
+    return _pc;
 }
 
-void runtime_execution_context::set_pc(const long_word)
+void runtime_execution_context::set_pc(const long_word pc)
 {
-    // TODO: Implement this funciton.
+    _pc = pc;
 }

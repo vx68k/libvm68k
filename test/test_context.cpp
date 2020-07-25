@@ -80,7 +80,7 @@ private:
 public:
     void setUp() override {
         auto memory = make_shared<test_memory_map>();
-        _context.reset(new runtime_execution_context(memory));
+        _context.reset(new runtime_execution_context(memory, long_word(0)));
     }
 
     void tearDown() override {

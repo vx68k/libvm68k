@@ -1,5 +1,5 @@
 // <bits/vm68k/internal/instruction.h>
-// Copyright (C) 2012-2019 Kaz Nishimura
+// Copyright (C) 2012-2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -31,8 +31,12 @@ namespace vm68k
      */
     class _VM68K_PUBLIC runtime_execution_context: public execution_context
     {
+    private:
+        long_word _pc;
+
     public:
-        explicit runtime_execution_context(const std::shared_ptr<memory_map> &memory);
+        runtime_execution_context(const std::shared_ptr<memory_map> &memory,
+            long_word pc);
 
     public:
         virtual ~runtime_execution_context();

@@ -29,7 +29,7 @@ namespace vm68k
     /**
      * Abstract execution contexts.
      */
-    class execution_context
+    class _VM68KAPI_PUBLIC execution_context
     {
     private:
         std::shared_ptr<memory_map> _memory;
@@ -86,7 +86,7 @@ namespace vm68k
     /**
      * Abstruct instructions.
      */
-    class instruction
+    class _VM68KAPI_PUBLIC instruction
     {
     protected:
         instruction() noexcept = default;

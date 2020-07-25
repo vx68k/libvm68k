@@ -56,6 +56,11 @@ namespace vm68k
         {
             return _registers;
         }
+
+    public:
+        virtual long_word pc() const = 0;
+
+        virtual void set_pc(long_word pc) = 0;
     };
 
     /**

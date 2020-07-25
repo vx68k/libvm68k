@@ -1,5 +1,5 @@
 // test_context.cpp
-// Copyright (C) 2012-2019 Kaz Nishimura
+// Copyright (C) 2012-2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -23,7 +23,7 @@
 #pragma hdrstop
 #endif
 
-#include <bits/vm68k/internal/instruction.h>
+#include <vm68k/runtime>
 
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/TestFixture.h>

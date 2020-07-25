@@ -16,36 +16,32 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68K_CONTEXT_H
-#define _VM68K_CONTEXT_H 1
+#ifndef _VM68K_INTERNAL_INSTRUCTION_H
+#define _VM68K_INTERNAL_INSTRUCTION_H 1
 
-#include <vm68k/register>
-#include <vm68k/memory>
-#include <bits/vm68kcore.h>
+#include <vm68k/instruction>
 #include <memory>
 #include <utility>
+#include <bits/vm68kcore.h>
 
 namespace vm68k
 {
     /*
-     * Execution context.
+     * Runtime execution contexts.
      */
-    class _VM68K_PUBLIC context
+    class _VM68K_PUBLIC runtime_execution_context: public execution_context
     {
-    private:
-        std::shared_ptr<memory_map> _memory;
+    public:
+        explicit runtime_execution_context(const std::shared_ptr<memory_map> &memory);
 
     public:
-        explicit context(const std::shared_ptr<memory_map> &memory);
+        virtual ~runtime_execution_context();
 
     public:
-        virtual ~context();
+        long_word pc() const override;
 
     public:
-        const std::shared_ptr<memory_map> &memory() const noexcept
-        {
-            return _memory;
-        }
+        void set_pc(long_word pc) override;
     };
 }
 

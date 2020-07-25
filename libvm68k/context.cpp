@@ -24,20 +24,34 @@
 #endif
 
 #include <bits/vm68k/internal/instruction.h>
-#include <utility>
 
-using namespace std;
+#include <bits/vm68k/internal/register.h>
+
+using std::shared_ptr;
 using namespace vm68k;
 
 #if __BORLANDC__
 #pragma package(smart_init)
 #endif
 
-context::context(const shared_ptr<memory_map> &memory)
-: _memory(memory)
+runtime_execution_context::runtime_execution_context(const shared_ptr<memory_map> &memory)
+:
+    execution_context(memory, new runtime_register_file())
 {
+    // Nothing to do.
 }
 
-context::~context()
+runtime_execution_context::~runtime_execution_context()
 {
+    // Nothing to do.
+}
+
+long_word runtime_execution_context::pc() const
+{
+    return long_word(0); // TODO: Implement this function.
+}
+
+void runtime_execution_context::set_pc(const long_word)
+{
+    // TODO: Implement this funciton.
 }

@@ -19,9 +19,10 @@
 #ifndef _VM68K_DATA_H
 #define _VM68K_DATA_H 1
 
-#include <bits/vm68kapi.h>
+#include <utility>
 #include <cstdint>
 #include <cstddef>
+#include <bits/vm68kapi.h>
 
 namespace vm68k
 {
@@ -52,6 +53,15 @@ namespace vm68k
             _value {value}
         {
             // Nothing to do.
+        }
+
+    public:
+        /**
+         * Swap the content with another.
+         */
+        void swap(byte &other) noexcept
+        {
+            std::swap(_value, other._value);
         }
 
     public:
@@ -112,6 +122,15 @@ namespace vm68k
         }
 
     public:
+        /**
+         * Swap the content with another.
+         */
+        void swap(word &other) noexcept
+        {
+            std::swap(_value, other._value);
+        }
+
+    public:
         constexpr std::int16_t to_int() const noexcept
         {
             return std::int16_t(_value);
@@ -168,6 +187,15 @@ namespace vm68k
             _value {value}
         {
             // Nothing to do.
+        }
+
+    public:
+        /**
+         * Swap the content with another.
+         */
+        void swap(long_word &other) noexcept
+        {
+            std::swap(_value, other._value);
         }
 
     public:

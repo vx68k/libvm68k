@@ -233,4 +233,24 @@ namespace vm68k
     };
 }
 
+// Specializations.
+
+template<>
+inline void std::swap(vm68k::byte &x, vm68k::byte &y) noexcept
+{
+    x.swap(y);
+}
+
+template<>
+inline void std::swap(vm68k::word &x, vm68k::word &y) noexcept
+{
+    x.swap(y);
+}
+
+template<>
+inline void std::swap(vm68k::long_word &x, vm68k::long_word &y) noexcept
+{
+    x.swap(y);
+}
+
 #endif

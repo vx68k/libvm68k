@@ -34,26 +34,19 @@ namespace vm68k
     private:
         std::shared_ptr<memory_map> _memory;
 
-    private:
-        std::shared_ptr<register_file> _registers;
-
     protected:
-        execution_context(const std::shared_ptr<memory_map> &memory,
-            const std::shared_ptr<register_file> &registers) noexcept
+        execution_context(const std::shared_ptr<memory_map> &memory) noexcept
         :
-            _memory {memory},
-            _registers {registers}
+            _memory {memory}
         {
             // Nothing to do.
         }
 
         template<class M, class R>
-        execution_context(M &&memory, R &&registers)
-            noexcept(noexcept(std::shared_ptr<memory_map>(memory))
-                && noexcept(std::shared_ptr<register_file>(registers)))
+        execution_context(M &&memory)
+            noexcept(noexcept(std::shared_ptr<memory_map>(memory)))
         :
-            _memory {memory},
-            _registers {registers}
+            _memory {memory}
         {
             // Nothing to do.
         }
@@ -72,9 +65,11 @@ namespace vm68k
         }
 
     public:
-        auto registers() const noexcept -> const std::shared_ptr<register_file> &
+        virtual register_file &registers() = 0;
+
+        const register_file &registers() const
         {
-            return _registers;
+            return const_cast<execution_context *>(this)->registers();
         }
 
     public:

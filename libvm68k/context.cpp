@@ -25,8 +25,6 @@
 
 #include <bits/vm68k/internal/instruction.h>
 
-#include <bits/vm68k/internal/register.h>
-
 using std::shared_ptr;
 using namespace vm68k;
 
@@ -37,7 +35,7 @@ using namespace vm68k;
 runtime_execution_context::runtime_execution_context(
     const shared_ptr<memory_map> &memory, const long_word pc)
 :
-    execution_context(memory, new runtime_register_file()),
+    execution_context(memory),
     _pc {pc}
 {
     // Nothing to do.

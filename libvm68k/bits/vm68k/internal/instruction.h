@@ -19,10 +19,10 @@
 #ifndef _VM68K_INTERNAL_INSTRUCTION_H
 #define _VM68K_INTERNAL_INSTRUCTION_H 1
 
+#include <bits/vm68k/internal/register.h>
 #include <vm68k/instruction>
 #include <memory>
 #include <utility>
-#include <bits/vm68kcore.h>
 
 namespace vm68k
 {
@@ -32,6 +32,9 @@ namespace vm68k
     class _VM68K_PUBLIC runtime_execution_context: public execution_context
     {
     private:
+        runtime_register_file _registers;
+
+    private:
         long_word _pc;
 
     public:
@@ -40,6 +43,12 @@ namespace vm68k
 
     public:
         virtual ~runtime_execution_context();
+
+    public:
+        register_file &registers() final override
+        {
+            return _registers;
+        }
 
     public:
         long_word pc() const override;

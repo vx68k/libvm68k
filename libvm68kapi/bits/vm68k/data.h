@@ -19,9 +19,10 @@
 #ifndef _VM68K_DATA_H
 #define _VM68K_DATA_H 1
 
-#include <bits/vm68kapi.h>
+#include <utility>
 #include <cstdint>
 #include <cstddef>
+#include <bits/vm68kapi.h>
 
 namespace vm68k
 {
@@ -52,6 +53,15 @@ namespace vm68k
             _value {value}
         {
             // Nothing to do.
+        }
+
+    public:
+        /**
+         * Swap the content with another.
+         */
+        void swap(byte &other) noexcept
+        {
+            std::swap(_value, other._value);
         }
 
     public:
@@ -109,6 +119,15 @@ namespace vm68k
             _value {value}
         {
             // Nothing to do.
+        }
+
+    public:
+        /**
+         * Swap the content with another.
+         */
+        void swap(word &other) noexcept
+        {
+            std::swap(_value, other._value);
         }
 
     public:
@@ -171,6 +190,15 @@ namespace vm68k
         }
 
     public:
+        /**
+         * Swap the content with another.
+         */
+        void swap(long_word &other) noexcept
+        {
+            std::swap(_value, other._value);
+        }
+
+    public:
         constexpr std::int32_t to_int() const noexcept
         {
             return std::int32_t(_value);
@@ -203,6 +231,26 @@ namespace vm68k
             return i;
         }
     };
+}
+
+// Specializations.
+
+template<>
+inline void std::swap(vm68k::byte &x, vm68k::byte &y) noexcept
+{
+    x.swap(y);
+}
+
+template<>
+inline void std::swap(vm68k::word &x, vm68k::word &y) noexcept
+{
+    x.swap(y);
+}
+
+template<>
+inline void std::swap(vm68k::long_word &x, vm68k::long_word &y) noexcept
+{
+    x.swap(y);
 }
 
 #endif

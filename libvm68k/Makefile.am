@@ -20,7 +20,7 @@ EXTRA_libvm68k_la_SOURCES = win32dll.cpp
 nobase_include_HEADERS = \
 bits/vm68kcore.h \
 bits/vm68k/internal/register.h \
-bits/vm68k/context.h
+bits/vm68k/internal/instruction.h
 noinst_HEADERS = vm68kPCH1.h
 
 CLEANFILES = $(pkgconfig_DATA)

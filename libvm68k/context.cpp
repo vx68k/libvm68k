@@ -23,7 +23,7 @@
 #pragma hdrstop
 #endif
 
-#include <bits/vm68k/context.h>
+#include <bits/vm68k/internal/instruction.h>
 #include <utility>
 
 using namespace std;

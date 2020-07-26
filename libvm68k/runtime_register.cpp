@@ -22,10 +22,29 @@
 
 #include <bits/vm68k/internal/register.h>
 
+using std::move;
 using std::size_t;
 using namespace vm68k;
 
 runtime_register_file::runtime_register_file()
+{
+    // Nothing to do.
+}
+
+runtime_register_file::runtime_register_file(const runtime_register_file &other)
+:
+    register_file(other),
+    _d {other._d},
+    _a {other._a}
+{
+    // Nothing to do.
+}
+
+runtime_register_file::runtime_register_file(runtime_register_file &&other)
+:
+    register_file(move(other)),
+    _d {move(other._d)},
+    _a {move(other._a)}
 {
     // Nothing to do.
 }

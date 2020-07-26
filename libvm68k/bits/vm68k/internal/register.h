@@ -97,10 +97,9 @@ namespace vm68k
     public:
         runtime_register_file();
 
-        runtime_register_file(const runtime_register_file &) = delete;
+        runtime_register_file(const runtime_register_file &other);
 
-    public:
-        void operator =(const runtime_register_file &) = delete;
+        runtime_register_file(runtime_register_file &&other);
 
     public:
         virtual ~runtime_register_file();

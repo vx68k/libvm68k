@@ -32,6 +32,9 @@ namespace vm68k
     class _VM68K_PUBLIC runtime_execution_context: public execution_context
     {
     private:
+        std::shared_ptr<memory_map> _memory;
+
+    private:
         runtime_register_file _registers;
 
     private:
@@ -41,8 +44,17 @@ namespace vm68k
         runtime_execution_context(const std::shared_ptr<memory_map> &memory,
             long_word pc);
 
+        runtime_execution_context(std::shared_ptr<memory_map> &&memory,
+            long_word pc);
+
     public:
         virtual ~runtime_execution_context();
+
+    public:
+        auto memory() const -> std::shared_ptr<memory_map> final override
+        {
+            return _memory;
+        }
 
     public:
         register_file &registers() final override

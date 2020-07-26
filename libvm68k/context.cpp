@@ -25,6 +25,7 @@
 
 #include <bits/vm68k/internal/instruction.h>
 
+using std::move;
 using std::shared_ptr;
 using namespace vm68k;
 
@@ -35,7 +36,16 @@ using namespace vm68k;
 runtime_execution_context::runtime_execution_context(
     const shared_ptr<memory_map> &memory, const long_word pc)
 :
-    execution_context(memory),
+    _memory {memory},
+    _pc {pc}
+{
+    // Nothing to do.
+}
+
+runtime_execution_context::runtime_execution_context(
+    shared_ptr<memory_map> &&memory, const long_word pc)
+:
+    _memory {move(memory)},
     _pc {pc}
 {
     // Nothing to do.

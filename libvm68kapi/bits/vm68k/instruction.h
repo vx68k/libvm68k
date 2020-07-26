@@ -31,38 +31,18 @@ namespace vm68k
      */
     class _VM68KAPI_PUBLIC execution_context
     {
-    private:
-        std::shared_ptr<memory_map> _memory;
-
     protected:
-        execution_context(const std::shared_ptr<memory_map> &memory) noexcept
-        :
-            _memory {memory}
-        {
-            // Nothing to do.
-        }
+        execution_context() = default;
 
-        template<class M, class R>
-        execution_context(M &&memory)
-            noexcept(noexcept(std::shared_ptr<memory_map>(memory)))
-        :
-            _memory {memory}
-        {
-            // Nothing to do.
-        }
+        execution_context(const execution_context &) = default;
 
-        execution_context(const execution_context &) noexcept = default;
-
-        execution_context(execution_context &&) noexcept = default;
+        execution_context(execution_context &&) = default;
 
     public:
         virtual ~execution_context() = default;
 
     public:
-        auto memory() const noexcept -> const std::shared_ptr<memory_map> &
-        {
-            return _memory;
-        }
+        virtual auto memory() const -> std::shared_ptr<memory_map> = 0;
 
     public:
         virtual register_file &registers() = 0;

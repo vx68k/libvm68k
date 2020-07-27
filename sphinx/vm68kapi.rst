@@ -1,8 +1,8 @@
 libvm68k API
 ============
 
-<vm68k/data>
-------------
+Data types
+----------
 
 .. cpp:namespace:: vm68k
 
@@ -13,20 +13,20 @@ libvm68k API
 
    This type is trivial and standard-layout.
 
-.. cpp:function:: static constexpr std::size_t byte::size() noexcept
+   .. cpp:function:: static constexpr std::size_t size() noexcept
 
-   Returns the size of a :cpp:class:`byte` value on the architecture,
-   which is always 1.
+      Returns the size of a :cpp:class:`byte` value on the architecture,
+      which is always 1.
 
-.. cpp:function:: byte::byte() noexcept
+   .. cpp:function:: byte() = default
 
-   Constructs a :cpp:class:`byte` object with its default value.
+      Constructs a :cpp:class:`byte` object with its default value.
 
-   This constructor is explicitly defaulted.
+      This constructor is explicitly defaulted.
 
-.. cpp:function:: constexpr byte::byte(std::uint8_t value) noexcept
+   .. cpp:function:: constexpr byte(std::uint8_t value) noexcept
 
-   Constructs a :cpp:class:`byte` object with an initial value.
+      Constructs a :cpp:class:`byte` object with an initial value.
 
 .. cpp:function:: bool operator ==(byte x, byte y) noexcept
 .. cpp:function:: bool operator !=(byte x, byte y) noexcept
@@ -42,20 +42,20 @@ libvm68k API
 
    This type is trivial and standard-layout.
 
-.. cpp:function:: static constexpr std::size_t word::size() noexcept
+   .. cpp:function:: static constexpr std::size_t size() noexcept
 
-   Returns the size of a :cpp:class:`word` value on the architecture,
-   which is always 2.
+      Returns the size of a :cpp:class:`word` value on the architecture,
+      which is always 2.
 
-.. cpp:function:: word::word() noexcept
+   .. cpp:function:: word() = default
 
-   Constructs a :cpp:class:`word` object with its default value.
+      Constructs a :cpp:class:`word` object with its default value.
 
-   This constructor is explicitly defaulted.
+      This constructor is explicitly defaulted.
 
-.. cpp:function:: constexpr word::word(std::uint16_t value) noexcept
+   .. cpp:function:: constexpr word(std::uint16_t value) noexcept
 
-   Constructs a :cpp:class:`word` object with an initial value.
+      Constructs a :cpp:class:`word` object with an initial value.
 
 .. cpp:function:: bool operator ==(word x, word y) noexcept
 .. cpp:function:: bool operator !=(word x, word y) noexcept
@@ -71,20 +71,20 @@ libvm68k API
 
    This type is trivial and standard-layout.
 
-.. cpp:function:: static constexpr std::size_t long_word::size() noexcept
+   .. cpp:function:: static constexpr std::size_t size() noexcept
 
-   Returns the size of a :cpp:class:`long_word` value on the architecture,
-   which is always 4.
+      Returns the size of a :cpp:class:`long_word` value on the architecture,
+      which is always 4.
 
-.. cpp:function:: long_word::long_word() noexcept
+   .. cpp:function:: long_word() = default
 
-   Constructs a :cpp:class:`long_word` object with its default value.
+      Constructs a :cpp:class:`long_word` object with its default value.
 
-   This constructor is explicitly defaulted.
+      This constructor is explicitly defaulted.
 
-.. cpp:function:: constexpr long_word::long_word(std::uint32_t value) noexcept
+   .. cpp:function:: constexpr long_word(std::uint32_t value) noexcept
 
-   Constructs a :cpp:class:`long_word` object with an initial value.
+      Constructs a :cpp:class:`long_word` object with an initial value.
 
 .. cpp:function:: bool operator ==(long_word x, long_word y) noexcept
 .. cpp:function:: bool operator !=(long_word x, long_word y) noexcept

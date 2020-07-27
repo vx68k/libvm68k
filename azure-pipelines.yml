@@ -53,7 +53,7 @@ stages:
             artifact: dist
   - stage: Test
     jobs:
-      - job: Test
+      - job: Build
         strategy:
           matrix:
             Ubuntu:

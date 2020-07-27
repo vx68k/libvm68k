@@ -24,7 +24,7 @@ Data types
 
       This constructor is explicitly defaulted.
 
-   .. cpp:function:: constexpr byte(std::uint8_t value) noexcept
+   .. cpp:function:: constexpr explicit byte(std::uint8_t value) noexcept
 
       Constructs a :cpp:class:`byte` object with an initial value.
 
@@ -53,7 +53,7 @@ Data types
 
       This constructor is explicitly defaulted.
 
-   .. cpp:function:: constexpr word(std::uint16_t value) noexcept
+   .. cpp:function:: constexpr explicit word(std::uint16_t value) noexcept
 
       Constructs a :cpp:class:`word` object with an initial value.
 
@@ -82,7 +82,7 @@ Data types
 
       This constructor is explicitly defaulted.
 
-   .. cpp:function:: constexpr long_word(std::uint32_t value) noexcept
+   .. cpp:function:: constexpr explicit long_word(std::uint32_t value) noexcept
 
       Constructs a :cpp:class:`long_word` object with an initial value.
 

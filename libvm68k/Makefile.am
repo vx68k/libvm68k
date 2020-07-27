@@ -14,7 +14,7 @@ pkgconfig_DATA = vm68k.pc
 libvm68k_la_LDFLAGS = -version-info 1:0:0
 libvm68k_la_SOURCES = \
 runtime_register.cpp \
-context.cpp
+execution_context.cpp
 EXTRA_libvm68k_la_SOURCES = win32dll.cpp
 
 nobase_include_HEADERS = \

@@ -30,6 +30,10 @@ Header <vm68k/data> defines fundamental data types on the VM68000 ISA.
 
       Constructs a :cpp:class:`byte` object with an initial value.
 
+   .. cpp:function:: void swap(byte &other) noexcept
+
+      This function swaps the value of the object with another one.
+
 .. cpp:function:: bool operator ==(byte x, byte y) noexcept
 .. cpp:function:: bool operator !=(byte x, byte y) noexcept
 
@@ -59,6 +63,10 @@ Header <vm68k/data> defines fundamental data types on the VM68000 ISA.
 
       Constructs a :cpp:class:`word` object with an initial value.
 
+   .. cpp:function:: void swap(word &other) noexcept
+
+      This function swaps the value of the object with another one.
+
 .. cpp:function:: bool operator ==(word x, word y) noexcept
 .. cpp:function:: bool operator !=(word x, word y) noexcept
 
@@ -87,6 +95,10 @@ Header <vm68k/data> defines fundamental data types on the VM68000 ISA.
    .. cpp:function:: constexpr explicit long_word(std::uint32_t value) noexcept
 
       Constructs a :cpp:class:`long_word` object with an initial value.
+
+   .. cpp:function:: void swap(long_word &other) noexcept
+
+      This function swaps the value of the object with another one.
 
 .. cpp:function:: bool operator ==(long_word x, long_word y) noexcept
 .. cpp:function:: bool operator !=(long_word x, long_word y) noexcept

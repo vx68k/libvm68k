@@ -4,6 +4,8 @@ libvm68k API
 Data types
 ----------
 
+Header <vm68k/data> defines fundamental data types on the VM68000 ISA.
+
 .. cpp:namespace:: vm68k
 
 .. cpp:class:: byte

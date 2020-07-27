@@ -10,10 +10,10 @@ XFAIL_TESTS =
 CLEANFILES =
 
 if CPPUNIT
-check_PROGRAMS = test_data.exec test_memory.exec test_context.exec
+check_PROGRAMS = test_data.exec test_memory.exec test_runtime.exec
 check_SCRIPTS = runtest
 
-EXEC_TEST_LOG_COMPILER = $(SHELL) ./runtest
+EXEC_LOG_COMPILER = $(SHELL) ./runtest
 TESTS += $(check_PROGRAMS)
 CLEANFILES += $(check_SCRIPTS)
 endif
@@ -31,10 +31,10 @@ test_memory_exec_LDADD = $(top_builddir)/libvm68kapi/libvm68kapi.la \
 $(CPPUNIT_LIBS)
 test_memory_exec_SOURCES = main.cpp xmlreport.cpp test_memory.cpp
 
-test_context_exec_LDFLAGS = -no-install
-test_context_exec_LDADD = $(top_builddir)/libvm68k/libvm68k.la \
+test_runtime_exec_LDFLAGS = -no-install
+test_runtime_exec_LDADD = $(top_builddir)/libvm68k/libvm68k.la \
 $(top_builddir)/libvm68kapi/libvm68kapi.la $(CPPUNIT_LIBS)
-test_context_exec_SOURCES = main.cpp xmlreport.cpp test_context.cpp
+test_runtime_exec_SOURCES = main.cpp xmlreport.cpp test_runtime.cpp
 
 vm68k_test_SOURCES = vm68k_test.cpp Test_vm68kdata.cpp Test_vm68kmem.cpp
 vm68k_test_LDADD = ../libvm68k/libvm68k.la

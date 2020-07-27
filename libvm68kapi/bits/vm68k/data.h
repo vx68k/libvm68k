@@ -19,16 +19,17 @@
 #ifndef _VM68K_DATA_H
 #define _VM68K_DATA_H 1
 
-#include <bits/vm68kapi.h>
+#include <utility>
 #include <cstdint>
 #include <cstddef>
+#include <bits/vm68kapi.h>
 
 namespace vm68k
 {
     /// Byte (8-bit-wide) data.
     ///
     /// This type is trivial and standard-layout.
-    class _VM68K_API_PUBLIC byte
+    class _VM68KAPI_PUBLIC byte
     {
     public:
         using int_type = std::int8_t;
@@ -45,17 +46,22 @@ namespace vm68k
         }
 
     public:
-        byte() = default;
+        byte() noexcept = default;
 
-        constexpr byte(const std::uint8_t value) noexcept
-            : _value {value}
+        constexpr explicit byte(const std::uint8_t value) noexcept
+        :
+            _value {value}
         {
+            // Nothing to do.
         }
 
-        byte &operator =(const std::uint8_t value) noexcept
+    public:
+        /**
+         * Swap the content with another.
+         */
+        void swap(byte &other) noexcept
         {
-            _value = value;
-            return *this;
+            std::swap(_value, other._value);
         }
 
     public:
@@ -89,7 +95,7 @@ namespace vm68k
     /// Word (16-bit-wide) data.
     ///
     /// This type is trivial and standard-layout.
-    class _VM68K_API_PUBLIC word
+    class _VM68KAPI_PUBLIC word
     {
     public:
         using int_type = std::int16_t;
@@ -106,17 +112,22 @@ namespace vm68k
         }
 
     public:
-        word() = default;
+        word() noexcept = default;
 
-        constexpr word(const std::uint16_t value) noexcept
-            : _value {value}
+        constexpr explicit word(const std::uint16_t value) noexcept
+        :
+            _value {value}
         {
+            // Nothing to do.
         }
 
-        word &operator =(const std::uint16_t value) noexcept
+    public:
+        /**
+         * Swap the content with another.
+         */
+        void swap(word &other) noexcept
         {
-            _value = value;
-            return *this;
+            std::swap(_value, other._value);
         }
 
     public:
@@ -152,7 +163,7 @@ namespace vm68k
     /// Long word (32-bit-wide) data.
     ///
     /// This type is trivial and standard-layout.
-    class _VM68K_API_PUBLIC long_word
+    class _VM68KAPI_PUBLIC long_word
     {
     public:
         using int_type = std::int32_t;
@@ -169,17 +180,22 @@ namespace vm68k
         }
 
     public:
-        long_word() = default;
+        long_word() noexcept = default;
 
-        constexpr long_word(const std::uint32_t value) noexcept
-            : _value {value}
+        constexpr explicit long_word(const std::uint32_t value) noexcept
+        :
+            _value {value}
         {
+            // Nothing to do.
         }
 
-        long_word &operator =(const std::uint32_t value) noexcept
+    public:
+        /**
+         * Swap the content with another.
+         */
+        void swap(long_word &other) noexcept
         {
-            _value = value;
-            return *this;
+            std::swap(_value, other._value);
         }
 
     public:
@@ -215,6 +231,26 @@ namespace vm68k
             return i;
         }
     };
+}
+
+// Specializations.
+
+template<>
+inline void std::swap(vm68k::byte &x, vm68k::byte &y) noexcept
+{
+    x.swap(y);
+}
+
+template<>
+inline void std::swap(vm68k::word &x, vm68k::word &y) noexcept
+{
+    x.swap(y);
+}
+
+template<>
+inline void std::swap(vm68k::long_word &x, vm68k::long_word &y) noexcept
+{
+    x.swap(y);
 }
 
 #endif

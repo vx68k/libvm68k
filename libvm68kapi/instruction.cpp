@@ -1,5 +1,5 @@
-// <bits/vm68k/context.h>
-// Copyright (C) 2012-2019 Kaz Nishimura
+// instruction.cpp
+// Copyright (C) 2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -16,37 +16,10 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68K_CONTEXT_H
-#define _VM68K_CONTEXT_H 1
-
-#include <bits/vm68k/register.h>
-#include <bits/vm68kcore.h>
-#include <vm68k/memory>
-#include <memory>
-#include <utility>
-
-namespace vm68k
-{
-    /*
-     * Execution context.
-     */
-    class _VM68KCORE_PUBLIC context
-    {
-    private:
-        std::shared_ptr<memory_map> _memory;
-
-    public:
-        explicit context(const std::shared_ptr<memory_map> &memory);
-
-    public:
-        virtual ~context();
-
-    public:
-        const std::shared_ptr<memory_map> &memory() const noexcept
-        {
-            return _memory;
-        }
-    };
-}
-
+#if HAVE_CONFIG_H
+#include <config.h>
 #endif
+
+#include <bits/vm68k/instruction.h>
+
+using namespace vm68k;

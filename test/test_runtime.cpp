@@ -1,5 +1,5 @@
-// test_context.cpp
-// Copyright (C) 2012-2019 Kaz Nishimura
+// test_runtime.cpp
+// Copyright (C) 2012-2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -23,7 +23,7 @@
 #pragma hdrstop
 #endif
 
-#include <bits/vm68k/context.h>
+#include <vm68k/runtime>
 
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/TestFixture.h>
@@ -75,12 +75,12 @@ class ContextTests : public TestFixture {
     CPPUNIT_TEST_SUITE_END();
 
 private:
-    shared_ptr<context> _context;
+    shared_ptr<runtime_execution_context> _context;
 
 public:
     void setUp() override {
         auto memory = make_shared<test_memory_map>();
-        _context.reset(new context(memory));
+        _context.reset(new runtime_execution_context(memory, long_word(0)));
     }
 
     void tearDown() override {

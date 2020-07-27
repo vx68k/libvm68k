@@ -1,4 +1,4 @@
-// <bits/vm68k/register.h>
+// register.cpp
 // Copyright (C) 2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -16,31 +16,10 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68K_REGISTER_H
-#define _VM68K_REGISTER_H 1
-
-#include <bits/vm68kcore.h>
-#include <cstdint>
-
-namespace vm68k
-{
-    class _VM68KCORE_PUBLIC d_register
-    {
-    private:
-        std::uint32_t _value;
-
-    public:
-        d_register() = default;
-    };
-
-    class _VM68KCORE_PUBLIC a_register
-    {
-    private:
-        std::uint32_t _value;
-
-    public:
-        a_register() = default;
-    };
-}
-
+#if HAVE_CONFIG_H
+#include <config.h>
 #endif
+
+#include <bits/vm68k/register.h>
+
+using namespace vm68k;

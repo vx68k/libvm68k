@@ -74,7 +74,7 @@ pygments_style = None
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'pyramid'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -106,6 +106,8 @@ htmlhelp_basename = 'libvm68kdoc'
 
 # -- Options for LaTeX output ------------------------------------------------
 
+latex_engine = 'lualatex'
+
 latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     #
@@ -129,7 +131,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'libvm68k.tex', 'libvm68k Documentation',
+    (master_doc, 'libvm68k.tex', 'libvm68k Reference Manual',
      'Kaz Nishimura', 'manual'),
 ]
 
@@ -174,5 +176,7 @@ epub_title = project
 epub_exclude_files = ['search.html']
 
 
-# ...
+# -- Customization
+
+# A list of prefixes that should be hidden in the index.
 cpp_index_common_prefix = ["vm68k::"]

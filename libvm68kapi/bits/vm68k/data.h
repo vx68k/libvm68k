@@ -26,9 +26,12 @@
 
 namespace vm68k
 {
-    /// Byte (8-bit-wide) data.
-    ///
-    /// This type is trivial and standard-layout.
+    /**
+     * Byte data on the VM68000 arthitecture.
+     * A byte is 8-bit wide.
+     *
+     * This type is trivial and standard-layout.
+     */
     class _VM68KAPI_PUBLIC byte
     {
     public:
@@ -92,9 +95,12 @@ namespace vm68k
         }
     };
 
-    /// Word (16-bit-wide) data.
-    ///
-    /// This type is trivial and standard-layout.
+    /**
+     * Word data on the VM68000 architecture.
+     * A word is 16-bit wide.
+     *
+     * This type is trivial and standard-layout.
+     */
     class _VM68KAPI_PUBLIC word
     {
     public:
@@ -160,9 +166,12 @@ namespace vm68k
         }
     };
 
-    /// Long word (32-bit-wide) data.
-    ///
-    /// This type is trivial and standard-layout.
+    /**
+     * Long word data on the VM68000 architecture.
+     * A long word is 32-bit wide.
+     *
+     * This type is trivial and standard-layout.
+     */
     class _VM68KAPI_PUBLIC long_word
     {
     public:

@@ -19,10 +19,10 @@
 #ifndef _VM68K_DATA_H
 #define _VM68K_DATA_H 1
 
+#include <bits/vm68kapi.h>
 #include <utility>
 #include <cstdint>
 #include <cstddef>
-#include <bits/vm68kapi.h>
 
 namespace vm68k
 {
@@ -57,7 +57,7 @@ namespace vm68k
 
     public:
         /**
-         * Swap the content with another.
+         * Swaps the value of the object with another one.
          */
         void swap(byte &other) noexcept
         {
@@ -123,7 +123,7 @@ namespace vm68k
 
     public:
         /**
-         * Swap the content with another.
+         * Swaps the value of the object with another one.
          */
         void swap(word &other) noexcept
         {
@@ -191,7 +191,7 @@ namespace vm68k
 
     public:
         /**
-         * Swap the content with another.
+         * Swaps the value of the object with another one.
          */
         void swap(long_word &other) noexcept
         {

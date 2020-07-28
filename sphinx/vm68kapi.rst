@@ -10,7 +10,7 @@ Header <vm68k/data> defines fundamental data types on the VM68000 architecture.
 
 .. cpp:class:: byte
 
-   Byte class on the architecture.
+   This represents byte data on the VM68000 architecture.
    A byte is 8-bit wide.
 
    This type is trivial and standard-layout.
@@ -34,6 +34,12 @@ Header <vm68k/data> defines fundamental data types on the VM68000 architecture.
 
       This function swaps the value of the object with another one.
 
+   .. cpp:function:: constexpr std::int8_t to_int() const noexcept
+                     constexpr std::uint8_t to_uint() const noexcept
+
+      These functions return the interpretations of the object as signed and
+      unsigned integers respectively.
+
 .. cpp:function:: bool operator ==(byte x, byte y) noexcept
 .. cpp:function:: bool operator !=(byte x, byte y) noexcept
 
@@ -43,7 +49,7 @@ Header <vm68k/data> defines fundamental data types on the VM68000 architecture.
 
 .. cpp:class:: word
 
-   Word class on the architecture.
+   This represents word data on the VM68000 architecture.
    A word is 16-bit wide.
 
    This type is trivial and standard-layout.
@@ -67,6 +73,12 @@ Header <vm68k/data> defines fundamental data types on the VM68000 architecture.
 
       This function swaps the value of the object with another one.
 
+   .. cpp:function:: constexpr std::int16_t to_int() const noexcept
+                     constexpr std::uint16_t to_uint() const noexcept
+
+      These functions return the interpretations of the object as signed and
+      unsigned integers respectively.
+
 .. cpp:function:: bool operator ==(word x, word y) noexcept
 .. cpp:function:: bool operator !=(word x, word y) noexcept
 
@@ -76,7 +88,7 @@ Header <vm68k/data> defines fundamental data types on the VM68000 architecture.
 
 .. cpp:class:: long_word
 
-   Long word class on the architecture.
+   This represents long word data on the VM68000 architecture.
    A long word is 32-bit wide.
 
    This type is trivial and standard-layout.
@@ -99,6 +111,12 @@ Header <vm68k/data> defines fundamental data types on the VM68000 architecture.
    .. cpp:function:: void swap(long_word &other) noexcept
 
       This function swaps the value of the object with another one.
+
+   .. cpp:function:: constexpr std::int32_t to_int() const noexcept
+                     constexpr std::uint32_t to_uint() const noexcept
+
+      These functions return the interpretations of the object as signed and
+      unsigned integers respectively.
 
 .. cpp:function:: bool operator ==(long_word x, long_word y) noexcept
 .. cpp:function:: bool operator !=(long_word x, long_word y) noexcept

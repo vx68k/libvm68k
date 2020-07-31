@@ -1,5 +1,5 @@
 // memory.cpp
-// Copyright (C) 2012-2019 Kaz Nishimura
+// Copyright (C) 2012-2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -31,64 +31,6 @@
 #endif
 
 using namespace vm68k;
-
-memory::memory()
-{
-}
-
-memory::~memory()
-{
-}
-
-void memory::relocate(address_type)
-{
-}
-
-// Class 'read_write_memory' implementation.
-
-std::unique_ptr<read_write_memory::byte_type []>
-read_write_memory::allocate(const size_type size)
-{
-    return std::unique_ptr<byte_type []>(new byte_type [size]);
-}
-
-read_write_memory::read_write_memory(const size_type size)
-    : _size(size), _data(allocate(size))
-{
-    std::declare_no_pointers(reinterpret_cast<char *>(_data.get()), _size);
-}
-
-read_write_memory::~read_write_memory()
-{
-    std::undeclare_no_pointers(reinterpret_cast<char *>(_data.get()), _size);
-}
-
-memory::size_type read_write_memory::size() const noexcept
-{
-    return _size;
-}
-
-void read_write_memory::read(const mode m, const address_type address,
-    const size_type n, void *const bytes)
-{
-    check_read_access(m, address, n);
-}
-
-void read_write_memory::write(const mode m, const address_type address,
-    const size_type n, const void *const bytes)
-{
-    check_write_access(m, address, n);
-}
-
-void read_write_memory::check_read_access(const mode, const address_type,
-    const size_type)
-{
-}
-
-void read_write_memory::check_write_access(const mode, const address_type,
-    const size_type)
-{
-}
 
 memory_map::memory_map()
 {

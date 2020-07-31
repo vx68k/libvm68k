@@ -21,5 +21,6 @@
 
 #include <bits/vm68k/internal/instruction.h>
 #include <bits/vm68k/internal/register.h>
+#include <bits/vm68k/memory.h>
 
 #endif

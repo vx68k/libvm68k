@@ -45,6 +45,16 @@ Header <vm68k/data> defines fundamental data types on the VM68000 architecture.
       These functions return the interpretations of the object as signed and
       unsigned integers respectively.
 
+   .. cpp:function:: template<class Iterator> \
+                     Iterator serialize(Iterator i) const
+
+      This function serializes the value of the object to a sequence of bytes.
+
+   .. cpp:function:: template<class Iterator> \
+                     Iterator deserialize(Iterator i)
+
+      This function deserializes the value of the object from a sequence of bytes.
+
 .. cpp:function:: bool operator ==(byte x, byte y) noexcept
 .. cpp:function:: bool operator !=(byte x, byte y) noexcept
 
@@ -89,6 +99,16 @@ Header <vm68k/data> defines fundamental data types on the VM68000 architecture.
       These functions return the interpretations of the object as signed and
       unsigned integers respectively.
 
+   .. cpp:function:: template<class Iterator> \
+                     Iterator serialize(Iterator i) const
+
+      This function serializes the value of the object to a sequence of bytes.
+
+   .. cpp:function:: template<class Iterator> \
+                     Iterator deserialize(Iterator i)
+
+      This function deserializes the value of the object from a sequence of bytes.
+
 .. cpp:function:: bool operator ==(word x, word y) noexcept
 .. cpp:function:: bool operator !=(word x, word y) noexcept
 
@@ -132,6 +152,16 @@ Header <vm68k/data> defines fundamental data types on the VM68000 architecture.
 
       These functions return the interpretations of the object as signed and
       unsigned integers respectively.
+
+   .. cpp:function:: template<class Iterator> \
+                     Iterator serialize(Iterator i) const
+
+      This function serializes the value of the object to a sequence of bytes.
+
+   .. cpp:function:: template<class Iterator> \
+                     Iterator deserialize(Iterator i)
+
+      This function deserializes the value of the object from a sequence of bytes.
 
 .. cpp:function:: bool operator ==(long_word x, long_word y) noexcept
 .. cpp:function:: bool operator !=(long_word x, long_word y) noexcept

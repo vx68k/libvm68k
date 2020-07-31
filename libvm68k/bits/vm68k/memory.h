@@ -19,6 +19,7 @@
 #ifndef _VM68K_MEMORY_H
 #define _VM68K_MEMORY_H 1
 
+#include <bits/vm68kcore.h>
 #include <vm68k/memory>
 #include <memory>
 
@@ -28,7 +29,7 @@ namespace vm68k
      * <author>Kaz Nishimura</author>
      * <since>2.0</since>
      */
-    class _VM68KAPI_PUBLIC memory
+    class _VM68K_PUBLIC memory
     {
     public:
         using mode = memory_map::mode;
@@ -69,7 +70,7 @@ namespace vm68k
     };
 
     /// Read-write memory.
-    class _VM68KAPI_PUBLIC read_write_memory : public memory
+    class _VM68K_PUBLIC read_write_memory : public memory
     {
         using inherited = memory;
 

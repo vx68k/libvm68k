@@ -20,7 +20,8 @@ bits/vm68k/instruction.h \
 bits/vm68k/virtual_machine.h
 
 libvm68kapi_la_LDFLAGS = -version-info 1:0:0
-libvm68kapi_la_SOURCES = data.cpp memory.cpp \
+libvm68kapi_la_SOURCES = data.cpp \
+memory_map.cpp \
 register.cpp \
 instruction.cpp \
 virtual_machine.cpp

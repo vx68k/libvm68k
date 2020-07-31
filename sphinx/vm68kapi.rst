@@ -15,6 +15,11 @@ Header <vm68k/data> defines fundamental data types on the VM68000 architecture.
 
    This type is trivial and standard-layout.
 
+   .. cpp:type:: int_type = std::int8_t
+                 uint_type = std::uint8_t
+
+      Signed and unsigned integer types this class can store values, respectively.
+
    .. cpp:function:: static constexpr std::size_t size() noexcept
 
       Returns the size of a :cpp:class:`byte` value on the architecture,
@@ -54,6 +59,11 @@ Header <vm68k/data> defines fundamental data types on the VM68000 architecture.
 
    This type is trivial and standard-layout.
 
+   .. cpp:type:: int_type = std::int16_t
+                 uint_type = std::uint16_t
+
+      Signed and unsigned integer types this class can store values, respectively.
+
    .. cpp:function:: static constexpr std::size_t size() noexcept
 
       Returns the size of a :cpp:class:`word` value on the architecture,
@@ -92,6 +102,11 @@ Header <vm68k/data> defines fundamental data types on the VM68000 architecture.
    A long word is 32-bit wide.
 
    This type is trivial and standard-layout.
+
+   .. cpp:type:: int_type = std::int32_t
+                 uint_type = std::uint32_t
+
+      Signed and unsigned integer types this class can store values, respectively.
 
    .. cpp:function:: static constexpr std::size_t size() noexcept
 

@@ -32,12 +32,34 @@
 
 using namespace vm68k;
 
-memory_map::memory_map()
+// Implementation of the paged memory maps.
+
+paged_memory_map::paged_memory_map()
+:
+    paged_memory_map(0xffffffffUL)
 {
+    // Nothing to do.
 }
 
-memory_map::~memory_map()
+paged_memory_map::paged_memory_map(const address_type address_mask)
+:
+    paged_memory_map(address_mask, PAGE_SIZE_MIN)
 {
+    // Nothing to do.
+}
+
+paged_memory_map::paged_memory_map(const address_type address_mask,
+    const size_type page_size)
+:
+    _address_mask {address_mask},
+    _page_size {page_size}
+{
+    // Nothing to do.
+}
+
+paged_memory_map::~paged_memory_map()
+{
+    // Nothing to do.
 }
 
 /*

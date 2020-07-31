@@ -41,17 +41,17 @@ namespace vm68k
         using address_type = std::uint_fast32_t;
         using size_type = std::size_t;
 
-    public:
+    protected:
         /**
          * <stereotype>constructor</stereotype>
          */
-        memory_map();
+        memory_map() = default;
 
     public:
         /**
          * <stereotype>destructor</stereotype>
          */
-        virtual ~memory_map();
+        virtual ~memory_map() = default;
 
     public:
         // Reads a sequence of bytes.
@@ -61,6 +61,43 @@ namespace vm68k
         // Writes a sequence of bytes.
         virtual void write(mode m, address_type address, size_type n,
             const void *bytes) = 0;
+    };
+
+    /**
+     * Paged memory maps.
+     */
+    class _VM68KAPI_PUBLIC paged_memory_map: public memory_map
+    {
+    public:
+        static const size_type PAGE_SIZE_MIN = 0x1000U;
+
+    private:
+        address_type _address_mask;
+
+    private:
+        size_type _page_size;
+
+    public:
+        paged_memory_map();
+
+        explicit paged_memory_map(address_type address_mask);
+
+        paged_memory_map(address_type address_mask, size_type page_size);
+
+    public:
+        virtual ~paged_memory_map();
+
+    public:
+        address_type address_mask() const noexcept
+        {
+            return _address_mask;
+        }
+
+    public:
+        size_type page_size() const noexcept
+        {
+            return _page_size;
+        }
     };
 
     class _VM68KAPI_PUBLIC memory_exception : public std::exception {

@@ -24,7 +24,7 @@
 #endif
 
 #define _VM68K_MEMORY_IMPLEMENTATION 1
-#include <bits/vm68k/memory.h>
+#include <bits/vm68k/memory_map.h>
 
 #if __BORLANDC__
 #pragma package(smart_init)

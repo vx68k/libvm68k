@@ -1,4 +1,4 @@
-// <bits/vm68k/memory.h>
+// <bits/vm68k/memory_map.h>
 // Copyright (C) 2012-2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -16,8 +16,8 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68K_MEMORY_H
-#define _VM68K_MEMORY_H 1
+#ifndef _VM68K_MEMORY_MAP_H
+#define _VM68K_MEMORY_MAP_H 1
 
 #include <bits/vm68kapi.h>
 #include <memory>

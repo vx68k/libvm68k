@@ -43,7 +43,7 @@ paged_memory_map::paged_memory_map()
 
 paged_memory_map::paged_memory_map(const address_type address_mask)
 :
-    paged_memory_map(address_mask, PAGE_SIZE_MIN)
+    paged_memory_map(address_mask, DEFAULT_PAGE_SIZE)
 {
     // Nothing to do.
 }

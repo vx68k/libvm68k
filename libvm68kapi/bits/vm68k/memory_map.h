@@ -68,7 +68,7 @@ namespace vm68k
     class _VM68KAPI_PUBLIC paged_memory_map: public memory_map
     {
     public:
-        static const size_type PAGE_SIZE_MIN = 0x1000U;
+        static const size_type DEFAULT_PAGE_SIZE = 0x1000U;
 
     private:
         address_type _address_mask;

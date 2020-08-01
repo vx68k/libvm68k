@@ -20,7 +20,6 @@
 #define _VM68K_MEMORY_MAP_H 1
 
 #include <bits/vm68kapi.h>
-#include <exception>
 #include <cstdint>
 
 namespace vm68k
@@ -98,41 +97,6 @@ namespace vm68k
         {
             return _page_size;
         }
-    };
-
-    class _VM68KAPI_PUBLIC memory_exception : public std::exception {
-        typedef std::exception inherited;
-
-    public:
-        explicit memory_exception(memory_map::address_type address) noexcept;
-
-        memory_map::address_type error_address() const noexcept {
-            return _error_address;
-        }
-
-        const char *what() const noexcept override;
-    private:
-        memory_map::address_type _error_address;
-    };
-
-    class _VM68KAPI_PUBLIC bus_error : public memory_exception {
-        typedef memory_exception inherited;
-
-    public:
-        explicit bus_error(memory_map::address_type address) noexcept;
-        bus_error(const bus_error &x) noexcept;
-        bus_error &operator =(const bus_error &x) noexcept;
-        const char *what() const noexcept override;
-    };
-
-    class _VM68KAPI_PUBLIC address_error : public memory_exception {
-        typedef memory_exception inherited;
-
-    public:
-        address_error(memory_map::address_type address) noexcept;
-        address_error(const address_error &x) noexcept;
-        address_error &operator =(const address_error &x) noexcept;
-        const char *what() const noexcept override;
     };
 }
 

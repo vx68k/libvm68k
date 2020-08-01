@@ -19,6 +19,7 @@
 #ifndef _VM68K_MEMORY
 #define _VM68K_MEMORY 1
 
+#include <bits/vm68k/memory_exception.h>
 #include <bits/vm68k/memory_map.h>
 
 #endif

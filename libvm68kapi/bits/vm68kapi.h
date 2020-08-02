@@ -21,7 +21,7 @@
 
 #ifndef _VM68KAPI_PUBLIC
 #if _WIN32
-#if _LIBVX68KAPI
+#if _LIBVM68KAPI
 #if DLL_EXPORT
 #define _VM68KAPI_PUBLIC __declspec(dllexport)
 #endif

@@ -30,7 +30,7 @@ namespace vm68k
         using address_type = memory_map::address_type;
 
     private:
-        memory_map::address_type _error_address;
+        address_type _error_address;
 
     public:
         explicit memory_exception(address_type error_address) noexcept;

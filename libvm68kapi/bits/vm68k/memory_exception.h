@@ -24,23 +24,37 @@
 
 namespace vm68k
 {
-    class _VM68KAPI_PUBLIC memory_exception : public std::exception
+    class _VM68KAPI_PUBLIC memory_exception: public std::exception
     {
-        typedef std::exception inherited;
+    public:
+        using address_type = memory_map::address_type;
+
+    private:
+        memory_map::address_type _error_address;
 
     public:
-        explicit memory_exception(memory_map::address_type address) noexcept;
+        explicit memory_exception(address_type error_address) noexcept;
 
-        memory_map::address_type error_address() const noexcept {
+        memory_exception(const memory_exception &other) noexcept;
+
+    public:
+        memory_exception &operator =(const memory_exception &other) noexcept;
+
+    public:
+        virtual ~memory_exception();
+
+    public:
+        address_type error_address() const noexcept
+        {
             return _error_address;
         }
 
+    public:
         const char *what() const noexcept override;
-    private:
-        memory_map::address_type _error_address;
     };
 
-    class _VM68KAPI_PUBLIC bus_error : public memory_exception {
+    class _VM68KAPI_PUBLIC bus_error : public memory_exception
+    {
         typedef memory_exception inherited;
 
     public:

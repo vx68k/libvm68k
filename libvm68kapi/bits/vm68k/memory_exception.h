@@ -30,10 +30,10 @@ namespace vm68k
         using address_type = memory_map::address_type;
 
     private:
-        address_type _error_address;
+        address_type _fault_address;
 
     public:
-        explicit memory_exception(address_type error_address) noexcept;
+        explicit memory_exception(address_type fault_address) noexcept;
 
         memory_exception(const memory_exception &other) noexcept;
 
@@ -44,9 +44,9 @@ namespace vm68k
         virtual ~memory_exception();
 
     public:
-        address_type error_address() const noexcept
+        address_type fault_address() const noexcept
         {
-            return _error_address;
+            return _fault_address;
         }
 
     public:

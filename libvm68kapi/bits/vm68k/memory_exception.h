@@ -53,14 +53,20 @@ namespace vm68k
         const char *what() const noexcept override;
     };
 
-    class _VM68KAPI_PUBLIC bus_error : public memory_exception
+    /**
+     * Bus errors.
+     */
+    class _VM68KAPI_PUBLIC bus_error: public memory_exception
     {
-        typedef memory_exception inherited;
+    public:
+        explicit bus_error(address_type fault_address) noexcept
+        :
+            memory_exception(fault_address)
+        {
+            // Nothing more to do.
+        }
 
     public:
-        explicit bus_error(memory_map::address_type address) noexcept;
-        bus_error(const bus_error &x) noexcept;
-        bus_error &operator =(const bus_error &x) noexcept;
         const char *what() const noexcept override;
     };
 

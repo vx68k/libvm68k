@@ -24,5 +24,5 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: Version ${{ steps.set-version.outputs.version }}
           body: |
-            This is ${{ steps.set-version.outputs.version }} of....
+            This is version ${{ steps.set-version.outputs.version }} of ....
           draft: true

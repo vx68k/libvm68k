@@ -20,6 +20,8 @@
 #define _VM68K_MEMORY_MAP_H 1
 
 #include <bits/vm68kapi.h>
+#include <vector>
+#include <memory>
 #include <cstdint>
 
 namespace vm68k
@@ -68,6 +70,9 @@ namespace vm68k
     class _VM68KAPI_PUBLIC paged_memory_map: public memory_map
     {
     public:
+        class _VM68KAPI_PUBLIC memory;
+
+    public:
         static const size_type DEFAULT_PAGE_SIZE = 0x1000U;
 
     private:
@@ -75,6 +80,9 @@ namespace vm68k
 
     private:
         size_type _page_size;
+
+    private:
+        std::vector<std::shared_ptr<memory>> _pages;
 
     public:
         paged_memory_map();
@@ -97,6 +105,49 @@ namespace vm68k
         {
             return _page_size;
         }
+
+    public:
+        /**
+         * Memory objects mapped to the paged memory map.
+         */
+        class memory
+        {
+        protected:
+            memory() = default;
+
+            memory(const memory &) = delete;
+
+        public:
+            void operator =(const memory &) = delete;
+
+        public:
+            virtual ~memory() = default;
+
+        public:
+            /**
+             * Returns the size of the memory object.
+             */
+            virtual size_type size() const noexcept = 0;
+
+            /**
+             * Changes the base address of the memory object.
+             *
+             * This implementation does nothing.
+             */
+            virtual void relocate(address_type base);
+
+            /**
+             * Reads a sequence of bytes from the memory object.
+             */
+            virtual void read(mode mode, address_type address, size_type n,
+                void *bytes) = 0;
+
+            /**
+             * Writes a sequence of bytes to the memory object.
+             */
+            virtual void write(mode mode, address_type address, size_type n,
+                const void *bytes) = 0;
+        };
     };
 }
 

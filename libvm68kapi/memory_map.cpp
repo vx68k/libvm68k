@@ -61,3 +61,8 @@ paged_memory_map::~paged_memory_map()
 {
     // Nothing to do.
 }
+
+void paged_memory_map::memory::relocate(address_type)
+{
+    // Nothing to do.
+}

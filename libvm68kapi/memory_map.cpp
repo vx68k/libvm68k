@@ -91,14 +91,14 @@ paged_memory_map::paged_memory_map(const address_type address_mask,
     _address_mask {address_mask},
     _page_size {page_size}
 {
-    if (((_address_mask + 1) & _address_mask) != 0) {
+    if (((_address_mask + 1U) & _address_mask) != 0U) {
         throw invalid_argument("invalid address mask");
     }
-    if ((_page_size & (_page_size - 1)) != 0) {
+    if ((_page_size & (_page_size - 1U)) != 0U) {
         throw invalid_argument("invalid page size");
     }
 
-    _pages.resize(_address_mask / _page_size + 1, NO_MEMORY);
+    _pages.resize(_address_mask / _page_size + 1U, NO_MEMORY);
 }
 
 paged_memory_map::~paged_memory_map()

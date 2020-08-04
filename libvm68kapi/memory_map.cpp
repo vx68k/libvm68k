@@ -26,6 +26,7 @@
 #define _VM68K_MEMORY_IMPLEMENTATION 1
 #include <bits/vm68k/memory_map.h>
 
+#include <bits/vm68k/memory_exception.h>
 #include <stdexcept>
 
 #if __BORLANDC__
@@ -33,7 +34,39 @@
 #endif
 
 using std::invalid_argument;
+using std::make_shared;
 using namespace vm68k;
+
+namespace
+{
+    class bus_error_memory: public paged_memory_map::memory
+    {
+    public:
+        using mode = memory_map::mode;
+        using address_type = memory_map::address_type;
+        using size_type = memory_map::size_type;
+
+    public:
+        size_type size() const noexcept override
+        {
+            return 0U;
+        }
+
+    public:
+        void read(mode, address_type address, size_type, void *) override
+        {
+            throw bus_error(address);
+        }
+
+    public:
+        void write(mode, address_type address, size_type, const void *) override
+        {
+            throw bus_error(address);
+        }
+    };
+}
+
+static const auto NO_MEMORY = make_shared<bus_error_memory>();
 
 
 // Implementation of the paged memory maps.
@@ -65,7 +98,7 @@ paged_memory_map::paged_memory_map(const address_type address_mask,
         throw invalid_argument("invalid page size");
     }
 
-    _pages.resize(_address_mask / _page_size + 1);
+    _pages.resize(_address_mask / _page_size + 1, NO_MEMORY);
 }
 
 paged_memory_map::~paged_memory_map()

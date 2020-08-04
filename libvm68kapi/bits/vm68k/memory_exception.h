@@ -70,13 +70,20 @@ namespace vm68k
         const char *what() const noexcept override;
     };
 
-    class _VM68KAPI_PUBLIC address_error : public memory_exception {
-        typedef memory_exception inherited;
+    /**
+     * Address errors.
+     */
+    class _VM68KAPI_PUBLIC address_error: public memory_exception
+    {
+    public:
+        address_error(address_type fault_address) noexcept
+        :
+            memory_exception(fault_address)
+        {
+            // Nothing more to do.
+        }
 
     public:
-        address_error(memory_map::address_type address) noexcept;
-        address_error(const address_error &x) noexcept;
-        address_error &operator =(const address_error &x) noexcept;
         const char *what() const noexcept override;
     };
 }

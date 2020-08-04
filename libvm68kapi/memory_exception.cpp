@@ -68,23 +68,10 @@ const char *bus_error::what() const noexcept
     return "vm68k::bus_error";
 }
 
-/*
- * address_error
- */
 
-address_error::address_error(memory_map::address_type address) noexcept
-        : inherited(address) {
-}
+// Implementation of the address errors.
 
-address_error::address_error(const address_error &x) noexcept
-        : memory_exception(x) {
-}
-
-address_error &address_error::operator =(const address_error &x) noexcept {
-    *static_cast<memory_exception *>(this) = x;
-    return *this;
-}
-
-const char *address_error::what() const noexcept {
+const char *address_error::what() const noexcept
+{
     return "vm68k::address_error";
 }

@@ -26,11 +26,15 @@
 #define _VM68K_MEMORY_IMPLEMENTATION 1
 #include <bits/vm68k/memory_map.h>
 
+#include <stdexcept>
+
 #if __BORLANDC__
 #pragma package(smart_init)
 #endif
 
+using std::invalid_argument;
 using namespace vm68k;
+
 
 // Implementation of the paged memory maps.
 
@@ -54,7 +58,12 @@ paged_memory_map::paged_memory_map(const address_type address_mask,
     _address_mask {address_mask},
     _page_size {page_size}
 {
-    // Nothing to do.
+    if (((_address_mask + 1) & _address_mask) != 0) {
+        throw invalid_argument("invalid address mask");
+    }
+    if ((_page_size & (_page_size - 1)) != 0) {
+        throw invalid_argument("invalid page size");
+    }
 }
 
 paged_memory_map::~paged_memory_map()

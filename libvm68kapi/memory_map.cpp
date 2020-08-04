@@ -64,6 +64,8 @@ paged_memory_map::paged_memory_map(const address_type address_mask,
     if ((_page_size & (_page_size - 1)) != 0) {
         throw invalid_argument("invalid page size");
     }
+
+    _pages.resize(_address_mask / _page_size + 1);
 }
 
 paged_memory_map::~paged_memory_map()

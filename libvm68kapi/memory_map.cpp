@@ -42,19 +42,19 @@ namespace
     class bus_error_memory: public paged_memory_map::memory
     {
     public:
-        size_type size() const noexcept override
+        size_type size() const noexcept final override
         {
             return 0U;
         }
 
     public:
-        void read(mode, address_type address, size_type, void *) override
+        void read(mode, address_type address, size_type, void *) final override
         {
             throw bus_error(address);
         }
 
     public:
-        void write(mode, address_type address, size_type, const void *) override
+        void write(mode, address_type address, size_type, const void *) final override
         {
             throw bus_error(address);
         }

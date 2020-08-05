@@ -25,6 +25,7 @@ memory.cpp \
 runtime_register.cpp \
 execution_context.cpp
 EXTRA_libvm68k_la_SOURCES = win32dll.cpp
+libvm68k_la_LIBADD = $(top_builddir)/libvm68kapi/libvm68kapi.la
 
 CLEANFILES = $(pkgconfig_DATA)
 

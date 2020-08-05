@@ -25,52 +25,8 @@
 
 namespace vm68k
 {
-    /**
-     * <author>Kaz Nishimura</author>
-     * <since>2.0</since>
-     */
-    class _VM68K_PUBLIC memory
-    {
-    public:
-        using mode = memory_map::mode;
-        using address_type = memory_map::address_type;
-        using size_type = memory_map::size_type;
-
-    protected:
-        /**
-         * <stereotype>constructor</stereotype>
-         */
-        memory();
-
-        memory(const memory &) = delete;
-        memory &operator =(const memory &) = delete;
-
-    public:
-        /**
-         * <stereotype>destructor</stereotype>
-         */
-        virtual ~memory() = 0;
-
-    public:
-        // Changes the base address of this memory.
-        //
-        // This implementation does nothing.
-        virtual void relocate(address_type base);
-
-        // Returns the size of this memory object.
-        virtual size_type size() const noexcept = 0;
-
-        // Reads a sequence of bytes.
-        virtual void read(mode m, address_type address, size_type n,
-            void *bytes) = 0;
-
-        // Writes a sequence of bytes.
-        virtual void write(mode m, address_type address, size_type n,
-            const void *bytes) = 0;
-    };
-
     /// Read-write memory.
-    class _VM68K_PUBLIC read_write_memory : public memory
+    class _VM68K_PUBLIC read_write_memory: public paged_memory_map::memory
     {
         using inherited = memory;
 

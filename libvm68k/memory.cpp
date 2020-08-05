@@ -24,17 +24,6 @@
 
 using namespace vm68k;
 
-memory::memory()
-{
-}
-
-memory::~memory()
-{
-}
-
-void memory::relocate(address_type)
-{
-}
 
 // Class 'read_write_memory' implementation.
 
@@ -55,7 +44,7 @@ read_write_memory::~read_write_memory()
     std::undeclare_no_pointers(reinterpret_cast<char *>(_data.get()), _size);
 }
 
-memory::size_type read_write_memory::size() const noexcept
+memory_map::size_type read_write_memory::size() const noexcept
 {
     return _size;
 }

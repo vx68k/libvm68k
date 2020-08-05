@@ -43,7 +43,7 @@ namespace
         using inherited = memory_map;
 
     private:
-        unique_ptr<memory> _memory;
+        unique_ptr<read_write_memory> _memory;
 
     public:
         test_memory_map()

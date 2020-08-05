@@ -1,4 +1,4 @@
-// <bits/vm68k/memory.h>
+// <bits/vm68k/read_write_memory.h>
 // Copyright (C) 2012-2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -16,8 +16,8 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68K_MEMORY_H
-#define _VM68K_MEMORY_H 1
+#ifndef _VM68K_READ_WRITE_MEMORY_H
+#define _VM68K_READ_WRITE_MEMORY_H 1
 
 #include <bits/vm68kcore.h>
 #include <vm68k/memory>
@@ -25,11 +25,11 @@
 
 namespace vm68k
 {
-    /// Read-write memory.
+    /*
+     * Read-write memory objects.
+     */
     class _VM68K_PUBLIC read_write_memory: public paged_memory_map::memory
     {
-        using inherited = memory;
-
     protected:
         using byte_type = unsigned char;
 
@@ -38,6 +38,8 @@ namespace vm68k
 
     private:
         const size_type _size;
+
+    private:
         std::unique_ptr<byte_type []> _data;
 
     public:
@@ -49,23 +51,23 @@ namespace vm68k
     public:
         size_type size() const noexcept override final;
 
-        void read(mode m, address_type address, size_type n,
-            void *bytes) override final;
+        void read(mode mode, address_type address, size_type n,
+            void *bytes) final override;
 
-        void write(mode m, address_type address, size_type n,
-            const void *bytes) override final;
+        void write(mode mode, address_type address, size_type n,
+            const void *bytes) final override;
 
     protected:
         /// Checks read access on a region.
         ///
         /// This implementation does nothing.
-        virtual void check_read_access(mode m, address_type address,
+        virtual void check_read_access(mode mode, address_type address,
             size_type n);
 
         /// Checks write access on a region.
         ///
         /// This implementation does nothing.
-        virtual void check_write_access(mode m, address_type address,
+        virtual void check_write_access(mode mode, address_type address,
             size_type n);
     };
 }

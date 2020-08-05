@@ -20,12 +20,12 @@
 #include <config.h>
 #endif
 
-#include <bits/vm68k/memory.h>
+#include <bits/vm68k/read_write_memory.h>
 
 using namespace vm68k;
 
 
-// Class 'read_write_memory' implementation.
+// Implementation of the read-write memory objects.
 
 std::unique_ptr<read_write_memory::byte_type []>
 read_write_memory::allocate(const size_type size)
@@ -34,7 +34,9 @@ read_write_memory::allocate(const size_type size)
 }
 
 read_write_memory::read_write_memory(const size_type size)
-    : _size(size), _data(allocate(size))
+:
+    _size {size},
+    _data {allocate(size)}
 {
     std::declare_no_pointers(reinterpret_cast<char *>(_data.get()), _size);
 }
@@ -64,9 +66,11 @@ void read_write_memory::write(const mode m, const address_type address,
 void read_write_memory::check_read_access(const mode, const address_type,
     const size_type)
 {
+    // Nothing to do.
 }
 
 void read_write_memory::check_write_access(const mode, const address_type,
     const size_type)
 {
+    // Nothing to do.
 }

@@ -11,13 +11,6 @@ EXTRA_DIST = vm68k.pc.in vm68k.cbproj ModelSupport_vm68k
 
 pkgconfig_DATA = vm68k.pc
 
-libvm68k_la_LDFLAGS = -no-undefined -version-info 1:0:0
-libvm68k_la_SOURCES = \
-memory.cpp \
-runtime_register.cpp \
-execution_context.cpp
-EXTRA_libvm68k_la_SOURCES = win32dll.cpp
-
 nobase_include_HEADERS = \
 vm68k/runtime \
 bits/vm68kcore.h \
@@ -25,6 +18,13 @@ bits/vm68k/read_write_memory.h \
 bits/vm68k/internal/register.h \
 bits/vm68k/internal/instruction.h
 noinst_HEADERS = vm68kPCH1.h
+
+libvm68k_la_LDFLAGS = -no-undefined -version-info 1:0:0
+libvm68k_la_SOURCES = \
+memory.cpp \
+runtime_register.cpp \
+execution_context.cpp
+EXTRA_libvm68k_la_SOURCES = win32dll.cpp
 
 CLEANFILES = $(pkgconfig_DATA)
 

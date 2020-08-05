@@ -42,11 +42,6 @@ namespace
     class bus_error_memory: public paged_memory_map::memory
     {
     public:
-        using mode = memory_map::mode;
-        using address_type = memory_map::address_type;
-        using size_type = memory_map::size_type;
-
-    public:
         size_type size() const noexcept override
         {
             return 0U;

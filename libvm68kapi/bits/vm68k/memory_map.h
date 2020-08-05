@@ -113,6 +113,11 @@ namespace vm68k
         class memory
         {
         protected:
+            using mode = memory_map::mode;
+            using address_type = memory_map::address_type;
+            using size_type = memory_map::size_type;
+
+        protected:
             memory() = default;
 
             memory(const memory &) = delete;

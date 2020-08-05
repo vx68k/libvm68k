@@ -20,8 +20,9 @@ bits/vm68k/register.h \
 bits/vm68k/instruction.h \
 bits/vm68k/virtual_machine.h
 
-libvm68kapi_la_LDFLAGS = -version-info 1:0:0
-libvm68kapi_la_SOURCES = data.cpp \
+libvm68kapi_la_LDFLAGS = -no-undefined -version-info 1:0:0
+libvm68kapi_la_SOURCES = \
+data.cpp \
 memory_map.cpp \
 memory_exception.cpp \
 register.cpp \

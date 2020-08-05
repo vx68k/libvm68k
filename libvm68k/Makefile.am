@@ -11,7 +11,7 @@ EXTRA_DIST = vm68k.pc.in vm68k.cbproj ModelSupport_vm68k
 
 pkgconfig_DATA = vm68k.pc
 
-libvm68k_la_LDFLAGS = -version-info 1:0:0
+libvm68k_la_LDFLAGS = -no-undefined -version-info 1:0:0
 libvm68k_la_SOURCES = \
 memory.cpp \
 runtime_register.cpp \

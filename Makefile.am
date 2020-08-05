@@ -2,7 +2,7 @@
 
 ACLOCAL_AMFLAGS = -Im4
 
-EXTRA_DIST = libvm68k.groupproj
+EXTRA_DIST = README.md libvm68k.groupproj
 
 SUBDIRS = libvm68kapi libvm68k test
 

@@ -60,11 +60,11 @@ stages:
             Ubuntu:
               VM_IMAGE: ubuntu-latest
               CC: gcc
-              CXX: g++
+              CXX: g++ -std=c++14
             macOS:
               VM_IMAGE: macOS-latest
               CC: clang
-              CXX: clang++ -std=c++11
+              CXX: clang++ -std=c++14
         continueOnError: true
         pool:
           vmImage: $(VM_IMAGE)

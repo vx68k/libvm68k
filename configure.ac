@@ -6,8 +6,6 @@ AC_INIT([libvm68k], [2-alpha.4],
 AC_CONFIG_SRCDIR([libvm68k/execution_context.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
-LT_PREREQ([2.4.6])
-LT_INIT([win32-dll])
 AM_INIT_AUTOMAKE([foreign no-define tar-ustar])
 # Checks for programs.
 AC_PROG_CC
@@ -16,6 +14,9 @@ AC_PROG_CXX
 # Checks for header files.
 # Checks for typedefs, structures, and compiler characteristics.
 # Checks for library functions.
+# Checks for other features.
+LT_PREREQ([2.4.6])
+LT_INIT([win32-dll])
 PKG_CHECK_MODULES([CPPUNIT], [cppunit],, [no_cppunit=yes])
 AM_CONDITIONAL([CPPUNIT], [test "$no_cppunit" != yes])
 # Configuration actions.

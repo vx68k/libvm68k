@@ -37,12 +37,12 @@ namespace vm68k
         class _VM68K_PUBLIC bytes_delete
         {
         private:
-            size_t _length;
+            size_t _size;
 
         public:
-            explicit constexpr bytes_delete(const std::size_t length) noexcept
+            explicit constexpr bytes_delete(const std::size_t size) noexcept
             :
-                _length {length}
+                _size {size}
             {
                 // Nothing more to do.
             }

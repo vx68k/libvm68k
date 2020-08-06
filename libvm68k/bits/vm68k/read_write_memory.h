@@ -34,13 +34,32 @@ namespace vm68k
         using byte_type = unsigned char;
 
     protected:
-        static std::unique_ptr<byte_type []> allocate(size_type size);
+        class _VM68K_PUBLIC bytes_delete
+        {
+        private:
+            size_t _length;
+
+        public:
+            explicit constexpr bytes_delete(const std::size_t length) noexcept
+            :
+                _length {length}
+            {
+                // Nothing more to do.
+            }
+
+        public:
+            void operator ()(byte_type *ptr) const;
+        };
+
+    protected:
+        static auto allocate_bytes(size_t size)
+            -> std::unique_ptr<byte_type [], bytes_delete>;
 
     private:
         const size_type _size;
 
     private:
-        std::unique_ptr<byte_type []> _data;
+        std::unique_ptr<byte_type [], bytes_delete> _bytes;
 
     public:
         explicit read_write_memory(size_type size);

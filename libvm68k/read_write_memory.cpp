@@ -22,28 +22,39 @@
 
 #include <bits/vm68k/read_write_memory.h>
 
+#include <sys/mman.h>
+#include <stdexcept>
+
+using std::runtime_error;
+using std::size_t;
+using std::unique_ptr;
 using namespace vm68k;
 
 
 // Implementation of the read-write memory objects.
 
-std::unique_ptr<read_write_memory::byte_type []>
-read_write_memory::allocate(const size_type size)
+auto read_write_memory::allocate_bytes(const size_t size)
+    -> unique_ptr<byte_type [], bytes_delete>
 {
-    return std::unique_ptr<byte_type []>(new byte_type [size]);
+    auto ptr = mmap(nullptr, size, PROT_READ | PROT_WRITE,
+        MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+    if (ptr == nullptr) {
+        throw runtime_error("could not get an anonymous memory mapping");
+    }
+    return {static_cast<byte_type *>(ptr), bytes_delete(size)};
 }
 
 read_write_memory::read_write_memory(const size_type size)
 :
     _size {size},
-    _data {allocate(size)}
+    _bytes {allocate_bytes(size)}
 {
-    std::declare_no_pointers(reinterpret_cast<char *>(_data.get()), _size);
+    std::declare_no_pointers(reinterpret_cast<char *>(_bytes.get()), _size);
 }
 
 read_write_memory::~read_write_memory()
 {
-    std::undeclare_no_pointers(reinterpret_cast<char *>(_data.get()), _size);
+    std::undeclare_no_pointers(reinterpret_cast<char *>(_bytes.get()), _size);
 }
 
 memory_map::size_type read_write_memory::size() const noexcept
@@ -73,4 +84,9 @@ void read_write_memory::check_write_access(const mode, const address_type,
     const size_type)
 {
     // Nothing to do.
+}
+
+void read_write_memory::bytes_delete::operator ()(byte_type *ptr) const
+{
+    munmap(ptr, _length);
 }

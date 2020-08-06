@@ -23,10 +23,12 @@
 #include <bits/vm68k/read_write_memory.h>
 
 #include <sys/mman.h>
-#include <stdexcept>
+#include <system_error>
+#include <cerrno>
 
-using std::runtime_error;
+using std::generic_category;
 using std::size_t;
+using std::system_error;
 using std::unique_ptr;
 using namespace vm68k;
 
@@ -39,7 +41,8 @@ auto read_write_memory::allocate_bytes(const size_t size)
     auto ptr = mmap(nullptr, size, PROT_READ | PROT_WRITE,
         MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
     if (ptr == nullptr) {
-        throw runtime_error("could not get an anonymous memory mapping");
+        throw system_error(errno, generic_category(),
+            "could not get an anonymous memory mapping");
     }
     return {static_cast<byte_type *>(ptr), bytes_delete(size)};
 }

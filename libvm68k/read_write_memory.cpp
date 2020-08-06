@@ -91,5 +91,8 @@ void read_write_memory::check_write_access(const mode, const address_type,
 
 void read_write_memory::bytes_delete::operator ()(byte_type *ptr) const
 {
-    munmap(ptr, _length);
+    if (munmap(ptr, _length) == -1) {
+        throw system_error(errno, generic_category(),
+            "could not release the memory mapping");
+    }
 }

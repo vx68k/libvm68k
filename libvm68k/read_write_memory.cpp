@@ -1,4 +1,4 @@
-// memory.cpp
+// read_write_memory.cpp
 // Copyright (C) 2012-2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it

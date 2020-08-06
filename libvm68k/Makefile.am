@@ -21,7 +21,7 @@ noinst_HEADERS = vm68kPCH1.h
 
 libvm68k_la_LDFLAGS = -no-undefined -version-info 1:0:0
 libvm68k_la_SOURCES = \
-memory.cpp \
+read_write_memory.cpp \
 runtime_register.cpp \
 execution_context.cpp
 EXTRA_libvm68k_la_SOURCES = win32dll.cpp

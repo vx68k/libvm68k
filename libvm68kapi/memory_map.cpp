@@ -48,15 +48,17 @@ namespace
         }
 
     public:
-        void read(mode, address_type address, size_type, void *) final override
+        void read(memory_map::mode mode, address_type address, size_type,
+            void *) final override
         {
-            throw bus_error(address);
+            throw bus_error(mode, address);
         }
 
     public:
-        void write(mode, address_type address, size_type, const void *) final override
+        void write(memory_map::mode mode, address_type address, size_type,
+            const void *) final override
         {
-            throw bus_error(address);
+            throw bus_error(mode, address);
         }
     };
 }

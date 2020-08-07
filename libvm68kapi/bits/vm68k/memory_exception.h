@@ -30,10 +30,13 @@ namespace vm68k
         using address_type = memory_map::address_type;
 
     private:
+        memory_map::mode _mode;
+
+    private:
         address_type _fault_address;
 
     public:
-        explicit memory_exception(address_type fault_address) noexcept;
+        memory_exception(memory_map::mode mode, address_type fault_address) noexcept;
 
         memory_exception(const memory_exception &other) noexcept;
 
@@ -42,6 +45,12 @@ namespace vm68k
 
     public:
         virtual ~memory_exception();
+
+    public:
+        memory_map::mode mode() const noexcept
+        {
+            return _mode;
+        }
 
     public:
         address_type fault_address() const noexcept
@@ -59,9 +68,9 @@ namespace vm68k
     class _VM68KAPI_PUBLIC bus_error: public memory_exception
     {
     public:
-        explicit bus_error(address_type fault_address) noexcept
+        bus_error(memory_map::mode mode, address_type fault_address) noexcept
         :
-            memory_exception(fault_address)
+            memory_exception(mode, fault_address)
         {
             // Nothing more to do.
         }
@@ -76,9 +85,9 @@ namespace vm68k
     class _VM68KAPI_PUBLIC address_error: public memory_exception
     {
     public:
-        address_error(address_type fault_address) noexcept
+        address_error(memory_map::mode mode, address_type fault_address) noexcept
         :
-            memory_exception(fault_address)
+            memory_exception(mode, fault_address)
         {
             // Nothing more to do.
         }

@@ -24,21 +24,25 @@
 
 using namespace vm68k;
 
+
 // Implementation of the memory exceptions.
 
-memory_exception::memory_exception(const address_type fault_address) noexcept
+memory_exception::memory_exception(const memory_map::mode mode,
+    const address_type fault_address) noexcept
 :
+    _mode {mode},
     _fault_address {fault_address}
 {
-    // Nothing more to do.
+    // Nothing to do.
 }
 
 memory_exception::memory_exception(const memory_exception &other) noexcept
 :
     exception(other),
+    _mode {other._mode},
     _fault_address {other._fault_address}
 {
-    // Nothing more to do.
+    // Nothing to do.
 }
 
 memory_exception &memory_exception::operator =(const memory_exception &other) noexcept

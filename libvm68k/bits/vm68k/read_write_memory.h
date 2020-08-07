@@ -51,15 +51,15 @@ namespace vm68k
             void operator ()(byte_type *ptr) const;
         };
 
-    protected:
-        static auto allocate_bytes(size_t size)
-            -> std::unique_ptr<byte_type [], bytes_delete>;
-
     private:
         const size_type _size;
 
     private:
         std::unique_ptr<byte_type [], bytes_delete> _bytes;
+
+    protected:
+        static auto allocate_bytes(size_t size)
+            -> std::unique_ptr<byte_type [], bytes_delete>;
 
     public:
         explicit read_write_memory(size_type size);

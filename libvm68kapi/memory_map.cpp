@@ -19,19 +19,12 @@
 #if HAVE_CONFIG_H
 #include <config.h>
 #endif
-#if __BORLANDC__
-#pragma hdrstop
-#endif
 
 #define _VM68K_MEMORY_IMPLEMENTATION 1
 #include <bits/vm68k/memory_map.h>
 
 #include <bits/vm68k/memory_exception.h>
 #include <stdexcept>
-
-#if __BORLANDC__
-#pragma package(smart_init)
-#endif
 
 using std::invalid_argument;
 using std::make_shared;

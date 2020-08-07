@@ -33,7 +33,7 @@ namespace vm68k
     class _VM68KAPI_PUBLIC memory_map
     {
     public:
-        enum mode
+        enum class mode: char
         {
             USER = 0,
             SUPERVISOR,

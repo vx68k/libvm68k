@@ -65,26 +65,26 @@ memory_map::size_type read_write_memory::size() const noexcept
     return _size;
 }
 
-void read_write_memory::read(const mode m, const address_type address,
-    const size_type n, void *const bytes)
+void read_write_memory::read(const memory_map::mode mode,
+    const address_type address, const size_type n, void *const bytes)
 {
-    check_read_access(m, address, n);
+    check_read_access(mode, address, n);
 }
 
-void read_write_memory::write(const mode m, const address_type address,
-    const size_type n, const void *const bytes)
+void read_write_memory::write(const memory_map::mode mode,
+    const address_type address, const size_type n, const void *const bytes)
 {
-    check_write_access(m, address, n);
+    check_write_access(mode, address, n);
 }
 
-void read_write_memory::check_read_access(const mode, const address_type,
-    const size_type)
+void read_write_memory::check_read_access(const memory_map::mode,
+    const address_type, const size_type)
 {
     // Nothing to do.
 }
 
-void read_write_memory::check_write_access(const mode, const address_type,
-    const size_type)
+void read_write_memory::check_write_access(const memory_map::mode,
+    const address_type, const size_type)
 {
     // Nothing to do.
 }

@@ -70,47 +70,10 @@ namespace vm68k
     class _VM68KAPI_PUBLIC paged_memory_map: public memory_map
     {
     public:
-        class _VM68KAPI_PUBLIC memory;
-
-    public:
-        static const size_type DEFAULT_PAGE_SIZE = 0x1000U;
-
-    private:
-        address_type _address_mask;
-
-    private:
-        size_type _page_size;
-
-    private:
-        std::vector<std::shared_ptr<memory>> _pages;
-
-    public:
-        paged_memory_map();
-
-        explicit paged_memory_map(address_type address_mask);
-
-        paged_memory_map(address_type address_mask, size_type page_size);
-
-    public:
-        virtual ~paged_memory_map();
-
-    public:
-        address_type address_mask() const noexcept
-        {
-            return _address_mask;
-        }
-
-    public:
-        size_type page_size() const noexcept
-        {
-            return _page_size;
-        }
-
-    public:
         /**
          * Memory objects mapped to the paged memory map.
          */
-        class memory
+        class _VM68KAPI_PUBLIC memory
         {
         protected:
             using mode = memory_map::mode;
@@ -153,6 +116,40 @@ namespace vm68k
             virtual void write(mode mode, address_type address, size_type n,
                 const void *bytes) = 0;
         };
+
+    public:
+        static const size_type DEFAULT_PAGE_SIZE = 0x1000U;
+
+    private:
+        address_type _address_mask;
+
+    private:
+        size_type _page_size;
+
+    private:
+        std::vector<std::shared_ptr<memory>> _pages;
+
+    public:
+        paged_memory_map();
+
+        explicit paged_memory_map(address_type address_mask);
+
+        paged_memory_map(address_type address_mask, size_type page_size);
+
+    public:
+        virtual ~paged_memory_map();
+
+    public:
+        address_type address_mask() const noexcept
+        {
+            return _address_mask;
+        }
+
+    public:
+        size_type page_size() const noexcept
+        {
+            return _page_size;
+        }
     };
 }
 

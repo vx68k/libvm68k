@@ -70,9 +70,11 @@ namespace vm68k
     public:
         size_type size() const noexcept override final;
 
+    public:
         void read(memory_map::mode mode, address_type address, size_type n,
             void *bytes) final override;
 
+    public:
         void write(memory_map::mode mode, address_type address, size_type n,
             const void *bytes) final override;
 
@@ -83,6 +85,7 @@ namespace vm68k
         virtual void check_read_access(memory_map::mode mode,
             address_type address, size_type n);
 
+    protected:
         /// Checks write access on a region.
         ///
         /// This implementation does nothing.

@@ -66,15 +66,33 @@ memory_map::size_type read_write_memory::size() const noexcept
 }
 
 void read_write_memory::read(const memory_map::mode mode,
-    const address_type address, const size_type n, void *const bytes)
+    address_type address, size_type n, void *const buffer)
 {
     check_read_access(mode, address, n);
+
+    auto i = static_cast<unsigned char *>(buffer);
+    while (n--) {
+        // TODO: The following check should be moved out of loop.
+        if (address >= _size) {
+            throw bus_error(mode, address);
+        }
+        *(i++) = _bytes[address++];
+    }
 }
 
 void read_write_memory::write(const memory_map::mode mode,
-    const address_type address, const size_type n, const void *const bytes)
+    address_type address, size_type n, const void *const buffer)
 {
     check_write_access(mode, address, n);
+
+    auto i = static_cast<const unsigned char *>(buffer);
+    while (n--) {
+        // TODO: The following check should be moved out of loop.
+        if (address >= _size) {
+            throw bus_error(mode, address);
+        }
+        _bytes[address++] = *(i++);
+    }
 }
 
 void read_write_memory::check_read_access(const memory_map::mode,

@@ -72,11 +72,11 @@ namespace vm68k
 
     public:
         void read(memory_map::mode mode, address_type address, size_type n,
-            void *bytes) final override;
+            void *buffer) final override;
 
     public:
         void write(memory_map::mode mode, address_type address, size_type n,
-            const void *bytes) final override;
+            const void *buffer) final override;
 
     protected:
         /// Checks read access on a region.

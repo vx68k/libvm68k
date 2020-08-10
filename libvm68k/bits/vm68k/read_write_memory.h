@@ -19,7 +19,7 @@
 #ifndef _VM68K_READ_WRITE_MEMORY_H
 #define _VM68K_READ_WRITE_MEMORY_H 1
 
-#include <bits/vm68kcore.h>
+#include <bits/vm68kdef.h>
 #include <vm68k/memory>
 #include <memory>
 

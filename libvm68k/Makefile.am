@@ -13,7 +13,7 @@ pkgconfig_DATA = vm68k.pc
 
 nobase_include_HEADERS = \
 vm68k/runtime \
-bits/vm68kcore.h \
+bits/vm68kdef.h \
 bits/vm68k/read_write_memory.h \
 bits/vm68k/internal/register.h \
 bits/vm68k/internal/instruction.h

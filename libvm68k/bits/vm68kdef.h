@@ -1,4 +1,4 @@
-// <bits/vm68kcore.h>
+// <bits/vm68kdef.h>
 // Copyright (C) 2012-2019 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -16,8 +16,8 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68KCORE_H
-#define _VM68KCORE_H 1
+#ifndef _VM68KDEF_H
+#define _VM68KDEF_H 1
 
 #ifndef _VM68K_PUBLIC
 #if _WIN32

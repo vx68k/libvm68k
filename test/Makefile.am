@@ -27,9 +27,9 @@ $(CPPUNIT_LIBS)
 test_data_exec_SOURCES = main.cpp xmlreport.cpp test_data.cpp
 
 test_memory_exec_LDFLAGS = -no-install
-test_memory_exec_LDADD = $(top_builddir)/libvm68kapi/libvm68kapi.la \
-$(CPPUNIT_LIBS)
 test_memory_exec_SOURCES = main.cpp xmlreport.cpp test_memory.cpp
+test_memory_exec_LDADD = -L$(top_builddir)/libvm68k -lvm68k \
+$(CPPUNIT_LIBS)
 
 test_runtime_exec_LDFLAGS = -no-install
 test_runtime_exec_LDADD = $(top_builddir)/libvm68k/libvm68k.la \

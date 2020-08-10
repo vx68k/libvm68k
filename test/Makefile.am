@@ -1,7 +1,8 @@
 ## Process this file with automake to produce Makefile.in.
 
-AM_CPPFLAGS = -DTEST -I$(top_srcdir)/libvm68k -I$(top_builddir)/libvm68k \
--I$(top_srcdir)/libvm68kapi -I$(top_builddir)/libvm68kapi
+AM_CPPFLAGS = -DTEST \
+-I$(top_srcdir)/libvm68kapi \
+-I$(top_srcdir)/libvm68k
 AM_CXXFLAGS = $(CPPUNIT_CFLAGS)
 
 TEST_EXTENSIONS = .exec

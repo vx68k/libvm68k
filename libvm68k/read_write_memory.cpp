@@ -108,7 +108,7 @@ void read_write_memory::write(const memory_map::mode mode,
         if (offset >= _base_address + _size) {
             throw bus_error(mode, _base_address + offset);
         }
-        _bytes[offset++ - _base_address] = *(i++);
+        _bytes[offset++] = *(i++);
     }
 }
 

@@ -55,6 +55,9 @@ namespace vm68k
         const size_type _size;
 
     private:
+        address_type _base_address;
+
+    private:
         std::unique_ptr<byte_type [], bytes_delete> _bytes;
 
     protected:
@@ -68,7 +71,10 @@ namespace vm68k
         virtual ~read_write_memory();
 
     public:
-        size_type size() const noexcept override final;
+        size_type size() const noexcept final override;
+
+    public:
+        void relocate(address_type base_address) final override;
 
     public:
         void read(memory_map::mode mode, address_type address, size_type n,

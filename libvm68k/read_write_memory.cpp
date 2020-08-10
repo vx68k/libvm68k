@@ -65,33 +65,50 @@ memory_map::size_type read_write_memory::size() const noexcept
     return _size;
 }
 
+void read_write_memory::relocate(const address_type base_address)
+{
+    _base_address = base_address;
+}
+
 void read_write_memory::read(const memory_map::mode mode,
-    address_type address, size_type n, void *const buffer)
+    const address_type address, size_type n, void *const buffer)
 {
     check_read_access(mode, address, n);
+
+    auto offset = address - _base_address;
+    // Note OFFSET is unsigned.
+    if (offset >= _size) {
+        throw bus_error(mode, address);
+    }
 
     auto i = static_cast<unsigned char *>(buffer);
     while (n--) {
         // TODO: The following check should be moved out of loop.
-        if (address >= _size) {
-            throw bus_error(mode, address);
+        if (offset >= _size) {
+            throw bus_error(mode, _base_address + offset);
         }
-        *(i++) = _bytes[address++];
+        *(i++) = _bytes[offset++];
     }
 }
 
 void read_write_memory::write(const memory_map::mode mode,
-    address_type address, size_type n, const void *const buffer)
+    const address_type address, size_type n, const void *const buffer)
 {
     check_write_access(mode, address, n);
+
+    auto offset = address - _base_address;
+    // Note OFFSET is unsigned.
+    if (offset >= _size) {
+        throw bus_error(mode, address);
+    }
 
     auto i = static_cast<const unsigned char *>(buffer);
     while (n--) {
         // TODO: The following check should be moved out of loop.
-        if (address >= _size) {
-            throw bus_error(mode, address);
+        if (offset >= _base_address + _size) {
+            throw bus_error(mode, _base_address + offset);
         }
-        _bytes[address++] = *(i++);
+        _bytes[offset++ - _base_address] = *(i++);
     }
 }
 

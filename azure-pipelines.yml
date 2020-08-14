@@ -37,7 +37,7 @@ stages:
               autoreconf --verbose
             displayName: Bootstrap
           - bash: |
-              ./configure --disable-static
+              ./configure --disable-static || exit $?
               echo "##vso[task.uploadfile]`pwd`/config.log"
             displayName: Configure
           - bash: |
@@ -79,7 +79,7 @@ stages:
           - bash: |
               $CC --version
               $CXX --version
-              ./configure --prefix='$(Build.BinariesDirectory)'
+              ./configure --prefix='$(Build.BinariesDirectory)' || exit $?
               echo "##vso[task.uploadfile]`pwd`/config.log"
             displayName: Configure
             workingDirectory: $(package.distName)

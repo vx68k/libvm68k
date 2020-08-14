@@ -175,3 +175,30 @@ Header <vm68k/data> defines fundamental data types on the VM68000 architecture.
 --------------
 
 .. cpp:namespace:: vm68k
+
+.. cpp:class:: memory_map
+
+   .. cpp:type:: address_type = std::uint32_t
+
+   .. cpp:type:: size_type = std::uint32_t
+
+   .. cpp:enum-class:: mode: char
+
+   .. cpp:function:: protected \
+                     memory_map() = default
+
+   .. cpp:function:: memory_map(const memory_map &) = delete
+
+      The copy constructor is deleted.
+
+   .. cpp:function:: void operator =(const memory_map &) = delete
+
+      The copy-assignment operator is deleted.
+
+   .. cpp:function:: virtual ~memory_map() = default
+
+   .. cpp:function:: virtual read(mode mode, address_type address, size_type n, void *buffer) = 0
+
+   .. cpp:function:: virtual write(mode mode, address_type address, size_type n, const void *buffer) = 0
+
+.. cpp:class:: paged_memory_map: public memory_map

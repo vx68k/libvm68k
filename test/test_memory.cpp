@@ -117,7 +117,7 @@ public:
 private:
     void testSize()
     {
-        CPPUNIT_ASSERT_EQUAL(size_t(0x10000U), memory->size());
+        CPPUNIT_ASSERT_EQUAL(memory_map::size_type(0x10000U), memory->size());
     }
 
     void testReadWrite()

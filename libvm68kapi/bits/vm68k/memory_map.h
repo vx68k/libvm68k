@@ -33,14 +33,14 @@ namespace vm68k
     class _VM68KAPI_PUBLIC memory_map
     {
     public:
+        using address_type = std::uint32_t;
+        using size_type = std::uint32_t;
+
         enum class mode: char
         {
             USER = 0,
             SUPERVISOR,
         };
-
-        using address_type = std::uint_fast32_t;
-        using size_type = std::size_t;
 
     protected:
         /**

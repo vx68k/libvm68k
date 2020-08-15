@@ -55,7 +55,7 @@ namespace vm68k
         const size_type _size;
 
     private:
-        address_type _base_address;
+        address_type _base_address = 0;
 
     private:
         std::unique_ptr<byte_type [], bytes_delete> _bytes;

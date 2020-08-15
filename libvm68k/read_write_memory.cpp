@@ -26,9 +26,11 @@
 #include <system_error>
 #include <cerrno>
 
+using std::declare_no_pointers;
 using std::generic_category;
 using std::size_t;
 using std::system_error;
+using std::undeclare_no_pointers;
 using std::unique_ptr;
 using namespace vm68k;
 
@@ -38,13 +40,14 @@ using namespace vm68k;
 auto read_write_memory::allocate_bytes(const size_t size)
     -> unique_ptr<byte_type [], bytes_delete>
 {
-    auto ptr = mmap(nullptr, size, PROT_READ | PROT_WRITE,
-        MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-    if (ptr == nullptr) {
+    auto bytes = static_cast<byte_type *>(
+        mmap(0, size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0));
+    if (bytes == nullptr) {
         throw system_error(errno, generic_category(),
             "could not get an anonymous memory mapping");
     }
-    return {static_cast<byte_type *>(ptr), bytes_delete(size)};
+    declare_no_pointers(reinterpret_cast<char *>(bytes), size);
+    return {bytes, bytes_delete(size)};
 }
 
 read_write_memory::read_write_memory(const size_type size)
@@ -52,12 +55,12 @@ read_write_memory::read_write_memory(const size_type size)
     _size {size},
     _bytes {allocate_bytes(size)}
 {
-    std::declare_no_pointers(reinterpret_cast<char *>(_bytes.get()), _size);
+    // Nothing to do here.
 }
 
 read_write_memory::~read_write_memory()
 {
-    std::undeclare_no_pointers(reinterpret_cast<char *>(_bytes.get()), _size);
+    // Nothing to do here, but this should be out-of-line.
 }
 
 memory_map::size_type read_write_memory::size() const noexcept
@@ -124,9 +127,10 @@ void read_write_memory::check_write_access(const memory_map::mode,
     // Nothing to do.
 }
 
-void read_write_memory::bytes_delete::operator ()(byte_type *ptr) const
+void read_write_memory::bytes_delete::operator ()(byte_type *bytes) const
 {
-    if (munmap(ptr, _size) == -1) {
+    undeclare_no_pointers(reinterpret_cast<char *>(bytes), _size);
+    if (munmap(bytes, _size) == -1) {
         throw system_error(errno, generic_category(),
             "could not release the memory mapping");
     }

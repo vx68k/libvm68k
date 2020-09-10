@@ -202,3 +202,25 @@ Header <vm68k/data> defines fundamental data types on the VM68000 architecture.
    .. cpp:function:: virtual write(mode mode, address_type address, size_type n, const void *buffer) = 0
 
 .. cpp:class:: paged_memory_map: public memory_map
+
+   .. cpp:class:: memory
+
+      Abstract base class of memory objects that is mappable in a paged memory map.
+
+      .. cpp:type:: protected address_type = memory_map::address_type
+                    protected size_type = memory_map::size_type
+
+      .. cpp:function:: protected memory() = default
+                        protected memory(const memory &) = delete
+
+         Prohibits copy construction.
+
+      .. cpp:function:: void operator =(const memory &) = delete
+
+         Prohibits assignment.
+
+      .. cpp:function:: virtual ~memory() = default
+
+      .. cpp:function:: virtual size_type size() const noexcept = 0
+
+         Returns the size of this memory object.

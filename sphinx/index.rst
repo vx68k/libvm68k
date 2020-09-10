@@ -12,6 +12,7 @@ libvm68k Reference Manual
 
    intro
    vm68kapi
+   vm68k
 
 Indices and tables
 ==================

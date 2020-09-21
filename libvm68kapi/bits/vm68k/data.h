@@ -96,6 +96,30 @@ namespace vm68k
     };
 
     /**
+     * Returns true if and only if two `byte` values are equal to each other.
+     *
+     * @param x a `byte` value
+     * @param y another `byte` value
+     * @return true if the two values are equal to each other; false otherwise
+     */
+    inline bool operator ==(const byte &x, const byte &y)
+    {
+        return x.to_uint() == y.to_uint();
+    }
+
+    /**
+     * Returns true if and only if two `byte` values are not equal to each other.
+     *
+     * @param x a `byte` value
+     * @param y another `byte` value
+     * @return true if the two values are *not* equal to each other; false otherwise
+     */
+    inline bool operator !=(const byte &x, const byte &y)
+    {
+        return x.to_uint() != y.to_uint();
+    }
+
+    /**
      * Word data on the VM68000 architecture.
      * A word is 16-bit wide.
      *
@@ -165,6 +189,30 @@ namespace vm68k
             return i;
         }
     };
+
+    /**
+     * Returns true if and only if two `word` values are equal to each other.
+     *
+     * @param x a `word` value
+     * @param y another `word` value
+     * @return true if the two values are equal to each other; false otherwise
+     */
+    inline bool operator ==(const word &x, const word &y)
+    {
+        return x.to_uint() == y.to_uint();
+    }
+
+    /**
+     * Returns true if and only if two `word` values are not equal to each other.
+     *
+     * @param x a `word` value
+     * @param y another `word` value
+     * @return true if the two values are *not* equal to each other; false otherwise
+     */
+    inline bool operator !=(const word &x, const word &y)
+    {
+        return x.to_uint() != y.to_uint();
+    }
 
     /**
      * Long word data on the VM68000 architecture.
@@ -240,6 +288,30 @@ namespace vm68k
             return i;
         }
     };
+
+    /**
+     * Returns true if and only if two `long_word` values are equal to each other.
+     *
+     * @param x a `long_word` value
+     * @param y another `long_word` value
+     * @return true if the two values are equal to each other; false otherwise
+     */
+    inline bool operator ==(const long_word &x, const long_word &y)
+    {
+        return x.to_uint() == y.to_uint();
+    }
+
+    /**
+     * Returns true if and only if two `long_word` values are not equal to each other.
+     *
+     * @param x a `long_word` value
+     * @param y another `long_word` value
+     * @return true if the two values are *not* equal to each other; false otherwise
+     */
+    inline bool operator !=(const long_word &x, const long_word &y)
+    {
+        return x.to_uint() != y.to_uint();
+    }
 }
 
 // Specializations.

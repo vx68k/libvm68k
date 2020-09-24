@@ -102,7 +102,7 @@ namespace vm68k
      * @param y another `byte` value
      * @return true if the two values are equal to each other; false otherwise
      */
-    inline bool operator ==(const byte &x, const byte &y)
+    inline constexpr bool operator ==(const byte &x, const byte &y) noexcept
     {
         return x.to_uint() == y.to_uint();
     }
@@ -114,7 +114,7 @@ namespace vm68k
      * @param y another `byte` value
      * @return true if the two values are *not* equal to each other; false otherwise
      */
-    inline bool operator !=(const byte &x, const byte &y)
+    inline constexpr bool operator !=(const byte &x, const byte &y) noexcept
     {
         return x.to_uint() != y.to_uint();
     }
@@ -197,7 +197,7 @@ namespace vm68k
      * @param y another `word` value
      * @return true if the two values are equal to each other; false otherwise
      */
-    inline bool operator ==(const word &x, const word &y)
+    inline constexpr bool operator ==(const word &x, const word &y) noexcept
     {
         return x.to_uint() == y.to_uint();
     }
@@ -209,7 +209,7 @@ namespace vm68k
      * @param y another `word` value
      * @return true if the two values are *not* equal to each other; false otherwise
      */
-    inline bool operator !=(const word &x, const word &y)
+    inline constexpr bool operator !=(const word &x, const word &y) noexcept
     {
         return x.to_uint() != y.to_uint();
     }
@@ -296,7 +296,7 @@ namespace vm68k
      * @param y another `long_word` value
      * @return true if the two values are equal to each other; false otherwise
      */
-    inline bool operator ==(const long_word &x, const long_word &y)
+    inline constexpr bool operator ==(const long_word &x, const long_word &y) noexcept
     {
         return x.to_uint() == y.to_uint();
     }
@@ -308,7 +308,7 @@ namespace vm68k
      * @param y another `long_word` value
      * @return true if the two values are *not* equal to each other; false otherwise
      */
-    inline bool operator !=(const long_word &x, const long_word &y)
+    inline constexpr bool operator !=(const long_word &x, const long_word &y) noexcept
     {
         return x.to_uint() != y.to_uint();
     }

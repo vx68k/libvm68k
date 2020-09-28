@@ -20,7 +20,7 @@
 #define _VM68K_INTERNAL_INSTRUCTION_H 1
 
 #include <bits/vm68k/internal/register.h>
-#include <vm68k/instruction>
+#include <vm68k/pipeline>
 #include <memory>
 #include <utility>
 

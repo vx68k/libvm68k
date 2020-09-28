@@ -28,6 +28,7 @@ memory_map.cpp \
 memory_exception.cpp \
 register.cpp \
 instruction.cpp \
+instruction_decoder.cpp \
 virtual_machine.cpp
 
 CLEANFILES = $(pkgconfig_DATA)

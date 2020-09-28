@@ -64,7 +64,8 @@ namespace vm68k
          */
         void swap(byte &other) noexcept
         {
-            std::swap(_value, other._value);
+            using std::swap;
+            swap(_value, other._value);
         }
 
     public:
@@ -162,7 +163,8 @@ namespace vm68k
          */
         void swap(word &other) noexcept
         {
-            std::swap(_value, other._value);
+            using std::swap;
+            swap(_value, other._value);
         }
 
     public:
@@ -262,7 +264,8 @@ namespace vm68k
          */
         void swap(long_word &other) noexcept
         {
-            std::swap(_value, other._value);
+            using std::swap;
+            swap(_value, other._value);
         }
 
     public:

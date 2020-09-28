@@ -21,7 +21,6 @@
 
 #include <vm68k/register>
 #include <vm68k/memory>
-#include <memory>
 #include <bits/vm68kapi.h>
 
 namespace vm68k
@@ -73,26 +72,6 @@ namespace vm68k
 
     public:
         virtual void execute(execution_context &context) const = 0;
-    };
-
-    /**
-     * Abstract instruction decoders.
-     */
-    class _VM68KAPI_PUBLIC instruction_decoder
-    {
-    protected:
-        instruction_decoder() = default;
-
-        instruction_decoder(const instruction_decoder &) = default;
-
-        instruction_decoder(instruction_decoder &&) = default;
-
-    public:
-        virtual ~instruction_decoder() = default;
-
-    public:
-        virtual auto get_instruction(const execution_context &context) const
-            -> const std::shared_ptr<instruction> & = 0;
     };
 }
 

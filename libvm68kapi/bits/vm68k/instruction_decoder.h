@@ -1,4 +1,4 @@
-// <vm68k/instruction> -*- C++ -*-
+// <bits/vm68k/instruction_decoder.h> -*- C++ -*-
 // Copyright (C) 2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -16,10 +16,33 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68K_INSTRUCTION
-#define _VM68K_INSTRUCTION 1
+#ifndef _VM68K_INSTRUCTION_DECODER_H
+#define _VM68K_INSTRUCTION_DECODER_H 1
 
+#include <memory>
 #include <bits/vm68k/instruction.h>
-#include <bits/vm68k/instruction_decoder.h>
+
+namespace vm68k
+{
+    /**
+     * Abstract instruction decoders.
+     */
+    class _VM68KAPI_PUBLIC instruction_decoder
+    {
+    protected:
+        instruction_decoder() = default;
+
+        instruction_decoder(const instruction_decoder &) = default;
+
+        instruction_decoder(instruction_decoder &&) = default;
+
+    public:
+        virtual ~instruction_decoder() = default;
+
+    public:
+        virtual auto get_instruction(const execution_context &context) const
+            -> const std::shared_ptr<instruction> & = 0;
+    };
+}
 
 #endif

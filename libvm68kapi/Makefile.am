@@ -18,6 +18,7 @@ bits/vm68k/memory_map.h \
 bits/vm68k/memory_exception.h \
 bits/vm68k/register.h \
 bits/vm68k/instruction.h \
+bits/vm68k/instruction_decoder.h \
 bits/vm68k/virtual_machine.h
 
 libvm68kapi_la_LDFLAGS = -no-undefined -version-info 1:0:0

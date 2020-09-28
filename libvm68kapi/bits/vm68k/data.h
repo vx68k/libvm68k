@@ -119,6 +119,11 @@ namespace vm68k
         return x.to_uint() != y.to_uint();
     }
 
+    inline void swap(byte &x, byte &y) noexcept
+    {
+        x.swap(y);
+    }
+
     /**
      * Word data on the VM68000 architecture.
      * A word is 16-bit wide.
@@ -212,6 +217,11 @@ namespace vm68k
     inline constexpr bool operator !=(const word &x, const word &y) noexcept
     {
         return x.to_uint() != y.to_uint();
+    }
+
+    inline void swap(word &x, word &y) noexcept
+    {
+        x.swap(y);
     }
 
     /**
@@ -312,26 +322,11 @@ namespace vm68k
     {
         return x.to_uint() != y.to_uint();
     }
-}
 
-// Specializations.
-
-template<>
-inline void std::swap(vm68k::byte &x, vm68k::byte &y) noexcept
-{
-    x.swap(y);
-}
-
-template<>
-inline void std::swap(vm68k::word &x, vm68k::word &y) noexcept
-{
-    x.swap(y);
-}
-
-template<>
-inline void std::swap(vm68k::long_word &x, vm68k::long_word &y) noexcept
-{
-    x.swap(y);
+    inline void swap(long_word &x, long_word &y) noexcept
+    {
+        x.swap(y);
+    }
 }
 
 #endif

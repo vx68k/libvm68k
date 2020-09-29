@@ -10,10 +10,13 @@ EXTRA_DIST = vm68kapi.pc.in
 
 pkgconfig_DATA = vm68kapi.pc
 
-nobase_include_HEADERS = vm68k/data vm68k/memory \
+nobase_include_HEADERS = \
+vm68k/data \
+vm68k/memory \
 vm68k/register \
 vm68k/pipeline \
-bits/vm68kapi.h bits/vm68k/data.h \
+bits/vm68kapi.h \
+bits/vm68k/data.h \
 bits/vm68k/memory_map.h \
 bits/vm68k/memory_exception.h \
 bits/vm68k/register.h \

@@ -19,9 +19,8 @@
 #ifndef _VM68K_INSTRUCTION_DECODER_H
 #define _VM68K_INSTRUCTION_DECODER_H 1
 
-#include <memory>
+#include <vm68k/data>
 #include <bits/vm68k/executor.h>
-#include <bits/vm68k/instruction.h>
 
 namespace vm68k
 {
@@ -35,14 +34,8 @@ namespace vm68k
 
         instruction_decoder(const instruction_decoder &) = default;
 
-        instruction_decoder(instruction_decoder &&) = default;
-
     public:
         virtual ~instruction_decoder() = default;
-
-    public:
-        virtual auto get_instruction(const execution_context &context) const
-            -> const std::shared_ptr<instruction> & = 0;
 
     public:
         virtual long_word decode(long_word pc, executor &e) const = 0;

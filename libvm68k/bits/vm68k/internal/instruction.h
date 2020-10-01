@@ -20,16 +20,16 @@
 #define _VM68K_INTERNAL_INSTRUCTION_H 1
 
 #include <bits/vm68k/internal/register.h>
-#include <vm68k/pipeline>
+#include <vm68k/memory>
 #include <memory>
 #include <utility>
 
 namespace vm68k
 {
     /*
-     * Runtime execution contexts.
+     * Execution contexts.
      */
-    class _VM68K_PUBLIC runtime_execution_context: public execution_context
+    class _VM68K_PUBLIC runtime_execution_context
     {
     private:
         std::shared_ptr<memory_map> _memory;
@@ -51,22 +51,22 @@ namespace vm68k
         virtual ~runtime_execution_context();
 
     public:
-        auto memory() const -> std::shared_ptr<memory_map> final override
+        auto memory() const -> std::shared_ptr<memory_map>
         {
             return _memory;
         }
 
     public:
-        register_file &registers() final override
+        register_file &registers()
         {
             return _registers;
         }
 
     public:
-        long_word pc() const override;
+        long_word pc() const;
 
     public:
-        void set_pc(long_word pc) override;
+        void set_pc(long_word pc);
     };
 }
 

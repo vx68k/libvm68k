@@ -19,7 +19,6 @@
 #ifndef _VM68K_INSTRUCTION
 #define _VM68K_INSTRUCTION 1
 
-#include <bits/vm68k/instruction.h>
 #include <bits/vm68k/instruction_decoder.h>
 
 #endif

@@ -21,7 +21,6 @@ bits/vm68k/memory_map.h \
 bits/vm68k/memory_exception.h \
 bits/vm68k/register.h \
 bits/vm68k/executor.h \
-bits/vm68k/instruction.h \
 bits/vm68k/instruction_decoder.h \
 bits/vm68k/virtual_machine.h
 
@@ -31,7 +30,6 @@ data.cpp \
 memory_map.cpp \
 memory_exception.cpp \
 register.cpp \
-instruction.cpp \
 instruction_decoder.cpp \
 virtual_machine.cpp
 

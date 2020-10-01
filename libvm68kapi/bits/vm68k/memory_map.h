@@ -19,7 +19,7 @@
 #ifndef _VM68K_MEMORY_MAP_H
 #define _VM68K_MEMORY_MAP_H 1
 
-#include <bits/vm68kapi.h>
+#include <bits/vm68kapidef.h>
 #include <vector>
 #include <memory>
 #include <cstdint>

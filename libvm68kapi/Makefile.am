@@ -15,7 +15,7 @@ vm68k/data \
 vm68k/memory \
 vm68k/register \
 vm68k/pipeline \
-bits/vm68kapi.h \
+bits/vm68kapidef.h \
 bits/vm68k/data.h \
 bits/vm68k/memory_map.h \
 bits/vm68k/memory_exception.h \

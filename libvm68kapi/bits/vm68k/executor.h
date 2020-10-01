@@ -19,7 +19,7 @@
 #ifndef _VM68K_EXECUTOR_H
 #define _VM68K_EXECUTOR_H 1
 
-#include <bits/vm68kapi.h>
+#include <bits/vm68kapidef.h>
 
 namespace vm68k
 {

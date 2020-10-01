@@ -19,7 +19,7 @@
 #ifndef _VM68K_DATA_H
 #define _VM68K_DATA_H 1
 
-#include <bits/vm68kapi.h>
+#include <bits/vm68kapidef.h>
 #include <utility>
 #include <cstdint>
 #include <cstddef>

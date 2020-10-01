@@ -21,7 +21,7 @@
 
 #include <vm68k/register>
 #include <vm68k/memory>
-#include <bits/vm68kapi.h>
+#include <bits/vm68kapidef.h>
 
 namespace vm68k
 {

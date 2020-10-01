@@ -29,7 +29,7 @@ namespace vm68k
     /*
      * Execution contexts.
      */
-    class _VM68K_PUBLIC runtime_execution_context
+    class _VM68K_PUBLIC execution_context
     {
     private:
         std::shared_ptr<memory_map> _memory;
@@ -41,14 +41,14 @@ namespace vm68k
         long_word _pc;
 
     public:
-        runtime_execution_context(const std::shared_ptr<memory_map> &memory,
+        execution_context(const std::shared_ptr<memory_map> &memory,
             long_word pc);
 
-        runtime_execution_context(std::shared_ptr<memory_map> &&memory,
+        execution_context(std::shared_ptr<memory_map> &&memory,
             long_word pc);
 
     public:
-        virtual ~runtime_execution_context();
+        virtual ~execution_context();
 
     public:
         auto memory() const -> std::shared_ptr<memory_map>

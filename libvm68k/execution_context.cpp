@@ -33,7 +33,7 @@ using namespace vm68k;
 #pragma package(smart_init)
 #endif
 
-runtime_execution_context::runtime_execution_context(
+execution_context::execution_context(
     const shared_ptr<memory_map> &memory, const long_word pc)
 :
     _memory {memory},
@@ -42,7 +42,7 @@ runtime_execution_context::runtime_execution_context(
     // Nothing to do.
 }
 
-runtime_execution_context::runtime_execution_context(
+execution_context::execution_context(
     shared_ptr<memory_map> &&memory, const long_word pc)
 :
     _memory {move(memory)},
@@ -51,17 +51,17 @@ runtime_execution_context::runtime_execution_context(
     // Nothing to do.
 }
 
-runtime_execution_context::~runtime_execution_context()
+execution_context::~execution_context()
 {
     // Nothing to do.
 }
 
-long_word runtime_execution_context::pc() const
+long_word execution_context::pc() const
 {
     return _pc;
 }
 
-void runtime_execution_context::set_pc(const long_word pc)
+void execution_context::set_pc(const long_word pc)
 {
     _pc = pc;
 }

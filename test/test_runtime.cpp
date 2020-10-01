@@ -75,12 +75,12 @@ class ContextTests : public TestFixture {
     CPPUNIT_TEST_SUITE_END();
 
 private:
-    shared_ptr<runtime_execution_context> _context;
+    shared_ptr<execution_context> _context;
 
 public:
     void setUp() override {
         auto memory = make_shared<test_memory_map>();
-        _context.reset(new runtime_execution_context(memory, long_word(0)));
+        _context.reset(new execution_context(memory, long_word(0)));
     }
 
     void tearDown() override {

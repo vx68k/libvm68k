@@ -19,13 +19,30 @@
 #ifndef _VM68K_RT_INSTRUCTION_DECODER_H
 #define _VM68K_RT_INSTRUCTION_DECODER_H 1
 
-#include <vm68k/pipeline>
 #include <bits/vm68kdef.h>
+#include <vm68k/pipeline>
+#include <array>
+#include <memory>
 
 namespace vm68k
 {
     class _VM68K_PUBLIC rt_instruction_decoder: public instruction_decoder
     {
+    public:
+        class _VM68K_PUBLIC instruction
+        {
+        protected:
+            instruction() = default;
+
+            instruction(const instruction &) = default;
+
+        public:
+            virtual ~instruction() = default;
+        };
+
+    private:
+        std::array<std::shared_ptr<instruction>, 0x10000> _instructions;
+
     public:
         virtual ~rt_instruction_decoder();
 

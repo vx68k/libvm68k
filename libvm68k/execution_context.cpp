@@ -19,19 +19,12 @@
 #if HAVE_CONFIG_H
 #include <config.h>
 #endif
-#if __BORLANDC__
-#pragma hdrstop
-#endif
 
 #include <bits/vm68k/internal/instruction.h>
 
 using std::move;
 using std::shared_ptr;
 using namespace vm68k;
-
-#if __BORLANDC__
-#pragma package(smart_init)
-#endif
 
 execution_context::execution_context(
     const shared_ptr<memory_map> &memory, const long_word pc)

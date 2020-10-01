@@ -56,23 +56,6 @@ namespace vm68k
 
         virtual void set_pc(long_word pc) = 0;
     };
-
-    /**
-     * Abstruct instructions.
-     */
-    class _VM68KAPI_PUBLIC instruction
-    {
-    protected:
-        instruction() noexcept = default;
-
-        instruction(const instruction &) noexcept = default;
-
-    public:
-        virtual ~instruction() = default;
-
-    public:
-        virtual void execute(execution_context &context) const = 0;
-    };
 }
 
 #endif

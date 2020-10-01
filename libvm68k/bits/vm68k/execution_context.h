@@ -1,4 +1,4 @@
-// <bits/vm68k/internal/instruction.h>
+// <bits/vm68k/execution_context.h>
 // Copyright (C) 2012-2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -16,8 +16,8 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68K_INTERNAL_INSTRUCTION_H
-#define _VM68K_INTERNAL_INSTRUCTION_H 1
+#ifndef _VM68K_EXECUTION_CONTEXT_H
+#define _VM68K_EXECUTION_CONTEXT_H 1
 
 #include <bits/vm68k/internal/register.h>
 #include <vm68k/memory>

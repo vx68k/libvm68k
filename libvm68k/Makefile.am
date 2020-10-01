@@ -14,10 +14,10 @@ pkgconfig_DATA = vm68k.pc
 nobase_include_HEADERS = \
 vm68k/runtime \
 bits/vm68kdef.h \
+bits/vm68k/internal/register.h \
 bits/vm68k/read_write_memory.h \
 bits/vm68k/rt_instruction_decoder.h \
-bits/vm68k/internal/register.h \
-bits/vm68k/internal/instruction.h
+bits/vm68k/execution_context.h
 noinst_HEADERS = vm68kPCH1.h
 
 libvm68k_la_LDFLAGS = -no-undefined -version-info 1:0:0

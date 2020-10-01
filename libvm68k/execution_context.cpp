@@ -20,7 +20,7 @@
 #include <config.h>
 #endif
 
-#include <bits/vm68k/internal/instruction.h>
+#include <bits/vm68k/execution_context.h>
 
 using std::move;
 using std::shared_ptr;

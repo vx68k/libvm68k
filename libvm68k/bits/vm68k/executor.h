@@ -25,7 +25,7 @@ namespace vm68k
 {
     class _VM68K_PUBLIC executor
     {
-    protected:
+    public:
         executor() = default;
 
         executor(const executor &) = delete;

@@ -26,7 +26,7 @@
 
 namespace vm68k
 {
-    class _VM68K_PUBLIC rt_instruction_decoder: public instruction_decoder
+    class _VM68K_PUBLIC rt_instruction_decoder
     {
     public:
         class _VM68K_PUBLIC instruction
@@ -47,7 +47,7 @@ namespace vm68k
         virtual ~rt_instruction_decoder();
 
     public:
-        long_word decode(long_word pc, executor &e) const override;
+        long_word decode(long_word pc, executor &e) const;
     };
 }
 

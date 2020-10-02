@@ -1,4 +1,4 @@
-// rt_instruction_decoder.cpp
+// instruction_decoder.cpp
 // Copyright (C) 2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it

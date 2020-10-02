@@ -20,7 +20,7 @@
 #include <config.h>
 #endif
 
-#include <bits/vm68k/rt_instruction_decoder.h>
+#include <bits/vm68k/instruction_decoder.h>
 
 using namespace vm68k;
 

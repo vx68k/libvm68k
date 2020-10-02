@@ -1,4 +1,4 @@
-// <bits/vm68k/rt_instruction_decoder.h>
+// <bits/vm68k/instruction_decoder.h>
 // Copyright (C) 2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -16,8 +16,8 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68K_RT_INSTRUCTION_DECODER_H
-#define _VM68K_RT_INSTRUCTION_DECODER_H 1
+#ifndef _VM68K_INSTRUCTION_DECODER_H
+#define _VM68K_INSTRUCTION_DECODER_H 1
 
 #include <bits/vm68kdef.h>
 #include <vm68k/data>

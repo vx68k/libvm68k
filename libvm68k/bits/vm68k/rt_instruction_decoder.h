@@ -27,7 +27,7 @@
 
 namespace vm68k
 {
-    class _VM68K_PUBLIC rt_instruction_decoder
+    class _VM68K_PUBLIC instruction_decoder
     {
     public:
         class _VM68K_PUBLIC instruction
@@ -45,7 +45,7 @@ namespace vm68k
         std::array<std::shared_ptr<instruction>, 0x10000> _instructions;
 
     public:
-        virtual ~rt_instruction_decoder();
+        virtual ~instruction_decoder();
 
     public:
         long_word decode(long_word pc, executor &e) const;

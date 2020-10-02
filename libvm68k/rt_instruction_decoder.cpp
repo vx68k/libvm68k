@@ -24,12 +24,12 @@
 
 using namespace vm68k;
 
-rt_instruction_decoder::~rt_instruction_decoder()
+instruction_decoder::~instruction_decoder()
 {
     // Nothing to do.
 }
 
-long_word rt_instruction_decoder::decode(long_word pc, executor &e) const
+long_word instruction_decoder::decode(long_word pc, executor &e) const
 {
     // TODO: implement this function.
     return pc;

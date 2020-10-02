@@ -17,6 +17,7 @@ bits/vm68kdef.h \
 bits/vm68k/internal/register.h \
 bits/vm68k/read_write_memory.h \
 bits/vm68k/execution_context.h \
+bits/vm68k/executor.h \
 bits/vm68k/instruction_decoder.h
 noinst_HEADERS = vm68kPCH1.h
 

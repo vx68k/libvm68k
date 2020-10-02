@@ -19,11 +19,11 @@
 #ifndef _VM68K_EXECUTOR_H
 #define _VM68K_EXECUTOR_H 1
 
-#include <bits/vm68kapidef.h>
+#include <bits/vm68kdef.h>
 
 namespace vm68k
 {
-    class _VM68KAPI_PUBLIC executor
+    class _VM68K_PUBLIC executor
     {
     protected:
         executor() = default;

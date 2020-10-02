@@ -19,6 +19,6 @@
 #ifndef _VM68K_PIPELINE
 #define _VM68K_PIPELINE 1
 
-#include <bits/vm68k/instruction_decoder.h>
+#include <bits/vm68k/executor.h>
 
 #endif

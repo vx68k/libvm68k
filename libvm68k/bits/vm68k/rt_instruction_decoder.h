@@ -20,6 +20,7 @@
 #define _VM68K_RT_INSTRUCTION_DECODER_H 1
 
 #include <bits/vm68kdef.h>
+#include <vm68k/data>
 #include <vm68k/pipeline>
 #include <array>
 #include <memory>

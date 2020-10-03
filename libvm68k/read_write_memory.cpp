@@ -22,7 +22,9 @@
 
 #include <bits/vm68k/read_write_memory.h>
 
+#if HAVE_SYS_MMAN_H
 #include <sys/mman.h>
+#endif
 #include <system_error>
 #include <cerrno>
 

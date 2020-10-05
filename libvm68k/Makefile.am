@@ -19,7 +19,8 @@ bits/vm68k/internal/register.h \
 bits/vm68k/read_write_memory.h \
 bits/vm68k/execution_context.h \
 bits/vm68k/executor.h \
-bits/vm68k/instruction_decoder.h
+bits/vm68k/instruction_decoder.h \
+bits/vm68k/pipeline.h
 noinst_HEADERS = vm68kPCH1.h
 
 libvm68k_la_LDFLAGS = -no-undefined -version-info 1:0:0

@@ -29,7 +29,8 @@ read_write_memory.cpp \
 runtime_register.cpp \
 execution_context.cpp \
 executor.cpp \
-instruction_decoder.cpp
+instruction_decoder.cpp \
+pipeline.cpp
 libvm68k_la_LIBADD = -L$(top_builddir)/libvm68kapi -lvm68kapi
 
 CLEANFILES = $(pkgconfig_DATA)

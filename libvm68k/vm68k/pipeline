@@ -21,5 +21,6 @@
 
 #include <bits/vm68k/executor.h>
 #include <bits/vm68k/instruction_decoder.h>
+#include <bits/vm68k/pipeline.h>
 
 #endif

@@ -94,19 +94,19 @@ namespace vm68k
         /**
          * Number of the data registers.
          */
-        static const std::size_t D_REGISTER_MAX = 8;
+        static const std::size_t DATA_REGISTER_MAX = 8;
 
         /**
          * Number of the address registers.
          */
-        static const std::size_t A_REGISTER_MAX = 8;
+        static const std::size_t ADDRESS_REGISTER_MAX = 8;
 
     private:
         // Array of the data registers.
-        std::array<data_register, D_REGISTER_MAX> _d;
+        std::array<data_register, DATA_REGISTER_MAX> _d;
 
         // Array of the address registers.
-        std::array<address_register, A_REGISTER_MAX> _a;
+        std::array<address_register, ADDRESS_REGISTER_MAX> _a;
 
     public:
         register_file();

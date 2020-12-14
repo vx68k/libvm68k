@@ -1,4 +1,4 @@
-// <bits/vm68k/register.h>
+// <bits/vm68k/internal/register_file.h>
 // Copyright (C) 2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -16,8 +16,8 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68K_INTERNAL_REGISTER_H
-#define _VM68K_INTERNAL_REGISTER_H 1
+#ifndef _VM68K_INTERNAL_REGISTER_FILE_H
+#define _VM68K_INTERNAL_REGISTER_FILE_H 1
 
 #include <vm68k/register>
 #include <bits/vm68kdef.h>

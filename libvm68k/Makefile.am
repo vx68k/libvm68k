@@ -15,7 +15,7 @@ nobase_include_HEADERS = \
 vm68k/runtime \
 vm68k/pipeline \
 bits/vm68kdef.h \
-bits/vm68k/internal/register.h \
+bits/vm68k/internal/register_file.h \
 bits/vm68k/read_write_memory.h \
 bits/vm68k/execution_context.h \
 bits/vm68k/executor.h \

@@ -20,7 +20,7 @@
 #include <config.h>
 #endif
 
-#include <bits/vm68k/internal/register.h>
+#include <bits/vm68k/internal/register_file.h>
 
 using std::move;
 using std::size_t;

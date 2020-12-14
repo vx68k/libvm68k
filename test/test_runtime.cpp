@@ -84,13 +84,15 @@ public:
         _registers.d(1) = long_word(0);
         CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x01234567U), long_word(_registers.d(0)).to_uint());
 
-        _registers.d(0) = word(0x0123);
-        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x01230123U), long_word(_registers.d(0)).to_uint());
-        CPPUNIT_ASSERT_EQUAL(word::uint_type(0x0123U), word(_registers.d(0)).to_uint());
+        _registers.d(0) = long_word(0x01234567);
+        _registers.d(0) = word(0x89ab);
+        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x012389abU), long_word(_registers.d(0)).to_uint());
+        CPPUNIT_ASSERT_EQUAL(word::uint_type(0x89abU), word(_registers.d(0)).to_uint());
 
-        _registers.d(0) = byte(0x01);
-        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x01230101U), long_word(_registers.d(0)).to_uint());
-        CPPUNIT_ASSERT_EQUAL(byte::uint_type(0x01U), byte(_registers.d(0)).to_uint());
+        _registers.d(0) = long_word(0x01234567);
+        _registers.d(0) = byte(0x89);
+        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x01234589U), long_word(_registers.d(0)).to_uint());
+        CPPUNIT_ASSERT_EQUAL(byte::uint_type(0x89U), byte(_registers.d(0)).to_uint());
     }
 
     void testAddressRegister()
@@ -99,10 +101,12 @@ public:
         _registers.a(1) = long_word(0);
         CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x01234567U), long_word(_registers.a(0)).to_uint());
 
+        _registers.a(0) = long_word(0x01234567);
         _registers.a(0) = word(0x0123);
         CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x00000123U), long_word(_registers.a(0)).to_uint());
         CPPUNIT_ASSERT_EQUAL(word::uint_type(0x0123U), word(_registers.a(0)).to_uint());
 
+        _registers.a(0) = long_word(0x01234567);
         _registers.a(0) = word(0x89ab);
         CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0xffff89abU), long_word(_registers.a(0)).to_uint());
         CPPUNIT_ASSERT_EQUAL(word::uint_type(0x89abU), word(_registers.a(0)).to_uint());

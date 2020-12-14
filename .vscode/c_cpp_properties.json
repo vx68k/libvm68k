@@ -22,7 +22,7 @@
             }
         },
         {
-            "name": "POSIX (MinGW-w64 cross)",
+            "name": "Win32 (MinGW-w64 cross)",
             "compilerPath": "i686-w64-mingw32-gcc",
             "includePath": [
                 "${workspaceFolder}",

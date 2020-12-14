@@ -172,12 +172,6 @@ namespace vm68k
          */
         const data_register &d(std::size_t regno) const;
 
-        void set_d(std::size_t regno, long_word value);
-
-        void set_d(std::size_t regno, word value);
-
-        void set_d(std::size_t regno, byte);
-
     public:
         /**
          * Returns a reference to an address register.
@@ -188,13 +182,6 @@ namespace vm68k
          * Returns a const reference to an address register.
          */
         const address_register &a(std::size_t regno) const;
-
-        void set_a(std::size_t regno, long_word value);
-
-        void set_a(std::size_t regno, word value)
-        {
-            set_a(regno, long_word(value.to_int()));
-        }
     };
 }
 

@@ -62,21 +62,6 @@ const data_register &register_file::d(const size_t regno) const
     return _d[regno];
 }
 
-void register_file::set_d(const size_t regno, const long_word value)
-{
-    _d[regno] = value;
-}
-
-void register_file::set_d(const size_t regno, const word value)
-{
-    _d[regno] = value;
-}
-
-void register_file::set_d(const size_t regno, const byte value)
-{
-    _d[regno] = value;
-}
-
 address_register &register_file::a(const size_t regno)
 {
     return _a[regno];
@@ -85,9 +70,4 @@ address_register &register_file::a(const size_t regno)
 const address_register &register_file::a(const size_t regno) const
 {
     return _a[regno];
-}
-
-void register_file::set_a(const size_t regno, const long_word value)
-{
-    _a[regno] = value;
 }

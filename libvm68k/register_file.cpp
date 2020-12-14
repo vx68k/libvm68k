@@ -26,12 +26,12 @@ using std::move;
 using std::size_t;
 using namespace vm68k;
 
-runtime_register_file::runtime_register_file()
+register_file::register_file()
 {
     // Nothing to do.
 }
 
-runtime_register_file::runtime_register_file(const runtime_register_file &other)
+register_file::register_file(const register_file &other)
 :
     _d {other._d},
     _a {other._a}
@@ -39,7 +39,7 @@ runtime_register_file::runtime_register_file(const runtime_register_file &other)
     // Nothing to do.
 }
 
-runtime_register_file::runtime_register_file(runtime_register_file &&other)
+register_file::register_file(register_file &&other)
 :
     _d {move(other._d)},
     _a {move(other._a)}
@@ -47,37 +47,37 @@ runtime_register_file::runtime_register_file(runtime_register_file &&other)
     // Nothing to do.
 }
 
-runtime_register_file::~runtime_register_file()
+register_file::~register_file()
 {
     // Nothing to do.
 }
 
-long_word runtime_register_file::d(const size_t regno) const
+long_word register_file::d(const size_t regno) const
 {
     return _d[regno];
 }
 
-void runtime_register_file::set_d(const size_t regno, const long_word value)
+void register_file::set_d(const size_t regno, const long_word value)
 {
     _d[regno] = value;
 }
 
-void runtime_register_file::set_d(const size_t regno, const word value)
+void register_file::set_d(const size_t regno, const word value)
 {
     _d[regno] = value;
 }
 
-void runtime_register_file::set_d(const size_t regno, const byte value)
+void register_file::set_d(const size_t regno, const byte value)
 {
     _d[regno] = value;
 }
 
-long_word runtime_register_file::a(const size_t regno) const
+long_word register_file::a(const size_t regno) const
 {
     return _a[regno];
 }
 
-void runtime_register_file::set_a(const size_t regno, const long_word value)
+void register_file::set_a(const size_t regno, const long_word value)
 {
     _a[regno] = value;
 }

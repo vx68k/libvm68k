@@ -85,7 +85,10 @@ namespace vm68k
         }
     };
 
-    class _VM68K_PUBLIC runtime_register_file
+    /**
+     * Register files.
+     */
+    class _VM68K_PUBLIC register_file
     {
     public:
         /**
@@ -106,14 +109,14 @@ namespace vm68k
         std::array<address_register, A_REGISTER_MAX> _a;
 
     public:
-        runtime_register_file();
+        register_file();
 
-        runtime_register_file(const runtime_register_file &other);
+        register_file(const register_file &other);
 
-        runtime_register_file(runtime_register_file &&other);
+        register_file(register_file &&other);
 
     public:
-        virtual ~runtime_register_file();
+        virtual ~register_file();
 
     public:
         long_word d(std::size_t regno) const;

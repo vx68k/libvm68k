@@ -35,7 +35,7 @@ namespace vm68k
         std::shared_ptr<memory_map> _memory;
 
     private:
-        runtime_register_file _registers;
+        register_file _registers;
 
     private:
         long_word _pc;
@@ -57,7 +57,7 @@ namespace vm68k
         }
 
     public:
-        runtime_register_file &registers()
+        register_file &registers()
         {
             return _registers;
         }

@@ -87,6 +87,8 @@ namespace vm68k
 
     /**
      * Register files.
+     *
+     * The M68000 ISA provides 8 data and 8 address registers.
      */
     class _VM68K_PUBLIC register_file
     {
@@ -102,10 +104,14 @@ namespace vm68k
         static const std::size_t ADDRESS_REGISTER_MAX = 8;
 
     private:
-        // Array of the data registers.
+        /**
+         * Array of the data registers.
+         */
         std::array<data_register, DATA_REGISTER_MAX> _d;
 
-        // Array of the address registers.
+        /**
+         * Array of the address registers.
+         */
         std::array<address_register, ADDRESS_REGISTER_MAX> _a;
 
     public:

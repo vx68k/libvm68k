@@ -20,6 +20,26 @@
                 ],
                 "limitSymbolsToIncludedHeaders": true
             }
+        },
+        {
+            "name": "POSIX (MinGW-w64 cross)",
+            "compilerPath": "i686-w64-mingw32-gcc",
+            "includePath": [
+                "${workspaceFolder}",
+                "${workspaceFolder}/libvm68kapi",
+                "${workspaceFolder}/libvm68k"
+            ],
+            "defines": [
+                "HAVE_CONFIG_H"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++14",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
         }
     ]
 }

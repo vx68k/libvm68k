@@ -21,6 +21,7 @@
 #endif
 
 #include <bits/vm68k/register_file.h>
+#include <cassert>
 
 using std::move;
 using std::size_t;
@@ -54,20 +55,24 @@ register_file::~register_file()
 
 data_register &register_file::d(const size_t regno)
 {
+    assert(regno < DATA_REGISTER_MAX);
     return _d[regno];
 }
 
 const data_register &register_file::d(const size_t regno) const
 {
+    assert(regno < DATA_REGISTER_MAX);
     return _d[regno];
 }
 
 address_register &register_file::a(const size_t regno)
 {
+    assert(regno < ADDRESS_REGISTER_MAX);
     return _a[regno];
 }
 
 const address_register &register_file::a(const size_t regno) const
 {
+    assert(regno < ADDRESS_REGISTER_MAX);
     return _a[regno];
 }

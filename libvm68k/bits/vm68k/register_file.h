@@ -125,7 +125,15 @@ namespace vm68k
         virtual ~register_file();
 
     public:
-        long_word d(std::size_t regno) const;
+        /**
+         * Returns a reference to a data register.
+         */
+        data_register &d(std::size_t regno);
+
+        /**
+         * Returns a const reference to a data register.
+         */
+        const data_register &d(std::size_t regno) const;
 
         void set_d(std::size_t regno, long_word value);
 
@@ -134,7 +142,15 @@ namespace vm68k
         void set_d(std::size_t regno, byte);
 
     public:
-        long_word a(std::size_t regno) const;
+        /**
+         * Returns a reference to an address register.
+         */
+        address_register &a(std::size_t regno);
+
+        /**
+         * Returns a const reference to an address register.
+         */
+        const address_register &a(std::size_t regno) const;
 
         void set_a(std::size_t regno, long_word value);
 

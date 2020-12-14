@@ -52,7 +52,12 @@ register_file::~register_file()
     // Nothing to do.
 }
 
-long_word register_file::d(const size_t regno) const
+data_register &register_file::d(const size_t regno)
+{
+    return _d[regno];
+}
+
+const data_register &register_file::d(const size_t regno) const
 {
     return _d[regno];
 }
@@ -72,7 +77,12 @@ void register_file::set_d(const size_t regno, const byte value)
     _d[regno] = value;
 }
 
-long_word register_file::a(const size_t regno) const
+address_register &register_file::a(const size_t regno)
+{
+    return _a[regno];
+}
+
+const address_register &register_file::a(const size_t regno) const
 {
     return _a[regno];
 }

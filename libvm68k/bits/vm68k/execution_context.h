@@ -57,7 +57,7 @@ namespace vm68k
         }
 
     public:
-        register_file &registers()
+        runtime_register_file &registers()
         {
             return _registers;
         }

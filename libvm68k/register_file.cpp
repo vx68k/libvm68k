@@ -33,7 +33,6 @@ runtime_register_file::runtime_register_file()
 
 runtime_register_file::runtime_register_file(const runtime_register_file &other)
 :
-    register_file(other),
     _d {other._d},
     _a {other._a}
 {
@@ -42,7 +41,6 @@ runtime_register_file::runtime_register_file(const runtime_register_file &other)
 
 runtime_register_file::runtime_register_file(runtime_register_file &&other)
 :
-    register_file(move(other)),
     _d {move(other._d)},
     _a {move(other._a)}
 {

@@ -28,50 +28,6 @@
 namespace vm68k
 {
     /**
-     * Abstract class of register files.
-     */
-    class _VM68K_PUBLIC register_file
-    {
-    public:
-        /**
-         * Number of the data registers.
-         */
-        static const std::size_t D_REGISTER_MAX = 8;
-
-        /**
-         * Number of the address registers.
-         */
-        static const std::size_t A_REGISTER_MAX = 8;
-
-    protected:
-        register_file() noexcept = default;
-
-        register_file(const register_file &) noexcept = default;
-
-    public:
-        virtual ~register_file() = default;
-
-    public:
-        virtual long_word d(std::size_t regno) const = 0;
-
-        virtual void set_d(std::size_t regno, long_word value) = 0;
-
-        virtual void set_d(std::size_t regno, word value) = 0;
-
-        virtual void set_d(std::size_t regno, byte value) = 0;
-
-    public:
-        virtual long_word a(std::size_t regno) const = 0;
-
-        virtual void set_a(std::size_t regno, long_word value) = 0;
-
-        void set_a(std::size_t regno, word value)
-        {
-            set_a(regno, long_word(value.to_int()));
-        }
-    };
-
-    /**
      * Data registers.
      */
     class _VM68K_PUBLIC data_register
@@ -129,8 +85,19 @@ namespace vm68k
         }
     };
 
-    class _VM68K_PUBLIC runtime_register_file: public register_file
+    class _VM68K_PUBLIC runtime_register_file
     {
+    public:
+        /**
+         * Number of the data registers.
+         */
+        static const std::size_t D_REGISTER_MAX = 8;
+
+        /**
+         * Number of the address registers.
+         */
+        static const std::size_t A_REGISTER_MAX = 8;
+
     private:
         // Array of the data registers.
         std::array<data_register, D_REGISTER_MAX> _d;
@@ -149,18 +116,23 @@ namespace vm68k
         virtual ~runtime_register_file();
 
     public:
-        long_word d(std::size_t regno) const override;
+        long_word d(std::size_t regno) const;
 
-        void set_d(std::size_t regno, long_word value) override;
+        void set_d(std::size_t regno, long_word value);
 
-        void set_d(std::size_t regno, word value) override;
+        void set_d(std::size_t regno, word value);
 
-        void set_d(std::size_t regno, byte) override;
+        void set_d(std::size_t regno, byte);
 
     public:
-        long_word a(std::size_t regno) const override;
+        long_word a(std::size_t regno) const;
 
-        void set_a(std::size_t regno, long_word value) override;
+        void set_a(std::size_t regno, long_word value);
+
+        void set_a(std::size_t regno, word value)
+        {
+            set_a(regno, long_word(value.to_int()));
+        }
     };
 }
 

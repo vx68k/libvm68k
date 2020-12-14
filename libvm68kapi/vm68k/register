@@ -19,6 +19,4 @@
 #ifndef _VM68K_REGISTER
 #define _VM68K_REGISTER 1
 
-#include <bits/vm68k/register.h>
-
 #endif

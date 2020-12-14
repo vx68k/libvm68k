@@ -20,6 +20,7 @@
 #define _VM68K_INTERNAL_REGISTER_FILE_H 1
 
 #include <vm68k/register>
+#include <vm68k/data>
 #include <bits/vm68kdef.h>
 #include <array>
 #include <utility>

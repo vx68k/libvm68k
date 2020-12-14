@@ -19,7 +19,3 @@
 #if HAVE_CONFIG_H
 #include <config.h>
 #endif
-
-#include <bits/vm68k/register.h>
-
-using namespace vm68k;

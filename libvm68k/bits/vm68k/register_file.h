@@ -57,9 +57,28 @@ namespace vm68k
         }
 
     public:
+        /**
+         * Converts the register value to a long word.
+         */
         operator long_word() const noexcept
         {
             return _value;
+        }
+
+        /**
+         * Converts the register value to a word.
+         */
+        operator word() const noexcept
+        {
+            return word(_value.to_uint());
+        }
+
+        /**
+         * Converts the register value to a byte.
+         */
+        operator byte() const noexcept
+        {
+            return byte(_value.to_uint());
         }
     };
 
@@ -78,10 +97,27 @@ namespace vm68k
             return *this;
         }
 
+        address_register &operator =(const word value)
+        {
+            _value = long_word(value.to_int());
+            return *this;
+        }
+
     public:
+        /**
+         * Converts the register value to a long word.
+         */
         operator long_word() const noexcept
         {
             return _value;
+        }
+
+        /**
+         * Converts the register value to a word.
+         */
+        operator word() const noexcept
+        {
+            return word(_value.to_uint());
         }
     };
 

@@ -19,6 +19,12 @@ AC_CHECK_HEADERS([sys/mman.h])
 LT_PREREQ([2.4.6])
 LT_INIT([win32-dll])
 PKG_CHECK_MODULES([CPPUNIT], [cppunit],, [no_cppunit=yes])
+AC_ARG_WITH([cppunit],
+[AS_HELP_STRING([--with-cppunit], [use CppUnit [default=yes]])],,
+[with_cppunit=yes])
+if test "$with_cppunit" = no; then
+  no_cppunit=yes
+fi
 AM_CONDITIONAL([CPPUNIT], [test "$no_cppunit" != yes])
 # Configuration actions.
 AC_CONFIG_FILES([Makefile libvm68kapi/Makefile libvm68k/Makefile

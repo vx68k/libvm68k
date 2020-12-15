@@ -21,6 +21,7 @@
 #endif
 
 #include <bits/vm68k/execution_context.h>
+#include <cassert>
 
 using std::move;
 using std::shared_ptr;
@@ -47,6 +48,30 @@ execution_context::execution_context(
 execution_context::~execution_context()
 {
     // Nothing to do.
+}
+
+data_register &execution_context::d(const size_t regno)
+{
+    assert(regno < DATA_REGISTER_MAX);
+    return _d[regno];
+}
+
+const data_register &execution_context::d(const size_t regno) const
+{
+    assert(regno < DATA_REGISTER_MAX);
+    return _d[regno];
+}
+
+address_register &execution_context::a(const size_t regno)
+{
+    assert(regno < ADDRESS_REGISTER_MAX);
+    return _a[regno];
+}
+
+const address_register &execution_context::a(const size_t regno) const
+{
+    assert(regno < ADDRESS_REGISTER_MAX);
+    return _a[regno];
 }
 
 long_word execution_context::pc() const

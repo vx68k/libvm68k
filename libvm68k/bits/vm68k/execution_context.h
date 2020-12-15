@@ -21,8 +21,10 @@
 
 #include <bits/vm68k/register_file.h>
 #include <vm68k/memory>
+#include <array>
 #include <memory>
 #include <utility>
+#include <cstddef>
 
 namespace vm68k
 {
@@ -31,11 +33,30 @@ namespace vm68k
      */
     class _VM68K_PUBLIC execution_context
     {
+    public:
+        /**
+         * Number of the data registers.
+         */
+        static const std::size_t DATA_REGISTER_MAX = 8;
+
+        /**
+         * Number of the address registers.
+         */
+        static const std::size_t ADDRESS_REGISTER_MAX = 8;
+
     private:
         std::shared_ptr<memory_map> _memory;
 
     private:
-        register_file _registers;
+        /**
+         * Array of the data registers.
+         */
+        std::array<data_register, DATA_REGISTER_MAX> _d;
+
+        /**
+         * Array of the address registers.
+         */
+        std::array<address_register, ADDRESS_REGISTER_MAX> _a;
 
     private:
         long_word _pc;
@@ -57,10 +78,26 @@ namespace vm68k
         }
 
     public:
-        register_file &registers()
-        {
-            return _registers;
-        }
+        /**
+         * Returns a reference to a data register.
+         */
+        data_register &d(std::size_t regno);
+
+        /**
+         * Returns a const reference to a data register.
+         */
+        const data_register &d(std::size_t regno) const;
+
+    public:
+        /**
+         * Returns a reference to an address register.
+         */
+        address_register &a(std::size_t regno);
+
+        /**
+         * Returns a const reference to an address register.
+         */
+        const address_register &a(std::size_t regno) const;
 
     public:
         long_word pc() const;

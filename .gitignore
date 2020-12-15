@@ -26,12 +26,13 @@ _build
 *.insert-header
 *.gmo
 *.trs
-*.log
 *.pc
 *.lo
 *.o
 *.tvsconfig
 *.local
+*.lineno
+*.log
 *.cache
 *.rej
 *.orig

@@ -115,28 +115,72 @@ public:
 CPPUNIT_TEST_SUITE_REGISTRATION(RegisterFileTests);
 
 /*
- * Tests for class 'context'.
+ * Tests for class execution_context.
  */
-class ContextTests : public TestFixture {
-    CPPUNIT_TEST_SUITE(ContextTests);
+class ExecutionContextTests: public TestFixture
+{
+    CPPUNIT_TEST_SUITE(ExecutionContextTests);
     CPPUNIT_TEST(testMemory);
+    CPPUNIT_TEST(testDataRegister);
+    CPPUNIT_TEST(testAddressRegister);
     CPPUNIT_TEST_SUITE_END();
 
 private:
     shared_ptr<execution_context> _context;
 
 public:
-    void setUp() override {
+    void setUp() override
+    {
         auto memory = make_shared<test_memory_map>();
         _context.reset(new execution_context(memory, long_word(0)));
     }
 
-    void tearDown() override {
+public:
+    void tearDown() override
+    {
         _context.reset();
     }
 
-    void testMemory() {
+private:
+    void testMemory()
+    {
         CPPUNIT_ASSERT(_context->memory() != NULL);
     }
+
+private:
+    void testDataRegister()
+    {
+        _context->d(0) = long_word(0x01234567);
+        _context->d(1) = long_word(0);
+        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x01234567U), long_word(_context->d(0)).to_uint());
+
+        _context->d(0) = long_word(0x01234567);
+        _context->d(0) = word(0x89ab);
+        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x012389abU), long_word(_context->d(0)).to_uint());
+        CPPUNIT_ASSERT_EQUAL(word::uint_type(0x89abU), word(_context->d(0)).to_uint());
+
+        _context->d(0) = long_word(0x01234567);
+        _context->d(0) = byte(0x89);
+        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x01234589U), long_word(_context->d(0)).to_uint());
+        CPPUNIT_ASSERT_EQUAL(byte::uint_type(0x89U), byte(_context->d(0)).to_uint());
+    }
+
+private:
+    void testAddressRegister()
+    {
+        _context->a(0) = long_word(0x01234567);
+        _context->a(1) = long_word(0);
+        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x01234567U), long_word(_context->a(0)).to_uint());
+
+        _context->a(0) = long_word(0x01234567);
+        _context->a(0) = word(0x0123);
+        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x00000123U), long_word(_context->a(0)).to_uint());
+        CPPUNIT_ASSERT_EQUAL(word::uint_type(0x0123U), word(_context->a(0)).to_uint());
+
+        _context->a(0) = long_word(0x01234567);
+        _context->a(0) = word(0x89ab);
+        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0xffff89abU), long_word(_context->a(0)).to_uint());
+        CPPUNIT_ASSERT_EQUAL(word::uint_type(0x89abU), word(_context->a(0)).to_uint());
+    }
 };
-CPPUNIT_TEST_SUITE_REGISTRATION(ContextTests);
+CPPUNIT_TEST_SUITE_REGISTRATION(ExecutionContextTests);

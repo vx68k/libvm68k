@@ -21,6 +21,7 @@
 #endif
 
 #include <bits/vm68k/execution_context.h>
+#include <utility>
 #include <cassert>
 
 using std::move;
@@ -41,6 +42,26 @@ execution_context::execution_context(
 :
     _memory {move(memory)},
     _pc {pc}
+{
+    // Nothing to do.
+}
+
+execution_context::execution_context(const execution_context &other)
+:
+    _memory {other._memory},
+    _d {other._d},
+    _a {other._a},
+    _pc {other._pc}
+{
+    // Nothing to do.
+}
+
+execution_context::execution_context(execution_context &&other)
+:
+    _memory {move(other._memory)},
+    _d {move(other._d)},
+    _a {move(other._a)},
+    _pc {move(other._pc)}
 {
     // Nothing to do.
 }

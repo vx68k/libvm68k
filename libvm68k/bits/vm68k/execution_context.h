@@ -24,7 +24,6 @@
 #include <vm68k/data>
 #include <array>
 #include <memory>
-#include <utility>
 #include <cstddef>
 
 namespace vm68k
@@ -163,6 +162,16 @@ namespace vm68k
 
         execution_context(std::shared_ptr<memory_map> &&memory,
             long_word pc);
+
+        /**
+         * Copy constructor.
+         */
+        execution_context(const execution_context &other);
+
+        /**
+         * Move constructor.
+         */
+        execution_context(execution_context &&other);
 
     public:
         virtual ~execution_context();

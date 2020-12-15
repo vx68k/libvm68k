@@ -19,7 +19,7 @@
 #ifndef _VM68K_EXECUTION_CONTEXT_H
 #define _VM68K_EXECUTION_CONTEXT_H 1
 
-#include <bits/vm68k/register_file.h>
+#include <bits/vm68kdef.h>
 #include <vm68k/memory>
 #include <vm68k/data>
 #include <array>

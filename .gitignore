@@ -14,13 +14,10 @@ config.h.in
 configure
 aclocal.m4
 stamp-*
-.dirstamp
-Debug
-Release
+_build
+LibrarySupport
 .libs
 .deps
-LibrarySupport
-_build
 *@quot.po
 *@boldquot.po
 *.insert-header

@@ -71,6 +71,28 @@ execution_context::~execution_context()
     // Nothing to do.
 }
 
+execution_context &execution_context::operator =(const execution_context &other)
+{
+    if (this != &other) {
+        _memory = other._memory;
+        _d = other._d;
+        _a = other._a;
+        _pc = other._pc;
+    }
+    return *this;
+}
+
+execution_context &execution_context::operator =(execution_context &&other)
+{
+    if (this != &other) {
+        _memory = move(other._memory);
+        _d = move(other._d);
+        _a = move(other._a);
+        _pc = move(other._pc);
+    }
+    return *this;
+}
+
 data_register &execution_context::d(const size_t regno)
 {
     assert(regno < DATA_REGISTER_MAX);

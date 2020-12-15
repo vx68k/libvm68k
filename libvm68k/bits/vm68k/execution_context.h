@@ -177,6 +177,17 @@ namespace vm68k
         virtual ~execution_context();
 
     public:
+        /**
+         * Copy assignment operator.
+         */
+        execution_context &operator =(const execution_context &other);
+
+        /**
+         * Move assignment operator.
+         */
+        execution_context &operator =(execution_context &&other);
+
+    public:
         auto memory() const -> const std::shared_ptr<memory_map> &
         {
             return _memory;

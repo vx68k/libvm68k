@@ -66,54 +66,6 @@ namespace
     };
 }
 
-// Tests for class register_file.
-class RegisterFileTests: public TestFixture
-{
-    CPPUNIT_TEST_SUITE(RegisterFileTests);
-    CPPUNIT_TEST(testDataRegister);
-    CPPUNIT_TEST(testAddressRegister);
-    CPPUNIT_TEST_SUITE_END();
-
-private:
-    register_file _registers;
-
-public:
-    void testDataRegister()
-    {
-        _registers.d(0) = long_word(0x01234567);
-        _registers.d(1) = long_word(0);
-        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x01234567U), long_word(_registers.d(0)).to_uint());
-
-        _registers.d(0) = long_word(0x01234567);
-        _registers.d(0) = word(0x89ab);
-        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x012389abU), long_word(_registers.d(0)).to_uint());
-        CPPUNIT_ASSERT_EQUAL(word::uint_type(0x89abU), word(_registers.d(0)).to_uint());
-
-        _registers.d(0) = long_word(0x01234567);
-        _registers.d(0) = byte(0x89);
-        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x01234589U), long_word(_registers.d(0)).to_uint());
-        CPPUNIT_ASSERT_EQUAL(byte::uint_type(0x89U), byte(_registers.d(0)).to_uint());
-    }
-
-    void testAddressRegister()
-    {
-        _registers.a(0) = long_word(0x01234567);
-        _registers.a(1) = long_word(0);
-        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x01234567U), long_word(_registers.a(0)).to_uint());
-
-        _registers.a(0) = long_word(0x01234567);
-        _registers.a(0) = word(0x0123);
-        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x00000123U), long_word(_registers.a(0)).to_uint());
-        CPPUNIT_ASSERT_EQUAL(word::uint_type(0x0123U), word(_registers.a(0)).to_uint());
-
-        _registers.a(0) = long_word(0x01234567);
-        _registers.a(0) = word(0x89ab);
-        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0xffff89abU), long_word(_registers.a(0)).to_uint());
-        CPPUNIT_ASSERT_EQUAL(word::uint_type(0x89abU), word(_registers.a(0)).to_uint());
-    }
-};
-CPPUNIT_TEST_SUITE_REGISTRATION(RegisterFileTests);
-
 /*
  * Tests for class execution_context.
  */

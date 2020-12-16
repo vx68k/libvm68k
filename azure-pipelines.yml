@@ -25,7 +25,7 @@ stages:
             inputs:
               secureFile: keys.asc
           - bash: |
-              echo '$(gpg.passphrase)' | \
+              echo '$(gpg.passphrase)' |
               sh ./setupkeys.sh '$(Keys.secureFilePath)'
             displayName: Set up signing keys
           - bash: |
@@ -73,7 +73,7 @@ stages:
           - download: current
             artifact: dist
           - bash: |
-              gzip -dc '$(Agent.BuildDirectory)/dist/$(package.distName).tar.gz' | \
+              gzip -dc '$(Agent.BuildDirectory)/dist/$(package.distName).tar.gz' |
               tar -x
             displayName: Unpack
           - bash: |

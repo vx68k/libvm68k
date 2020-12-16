@@ -4,7 +4,7 @@ includedir=@includedir@
 libdir=@libdir@
 
 Name: libvm68k
-Description: libvm68k
+Description: libvm68k runtime
 Version: @VERSION@
 Requires.private: libvm68kapi
 Cflags: -I${includedir}

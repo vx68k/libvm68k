@@ -4,7 +4,7 @@ includedir=@includedir@
 libdir=@libdir@
 
 Name: libvm68kapi
-Description: libvm68kapi
+Description: libvm68k API
 Version: @VERSION@
 Cflags: -I${includedir}
 Libs: -L${libdir} -lvm68kapi

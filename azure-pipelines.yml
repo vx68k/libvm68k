@@ -30,8 +30,8 @@ stages:
             displayName: Set up signing keys
           - bash: |
               sudo apt-get install -q --no-install-recommends \
-                  texinfo \
-                  libcppunit-dev
+                texinfo \
+                libcppunit-dev
             displayName: Install build dependencies
           - bash: |
               autoreconf --verbose
@@ -108,5 +108,5 @@ stages:
             artifact: dist
           - bash: |
               sh ./upload.sh -u '$(bitbucket.username):$(bitbucket.password)' \
-                  -r '$(uploadRepository)' '$(Agent.BuildDirectory)'/dist/*
+                -r '$(uploadRepository)' '$(Agent.BuildDirectory)'/dist/*
             displayName: Upload

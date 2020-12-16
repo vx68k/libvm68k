@@ -6,6 +6,6 @@ libdir=@libdir@
 Name: vm68k
 Description: libvm68k
 Version: @VERSION@
-Requires.private: vm68kapi
+Requires.private: libvm68kapi
 Cflags: -I${includedir}
 Libs: -L${libdir} -lvm68k

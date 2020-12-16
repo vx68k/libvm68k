@@ -73,7 +73,7 @@ stages:
           - download: current
             artifact: dist
           - bash: |
-              gzip -dc '$(Agent.BuildDirectory)'/dist/'$(package.distName)'.tar.gz |
+              gzip -dc '$(Agent.BuildDirectory)'/dist/*.tar.gz |
               tar -x --strip-components=1
             displayName: Unpack
           - bash: |

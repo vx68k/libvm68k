@@ -74,7 +74,7 @@ stages:
             artifact: dist
           - bash: |
               gzip -dc '$(Agent.BuildDirectory)'/dist/'$(package.distName)'.tar.gz |
-              tar -x
+              tar -x --strip-components=1
             displayName: Unpack
           - bash: |
               $CC --version
@@ -82,15 +82,13 @@ stages:
               ./configure --prefix='$(Build.BinariesDirectory)' &&
               echo "##vso[task.uploadfile]`pwd`/config.log"
             displayName: Configure
-            workingDirectory: $(package.distName)
           - bash: |
               make check
             displayName: Build
-            workingDirectory: $(package.distName)
           - bash: |
-              make install installcheck
+              make install &&
+              make installcheck
             displayName: Install
-            workingDirectory: $(package.distName)
   - stage: Release
     dependsOn: Default
     condition:

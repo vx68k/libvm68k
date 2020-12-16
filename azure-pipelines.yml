@@ -60,7 +60,7 @@ stages:
             Ubuntu:
               VM_IMAGE: ubuntu-latest
               CC: gcc
-              CXX: g++ -std=c++14
+              CXX: g++
             macOS:
               VM_IMAGE: macOS-latest
               CC: clang

@@ -38,6 +38,6 @@ libvm68k.pc: $(srcdir)/libvm68k.pc.in $(top_builddir)/config.status
 
 installcheck-local:
 	if test -n '$(PKG_CONFIG)'; then \
-	    export PKG_CONFIG_PATH=$(pkgconfigdir); \
-	    $(PKG_CONFIG) --exists --exact-version=$(VERSION) libvm68k; \
+	  export PKG_CONFIG_PATH=$(pkgconfigdir); \
+	  $(PKG_CONFIG) --exists --exact-version=$(VERSION) libvm68k; \
 	fi

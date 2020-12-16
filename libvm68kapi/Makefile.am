@@ -34,6 +34,6 @@ libvm68kapi.pc: $(srcdir)/libvm68kapi.pc.in $(top_builddir)/config.status
 
 installcheck-local:
 	if test -n '$(PKG_CONFIG)'; then \
-	    export PKG_CONFIG_PATH=$(pkgconfigdir); \
-	    $(PKG_CONFIG) --exists --exact-version=$(VERSION) libvm68kapi; \
+	  export PKG_CONFIG_PATH=$(pkgconfigdir); \
+	  $(PKG_CONFIG) --exists --exact-version=$(VERSION) libvm68kapi; \
 	fi

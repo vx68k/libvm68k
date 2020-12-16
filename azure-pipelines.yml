@@ -37,7 +37,7 @@ stages:
               autoreconf --verbose
             displayName: Bootstrap
           - bash: |
-              ./configure --disable-static || exit $?
+              ./configure --disable-static &&
               echo "##vso[task.uploadfile]`pwd`/config.log"
             displayName: Configure
           - bash: |
@@ -46,10 +46,10 @@ stages:
           - task: PublishTestResults@2
             condition: succeededOrFailed()
           - bash: |
-              make dist || exit $?
-              mkdir -p _dist
+              make dist &&
+              mkdir -p _dist &&
               mv -f '$(package.distName)'.* _dist/
-            displayName: Make source archive
+            displayName: Make distributables
           - publish: _dist
             artifact: dist
   - stage: Test
@@ -79,7 +79,7 @@ stages:
           - bash: |
               $CC --version
               $CXX --version
-              ./configure --prefix='$(Build.BinariesDirectory)' || exit $?
+              ./configure --prefix='$(Build.BinariesDirectory)' &&
               echo "##vso[task.uploadfile]`pwd`/config.log"
             displayName: Configure
             workingDirectory: $(package.distName)

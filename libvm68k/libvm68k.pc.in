@@ -3,7 +3,7 @@ exec_prefix=@exec_prefix@
 includedir=@includedir@
 libdir=@libdir@
 
-Name: vm68k
+Name: libvm68k
 Description: libvm68k
 Version: @VERSION@
 Requires.private: libvm68kapi

@@ -7,9 +7,9 @@ pkgconfigdir = $(libdir)/pkgconfig
 
 lib_LTLIBRARIES = libvm68k.la
 
-EXTRA_DIST = vm68k.pc.in vm68k.cbproj ModelSupport_vm68k
+EXTRA_DIST = libvm68k.pc.in vm68k.cbproj ModelSupport_vm68k
 
-pkgconfig_DATA = vm68k.pc
+pkgconfig_DATA = libvm68k.pc
 
 nobase_include_HEADERS = \
 vm68k/runtime \
@@ -33,11 +33,11 @@ libvm68k_la_LIBADD = -L$(top_builddir)/libvm68kapi -lvm68kapi
 
 CLEANFILES = $(pkgconfig_DATA)
 
-vm68k.pc: $(srcdir)/vm68k.pc.in $(top_builddir)/config.status
+libvm68k.pc: $(srcdir)/libvm68k.pc.in $(top_builddir)/config.status
 	cd $(top_builddir) && $(SHELL) ./config.status --file=$(subdir)/$@
 
 installcheck-local:
 	if test -n '$(PKG_CONFIG)'; then \
 	    export PKG_CONFIG_PATH=$(pkgconfigdir); \
-	    $(PKG_CONFIG) --exists --exact-version=$(VERSION) vm68k; \
+	    $(PKG_CONFIG) --exists --exact-version=$(VERSION) libvm68k; \
 	fi

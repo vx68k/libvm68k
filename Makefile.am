@@ -8,7 +8,7 @@ SUBDIRS = libvm68kapi libvm68k test
 
 dist-hook: $(distdir)/SHA256SUMS
 	if test -n "$$GPG_USERNAME"; then \
-	    gpg -ba -u "$$GPG_USERNAME" $(distdir)/SHA256SUMS; \
+	  gpg -ba -u "$$GPG_USERNAME" $(distdir)/SHA256SUMS; \
 	fi
 
 $(distdir)/SHA256SUMS:

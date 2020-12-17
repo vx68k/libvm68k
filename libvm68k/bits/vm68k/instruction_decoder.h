@@ -26,9 +26,15 @@
 
 namespace vm68k
 {
+    /**
+     * Instruction decoders.
+     */
     class _VM68K_PUBLIC instruction_decoder
     {
     public:
+        /**
+         * Base class for instructions.
+         */
         class _VM68K_PUBLIC instruction
         {
         protected:

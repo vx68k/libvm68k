@@ -44,6 +44,12 @@ namespace vm68k
 
         public:
             virtual ~instruction() = default;
+
+        public:
+            /**
+             * Decodes the instruction into an executor.
+             */
+            virtual void decode(executor &e) = 0;
         };
 
     private:

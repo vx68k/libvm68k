@@ -22,7 +22,25 @@
 
 #include <bits/vm68k/instruction_decoder.h>
 
+#include <utility>
+
+using std::move;
+using std::shared_ptr;
 using namespace vm68k;
+
+instruction_decoder::instruction_decoder(const shared_ptr<memory_map> &memory)
+:
+    _memory {memory}
+{
+    // Nothing to do.
+}
+
+instruction_decoder::instruction_decoder(shared_ptr<memory_map> &&memory)
+:
+    _memory {move(memory)}
+{
+    // Nothing to do.
+}
 
 instruction_decoder::~instruction_decoder()
 {

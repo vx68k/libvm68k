@@ -42,8 +42,9 @@ auto read_write_memory::allocate_bytes(const size_t size)
     -> unique_ptr<byte_type [], bytes_delete>
 {
 #if HAVE_SYS_MMAN_H && defined MAP_ANONYMOUS
-    auto bytes = static_cast<byte_type *>(
-        mmap(0, size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0));
+    auto &&bytes = static_cast<byte_type *>(
+        mmap(nullptr, size, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS,
+            -1, 0));
     if (bytes == nullptr) {
         throw bad_alloc();
     }

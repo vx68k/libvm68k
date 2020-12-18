@@ -44,6 +44,18 @@ using namespace vm68k;
 
 // Implementation of the read-write memory objects.
 
+void read_write_memory::bytes_delete::operator ()(byte_type *bytes) const
+{
+    undeclare_no_pointers(reinterpret_cast<char *>(bytes), _size);
+#if HAVE_SYS_MMAN_H && defined MAP_ANONYMOUS
+    munmap(bytes, _size);
+#elif _WIN32
+    UnmapViewOfFile(bytes);
+#else
+    delete[] bytes;
+#endif
+}
+
 auto read_write_memory::allocate_bytes(const size_t size)
     -> unique_ptr<byte_type [], bytes_delete>
 {
@@ -149,16 +161,4 @@ void read_write_memory::check_write_access(const memory_map::mode,
     const address_type, const size_type)
 {
     // Nothing to do.
-}
-
-void read_write_memory::bytes_delete::operator ()(byte_type *bytes) const
-{
-    undeclare_no_pointers(reinterpret_cast<char *>(bytes), _size);
-#if HAVE_SYS_MMAN_H && defined MAP_ANONYMOUS
-    munmap(bytes, _size);
-#elif _WIN32
-    UnmapViewOfFile(bytes);
-#else
-    delete[] bytes;
-#endif
 }

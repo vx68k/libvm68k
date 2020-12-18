@@ -49,8 +49,14 @@ namespace vm68k
         public:
             /**
              * Decodes the instruction into an executor.
+             *
+             * @param code the operation code of the instruction
+             * @param m the memory map from which operands are to be fetched
+             * @param pc the address after the operation code
+             * @param e an executor
              */
-            virtual void decode(executor &e) = 0;
+            virtual void decode(word code, const memory_map &m, long_word pc,
+                executor &e) = 0;
         };
 
     private:

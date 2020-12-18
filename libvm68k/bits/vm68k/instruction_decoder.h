@@ -63,7 +63,7 @@ namespace vm68k
         std::shared_ptr<memory_map> _memory;
 
     private:
-        std::array<std::shared_ptr<instruction>, 0x10000> _instructions;
+        std::array<std::shared_ptr<instruction>, 0x10000U> _instructions;
 
     public:
         instruction_decoder(const std::shared_ptr<memory_map> &memory);

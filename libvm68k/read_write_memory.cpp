@@ -31,12 +31,16 @@
 #include <sys/mman.h>
 #endif
 #include <system_error>
+#include <new>
 #include <cerrno>
+#include <cstdint>
 
+using std::bad_alloc;
 using std::declare_no_pointers;
 using std::generic_category;
 using std::size_t;
 using std::system_error;
+using std::uint64_t;
 using std::undeclare_no_pointers;
 using std::unique_ptr;
 using namespace vm68k;
@@ -53,6 +57,19 @@ auto read_write_memory::allocate_bytes(const size_t size)
     if (bytes == nullptr) {
         throw system_error(errno, generic_category(),
             "could not get an anonymous memory mapping");
+    }
+#elif _WIN32
+    auto &&handle =
+        CreateFileMappingA(INVALID_HANDLE_VALUE, nullptr, PAGE_READWRITE,
+            (uint64_t)size >> 32, size, nullptr);
+    if (handle == nullptr) {
+        throw bad_alloc();
+    }
+    auto &&bytes = static_cast<byte_type *>(
+        MapViewOfFile(handle, FILE_MAP_ALL_ACCESS, 0, 0, size));
+    CloseHandle(handle); // This handle is no longer needed.
+    if (bytes == nullptr) {
+        throw bad_alloc();
     }
 #else
     auto bytes = new byte_type[size] {};
@@ -146,6 +163,8 @@ void read_write_memory::bytes_delete::operator ()(byte_type *bytes) const
         throw system_error(errno, generic_category(),
             "could not release the memory mapping");
     }
+#elif _WIN32
+    UnmapViewOfFile(bytes);
 #else
     delete[] bytes;
 #endif

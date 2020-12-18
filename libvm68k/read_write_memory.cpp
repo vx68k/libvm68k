@@ -30,16 +30,12 @@
 #if HAVE_SYS_MMAN_H
 #include <sys/mman.h>
 #endif
-#include <system_error>
 #include <new>
-#include <cerrno>
 #include <cstdint>
 
 using std::bad_alloc;
 using std::declare_no_pointers;
-using std::generic_category;
 using std::size_t;
-using std::system_error;
 using std::uint64_t;
 using std::undeclare_no_pointers;
 using std::unique_ptr;
@@ -51,12 +47,12 @@ using namespace vm68k;
 auto read_write_memory::allocate_bytes(const size_t size)
     -> unique_ptr<byte_type [], bytes_delete>
 {
-#if HAVE_SYS_MMAN_H
-    auto bytes = static_cast<byte_type *>(
-        mmap(0, size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0));
+#if HAVE_SYS_MMAN_H && defined MAP_ANONYMOUS
+    auto &&bytes = static_cast<byte_type *>(
+        mmap(nullptr, size, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS,
+            -1, 0));
     if (bytes == nullptr) {
-        throw system_error(errno, generic_category(),
-            "could not get an anonymous memory mapping");
+        throw bad_alloc();
     }
 #elif _WIN32
     auto &&handle =
@@ -158,11 +154,8 @@ void read_write_memory::check_write_access(const memory_map::mode,
 void read_write_memory::bytes_delete::operator ()(byte_type *bytes) const
 {
     undeclare_no_pointers(reinterpret_cast<char *>(bytes), _size);
-#if HAVE_SYS_MMAN_H
-    if (munmap(bytes, _size) == -1) {
-        throw system_error(errno, generic_category(),
-            "could not release the memory mapping");
-    }
+#if HAVE_SYS_MMAN_H && defined MAP_ANONYMOUS
+    munmap(bytes, _size);
 #elif _WIN32
     UnmapViewOfFile(bytes);
 #else

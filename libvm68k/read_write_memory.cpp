@@ -20,6 +20,11 @@
 #include <config.h>
 #endif
 
+#if _WIN32
+#define WIN32_LEAN_AND_MEAN 1
+#include <windows.h>
+#endif
+
 #include <bits/vm68k/read_write_memory.h>
 
 #if HAVE_SYS_MMAN_H

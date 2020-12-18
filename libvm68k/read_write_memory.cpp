@@ -26,7 +26,6 @@
 #include <sys/mman.h>
 #endif
 #include <new>
-#include <cerrno>
 
 using std::bad_alloc;
 using std::declare_no_pointers;

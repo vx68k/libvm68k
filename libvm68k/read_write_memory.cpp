@@ -42,7 +42,7 @@ using namespace vm68k;
 auto read_write_memory::allocate_bytes(const size_t size)
     -> unique_ptr<byte_type [], bytes_delete>
 {
-#if HAVE_SYS_MMAN_H
+#if HAVE_SYS_MMAN_H && defined MAP_ANONYMOUS
     auto bytes = static_cast<byte_type *>(
         mmap(0, size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0));
     if (bytes == nullptr) {
@@ -136,7 +136,7 @@ void read_write_memory::check_write_access(const memory_map::mode,
 void read_write_memory::bytes_delete::operator ()(byte_type *bytes) const
 {
     undeclare_no_pointers(reinterpret_cast<char *>(bytes), _size);
-#if HAVE_SYS_MMAN_H
+#if HAVE_SYS_MMAN_H && defined MAP_ANONYMOUS
     if (munmap(bytes, _size) == -1) {
         throw system_error(errno, generic_category(),
             "could not release the memory mapping");

@@ -27,6 +27,8 @@
 namespace vm68k
 {
     /**
+     * Base class for memory maps.
+     *
      * <author>Kaz Nishimura</author>
      * <since>2.0</since>
      */
@@ -36,6 +38,10 @@ namespace vm68k
         using address_type = std::uint32_t;
         using size_type = std::uint32_t;
 
+    public:
+        /**
+         * Access mode.
+         */
         enum class access_mode: char
         {
             USER = 0,
@@ -44,7 +50,7 @@ namespace vm68k
 
     public:
         /**
-         * Memory objects mapped to the paged memory map.
+         * Memory objects mapped on a memory map.
          */
         class _VM68KAPI_PUBLIC memory
         {
@@ -80,14 +86,14 @@ namespace vm68k
             /**
              * Reads a sequence of bytes from the memory object.
              */
-            virtual void read(access_mode mode, address_type address, size_type n,
-                void *bytes) = 0;
+            virtual void read(access_mode mode, address_type address,
+                size_type size, void *bytes) = 0;
 
             /**
              * Writes a sequence of bytes to the memory object.
              */
-            virtual void write(access_mode mode, address_type address, size_type n,
-                const void *bytes) = 0;
+            virtual void write(access_mode mode, address_type address,
+                size_type size, const void *bytes) = 0;
         };
 
     protected:
@@ -111,9 +117,10 @@ namespace vm68k
          * @param size the size of the sequence
          * @param bytes a pointer to a byte buffer
          */
-        virtual void read(access_mode mode, address_type address, size_type size,
-            void *bytes) = 0;
+        virtual void read(access_mode mode, address_type address,
+            size_type size, void *bytes) = 0;
 
+    public:
         /**
          * Writes a sequence of bytes.
          *
@@ -122,8 +129,8 @@ namespace vm68k
          * @param size the size of the sequence
          * @param bytes a pointer to a byte buffer
          */
-        virtual void write(access_mode mode, address_type address, size_type size,
-            const void *bytes) = 0;
+        virtual void write(access_mode mode, address_type address,
+            size_type size, const void *bytes) = 0;
     };
 
     /**
@@ -154,12 +161,18 @@ namespace vm68k
         virtual ~paged_memory_map();
 
     public:
+        /**
+         * Returns the address mask.
+         */
         address_type address_mask() const noexcept
         {
             return _address_mask;
         }
 
     public:
+        /**
+         * Returns the page size.
+         */
         size_type page_size() const noexcept
         {
             return _page_size;

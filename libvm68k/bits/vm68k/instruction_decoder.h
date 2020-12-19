@@ -67,7 +67,7 @@ namespace vm68k
         virtual ~instruction_decoder();
 
     public:
-        long_word decode(execution_context &c, executor &e) const;
+        long_word decode_instruction(execution_context &c, executor &e) const;
     };
 }
 

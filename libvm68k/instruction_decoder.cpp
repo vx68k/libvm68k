@@ -35,7 +35,8 @@ instruction_decoder::~instruction_decoder()
     // Nothing to do.
 }
 
-long_word instruction_decoder::decode(execution_context &c, executor &e) const
+long_word instruction_decoder::decode_instruction(execution_context &c,
+    executor &e) const
 {
     // TODO: implement this function.
     return c.pc();

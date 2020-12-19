@@ -20,15 +20,22 @@
 #define _VM68K_INSTRUCTION_DECODER_H 1
 
 #include <bits/vm68k/executor.h>
+#include <bits/vm68k/execution_context.h>
 #include <vm68k/data>
 #include <array>
 #include <memory>
 
 namespace vm68k
 {
+    /**
+     * Instruction decoders.
+     */
     class _VM68K_PUBLIC instruction_decoder
     {
     public:
+        /**
+         * Base class for instructions.
+         */
         class _VM68K_PUBLIC instruction
         {
         protected:
@@ -38,16 +45,29 @@ namespace vm68k
 
         public:
             virtual ~instruction() = default;
+
+        public:
+            /**
+             * Decodes the instruction into an executor.
+             *
+             * @param code the operation code of the instruction
+             * @param c the execution context from which the instruction was fetched
+             * @param e an executor
+             */
+            virtual void decode(word code, execution_context &c, executor &e) = 0;
         };
 
     private:
-        std::array<std::shared_ptr<instruction>, 0x10000> _instructions;
+        std::array<std::shared_ptr<instruction>, 0x10000U> _instructions;
+
+    public:
+        instruction_decoder();
 
     public:
         virtual ~instruction_decoder();
 
     public:
-        long_word decode(long_word pc, executor &e) const;
+        long_word decode_instruction(execution_context &c, executor &e) const;
     };
 }
 

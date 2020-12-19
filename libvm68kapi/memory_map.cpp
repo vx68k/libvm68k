@@ -32,7 +32,7 @@ using namespace vm68k;
 
 namespace
 {
-    class bus_error_memory: public paged_memory_map::memory
+    class bus_error_memory: public memory_map::memory
     {
     public:
         size_type size() const noexcept final override
@@ -58,6 +58,11 @@ namespace
 
 static const auto NO_MEMORY = make_shared<bus_error_memory>();
 
+
+void memory_map::memory::relocate(address_type)
+{
+    // Nothing to do.
+}
 
 // Implementation of the paged memory maps.
 
@@ -92,11 +97,6 @@ paged_memory_map::paged_memory_map(const address_type address_mask,
 }
 
 paged_memory_map::~paged_memory_map()
-{
-    // Nothing to do.
-}
-
-void paged_memory_map::memory::relocate(address_type)
 {
     // Nothing to do.
 }

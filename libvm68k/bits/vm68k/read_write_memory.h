@@ -28,7 +28,7 @@ namespace vm68k
     /*
      * Read-write memory objects.
      */
-    class _VM68K_PUBLIC read_write_memory: public paged_memory_map::memory
+    class _VM68K_PUBLIC read_write_memory: public memory_map::memory
     {
     protected:
         using byte_type = unsigned char;

@@ -42,33 +42,6 @@ namespace vm68k
             SUPERVISOR,
         };
 
-    protected:
-        /**
-         * <stereotype>constructor</stereotype>
-         */
-        memory_map() = default;
-
-    public:
-        /**
-         * <stereotype>destructor</stereotype>
-         */
-        virtual ~memory_map() = default;
-
-    public:
-        // Reads a sequence of bytes.
-        virtual void read(mode m, address_type address, size_type n,
-            void *bytes) = 0;
-
-        // Writes a sequence of bytes.
-        virtual void write(mode m, address_type address, size_type n,
-            const void *bytes) = 0;
-    };
-
-    /**
-     * Paged memory maps.
-     */
-    class _VM68KAPI_PUBLIC paged_memory_map: public memory_map
-    {
     public:
         /**
          * Memory objects mapped to the paged memory map.
@@ -116,6 +89,33 @@ namespace vm68k
                 const void *bytes) = 0;
         };
 
+    protected:
+        /**
+         * <stereotype>constructor</stereotype>
+         */
+        memory_map() = default;
+
+    public:
+        /**
+         * <stereotype>destructor</stereotype>
+         */
+        virtual ~memory_map() = default;
+
+    public:
+        // Reads a sequence of bytes.
+        virtual void read(mode m, address_type address, size_type n,
+            void *bytes) = 0;
+
+        // Writes a sequence of bytes.
+        virtual void write(mode m, address_type address, size_type n,
+            const void *bytes) = 0;
+    };
+
+    /**
+     * Paged memory maps.
+     */
+    class _VM68KAPI_PUBLIC paged_memory_map: public memory_map
+    {
     public:
         static const size_type DEFAULT_PAGE_SIZE = 0x1000U;
 

@@ -106,11 +106,25 @@ paged_memory_map::~paged_memory_map()
 void paged_memory_map::read(const access_mode mode, address_type address,
     size_type size, void *bytes)
 {
-    // TODO: implement this function.
+    address &= _address_mask;
+
+    auto last = (address + size) & _address_mask;
+    while (address != last) {
+        auto page_index = address / _page_size;
+        auto &page = _pages[page_index];
+        // TODO: implement this function.
+    }
 }
 
 void paged_memory_map::write(const access_mode mode, address_type address,
     size_type size, const void *bytes)
 {
-    // TODO: implement this function.
+    address &= _address_mask;
+
+    auto last = (address + size) & _address_mask;
+    while (address != last) {
+        auto page_index = address / _page_size;
+        auto &page = _pages[page_index];
+        // TODO: implement this function.
+    }
 }

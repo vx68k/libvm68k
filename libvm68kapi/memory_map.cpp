@@ -20,7 +20,6 @@
 #include <config.h>
 #endif
 
-#define _VM68K_MEMORY_IMPLEMENTATION 1
 #include <bits/vm68k/memory_map.h>
 
 #include <bits/vm68k/memory_exception.h>

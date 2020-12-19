@@ -40,14 +40,14 @@ namespace
         }
 
     public:
-        void read(memory_map::mode mode, address_type address, size_type,
+        void read(access_mode mode, address_type address, size_type,
             void *) final override
         {
             throw bus_error(mode, address);
         }
 
     public:
-        void write(memory_map::mode mode, address_type address, size_type,
+        void write(access_mode mode, address_type address, size_type,
             const void *) final override
         {
             throw bus_error(mode, address);

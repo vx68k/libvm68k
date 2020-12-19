@@ -41,11 +41,11 @@ namespace
     class test_memory_map final : public memory_map
     {
     public:
-        void read(mode, address_type, size_type, void *) override
+        void read(access_mode, address_type, size_type, void *) override
         {
         }
 
-        void write(mode, address_type, size_type, const void *) override
+        void write(access_mode, address_type, size_type, const void *) override
         {
         }
     };
@@ -126,8 +126,8 @@ private:
 
         const uint32_t value1 = 0x81828384;
         uint32_t value2 = 0;
-        memory->write(memory_map::mode::SUPERVISOR, 0x10000U, sizeof value1, &value1);
-        memory->read(memory_map::mode::SUPERVISOR, 0x10000U, sizeof value2, &value2);
+        memory->write(memory_map::access_mode::SUPERVISOR, 0x10000U, sizeof value1, &value1);
+        memory->read(memory_map::access_mode::SUPERVISOR, 0x10000U, sizeof value2, &value2);
         CPPUNIT_ASSERT_EQUAL(value1, value2);
     }
 };

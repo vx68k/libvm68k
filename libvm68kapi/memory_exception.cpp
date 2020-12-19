@@ -27,7 +27,7 @@ using namespace vm68k;
 
 // Implementation of the memory exceptions.
 
-memory_exception::memory_exception(const memory_map::mode mode,
+memory_exception::memory_exception(const memory_map::access_mode mode,
     const address_type fault_address) noexcept
 :
     _mode {mode},

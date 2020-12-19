@@ -87,7 +87,7 @@ void read_write_memory::relocate(const address_type base_address)
     _base_address = base_address;
 }
 
-void read_write_memory::read(const memory_map::mode mode,
+void read_write_memory::read(const access_mode mode,
     const address_type address, size_type n, void *const buffer)
 {
     check_read_access(mode, address, n);
@@ -108,7 +108,7 @@ void read_write_memory::read(const memory_map::mode mode,
     }
 }
 
-void read_write_memory::write(const memory_map::mode mode,
+void read_write_memory::write(const access_mode mode,
     const address_type address, size_type n, const void *const buffer)
 {
     check_write_access(mode, address, n);
@@ -129,13 +129,13 @@ void read_write_memory::write(const memory_map::mode mode,
     }
 }
 
-void read_write_memory::check_read_access(const memory_map::mode,
+void read_write_memory::check_read_access(const access_mode,
     const address_type, const size_type)
 {
     // Nothing to do.
 }
 
-void read_write_memory::check_write_access(const memory_map::mode,
+void read_write_memory::check_write_access(const access_mode,
     const address_type, const size_type)
 {
     // Nothing to do.

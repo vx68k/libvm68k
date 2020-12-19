@@ -36,7 +36,7 @@ namespace vm68k
         using address_type = std::uint32_t;
         using size_type = std::uint32_t;
 
-        enum class mode: char
+        enum class access_mode: char
         {
             USER = 0,
             SUPERVISOR,
@@ -51,6 +51,7 @@ namespace vm68k
         protected:
             using address_type = memory_map::address_type;
             using size_type = memory_map::size_type;
+            using access_mode = memory_map::access_mode;
 
         protected:
             memory() = default;
@@ -79,13 +80,13 @@ namespace vm68k
             /**
              * Reads a sequence of bytes from the memory object.
              */
-            virtual void read(mode mode, address_type address, size_type n,
+            virtual void read(access_mode mode, address_type address, size_type n,
                 void *bytes) = 0;
 
             /**
              * Writes a sequence of bytes to the memory object.
              */
-            virtual void write(mode mode, address_type address, size_type n,
+            virtual void write(access_mode mode, address_type address, size_type n,
                 const void *bytes) = 0;
         };
 
@@ -105,23 +106,23 @@ namespace vm68k
         /**
          * Reads a sequence of bytes.
          *
-         * @param m a privilege mode
+         * @param mode an access mode
          * @param address the first address of the sequence
          * @param size the size of the sequence
          * @param bytes a pointer to a byte buffer
          */
-        virtual void read(mode m, address_type address, size_type size,
+        virtual void read(access_mode mode, address_type address, size_type size,
             void *bytes) = 0;
 
         /**
          * Writes a sequence of bytes.
          *
-         * @param m a privilege mode
+         * @param mode an access mode
          * @param address the first address of the sequence
          * @param size the size of the sequence
          * @param bytes a pointer to a byte buffer
          */
-        virtual void write(mode m, address_type address, size_type size,
+        virtual void write(access_mode mode, address_type address, size_type size,
             const void *bytes) = 0;
     };
 

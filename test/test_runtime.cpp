@@ -52,13 +52,13 @@ namespace
         }
 
     public:
-        void read(mode mode, address_type address, size_type size,
+        void read(access_mode mode, address_type address, size_type size,
             void *buffer) override
         {
             _memory->read(mode, address, size, buffer);
         }
 
-        void write(mode mode, address_type address, size_type size,
+        void write(access_mode mode, address_type address, size_type size,
             const void *buffer) override
         {
             _memory->write(mode, address, size, buffer);

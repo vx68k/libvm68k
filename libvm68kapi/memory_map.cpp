@@ -27,6 +27,7 @@
 
 using std::invalid_argument;
 using std::make_shared;
+using std::shared_ptr;
 using namespace vm68k;
 
 namespace
@@ -101,6 +102,20 @@ paged_memory_map::paged_memory_map(const address_type address_mask,
 paged_memory_map::~paged_memory_map()
 {
     // Nothing to do.
+}
+
+void paged_memory_map::add_memory(address_type address,
+    const shared_ptr<memory> &memory)
+{
+    address &= _address_mask;
+    // TODO: check alignments.
+
+    auto last = (address + memory->size()) & _address_mask;
+    auto page_index = address / _page_size;
+    auto last_page_index = last / _page_size;
+    while (page_index != last_page_index) {
+        _pages[page_index++] = memory;
+    }
 }
 
 void paged_memory_map::read(const access_mode mode, address_type address,

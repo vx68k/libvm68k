@@ -179,6 +179,13 @@ namespace vm68k
         }
 
     public:
+        /**
+         * Adds a memory to the memory map.
+         */
+        void add_memory(address_type address,
+            const std::shared_ptr<memory> &memory);
+
+    public:
         virtual void read(access_mode mode, address_type address,
             size_type size, void *bytes) override;
 

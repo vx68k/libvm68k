@@ -20,6 +20,7 @@
 #define _VM68K_INSTRUCTION_DECODER_H 1
 
 #include <bits/vm68k/executor.h>
+#include <bits/vm68k/execution_context.h>
 #include <vm68k/memory>
 #include <vm68k/data>
 #include <array>
@@ -60,21 +61,16 @@ namespace vm68k
         };
 
     private:
-        std::shared_ptr<memory_map> _memory;
-
-    private:
         std::array<std::shared_ptr<instruction>, 0x10000U> _instructions;
 
     public:
-        instruction_decoder(const std::shared_ptr<memory_map> &memory);
-
-        instruction_decoder(std::shared_ptr<memory_map> &&memory);
+        instruction_decoder();
 
     public:
         virtual ~instruction_decoder();
 
     public:
-        long_word decode(long_word pc, executor &e) const;
+        long_word decode(execution_context &c, executor &e) const;
     };
 }
 

@@ -22,24 +22,12 @@
 
 #include <bits/vm68k/instruction_decoder.h>
 
-#include <utility>
-
-using std::move;
-using std::shared_ptr;
 using namespace vm68k;
 
-instruction_decoder::instruction_decoder(const shared_ptr<memory_map> &memory)
-:
-    _memory {memory}
-{
-    // Nothing to do.
-}
 
-instruction_decoder::instruction_decoder(shared_ptr<memory_map> &&memory)
-:
-    _memory {move(memory)}
+instruction_decoder::instruction_decoder()
 {
-    // Nothing to do.
+    // Nothing to do, but this function shall be out of line.
 }
 
 instruction_decoder::~instruction_decoder()
@@ -47,8 +35,8 @@ instruction_decoder::~instruction_decoder()
     // Nothing to do.
 }
 
-long_word instruction_decoder::decode(long_word pc, executor &e) const
+long_word instruction_decoder::decode(execution_context &c, executor &e) const
 {
     // TODO: implement this function.
-    return pc;
+    return c.pc();
 }

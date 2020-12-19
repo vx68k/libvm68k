@@ -21,7 +21,6 @@
 
 #include <bits/vm68k/executor.h>
 #include <bits/vm68k/execution_context.h>
-#include <vm68k/memory>
 #include <vm68k/data>
 #include <array>
 #include <memory>

@@ -102,12 +102,26 @@ namespace vm68k
         virtual ~memory_map() = default;
 
     public:
-        // Reads a sequence of bytes.
-        virtual void read(mode m, address_type address, size_type n,
+        /**
+         * Reads a sequence of bytes.
+         *
+         * @param m a privilege mode
+         * @param address the first address of the sequence
+         * @param size the size of the sequence
+         * @param bytes a pointer to a byte buffer
+         */
+        virtual void read(mode m, address_type address, size_type size,
             void *bytes) = 0;
 
-        // Writes a sequence of bytes.
-        virtual void write(mode m, address_type address, size_type n,
+        /**
+         * Writes a sequence of bytes.
+         *
+         * @param m a privilege mode
+         * @param address the first address of the sequence
+         * @param size the size of the sequence
+         * @param bytes a pointer to a byte buffer
+         */
+        virtual void write(mode m, address_type address, size_type size,
             const void *bytes) = 0;
     };
 

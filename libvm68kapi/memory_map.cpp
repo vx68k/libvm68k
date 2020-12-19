@@ -31,6 +31,9 @@ using namespace vm68k;
 
 namespace
 {
+    /**
+     * Memories that causes a bus error on every access.
+     */
     class bus_error_memory: public memory_map::memory
     {
     public:

@@ -177,6 +177,14 @@ namespace vm68k
         {
             return _page_size;
         }
+
+    public:
+        virtual void read(access_mode mode, address_type address,
+            size_type size, void *bytes) override;
+
+    public:
+        virtual void write(access_mode mode, address_type address,
+            size_type size, const void *bytes) override;
     };
 }
 

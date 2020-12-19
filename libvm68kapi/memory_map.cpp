@@ -102,3 +102,15 @@ paged_memory_map::~paged_memory_map()
 {
     // Nothing to do.
 }
+
+void paged_memory_map::read(const access_mode mode, address_type address,
+    size_type size, void *bytes)
+{
+    // TODO: implement this function.
+}
+
+void paged_memory_map::write(const access_mode mode, address_type address,
+    size_type size, const void *bytes)
+{
+    // TODO: implement this function.
+}

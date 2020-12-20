@@ -168,7 +168,11 @@ namespace vm68k
     public:
         void operator =(const paged_memory_map &other) = delete;
 
-        paged_memory_map &operator =(paged_memory_map &&other) noexcept;
+        paged_memory_map &operator =(paged_memory_map &&other) noexcept
+        {
+            swap(other);
+            return *this;
+        }
 
     public:
         /**

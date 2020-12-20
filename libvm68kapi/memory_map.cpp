@@ -117,12 +117,6 @@ paged_memory_map::~paged_memory_map()
     // Nothing to do.
 }
 
-paged_memory_map &paged_memory_map::operator =(paged_memory_map &&other) noexcept
-{
-    swap(other);
-    return *this;
-}
-
 void paged_memory_map::add_memory(address_type address,
     const shared_ptr<memory> &memory)
 {

@@ -30,8 +30,8 @@
 using std::fill;
 using std::invalid_argument;
 using std::make_shared;
+using std::move;
 using std::shared_ptr;
-using std::swap;
 using namespace vm68k;
 
 namespace
@@ -104,8 +104,12 @@ paged_memory_map::paged_memory_map(const address_type address_mask,
 }
 
 paged_memory_map::paged_memory_map(paged_memory_map &&other) noexcept
+:
+    _address_mask {move(other._address_mask)},
+    _page_size {move(other._page_size)},
+    _pages {move(other._pages)}
 {
-    swap(other);
+    // Nothing to do.
 }
 
 paged_memory_map::~paged_memory_map()

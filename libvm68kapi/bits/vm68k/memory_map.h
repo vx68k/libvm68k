@@ -60,12 +60,12 @@ namespace vm68k
             using access_mode = memory_map::access_mode;
 
         protected:
-            memory();
+            memory() = default;
 
-            memory(const memory &other);
+            memory(const memory &other) = default;
 
         public:
-            virtual ~memory();
+            virtual ~memory() = default;
 
         public:
             /**

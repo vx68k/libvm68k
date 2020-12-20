@@ -21,7 +21,6 @@
 
 #include <bits/vm68kapidef.h>
 #include <vector>
-#include <utility>
 #include <memory>
 #include <cstdint>
 
@@ -61,14 +60,20 @@ namespace vm68k
             using access_mode = memory_map::access_mode;
 
         protected:
+            /**
+             * Defaulted default constructor.
+             */
             memory() = default;
 
-            memory(const memory &) = delete;
+            /**
+             * Defaulted copy constructor.
+             */
+            memory(const memory &other) = default;
 
         public:
-            void operator =(const memory &) = delete;
-
-        public:
+            /**
+             * Defaulted destructor.
+             */
             virtual ~memory() = default;
 
         public:
@@ -82,7 +87,10 @@ namespace vm68k
              *
              * This implementation does nothing.
              */
-            virtual void relocate(address_type base);
+            virtual void relocate(address_type)
+            {
+                // Nothing to do.
+            }
 
             /**
              * Reads a sequence of bytes from the memory object.
@@ -99,13 +107,18 @@ namespace vm68k
 
     protected:
         /**
-         * <stereotype>constructor</stereotype>
+         * Defaulted default constructor.
          */
         memory_map() = default;
 
+        /**
+         * Defaulted copy constructor.
+         */
+        memory_map(const memory_map &other) = default;
+
     public:
         /**
-         * <stereotype>destructor</stereotype>
+         * Defaulted destructor.
          */
         virtual ~memory_map() = default;
 
@@ -180,15 +193,7 @@ namespace vm68k
          *
          * @param other another paged memory map
          */
-        void swap(paged_memory_map &other) noexcept
-        {
-            if (this != &other) {
-                std::swap(_address_mask, other._address_mask);
-                std::swap(_page_size, other._page_size);
-                _pages.swap(other._pages);
-            }
-        }
-
+        void swap(paged_memory_map &other) noexcept;
 
     public:
         /**

@@ -127,25 +127,41 @@ void paged_memory_map::add_memory(address_type address,
 void paged_memory_map::read(const access_mode mode, address_type address,
     size_type size, void *bytes)
 {
-    address &= _address_mask;
+    auto page = _pages.begin() + (address & _address_mask) / _page_size;
+    while (size != 0) {
+        auto transfer_size = size;
+        auto offset = address & (_page_size - 1U);
+        if (transfer_size > _page_size - offset) {
+            transfer_size = _page_size - offset;
+        }
 
-    auto last = (address + size) & _address_mask;
-    while (address != last) {
-        auto page_index = address / _page_size;
-        auto &page = _pages[page_index];
-        // TODO: implement this function.
+        (*page++)->read(mode, address, transfer_size, bytes);
+        if (page == _pages.end()) {
+            page = _pages.begin();
+        }
+        address += transfer_size;
+        size -= transfer_size;
+        bytes = static_cast<char *>(bytes) + transfer_size;
     }
 }
 
 void paged_memory_map::write(const access_mode mode, address_type address,
     size_type size, const void *bytes)
 {
-    address &= _address_mask;
+    auto page = _pages.begin() + (address & _address_mask) / _page_size;
+    while (size != 0) {
+        auto transfer_size = size;
+        auto offset = address & (_page_size - 1U);
+        if (transfer_size > _page_size - offset) {
+            transfer_size = _page_size - offset;
+        }
 
-    auto last = (address + size) & _address_mask;
-    while (address != last) {
-        auto page_index = address / _page_size;
-        auto &page = _pages[page_index];
-        // TODO: implement this function.
+        (*page++)->write(mode, address, transfer_size, bytes);
+        if (page == _pages.end()) {
+            page = _pages.begin();
+        }
+        address += transfer_size;
+        size -= transfer_size;
+        bytes = static_cast<const char *>(bytes) + transfer_size;
     }
 }

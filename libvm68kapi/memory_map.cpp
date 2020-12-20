@@ -24,7 +24,6 @@
 
 #include <bits/vm68k/memory_exception.h>
 #include <algorithm>
-#include <utility>
 #include <stdexcept>
 
 using std::fill;

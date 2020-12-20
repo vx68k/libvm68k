@@ -21,6 +21,7 @@
 
 #include <bits/vm68kapidef.h>
 #include <vector>
+#include <utility>
 #include <memory>
 #include <cstdint>
 
@@ -172,8 +173,18 @@ namespace vm68k
     public:
         /**
          * Swaps the contents with another.
+         *
+         * @param other another paged memory map
          */
-        void swap(paged_memory_map &other) noexcept;
+        void swap(paged_memory_map &other) noexcept
+        {
+            if (this != &other) {
+                std::swap(_address_mask, other._address_mask);
+                std::swap(_page_size, other._page_size);
+                _pages.swap(other._pages);
+            }
+        }
+
 
     public:
         /**

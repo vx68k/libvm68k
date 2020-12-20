@@ -23,8 +23,10 @@
 #include <bits/vm68k/memory_map.h>
 
 #include <bits/vm68k/memory_exception.h>
+#include <algorithm>
 #include <stdexcept>
 
+using std::fill;
 using std::invalid_argument;
 using std::make_shared;
 using std::shared_ptr;
@@ -110,14 +112,16 @@ void paged_memory_map::add_memory(address_type address,
     if ((address & (_page_size - 1U)) != 0U) {
         throw invalid_argument("address not aligned to page boundaries");
     }
-    address &= _address_mask;
-
-    auto last = (address + memory->size()) & _address_mask;
-    auto page_index = address / _page_size;
-    auto last_page_index = last / _page_size;
-    while (page_index != last_page_index) {
-        _pages[page_index++] = memory;
+    if ((address & ~_address_mask) != 0U) {
+        return;
     }
+
+    auto first = address / _page_size;
+    auto last = first + (memory->size() + _page_size - 1U) / _page_size;
+    if (last > _pages.size()) {
+        last = _pages.size();
+    }
+    fill(&_pages[first], &_pages[last], memory);
 }
 
 void paged_memory_map::read(const access_mode mode, address_type address,

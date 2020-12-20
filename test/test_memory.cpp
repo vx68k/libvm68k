@@ -41,34 +41,15 @@ namespace
     class test_memory_map final : public memory_map
     {
     public:
-        void read(mode, address_type, size_type, void *) override
+        void read(access_mode, address_type, size_type, void *) override
         {
         }
 
-        void write(mode, address_type, size_type, const void *) override
+        void write(access_mode, address_type, size_type, const void *) override
         {
         }
     };
 }
-
-class MemoryStaticTests: public TestFixture
-{
-    CPPUNIT_TEST_SUITE(MemoryStaticTests);
-    CPPUNIT_TEST(testReadWriteMemory);
-    CPPUNIT_TEST_SUITE_END();
-
-public:
-    void testReadWriteMemory()
-    {
-        CPPUNIT_ASSERT((std::is_constructible<read_write_memory, std::size_t>::value));
-        CPPUNIT_ASSERT(!std::is_copy_constructible<read_write_memory>::value);
-        CPPUNIT_ASSERT(!std::is_move_constructible<read_write_memory>::value);
-        CPPUNIT_ASSERT(!std::is_copy_assignable<read_write_memory>::value);
-        CPPUNIT_ASSERT(!std::is_move_assignable<read_write_memory>::value);
-        CPPUNIT_ASSERT(std::has_virtual_destructor<read_write_memory>::value);
-    }
-};
-CPPUNIT_TEST_SUITE_REGISTRATION(MemoryStaticTests);
 
 /*
  * Tests for 'memory_map'.
@@ -91,44 +72,39 @@ protected:
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(MemoryMapTests);
 
-// Unit test for 'read_write_memory'.
-class ReadWriteMemoryTest: public TestFixture
+// Tests for class paged_memory_map.
+class PagedMemoryMapTests: public TestFixture
 {
-    CPPUNIT_TEST_SUITE(ReadWriteMemoryTest);
-    CPPUNIT_TEST(testSize);
-    CPPUNIT_TEST(testReadWrite);
+    CPPUNIT_TEST_SUITE(PagedMemoryMapTests);
+    CPPUNIT_TEST(testAddressMask);
+    CPPUNIT_TEST(testPageSize);
     CPPUNIT_TEST_SUITE_END();
 
 private:
-    unique_ptr<read_write_memory> memory;
+    unique_ptr<paged_memory_map> _memory;
 
 public:
-    void setUp() final override
+    void setUp()
     {
-        memory.reset(new read_write_memory(0x10000U));
+        _memory.reset(new paged_memory_map(0xffffffU, 0x2000U));
     }
 
 public:
-    void tearDown() final override
+    void tearDown()
     {
-        memory.reset();
+        _memory.reset();
     }
 
 private:
-    void testSize()
+    void testAddressMask()
     {
-        CPPUNIT_ASSERT_EQUAL(memory_map::size_type(0x10000U), memory->size());
+        CPPUNIT_ASSERT_EQUAL((memory_map::address_type)0xffffffU, _memory->address_mask());
     }
 
-    void testReadWrite()
+private:
+    void testPageSize()
     {
-        memory->relocate(0x10000U);
-
-        const uint32_t value1 = 0x81828384;
-        uint32_t value2 = 0;
-        memory->write(memory_map::mode::SUPERVISOR, 0x10000U, sizeof value1, &value1);
-        memory->read(memory_map::mode::SUPERVISOR, 0x10000U, sizeof value2, &value2);
-        CPPUNIT_ASSERT_EQUAL(value1, value2);
+        CPPUNIT_ASSERT_EQUAL((memory_map::size_type)0x2000U, _memory->page_size());
     }
 };
-CPPUNIT_TEST_SUITE_REGISTRATION(ReadWriteMemoryTest);
+CPPUNIT_TEST_SUITE_REGISTRATION(PagedMemoryMapTests);

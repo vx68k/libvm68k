@@ -24,13 +24,20 @@
 
 using namespace vm68k;
 
+
+instruction_decoder::instruction_decoder()
+{
+    // Nothing to do, but this function shall be out of line.
+}
+
 instruction_decoder::~instruction_decoder()
 {
     // Nothing to do.
 }
 
-long_word instruction_decoder::decode(long_word pc, executor &e) const
+long_word instruction_decoder::decode_instruction(execution_context &c,
+    executor &e) const
 {
     // TODO: implement this function.
-    return pc;
+    return c.pc();
 }

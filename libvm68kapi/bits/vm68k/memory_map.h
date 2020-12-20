@@ -21,12 +21,15 @@
 
 #include <bits/vm68kapidef.h>
 #include <vector>
+#include <utility>
 #include <memory>
 #include <cstdint>
 
 namespace vm68k
 {
     /**
+     * Base class for memory maps.
+     *
      * <author>Kaz Nishimura</author>
      * <since>2.0</since>
      */
@@ -36,48 +39,26 @@ namespace vm68k
         using address_type = std::uint32_t;
         using size_type = std::uint32_t;
 
-        enum class mode: char
+    public:
+        /**
+         * Access mode.
+         */
+        enum class access_mode: char
         {
             USER = 0,
             SUPERVISOR,
         };
 
-    protected:
-        /**
-         * <stereotype>constructor</stereotype>
-         */
-        memory_map() = default;
-
     public:
         /**
-         * <stereotype>destructor</stereotype>
-         */
-        virtual ~memory_map() = default;
-
-    public:
-        // Reads a sequence of bytes.
-        virtual void read(mode m, address_type address, size_type n,
-            void *bytes) = 0;
-
-        // Writes a sequence of bytes.
-        virtual void write(mode m, address_type address, size_type n,
-            const void *bytes) = 0;
-    };
-
-    /**
-     * Paged memory maps.
-     */
-    class _VM68KAPI_PUBLIC paged_memory_map: public memory_map
-    {
-    public:
-        /**
-         * Memory objects mapped to the paged memory map.
+         * Memory objects mapped on a memory map.
          */
         class _VM68KAPI_PUBLIC memory
         {
         protected:
             using address_type = memory_map::address_type;
             using size_type = memory_map::size_type;
+            using access_mode = memory_map::access_mode;
 
         protected:
             memory() = default;
@@ -106,16 +87,58 @@ namespace vm68k
             /**
              * Reads a sequence of bytes from the memory object.
              */
-            virtual void read(mode mode, address_type address, size_type n,
-                void *bytes) = 0;
+            virtual void read(access_mode mode, address_type address,
+                size_type size, void *bytes) = 0;
 
             /**
              * Writes a sequence of bytes to the memory object.
              */
-            virtual void write(mode mode, address_type address, size_type n,
-                const void *bytes) = 0;
+            virtual void write(access_mode mode, address_type address,
+                size_type size, const void *bytes) = 0;
         };
 
+    protected:
+        /**
+         * <stereotype>constructor</stereotype>
+         */
+        memory_map() = default;
+
+    public:
+        /**
+         * <stereotype>destructor</stereotype>
+         */
+        virtual ~memory_map() = default;
+
+    public:
+        /**
+         * Reads a sequence of bytes.
+         *
+         * @param mode an access mode
+         * @param address the first address of the sequence
+         * @param size the size of the sequence
+         * @param bytes a pointer to a byte buffer
+         */
+        virtual void read(access_mode mode, address_type address,
+            size_type size, void *bytes) = 0;
+
+    public:
+        /**
+         * Writes a sequence of bytes.
+         *
+         * @param mode an access mode
+         * @param address the first address of the sequence
+         * @param size the size of the sequence
+         * @param bytes a pointer to a byte buffer
+         */
+        virtual void write(access_mode mode, address_type address,
+            size_type size, const void *bytes) = 0;
+    };
+
+    /**
+     * Paged memory maps.
+     */
+    class _VM68KAPI_PUBLIC paged_memory_map: public memory_map
+    {
     public:
         static const size_type DEFAULT_PAGE_SIZE = 0x1000U;
 
@@ -135,21 +158,82 @@ namespace vm68k
 
         paged_memory_map(address_type address_mask, size_type page_size);
 
+        paged_memory_map(const paged_memory_map &other) = delete;
+
+        paged_memory_map(paged_memory_map &&other) noexcept;
+
     public:
         virtual ~paged_memory_map();
 
     public:
+        void operator =(const paged_memory_map &other) = delete;
+
+        paged_memory_map &operator =(paged_memory_map &&other) noexcept
+        {
+            swap(other);
+            return *this;
+        }
+
+    public:
+        /**
+         * Swaps the contents with another.
+         *
+         * @param other another paged memory map
+         */
+        void swap(paged_memory_map &other) noexcept
+        {
+            if (this != &other) {
+                std::swap(_address_mask, other._address_mask);
+                std::swap(_page_size, other._page_size);
+                _pages.swap(other._pages);
+            }
+        }
+
+
+    public:
+        /**
+         * Returns the address mask.
+         */
         address_type address_mask() const noexcept
         {
             return _address_mask;
         }
 
     public:
+        /**
+         * Returns the page size.
+         */
         size_type page_size() const noexcept
         {
             return _page_size;
         }
+
+    public:
+        /**
+         * Adds a memory to the memory map.
+         */
+        void add_memory(address_type address,
+            const std::shared_ptr<memory> &memory);
+
+    public:
+        virtual void read(access_mode mode, address_type address,
+            size_type size, void *bytes) override;
+
+    public:
+        virtual void write(access_mode mode, address_type address,
+            size_type size, const void *bytes) override;
     };
+
+    /**
+     * Swaps the contents of two paged memory maps.
+     *
+     * @param one a paged memory map
+     * @param other another paged memory map
+     */
+    inline void swap(paged_memory_map &one, paged_memory_map &other) noexcept
+    {
+        one.swap(other);
+    }
 }
 
 #endif

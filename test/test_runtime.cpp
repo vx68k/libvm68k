@@ -52,19 +52,80 @@ namespace
         }
 
     public:
-        void read(mode mode, address_type address, size_type size,
+        void read(access_mode mode, address_type address, size_type size,
             void *buffer) override
         {
             _memory->read(mode, address, size, buffer);
         }
 
-        void write(mode mode, address_type address, size_type size,
+        void write(access_mode mode, address_type address, size_type size,
             const void *buffer) override
         {
             _memory->write(mode, address, size, buffer);
         }
     };
 }
+
+class MemoryStaticTests: public TestFixture
+{
+    CPPUNIT_TEST_SUITE(MemoryStaticTests);
+    CPPUNIT_TEST(testReadWriteMemory);
+    CPPUNIT_TEST_SUITE_END();
+
+public:
+    void testReadWriteMemory()
+    {
+        CPPUNIT_ASSERT((std::is_constructible<read_write_memory, std::size_t>::value));
+        CPPUNIT_ASSERT(!std::is_copy_constructible<read_write_memory>::value);
+        CPPUNIT_ASSERT(!std::is_move_constructible<read_write_memory>::value);
+        CPPUNIT_ASSERT(!std::is_copy_assignable<read_write_memory>::value);
+        CPPUNIT_ASSERT(!std::is_move_assignable<read_write_memory>::value);
+        CPPUNIT_ASSERT(std::has_virtual_destructor<read_write_memory>::value);
+    }
+};
+CPPUNIT_TEST_SUITE_REGISTRATION(MemoryStaticTests);
+
+// Unit test for 'read_write_memory'.
+class ReadWriteMemoryTest: public TestFixture
+{
+    CPPUNIT_TEST_SUITE(ReadWriteMemoryTest);
+    CPPUNIT_TEST(testSize);
+    CPPUNIT_TEST(testReadWrite);
+    CPPUNIT_TEST_SUITE_END();
+
+private:
+    unique_ptr<read_write_memory> memory;
+
+public:
+    void setUp() final override
+    {
+        memory.reset(new read_write_memory(0x10000U));
+    }
+
+public:
+    void tearDown() final override
+    {
+        memory.reset();
+    }
+
+private:
+    void testSize()
+    {
+        CPPUNIT_ASSERT_EQUAL(memory_map::size_type(0x10000U), memory->size());
+    }
+
+    void testReadWrite()
+    {
+        memory->relocate(0x10000U);
+
+        const uint32_t value1 = 0x81828384;
+        uint32_t value2 = 0;
+        memory->write(memory_map::access_mode::SUPERVISOR, 0x10000U, sizeof value1, &value1);
+        memory->read(memory_map::access_mode::SUPERVISOR, 0x10000U, sizeof value2, &value2);
+        CPPUNIT_ASSERT_EQUAL(value1, value2);
+    }
+};
+CPPUNIT_TEST_SUITE_REGISTRATION(ReadWriteMemoryTest);
 
 /*
  * Tests for class execution_context.

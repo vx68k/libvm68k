@@ -23,13 +23,13 @@ EXTRA_PROGRAMS = vm68k_test
 noinst_HEADERS = xmlreport.h Test_vm68kdata.h Test_vm68kmem.h
 
 test_data_exec_LDFLAGS = -no-install
-test_data_exec_LDADD = $(top_builddir)/libvm68kapi/libvm68kapi.la \
+test_data_exec_LDADD = -L$(top_builddir)/libvm68kapi -lvm68kapi \
 $(CPPUNIT_LIBS)
 test_data_exec_SOURCES = main.cpp xmlreport.cpp test_data.cpp
 
 test_memory_exec_LDFLAGS = -no-install
 test_memory_exec_SOURCES = main.cpp xmlreport.cpp test_memory.cpp
-test_memory_exec_LDADD = -L$(top_builddir)/libvm68k -lvm68k \
+test_memory_exec_LDADD = -L$(top_builddir)/libvm68kapi -lvm68kapi \
 $(CPPUNIT_LIBS)
 
 test_runtime_exec_LDFLAGS = -no-install

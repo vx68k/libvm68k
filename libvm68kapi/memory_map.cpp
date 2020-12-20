@@ -20,19 +20,25 @@
 #include <config.h>
 #endif
 
-#define _VM68K_MEMORY_IMPLEMENTATION 1
 #include <bits/vm68k/memory_map.h>
 
 #include <bits/vm68k/memory_exception.h>
+#include <algorithm>
 #include <stdexcept>
 
+using std::fill;
 using std::invalid_argument;
 using std::make_shared;
+using std::move;
+using std::shared_ptr;
 using namespace vm68k;
 
 namespace
 {
-    class bus_error_memory: public paged_memory_map::memory
+    /**
+     * Memories that causes a bus error on every access.
+     */
+    class bus_error_memory: public memory_map::memory
     {
     public:
         size_type size() const noexcept final override
@@ -41,14 +47,14 @@ namespace
         }
 
     public:
-        void read(memory_map::mode mode, address_type address, size_type,
+        void read(access_mode mode, address_type address, size_type,
             void *) final override
         {
             throw bus_error(mode, address);
         }
 
     public:
-        void write(memory_map::mode mode, address_type address, size_type,
+        void write(access_mode mode, address_type address, size_type,
             const void *) final override
         {
             throw bus_error(mode, address);
@@ -58,6 +64,11 @@ namespace
 
 static const auto NO_MEMORY = make_shared<bus_error_memory>();
 
+
+void memory_map::memory::relocate(address_type)
+{
+    // Nothing to do.
+}
 
 // Implementation of the paged memory maps.
 
@@ -91,12 +102,76 @@ paged_memory_map::paged_memory_map(const address_type address_mask,
     _pages.resize(_address_mask / _page_size + 1U, NO_MEMORY);
 }
 
+paged_memory_map::paged_memory_map(paged_memory_map &&other) noexcept
+:
+    _address_mask {move(other._address_mask)},
+    _page_size {move(other._page_size)},
+    _pages {move(other._pages)}
+{
+    // Nothing to do.
+}
+
 paged_memory_map::~paged_memory_map()
 {
     // Nothing to do.
 }
 
-void paged_memory_map::memory::relocate(address_type)
+void paged_memory_map::add_memory(address_type address,
+    const shared_ptr<memory> &memory)
 {
-    // Nothing to do.
+    if ((address & (_page_size - 1U)) != 0U) {
+        throw invalid_argument("address not aligned to page boundaries");
+    }
+    if ((address & ~_address_mask) != 0U) {
+        return;
+    }
+
+    auto first = _pages.begin() + address / _page_size;
+    auto last = first + (memory->size() + _page_size - 1U) / _page_size;
+    if (last > _pages.end()) {
+        last = _pages.end();
+    }
+    fill(first, last, memory);
+}
+
+void paged_memory_map::read(const access_mode mode, address_type address,
+    size_type size, void *bytes)
+{
+    auto page = _pages.begin() + (address & _address_mask) / _page_size;
+    while (size != 0) {
+        auto transfer_size = size;
+        auto offset = address & (_page_size - 1U);
+        if (transfer_size > _page_size - offset) {
+            transfer_size = _page_size - offset;
+        }
+
+        (*page++)->read(mode, address, transfer_size, bytes);
+        if (page == _pages.end()) {
+            page = _pages.begin();
+        }
+        address += transfer_size;
+        size -= transfer_size;
+        bytes = static_cast<char *>(bytes) + transfer_size;
+    }
+}
+
+void paged_memory_map::write(const access_mode mode, address_type address,
+    size_type size, const void *bytes)
+{
+    auto page = _pages.begin() + (address & _address_mask) / _page_size;
+    while (size != 0) {
+        auto transfer_size = size;
+        auto offset = address & (_page_size - 1U);
+        if (transfer_size > _page_size - offset) {
+            transfer_size = _page_size - offset;
+        }
+
+        (*page++)->write(mode, address, transfer_size, bytes);
+        if (page == _pages.end()) {
+            page = _pages.begin();
+        }
+        address += transfer_size;
+        size -= transfer_size;
+        bytes = static_cast<const char *>(bytes) + transfer_size;
+    }
 }

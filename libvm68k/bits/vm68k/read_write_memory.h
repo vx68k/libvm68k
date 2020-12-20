@@ -28,7 +28,7 @@ namespace vm68k
     /*
      * Read-write memory objects.
      */
-    class _VM68K_PUBLIC read_write_memory: public paged_memory_map::memory
+    class _VM68K_PUBLIC read_write_memory: public memory_map::memory
     {
     protected:
         using byte_type = unsigned char;
@@ -77,25 +77,25 @@ namespace vm68k
         void relocate(address_type base_address) final override;
 
     public:
-        void read(memory_map::mode mode, address_type address, size_type n,
+        void read(access_mode mode, address_type address, size_type n,
             void *buffer) final override;
 
     public:
-        void write(memory_map::mode mode, address_type address, size_type n,
+        void write(access_mode mode, address_type address, size_type n,
             const void *buffer) final override;
 
     protected:
         /// Checks read access on a region.
         ///
         /// This implementation does nothing.
-        virtual void check_read_access(memory_map::mode mode,
+        virtual void check_read_access(access_mode mode,
             address_type address, size_type n);
 
     protected:
         /// Checks write access on a region.
         ///
         /// This implementation does nothing.
-        virtual void check_write_access(memory_map::mode mode,
+        virtual void check_write_access(access_mode mode,
             address_type address, size_type n);
     };
 }

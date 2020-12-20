@@ -24,27 +24,28 @@
 
 namespace vm68k
 {
+    /**
+     * Generic memory exceptions.
+     */
     class _VM68KAPI_PUBLIC memory_exception: public std::exception
     {
-    public:
-        using address_type = memory_map::address_type;
-
     private:
         memory_map::access_mode _mode;
 
     private:
-        address_type _fault_address;
+        memory_map::address_type _fault_address;
 
     public:
-        memory_exception(memory_map::access_mode mode, address_type fault_address) noexcept;
+        memory_exception(memory_map::access_mode mode,
+            memory_map::address_type fault_address) noexcept;
 
         memory_exception(const memory_exception &other) noexcept;
 
     public:
-        memory_exception &operator =(const memory_exception &other) noexcept;
+        virtual ~memory_exception();
 
     public:
-        virtual ~memory_exception();
+        memory_exception &operator =(const memory_exception &other) noexcept;
 
     public:
         memory_map::access_mode mode() const noexcept
@@ -53,13 +54,13 @@ namespace vm68k
         }
 
     public:
-        address_type fault_address() const noexcept
+        memory_map::address_type fault_address() const noexcept
         {
             return _fault_address;
         }
 
     public:
-        const char *what() const noexcept override;
+        virtual const char *what() const noexcept override;
     };
 
     /**
@@ -68,15 +69,16 @@ namespace vm68k
     class _VM68KAPI_PUBLIC bus_error: public memory_exception
     {
     public:
-        bus_error(memory_map::access_mode mode, address_type fault_address) noexcept
+        bus_error(memory_map::access_mode mode,
+            memory_map::address_type fault_address) noexcept
         :
             memory_exception(mode, fault_address)
         {
-            // Nothing more to do.
+            // Nothing to do.
         }
 
     public:
-        const char *what() const noexcept override;
+        virtual const char *what() const noexcept override;
     };
 
     /**
@@ -85,15 +87,16 @@ namespace vm68k
     class _VM68KAPI_PUBLIC address_error: public memory_exception
     {
     public:
-        address_error(memory_map::access_mode mode, address_type fault_address) noexcept
+        address_error(memory_map::access_mode mode,
+            memory_map::address_type fault_address) noexcept
         :
             memory_exception(mode, fault_address)
         {
-            // Nothing more to do.
+            // Nothing to do.
         }
 
     public:
-        const char *what() const noexcept override;
+        virtual const char *what() const noexcept override;
     };
 }
 

@@ -25,10 +25,10 @@
 using namespace vm68k;
 
 
-// Implementation of the memory exceptions.
+// Implementation of class memory_exception.
 
 memory_exception::memory_exception(const memory_map::access_mode mode,
-    const address_type fault_address) noexcept
+    const memory_map::address_type fault_address) noexcept
 :
     _mode {mode},
     _fault_address {fault_address}
@@ -45,6 +45,11 @@ memory_exception::memory_exception(const memory_exception &other) noexcept
     // Nothing to do.
 }
 
+memory_exception::~memory_exception()
+{
+    // Nothing to do.
+}
+
 memory_exception &memory_exception::operator =(const memory_exception &other) noexcept
 {
     if (this != &other) {
@@ -54,18 +59,13 @@ memory_exception &memory_exception::operator =(const memory_exception &other) no
     return *this;
 }
 
-memory_exception::~memory_exception()
-{
-    // Nothing to do.
-}
-
 const char *memory_exception::what() const noexcept
 {
     return "vm68k::memory_exception";
 }
 
 
-// Implementation of the bus errors.
+// Implementation of class bus_error.
 
 const char *bus_error::what() const noexcept
 {
@@ -73,7 +73,7 @@ const char *bus_error::what() const noexcept
 }
 
 
-// Implementation of the address errors.
+// Implementation of class address_error.
 
 const char *address_error::what() const noexcept
 {

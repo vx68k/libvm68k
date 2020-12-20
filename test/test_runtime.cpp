@@ -66,6 +66,25 @@ namespace
     };
 }
 
+class MemoryStaticTests: public TestFixture
+{
+    CPPUNIT_TEST_SUITE(MemoryStaticTests);
+    CPPUNIT_TEST(testReadWriteMemory);
+    CPPUNIT_TEST_SUITE_END();
+
+public:
+    void testReadWriteMemory()
+    {
+        CPPUNIT_ASSERT((std::is_constructible<read_write_memory, std::size_t>::value));
+        CPPUNIT_ASSERT(!std::is_copy_constructible<read_write_memory>::value);
+        CPPUNIT_ASSERT(!std::is_move_constructible<read_write_memory>::value);
+        CPPUNIT_ASSERT(!std::is_copy_assignable<read_write_memory>::value);
+        CPPUNIT_ASSERT(!std::is_move_assignable<read_write_memory>::value);
+        CPPUNIT_ASSERT(std::has_virtual_destructor<read_write_memory>::value);
+    }
+};
+CPPUNIT_TEST_SUITE_REGISTRATION(MemoryStaticTests);
+
 // Unit test for 'read_write_memory'.
 class ReadWriteMemoryTest: public TestFixture
 {

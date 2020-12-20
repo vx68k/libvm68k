@@ -87,7 +87,10 @@ namespace vm68k
              *
              * This implementation does nothing.
              */
-            virtual void relocate(address_type base);
+            virtual void relocate(address_type)
+            {
+                // Nothing to do.
+            }
 
             /**
              * Reads a sequence of bytes from the memory object.

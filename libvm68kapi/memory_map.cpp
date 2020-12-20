@@ -103,6 +103,11 @@ paged_memory_map::paged_memory_map(const address_type address_mask,
     _pages.resize(_address_mask / _page_size + 1U, NO_MEMORY);
 }
 
+paged_memory_map::paged_memory_map(paged_memory_map &&other) noexcept
+{
+    swap(other);
+}
+
 paged_memory_map::~paged_memory_map()
 {
     // Nothing to do.

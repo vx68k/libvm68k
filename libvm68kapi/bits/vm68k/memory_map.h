@@ -159,6 +159,8 @@ namespace vm68k
 
         paged_memory_map(const paged_memory_map &other) = delete;
 
+        paged_memory_map(paged_memory_map &&other) noexcept;
+
     public:
         virtual ~paged_memory_map();
 

@@ -99,6 +99,8 @@ namespace vm68k
          */
         memory_map() = default;
 
+        memory_map(const memory_map &other) = default;
+
     public:
         /**
          * <stereotype>destructor</stereotype>

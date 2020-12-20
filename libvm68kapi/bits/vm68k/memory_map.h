@@ -61,15 +61,12 @@ namespace vm68k
             using access_mode = memory_map::access_mode;
 
         protected:
-            memory() = default;
+            memory();
 
-            memory(const memory &) = delete;
-
-        public:
-            void operator =(const memory &) = delete;
+            memory(const memory &other);
 
         public:
-            virtual ~memory() = default;
+            virtual ~memory();
 
         public:
             /**

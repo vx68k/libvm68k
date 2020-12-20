@@ -65,12 +65,30 @@ namespace
 static const auto NO_MEMORY = make_shared<no_memory>();
 
 
+// Implementation of class memory_map::memory.
+
+memory_map::memory::memory()
+{
+    // Nothing to do, but this function shall be out of line.
+}
+
+memory_map::memory::memory(const memory &)
+{
+    // Nothing to do, but this function shall be out of line.
+}
+
+memory_map::memory::~memory()
+{
+    // Nothing to do, but this function shall be out of line.
+}
+
 void memory_map::memory::relocate(address_type)
 {
     // Nothing to do.
 }
 
-// Implementation of the paged memory maps.
+
+// Implementation of class paged_memory_map.
 
 paged_memory_map::paged_memory_map()
 :

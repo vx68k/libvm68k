@@ -36,7 +36,7 @@ using namespace vm68k;
 namespace
 {
     /**
-     * Memory objects that causes a bus error on every access.
+     * Memory objects that cause a bus error on every access.
      */
     class no_memory final: public memory_map::memory
     {

@@ -116,12 +116,12 @@ void paged_memory_map::add_memory(address_type address,
         return;
     }
 
-    auto first = address / _page_size;
+    auto first = _pages.begin() + address / _page_size;
     auto last = first + (memory->size() + _page_size - 1U) / _page_size;
-    if (last > _pages.size()) {
-        last = _pages.size();
+    if (last > _pages.end()) {
+        last = _pages.end();
     }
-    fill(&_pages[first], &_pages[last], memory);
+    fill(first, last, memory);
 }
 
 void paged_memory_map::read(const access_mode mode, address_type address,

@@ -107,8 +107,10 @@ paged_memory_map::~paged_memory_map()
 void paged_memory_map::add_memory(address_type address,
     const shared_ptr<memory> &memory)
 {
+    if ((address & (_page_size - 1U)) != 0U) {
+        throw invalid_argument("address not aligned to page boundaries");
+    }
     address &= _address_mask;
-    // TODO: check alignments.
 
     auto last = (address + memory->size()) & _address_mask;
     auto page_index = address / _page_size;

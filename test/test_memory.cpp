@@ -91,6 +91,44 @@ protected:
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(MemoryMapTests);
 
+// Tests for class paged_memory_map.
+class PagedMemoryMapTests: public TestFixture
+{
+    CPPUNIT_TEST_SUITE(PagedMemoryMapTests);
+    CPPUNIT_TEST(testAddressMask);
+    CPPUNIT_TEST(testPageSize);
+    CPPUNIT_TEST_SUITE_END();
+
+private:
+    unique_ptr<paged_memory_map> _memory;
+
+public:
+    void setUp()
+    {
+        _memory.reset(new paged_memory_map(0xffffffU, 0x2000U));
+    }
+
+public:
+    void tearDown()
+    {
+        _memory.reset();
+    }
+
+private:
+    void testAddressMask()
+    {
+        CPPUNIT_ASSERT_EQUAL((memory_map::address_type)0xffffffU, _memory->address_mask());
+    }
+
+private:
+    void testPageSize()
+    {
+        CPPUNIT_ASSERT_EQUAL((memory_map::size_type)0x2000U, _memory->page_size());
+    }
+};
+CPPUNIT_TEST_SUITE_REGISTRATION(PagedMemoryMapTests);
+
+#if 0
 // Unit test for 'read_write_memory'.
 class ReadWriteMemoryTest: public TestFixture
 {
@@ -132,3 +170,4 @@ private:
     }
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(ReadWriteMemoryTest);
+#endif

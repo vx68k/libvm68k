@@ -157,8 +157,13 @@ namespace vm68k
 
         paged_memory_map(address_type address_mask, size_type page_size);
 
+        paged_memory_map(const paged_memory_map &other) = delete;
+
     public:
         virtual ~paged_memory_map();
+
+    public:
+        void operator =(const paged_memory_map &other) = delete;
 
     public:
         /**

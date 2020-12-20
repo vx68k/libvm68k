@@ -208,6 +208,17 @@ namespace vm68k
         virtual void write(access_mode mode, address_type address,
             size_type size, const void *bytes) override;
     };
+
+    /**
+     * Swaps the contents of two paged memory maps.
+     *
+     * @param one a paged memory map
+     * @param other another paged memory map
+     */
+    inline void swap(paged_memory_map &one, paged_memory_map &other) noexcept
+    {
+        one.swap(other);
+    }
 }
 
 #endif

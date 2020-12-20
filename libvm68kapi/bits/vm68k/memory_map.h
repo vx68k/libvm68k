@@ -167,6 +167,12 @@ namespace vm68k
 
     public:
         /**
+         * Swaps the contents with another.
+         */
+        void swap(paged_memory_map &other) noexcept;
+
+    public:
+        /**
          * Returns the address mask.
          */
         address_type address_mask() const noexcept

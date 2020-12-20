@@ -24,12 +24,14 @@
 
 #include <bits/vm68k/memory_exception.h>
 #include <algorithm>
+#include <utility>
 #include <stdexcept>
 
 using std::fill;
 using std::invalid_argument;
 using std::make_shared;
 using std::shared_ptr;
+using std::swap;
 using namespace vm68k;
 
 namespace
@@ -104,6 +106,13 @@ paged_memory_map::paged_memory_map(const address_type address_mask,
 paged_memory_map::~paged_memory_map()
 {
     // Nothing to do.
+}
+
+void paged_memory_map::swap(paged_memory_map &other) noexcept
+{
+    ::swap(_address_mask, other._address_mask);
+    ::swap(_page_size, other._page_size);
+    _pages.swap(other._pages);
 }
 
 void paged_memory_map::add_memory(address_type address,

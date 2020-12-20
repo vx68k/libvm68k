@@ -113,6 +113,14 @@ paged_memory_map::~paged_memory_map()
     // Nothing to do.
 }
 
+paged_memory_map &paged_memory_map::operator =(paged_memory_map &&other) noexcept
+{
+    if (this != &other) {
+        swap(other);
+    }
+    return *this;
+}
+
 void paged_memory_map::swap(paged_memory_map &other) noexcept
 {
     if (this != &other) {

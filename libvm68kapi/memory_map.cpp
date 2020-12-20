@@ -36,9 +36,9 @@ using namespace vm68k;
 namespace
 {
     /**
-     * Memories that causes a bus error on every access.
+     * Memory objects that causes a bus error on every access.
      */
-    class bus_error_memory: public memory_map::memory
+    class no_memory: public memory_map::memory
     {
     public:
         size_type size() const noexcept final override
@@ -62,7 +62,7 @@ namespace
     };
 }
 
-static const auto NO_MEMORY = make_shared<bus_error_memory>();
+static const auto NO_MEMORY = make_shared<no_memory>();
 
 
 void memory_map::memory::relocate(address_type)

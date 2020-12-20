@@ -60,11 +60,20 @@ namespace vm68k
             using access_mode = memory_map::access_mode;
 
         protected:
+            /**
+             * Defaulted default constructor.
+             */
             memory() = default;
 
+            /**
+             * Defaulted copy constructor.
+             */
             memory(const memory &other) = default;
 
         public:
+            /**
+             * Defaulted destructor.
+             */
             virtual ~memory() = default;
 
         public:
@@ -95,15 +104,18 @@ namespace vm68k
 
     protected:
         /**
-         * <stereotype>constructor</stereotype>
+         * Defaulted default constructor.
          */
         memory_map() = default;
 
+        /**
+         * Defaulted copy constructor.
+         */
         memory_map(const memory_map &other) = default;
 
     public:
         /**
-         * <stereotype>destructor</stereotype>
+         * Defaulted destructor.
          */
         virtual ~memory_map() = default;
 

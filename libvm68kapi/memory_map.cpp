@@ -38,24 +38,24 @@ namespace
     /**
      * Memory objects that causes a bus error on every access.
      */
-    class no_memory: public memory_map::memory
+    class no_memory final: public memory_map::memory
     {
     public:
-        size_type size() const noexcept final override
+        virtual size_type size() const noexcept override
         {
             return 0U;
         }
 
     public:
-        void read(access_mode mode, address_type address, size_type,
-            void *) final override
+        virtual void read(access_mode mode, address_type address, size_type,
+            void *) override
         {
             throw bus_error(mode, address);
         }
 
     public:
-        void write(access_mode mode, address_type address, size_type,
-            const void *) final override
+        virtual void write(access_mode mode, address_type address, size_type,
+            const void *) override
         {
             throw bus_error(mode, address);
         }

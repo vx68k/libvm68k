@@ -115,9 +115,11 @@ paged_memory_map::~paged_memory_map()
 
 void paged_memory_map::swap(paged_memory_map &other) noexcept
 {
-    ::swap(_address_mask, other._address_mask);
-    ::swap(_page_size, other._page_size);
-    _pages.swap(other._pages);
+    if (this != &other) {
+        ::swap(_address_mask, other._address_mask);
+        ::swap(_page_size, other._page_size);
+        _pages.swap(other._pages);
+    }
 }
 
 void paged_memory_map::add_memory(address_type address,

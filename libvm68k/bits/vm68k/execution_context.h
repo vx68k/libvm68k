@@ -183,7 +183,11 @@ namespace vm68k
         /**
          * Move assignment operator.
          */
-        execution_context &operator =(execution_context &&other);
+        execution_context &operator =(execution_context &&other) noexcept
+        {
+            swap(other);
+            return *this;
+        }
 
     public:
         /**

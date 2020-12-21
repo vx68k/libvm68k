@@ -83,17 +83,6 @@ execution_context &execution_context::operator =(const execution_context &other)
     return *this;
 }
 
-execution_context &execution_context::operator =(execution_context &&other)
-{
-    if (this != &other) {
-        _memory = move(other._memory);
-        _d = move(other._d);
-        _a = move(other._a);
-        _pc = move(other._pc);
-    }
-    return *this;
-}
-
 void execution_context::swap(execution_context &other) noexcept
 {
     if (this != &other) {

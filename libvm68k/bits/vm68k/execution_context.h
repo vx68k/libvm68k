@@ -227,6 +227,16 @@ namespace vm68k
     public:
         void set_pc(long_word pc);
     };
+
+    /**
+     * Swaps the contents of two execution contexts.
+     * @param one an execution context
+     * @param other another execution context
+     */
+    inline void swap(execution_context &one, execution_context &other) noexcept
+    {
+        one.swap(other);
+    }
 }
 
 #endif

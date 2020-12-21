@@ -27,6 +27,7 @@
 
 using std::move;
 using std::shared_ptr;
+using std::swap;
 using namespace vm68k;
 
 
@@ -91,6 +92,16 @@ execution_context &execution_context::operator =(execution_context &&other)
         _pc = move(other._pc);
     }
     return *this;
+}
+
+void execution_context::swap(execution_context &other) noexcept
+{
+    if (this != &other) {
+        ::swap(_memory, other._memory);
+        ::swap(_d, other._d);
+        ::swap(_a, other._a);
+        ::swap(_pc, other._pc);
+    }
 }
 
 data_register &execution_context::d(const size_t regno)

@@ -186,6 +186,14 @@ namespace vm68k
         execution_context &operator =(execution_context &&other);
 
     public:
+        /**
+         * Swaps the contents with another execution context.
+         *
+         * @param other another execution context
+         */
+        void swap(execution_context &other) noexcept;
+
+    public:
         auto memory() const -> const std::shared_ptr<memory_map> &
         {
             return _memory;

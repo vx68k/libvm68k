@@ -159,7 +159,7 @@ namespace vm68k
     public:
         explicit execution_context(const std::shared_ptr<memory_map> &memory);
 
-        explicit execution_context(std::shared_ptr<memory_map> &&memory);
+        explicit execution_context(std::shared_ptr<memory_map> &&memory) noexcept;
 
         /**
          * Copy constructor.

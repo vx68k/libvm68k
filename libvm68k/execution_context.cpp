@@ -39,7 +39,7 @@ execution_context::execution_context(const shared_ptr<memory_map> &memory)
     // Nothing to do.
 }
 
-execution_context::execution_context(shared_ptr<memory_map> &&memory)
+execution_context::execution_context(shared_ptr<memory_map> &&memory) noexcept
 :
     _memory {move(memory)}
 {

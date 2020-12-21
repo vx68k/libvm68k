@@ -28,20 +28,16 @@ using std::move;
 using std::shared_ptr;
 using namespace vm68k;
 
-execution_context::execution_context(
-    const shared_ptr<memory_map> &memory, const long_word pc)
+execution_context::execution_context(const shared_ptr<memory_map> &memory)
 :
-    _memory {memory},
-    _pc {pc}
+    _memory {memory}
 {
     // Nothing to do.
 }
 
-execution_context::execution_context(
-    shared_ptr<memory_map> &&memory, const long_word pc)
+execution_context::execution_context(shared_ptr<memory_map> &&memory)
 :
-    _memory {move(memory)},
-    _pc {pc}
+    _memory {move(memory)}
 {
     // Nothing to do.
 }

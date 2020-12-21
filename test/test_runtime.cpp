@@ -145,7 +145,7 @@ public:
     void setUp() override
     {
         auto memory = make_shared<test_memory_map>();
-        _context.reset(new execution_context(memory, long_word(0)));
+        _context.reset(new execution_context(memory));
     }
 
 public:

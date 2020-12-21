@@ -157,11 +157,9 @@ namespace vm68k
         long_word _pc;
 
     public:
-        execution_context(const std::shared_ptr<memory_map> &memory,
-            long_word pc);
+        explicit execution_context(const std::shared_ptr<memory_map> &memory);
 
-        execution_context(std::shared_ptr<memory_map> &&memory,
-            long_word pc);
+        explicit execution_context(std::shared_ptr<memory_map> &&memory);
 
         /**
          * Copy constructor.

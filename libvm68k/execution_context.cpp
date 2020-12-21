@@ -21,12 +21,16 @@
 #endif
 
 #include <bits/vm68k/execution_context.h>
+
 #include <utility>
 #include <cassert>
 
 using std::move;
 using std::shared_ptr;
 using namespace vm68k;
+
+
+// Implementation of class execution_context.
 
 execution_context::execution_context(const shared_ptr<memory_map> &memory)
 :

@@ -56,7 +56,7 @@ execution_context::execution_context(const execution_context &other)
     // Nothing to do.
 }
 
-execution_context::execution_context(execution_context &&other)
+execution_context::execution_context(execution_context &&other) noexcept
 :
     _memory {move(other._memory)},
     _d {move(other._d)},

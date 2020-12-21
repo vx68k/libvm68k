@@ -171,7 +171,7 @@ namespace vm68k
         /**
          * Move constructor.
          */
-        execution_context(execution_context &&other);
+        execution_context(execution_context &&other) noexcept;
 
     public:
         virtual ~execution_context();

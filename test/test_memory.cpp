@@ -23,7 +23,7 @@
 #pragma hdrstop
 #endif
 
-#include <vm68k/runtime>
+#include <vm68k/memory>
 
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/TestFixture.h>

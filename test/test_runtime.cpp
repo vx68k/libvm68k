@@ -201,7 +201,7 @@ private:
 private:
     void testRead()
     {
-        const unsigned char bytes[] = {0x89U, 0xabU, 0xcdU, 0xefU};
+        const unsigned char bytes[] {0x89U, 0xabU, 0xcdU, 0xefU};
         _context->memory()->write(memory_map::access_mode::SUPERVISOR, 0x8000U, 4U, bytes);
 
         long_word data1;

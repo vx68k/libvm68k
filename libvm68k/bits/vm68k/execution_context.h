@@ -157,11 +157,9 @@ namespace vm68k
         long_word _pc;
 
     public:
-        execution_context(const std::shared_ptr<memory_map> &memory,
-            long_word pc);
+        explicit execution_context(const std::shared_ptr<memory_map> &memory);
 
-        execution_context(std::shared_ptr<memory_map> &&memory,
-            long_word pc);
+        explicit execution_context(std::shared_ptr<memory_map> &&memory) noexcept;
 
         /**
          * Copy constructor.
@@ -171,7 +169,7 @@ namespace vm68k
         /**
          * Move constructor.
          */
-        execution_context(execution_context &&other);
+        execution_context(execution_context &&other) noexcept;
 
     public:
         virtual ~execution_context();
@@ -185,7 +183,19 @@ namespace vm68k
         /**
          * Move assignment operator.
          */
-        execution_context &operator =(execution_context &&other);
+        execution_context &operator =(execution_context &&other) noexcept
+        {
+            swap(other);
+            return *this;
+        }
+
+    public:
+        /**
+         * Swaps the contents with another execution context.
+         *
+         * @param other another execution context
+         */
+        void swap(execution_context &other) noexcept;
 
     public:
         auto memory() const -> const std::shared_ptr<memory_map> &
@@ -220,7 +230,49 @@ namespace vm68k
 
     public:
         void set_pc(long_word pc);
+
+    public:
+        /**
+         * Reads data from an address.
+         */
+        template<class Data>
+        void read(long_word address, Data &data) const
+        {
+            char bytes[Data::size()];
+            _memory->read(memory_access_mode(),
+                address.to_uint(), Data::size(), bytes);
+            data.deserialize(bytes);
+        }
+
+    public:
+        /**
+         * Writes data to an address.
+         */
+        template<class Data>
+        void write(long_word address, const Data &data) const
+        {
+            char bytes[Data::size()];
+            data.serialize(bytes);
+            _memory->write(memory_access_mode(),
+                address.to_uint(), Data::size(), bytes);
+        }
+
+    protected:
+        memory_map::access_mode memory_access_mode() const
+        {
+            return memory_map::access_mode::USER; // FIXME
+        }
     };
+
+    /**
+     * Swaps the contents of two execution contexts.
+     * @param one an execution context
+     * @param other another execution context
+     */
+    inline void swap(execution_context &one, execution_context &other) noexcept
+    {
+        one.swap(other);
+    }
 }
 
 #endif

@@ -136,6 +136,8 @@ class ExecutionContextTests: public TestFixture
     CPPUNIT_TEST(testMemory);
     CPPUNIT_TEST(testDataRegister);
     CPPUNIT_TEST(testAddressRegister);
+    CPPUNIT_TEST(testRead);
+    CPPUNIT_TEST(testWrite);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -145,7 +147,7 @@ public:
     void setUp() override
     {
         auto memory = make_shared<test_memory_map>();
-        _context.reset(new execution_context(memory, long_word(0)));
+        _context.reset(new execution_context(memory));
     }
 
 public:
@@ -194,6 +196,31 @@ private:
         _context->a(0) = word(0x89ab);
         CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0xffff89abU), long_word(_context->a(0)).to_uint());
         CPPUNIT_ASSERT_EQUAL(word::uint_type(0x89abU), word(_context->a(0)).to_uint());
+    }
+
+private:
+    void testRead()
+    {
+        const unsigned char bytes[] {0x89U, 0xabU, 0xcdU, 0xefU};
+        _context->memory()->write(memory_map::access_mode::SUPERVISOR, 0x8000U, 4U, bytes);
+
+        long_word data1;
+        _context->read(long_word(0x8000U), data1);
+        CPPUNIT_ASSERT_EQUAL(uint32_t(0x89abcdefU), data1.to_uint());
+    }
+
+private:
+    void testWrite()
+    {
+        long_word data1 {0x89abcdefU};
+        _context->write(long_word(0x8000U), data1);
+
+        unsigned char bytes[4U];
+        _context->memory()->read(memory_map::access_mode::SUPERVISOR, 0x8000U, 4U, bytes);
+        CPPUNIT_ASSERT_EQUAL((unsigned char)0x89U, bytes[0]);
+        CPPUNIT_ASSERT_EQUAL((unsigned char)0xabU, bytes[1]);
+        CPPUNIT_ASSERT_EQUAL((unsigned char)0xcdU, bytes[2]);
+        CPPUNIT_ASSERT_EQUAL((unsigned char)0xefU, bytes[3]);
     }
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(ExecutionContextTests);

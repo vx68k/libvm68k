@@ -235,11 +235,12 @@ namespace vm68k
         /**
          * Reads data from an address.
          */
-        template<class T>
-        void read(long_word address, T &data) const
+        template<class Data>
+        void read(long_word address, Data &data) const
         {
-            char bytes[T::size()];
-            _memory->read(memory_access_mode(), address.to_uint(), T::size(), bytes);
+            char bytes[Data::size()];
+            _memory->read(memory_access_mode(),
+                address.to_uint(), Data::size(), bytes);
             data.deserialize(bytes);
         }
 
@@ -247,12 +248,13 @@ namespace vm68k
         /**
          * Writes data to an address.
          */
-        template<class T>
-        void write(long_word address, const T &data) const
+        template<class Data>
+        void write(long_word address, const Data &data) const
         {
-            char bytes[T::size()];
+            char bytes[Data::size()];
             data.serialize(bytes);
-            _memory->write(memory_access_mode(), address.to_uint(), T::size(), bytes);
+            _memory->write(memory_access_mode(),
+                address.to_uint(), Data::size(), bytes);
         }
 
     protected:

@@ -230,6 +230,36 @@ namespace vm68k
 
     public:
         void set_pc(long_word pc);
+
+    public:
+        /**
+         * Reads data from an address.
+         */
+        template<class T>
+        void read(long_word address, T &data) const
+        {
+            char bytes[T::size()];
+            _memory->read(memory_access_mode(), address.to_uint(), T::size(), bytes);
+            data.deserialize(bytes);
+        }
+
+    public:
+        /**
+         * Writes data to an address.
+         */
+        template<class T>
+        void write(long_word address, const T &data) const
+        {
+            char bytes[T::size()];
+            data.serialize(bytes);
+            _memory->write(memory_access_mode(), address.to_uint(), T::size(), bytes);
+        }
+
+    protected:
+        memory_map::access_mode memory_access_mode() const
+        {
+            return memory_map::access_mode::USER; // FIXME
+        }
     };
 
     /**

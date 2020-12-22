@@ -26,6 +26,7 @@ libvm68kapi_la_SOURCES = \
 data.cpp \
 memory_map.cpp \
 memory_exception.cpp \
+device_manager.cpp \
 virtual_machine.cpp
 
 CLEANFILES = $(pkgconfig_DATA)

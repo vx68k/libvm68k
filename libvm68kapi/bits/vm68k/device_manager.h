@@ -1,0 +1,81 @@
+// <bits/vm68k/device_manager.h>
+// Copyright (C) 2020 Kaz Nishimura
+//
+// This program is free software: you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option)
+// any later version.
+//
+// This program is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+// more details.
+//
+// You should have received a copy of the GNU General Public License along with
+// this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+#ifndef _VM68K_DEVICE_MANAGER_H
+#define _VM68K_DEVICE_MANAGER_H 1
+
+#include <bits/vm68kapidef.h>
+#include <vm68k/memory>
+#include <vector>
+#include <memory>
+
+namespace vm68k
+{
+    /**
+     * Device managers.
+     */
+    class _VM68KAPI_PUBLIC device_manager
+    {
+    public:
+        /**
+         * Base class for devices.
+         */
+        class _VM68KAPI_PUBLIC device
+        {
+        protected:
+            device() = default;
+
+            device(const device &other) = default;
+
+        public:
+            virtual ~device() = default;
+
+        public:
+            /**
+             * Maps the device on a memory map.
+             */
+            virtual void map(memory_map &memory) = 0;
+        };
+
+    private:
+        std::vector<std::shared_ptr<device>> _devices;
+
+    public:
+        device_manager();
+
+        device_manager(const device_manager &other) = delete;
+
+        device_manager(device_manager &&other) noexcept;
+
+    public:
+        virtual ~device_manager();
+
+    public:
+        void operator =(const device_manager &other) = delete;
+
+        device_manager &operator =(device_manager &&other) noexcept;
+
+    public:
+        /**
+         * Adds a device to the device manager.
+         */
+        void add_device(const std::shared_ptr<device> &d);
+    };
+}
+
+#endif

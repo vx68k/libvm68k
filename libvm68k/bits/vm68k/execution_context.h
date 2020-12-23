@@ -260,7 +260,7 @@ namespace vm68k
     protected:
         memory_map::access_mode memory_access_mode() const
         {
-            return memory_map::access_mode::USER; // FIXME
+            return memory_map::access_mode::user; // FIXME
         }
     };
 

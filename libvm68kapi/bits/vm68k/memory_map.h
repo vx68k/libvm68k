@@ -44,8 +44,8 @@ namespace vm68k
          */
         enum class access_mode: char
         {
-            USER = 0,
-            SUPERVISOR,
+            user = 0,
+            supervisor,
         };
 
     public:

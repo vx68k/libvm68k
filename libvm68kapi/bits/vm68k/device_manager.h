@@ -72,6 +72,12 @@ namespace vm68k
 
     public:
         /**
+         * Swaps the contents with another.
+         */
+        void swap(device_manager &other) noexcept;
+
+    public:
+        /**
          * Adds a device to the device manager.
          */
         void add_device(const std::shared_ptr<device> &d);

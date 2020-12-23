@@ -26,6 +26,7 @@
 
 using std::move;
 using std::shared_ptr;
+using std::swap;
 using namespace vm68k;
 
 device_manager::device_manager()
@@ -43,6 +44,13 @@ device_manager::device_manager(device_manager &&other) noexcept
 device_manager::~device_manager()
 {
     // Nothing to do.
+}
+
+void device_manager::swap(device_manager &other) noexcept
+{
+    if (this != &other) {
+        ::swap(_devices, other._devices);
+    }
 }
 
 void device_manager::add_device(const shared_ptr<device> &d)

@@ -66,9 +66,19 @@ namespace vm68k
         virtual ~device_manager();
 
     public:
+        /**
+         * Deleted copy assignment operator.
+         */
         void operator =(const device_manager &other) = delete;
 
-        device_manager &operator =(device_manager &&other) noexcept;
+        /**
+         * Move assignment operator.
+         */
+        device_manager &operator =(device_manager &&other) noexcept
+        {
+            swap(other);
+            return *this;
+        }
 
     public:
         /**

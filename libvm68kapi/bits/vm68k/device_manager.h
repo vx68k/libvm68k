@@ -56,10 +56,19 @@ namespace vm68k
         std::vector<std::shared_ptr<device>> _devices;
 
     public:
+        /**
+         * Default constructor.
+         */
         device_manager();
 
+        /**
+         * Deleted copy constructor.
+         */
         device_manager(const device_manager &other) = delete;
 
+        /**
+         * Move constructor.
+         */
         device_manager(device_manager &&other) noexcept;
 
     public:

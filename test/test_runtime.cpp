@@ -202,7 +202,8 @@ private:
     void testRead()
     {
         const unsigned char bytes[] {0x89U, 0xabU, 0xcdU, 0xefU};
-        _context->memory()->write(function_code::data, 0x8000U, 4U, bytes);
+        _context->memory()->write(function_code::data | function_code::supervisor,
+            0x8000U, 4U, bytes);
 
         long_word data1;
         _context->read(long_word(0x8000U), data1);
@@ -216,7 +217,8 @@ private:
         _context->write(long_word(0x8000U), data1);
 
         unsigned char bytes[4U];
-        _context->memory()->read(function_code::data, 0x8000U, 4U, bytes);
+        _context->memory()->read(function_code::data | function_code::supervisor,
+            0x8000U, 4U, bytes);
         CPPUNIT_ASSERT_EQUAL((unsigned char)0x89U, bytes[0]);
         CPPUNIT_ASSERT_EQUAL((unsigned char)0xabU, bytes[1]);
         CPPUNIT_ASSERT_EQUAL((unsigned char)0xcdU, bytes[2]);

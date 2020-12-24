@@ -33,11 +33,11 @@ namespace vm68k
      */
     enum class function_code: unsigned char
     {
-        data = 0x1,
-        instruction = 0x2,
+        data = 1U,
+        instruction = 2U,
 
-        user = 0,
-        supervisor = 0x4,
+        user = 0U,
+        supervisor = 4U,
     };
 
     /**

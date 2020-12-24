@@ -52,16 +52,16 @@ namespace
         }
 
     public:
-        void read(access_mode mode, address_type address, size_type size,
+        void read(function_code fc, address_type address, size_type size,
             void *buffer) override
         {
-            _memory->read(mode, address, size, buffer);
+            _memory->read(fc, address, size, buffer);
         }
 
-        void write(access_mode mode, address_type address, size_type size,
+        void write(function_code fc, address_type address, size_type size,
             const void *buffer) override
         {
-            _memory->write(mode, address, size, buffer);
+            _memory->write(fc, address, size, buffer);
         }
     };
 }
@@ -120,8 +120,10 @@ private:
 
         const uint32_t value1 = 0x81828384;
         uint32_t value2 = 0;
-        memory->write(memory_map::access_mode::SUPERVISOR, 0x10000U, sizeof value1, &value1);
-        memory->read(memory_map::access_mode::SUPERVISOR, 0x10000U, sizeof value2, &value2);
+        memory->write(function_code::data | function_code::supervisor,
+            0x10000U, sizeof value1, &value1);
+        memory->read(function_code::data | function_code::supervisor,
+            0x10000U, sizeof value2, &value2);
         CPPUNIT_ASSERT_EQUAL(value1, value2);
     }
 };
@@ -202,7 +204,8 @@ private:
     void testRead()
     {
         const unsigned char bytes[] {0x89U, 0xabU, 0xcdU, 0xefU};
-        _context->memory()->write(memory_map::access_mode::SUPERVISOR, 0x8000U, 4U, bytes);
+        _context->memory()->write(function_code::data | function_code::supervisor,
+            0x8000U, 4U, bytes);
 
         long_word data1;
         _context->read(long_word(0x8000U), data1);
@@ -216,7 +219,8 @@ private:
         _context->write(long_word(0x8000U), data1);
 
         unsigned char bytes[4U];
-        _context->memory()->read(memory_map::access_mode::SUPERVISOR, 0x8000U, 4U, bytes);
+        _context->memory()->read(function_code::data | function_code::supervisor,
+            0x8000U, 4U, bytes);
         CPPUNIT_ASSERT_EQUAL((unsigned char)0x89U, bytes[0]);
         CPPUNIT_ASSERT_EQUAL((unsigned char)0xabU, bytes[1]);
         CPPUNIT_ASSERT_EQUAL((unsigned char)0xcdU, bytes[2]);

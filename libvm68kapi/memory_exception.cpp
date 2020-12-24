@@ -27,10 +27,10 @@ using namespace vm68k;
 
 // Implementation of class memory_exception.
 
-memory_exception::memory_exception(const memory_map::access_mode mode,
+memory_exception::memory_exception(const function_code fc,
     const memory_map::address_type fault_address) noexcept
 :
-    _mode {mode},
+    _fc {fc},
     _fault_address {fault_address}
 {
     // Nothing to do.
@@ -39,7 +39,7 @@ memory_exception::memory_exception(const memory_map::access_mode mode,
 memory_exception::memory_exception(const memory_exception &other) noexcept
 :
     exception(other),
-    _mode {other._mode},
+    _fc {other._fc},
     _fault_address {other._fault_address}
 {
     // Nothing to do.

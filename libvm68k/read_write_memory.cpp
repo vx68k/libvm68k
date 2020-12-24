@@ -87,55 +87,55 @@ void read_write_memory::relocate(const address_type base_address)
     _base_address = base_address;
 }
 
-void read_write_memory::read(const access_mode mode,
+void read_write_memory::read(const function_code fc,
     const address_type address, size_type n, void *const buffer)
 {
-    check_read_access(mode, address, n);
+    check_read_access(fc, address, n);
 
     auto offset = address - _base_address;
     // Note OFFSET is unsigned.
     if (offset >= _size) {
-        throw bus_error(mode, address);
+        throw bus_error(fc, address);
     }
 
     auto i = static_cast<unsigned char *>(buffer);
     while (n--) {
         // TODO: The following check should be moved out of loop.
         if (offset >= _size) {
-            throw bus_error(mode, _base_address + offset);
+            throw bus_error(fc, _base_address + offset);
         }
         *(i++) = _bytes[offset++];
     }
 }
 
-void read_write_memory::write(const access_mode mode,
+void read_write_memory::write(const function_code fc,
     const address_type address, size_type n, const void *const buffer)
 {
-    check_write_access(mode, address, n);
+    check_write_access(fc, address, n);
 
     auto offset = address - _base_address;
     // Note OFFSET is unsigned.
     if (offset >= _size) {
-        throw bus_error(mode, address);
+        throw bus_error(fc, address);
     }
 
     auto i = static_cast<const unsigned char *>(buffer);
     while (n--) {
         // TODO: The following check should be moved out of loop.
         if (offset >= _base_address + _size) {
-            throw bus_error(mode, _base_address + offset);
+            throw bus_error(fc, _base_address + offset);
         }
         _bytes[offset++] = *(i++);
     }
 }
 
-void read_write_memory::check_read_access(const access_mode,
+void read_write_memory::check_read_access(const function_code,
     const address_type, const size_type)
 {
     // Nothing to do.
 }
 
-void read_write_memory::check_write_access(const access_mode,
+void read_write_memory::check_write_access(const function_code,
     const address_type, const size_type)
 {
     // Nothing to do.

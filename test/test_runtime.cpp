@@ -120,8 +120,10 @@ private:
 
         const uint32_t value1 = 0x81828384;
         uint32_t value2 = 0;
-        memory->write(function_code::data, 0x10000U, sizeof value1, &value1);
-        memory->read(function_code::data, 0x10000U, sizeof value2, &value2);
+        memory->write(function_code::data | function_code::supervisor,
+            0x10000U, sizeof value1, &value1);
+        memory->read(function_code::data | function_code::supervisor,
+            0x10000U, sizeof value2, &value2);
         CPPUNIT_ASSERT_EQUAL(value1, value2);
     }
 };

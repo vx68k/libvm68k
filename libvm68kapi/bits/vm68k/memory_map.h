@@ -44,8 +44,11 @@ namespace vm68k
          */
         enum class function_code: char
         {
+            data = 0x1,
+            instruction = 0x2,
+
             user = 0,
-            supervisor,
+            supervisor = 0x4,
         };
 
     public:

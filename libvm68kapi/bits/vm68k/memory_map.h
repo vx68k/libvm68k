@@ -39,6 +39,44 @@ namespace vm68k
     };
 
     /**
+     * Bitwise NOT operator.
+     */
+    inline constexpr function_code operator ~(const function_code &x)
+    {
+        return static_cast<function_code>(~static_cast<unsigned char>(x));
+    }
+
+    /**
+     * Bitwise AND operator.
+     */
+    inline constexpr function_code operator &(const function_code &x,
+        const function_code &y)
+    {
+        return static_cast<function_code>(
+            static_cast<unsigned char>(x) & static_cast<unsigned char>(y));
+    }
+
+    /**
+     * Bitwise OR operator.
+     */
+    inline constexpr function_code operator |(const function_code &x,
+        const function_code &y)
+    {
+        return static_cast<function_code>(
+            static_cast<unsigned char>(x) | static_cast<unsigned char>(y));
+    }
+
+    /**
+     * Bitwise XOR operator.
+     */
+    inline constexpr function_code operator ^(const function_code &x,
+        const function_code &y)
+    {
+        return static_cast<function_code>(
+            static_cast<unsigned char>(x) ^ static_cast<unsigned char>(y));
+    }
+
+    /**
      * Base class for memory maps.
      *
      * <author>Kaz Nishimura</author>

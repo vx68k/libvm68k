@@ -127,7 +127,7 @@ namespace vm68k
         /**
          * Reads a sequence of bytes.
          *
-         * @param fc a function code
+         * @param fc a function code value
          * @param address the first address of the sequence
          * @param size the size of the sequence
          * @param bytes a pointer to a byte buffer
@@ -139,7 +139,7 @@ namespace vm68k
         /**
          * Writes a sequence of bytes.
          *
-         * @param fc a function code
+         * @param fc a function code value
          * @param address the first address of the sequence
          * @param size the size of the sequence
          * @param bytes a pointer to a byte buffer

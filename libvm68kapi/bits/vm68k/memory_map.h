@@ -27,7 +27,7 @@
 namespace vm68k
 {
     /**
-     *Function codes.
+     * Function code values.
      */
     enum class function_code: unsigned char
     {
@@ -58,7 +58,7 @@ namespace vm68k
         {
         protected:
             using address_type = memory_map::address_type;
-            using size_type = memory_map::size_type; 
+            using size_type = memory_map::size_type;
 
         protected:
             /**

@@ -41,11 +41,11 @@ namespace
     class test_memory_map final : public memory_map
     {
     public:
-        void read(access_mode, address_type, size_type, void *) override
+        void read(function_code, address_type, size_type, void *) override
         {
         }
 
-        void write(access_mode, address_type, size_type, const void *) override
+        void write(function_code, address_type, size_type, const void *) override
         {
         }
     };

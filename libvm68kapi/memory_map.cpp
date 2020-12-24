@@ -49,17 +49,17 @@ namespace
         }
 
     public:
-        virtual void read(access_mode mode, address_type address, size_type,
+        virtual void read(function_code fc, address_type address, size_type,
             void *) override
         {
-            throw bus_error(mode, address);
+            throw bus_error(fc, address);
         }
 
     public:
-        virtual void write(access_mode mode, address_type address, size_type,
+        virtual void write(function_code fc, address_type address, size_type,
             const void *) override
         {
-            throw bus_error(mode, address);
+            throw bus_error(fc, address);
         }
     };
 }
@@ -141,7 +141,7 @@ void paged_memory_map::add_memory(address_type address,
     fill(first, last, memory);
 }
 
-void paged_memory_map::read(const access_mode mode, address_type address,
+void paged_memory_map::read(const function_code fc, address_type address,
     size_type size, void *bytes)
 {
     auto page = _pages.begin() + (address & _address_mask) / _page_size;
@@ -152,7 +152,7 @@ void paged_memory_map::read(const access_mode mode, address_type address,
             transfer_size = _page_size - offset;
         }
 
-        (*page++)->read(mode, address, transfer_size, bytes);
+        (*page++)->read(fc, address, transfer_size, bytes);
         if (page == _pages.end()) {
             page = _pages.begin();
         }
@@ -162,7 +162,7 @@ void paged_memory_map::read(const access_mode mode, address_type address,
     }
 }
 
-void paged_memory_map::write(const access_mode mode, address_type address,
+void paged_memory_map::write(const function_code fc, address_type address,
     size_type size, const void *bytes)
 {
     auto page = _pages.begin() + (address & _address_mask) / _page_size;
@@ -173,7 +173,7 @@ void paged_memory_map::write(const access_mode mode, address_type address,
             transfer_size = _page_size - offset;
         }
 
-        (*page++)->write(mode, address, transfer_size, bytes);
+        (*page++)->write(fc, address, transfer_size, bytes);
         if (page == _pages.end()) {
             page = _pages.begin();
         }

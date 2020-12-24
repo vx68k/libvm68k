@@ -77,6 +77,33 @@ namespace vm68k
     }
 
     /**
+     * Bitwise AND assignment operator.
+     */
+    inline function_code &operator &=(function_code &x, const function_code &y)
+    {
+        x = x & y;
+        return x;
+    }
+
+    /**
+     * Bitwise OR assignment operator.
+     */
+    inline function_code &operator |=(function_code &x, const function_code &y)
+    {
+        x = x | y;
+        return x;
+    }
+
+    /**
+     * Bitwise XOR assignment operator.
+     */
+    inline function_code &operator ^=(function_code &x, const function_code &y)
+    {
+        x = x ^ y;
+        return x;
+    }
+
+    /**
      * Base class for memory maps.
      *
      * <author>Kaz Nishimura</author>

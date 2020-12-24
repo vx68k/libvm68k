@@ -28,6 +28,8 @@ namespace vm68k
 {
     /**
      * Function code values.
+     *
+     * This enumeration is a bitmask type.
      */
     enum class function_code: unsigned char
     {

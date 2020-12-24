@@ -27,6 +27,18 @@
 namespace vm68k
 {
     /**
+     *Function codes.
+     */
+    enum class function_code: unsigned char
+    {
+        data = 0x1,
+        instruction = 0x2,
+
+        user = 0,
+        supervisor = 0x4,
+    };
+
+    /**
      * Base class for memory maps.
      *
      * <author>Kaz Nishimura</author>
@@ -40,27 +52,13 @@ namespace vm68k
 
     public:
         /**
-         *Function codes.
-         */
-        enum class function_code: char
-        {
-            data = 0x1,
-            instruction = 0x2,
-
-            user = 0,
-            supervisor = 0x4,
-        };
-
-    public:
-        /**
          * Memory objects mapped on a memory map.
          */
         class _VM68KAPI_PUBLIC memory
         {
         protected:
             using address_type = memory_map::address_type;
-            using size_type = memory_map::size_type;
-            using function_code = memory_map::function_code;
+            using size_type = memory_map::size_type; 
 
         protected:
             /**

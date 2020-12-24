@@ -258,9 +258,9 @@ namespace vm68k
         }
 
     protected:
-        memory_map::function_code memory_access_mode() const
+        function_code memory_access_mode() const
         {
-            return memory_map::function_code::data; // FIXME
+            return function_code::data; // FIXME
         }
     };
 

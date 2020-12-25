@@ -100,6 +100,15 @@ namespace vm68k
 
     public:
         /**
+         * Returns the memory map associated to the device manager.
+         */
+        const std::shared_ptr<memory_map> &memory() const noexcept
+        {
+            return _memory;
+        }
+
+    public:
+        /**
          * Adds a device to the device manager.
          */
         void add_device(const std::shared_ptr<device> &d);

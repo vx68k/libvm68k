@@ -111,7 +111,7 @@ namespace vm68k
         /**
          * Adds a device to the device manager.
          */
-        void add_device(const std::shared_ptr<device> &d);
+        void add_device(const std::shared_ptr<device> &device);
     };
 
     /**

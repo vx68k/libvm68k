@@ -18,6 +18,7 @@ bits/vm68kapidef.h \
 bits/vm68k/data.h \
 bits/vm68k/memory_map.h \
 bits/vm68k/memory_exception.h \
+bits/vm68k/device_manager.h \
 bits/vm68k/virtual_machine.h
 
 libvm68kapi_la_LDFLAGS = -no-undefined -version-info 1:0:0
@@ -25,6 +26,7 @@ libvm68kapi_la_SOURCES = \
 data.cpp \
 memory_map.cpp \
 memory_exception.cpp \
+device_manager.cpp \
 virtual_machine.cpp
 
 CLEANFILES = $(pkgconfig_DATA)

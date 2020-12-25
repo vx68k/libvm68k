@@ -23,13 +23,13 @@ bits/vm68k/pipeline.h
 noinst_HEADERS = vm68kPCH1.h
 
 libvm68k_la_LDFLAGS = -no-undefined -version-info 1:0:0
+libvm68k_la_LIBADD = -L$(top_builddir)/libvm68kapi -lvm68kapi
 libvm68k_la_SOURCES = \
 read_write_memory.cpp \
 execution_context.cpp \
 executor.cpp \
 instruction_decoder.cpp \
 pipeline.cpp
-libvm68k_la_LIBADD = -L$(top_builddir)/libvm68kapi -lvm68kapi
 
 CLEANFILES = $(pkgconfig_DATA)
 

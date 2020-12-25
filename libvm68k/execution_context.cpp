@@ -21,27 +21,28 @@
 #endif
 
 #include <bits/vm68k/execution_context.h>
+
 #include <utility>
 #include <cassert>
 
 using std::move;
 using std::shared_ptr;
+using std::swap;
 using namespace vm68k;
 
-execution_context::execution_context(
-    const shared_ptr<memory_map> &memory, const long_word pc)
+
+// Implementation of class execution_context.
+
+execution_context::execution_context(const shared_ptr<memory_map> &memory)
 :
-    _memory {memory},
-    _pc {pc}
+    _memory {memory}
 {
     // Nothing to do.
 }
 
-execution_context::execution_context(
-    shared_ptr<memory_map> &&memory, const long_word pc)
+execution_context::execution_context(shared_ptr<memory_map> &&memory) noexcept
 :
-    _memory {move(memory)},
-    _pc {pc}
+    _memory {move(memory)}
 {
     // Nothing to do.
 }
@@ -56,7 +57,7 @@ execution_context::execution_context(const execution_context &other)
     // Nothing to do.
 }
 
-execution_context::execution_context(execution_context &&other)
+execution_context::execution_context(execution_context &&other) noexcept
 :
     _memory {move(other._memory)},
     _d {move(other._d)},
@@ -82,15 +83,14 @@ execution_context &execution_context::operator =(const execution_context &other)
     return *this;
 }
 
-execution_context &execution_context::operator =(execution_context &&other)
+void execution_context::swap(execution_context &other) noexcept
 {
     if (this != &other) {
-        _memory = move(other._memory);
-        _d = move(other._d);
-        _a = move(other._a);
-        _pc = move(other._pc);
+        ::swap(_memory, other._memory);
+        ::swap(_d, other._d);
+        ::swap(_a, other._a);
+        ::swap(_pc, other._pc);
     }
-    return *this;
 }
 
 data_register &execution_context::d(const size_t regno)

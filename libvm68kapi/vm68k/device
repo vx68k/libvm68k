@@ -19,6 +19,6 @@
 #ifndef _VM68K_DEVICE
 #define _VM68K_DEVICE 1
 
-// TODO: include private headers.
+#include <bits/vm68k/device_manager.h>
 
 #endif

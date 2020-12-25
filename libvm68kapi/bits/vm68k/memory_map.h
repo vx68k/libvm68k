@@ -27,6 +27,85 @@
 namespace vm68k
 {
     /**
+     * Function code values.
+     *
+     * This enumeration is a bitmask type.
+     */
+    enum class function_code: unsigned char
+    {
+        data = 1U,
+        instruction = 2U,
+
+        user = 0U,
+        supervisor = 4U,
+    };
+
+    /**
+     * Bitwise NOT operator.
+     */
+    inline constexpr function_code operator ~(const function_code &x)
+    {
+        return static_cast<function_code>(~static_cast<unsigned char>(x));
+    }
+
+    /**
+     * Bitwise AND operator.
+     */
+    inline constexpr function_code operator &(const function_code &x,
+        const function_code &y)
+    {
+        return static_cast<function_code>(
+            static_cast<unsigned char>(x) & static_cast<unsigned char>(y));
+    }
+
+    /**
+     * Bitwise OR operator.
+     */
+    inline constexpr function_code operator |(const function_code &x,
+        const function_code &y)
+    {
+        return static_cast<function_code>(
+            static_cast<unsigned char>(x) | static_cast<unsigned char>(y));
+    }
+
+    /**
+     * Bitwise XOR operator.
+     */
+    inline constexpr function_code operator ^(const function_code &x,
+        const function_code &y)
+    {
+        return static_cast<function_code>(
+            static_cast<unsigned char>(x) ^ static_cast<unsigned char>(y));
+    }
+
+    /**
+     * Bitwise AND assignment operator.
+     */
+    inline function_code &operator &=(function_code &x, const function_code &y)
+    {
+        x = x & y;
+        return x;
+    }
+
+    /**
+     * Bitwise OR assignment operator.
+     */
+    inline function_code &operator |=(function_code &x, const function_code &y)
+    {
+        x = x | y;
+        return x;
+    }
+
+    /**
+     * Bitwise XOR assignment operator.
+     */
+    inline function_code &operator ^=(function_code &x, const function_code &y)
+    {
+        x = x ^ y;
+        return x;
+    }
+
+    /**
      * Base class for memory maps.
      *
      * <author>Kaz Nishimura</author>
@@ -40,16 +119,6 @@ namespace vm68k
 
     public:
         /**
-         * Access mode.
-         */
-        enum class access_mode: char
-        {
-            USER = 0,
-            SUPERVISOR,
-        };
-
-    public:
-        /**
          * Memory objects mapped on a memory map.
          */
         class _VM68KAPI_PUBLIC memory
@@ -57,7 +126,6 @@ namespace vm68k
         protected:
             using address_type = memory_map::address_type;
             using size_type = memory_map::size_type;
-            using access_mode = memory_map::access_mode;
 
         protected:
             /**
@@ -95,13 +163,13 @@ namespace vm68k
             /**
              * Reads a sequence of bytes from the memory object.
              */
-            virtual void read(access_mode mode, address_type address,
+            virtual void read(function_code fc, address_type address,
                 size_type size, void *bytes) = 0;
 
             /**
              * Writes a sequence of bytes to the memory object.
              */
-            virtual void write(access_mode mode, address_type address,
+            virtual void write(function_code fc, address_type address,
                 size_type size, const void *bytes) = 0;
         };
 
@@ -126,24 +194,24 @@ namespace vm68k
         /**
          * Reads a sequence of bytes.
          *
-         * @param mode an access mode
+         * @param fc a function code value
          * @param address the first address of the sequence
          * @param size the size of the sequence
          * @param bytes a pointer to a byte buffer
          */
-        virtual void read(access_mode mode, address_type address,
+        virtual void read(function_code fc, address_type address,
             size_type size, void *bytes) = 0;
 
     public:
         /**
          * Writes a sequence of bytes.
          *
-         * @param mode an access mode
+         * @param fc a function code value
          * @param address the first address of the sequence
          * @param size the size of the sequence
          * @param bytes a pointer to a byte buffer
          */
-        virtual void write(access_mode mode, address_type address,
+        virtual void write(function_code fc, address_type address,
             size_type size, const void *bytes) = 0;
     };
 
@@ -226,11 +294,11 @@ namespace vm68k
             const std::shared_ptr<memory> &memory);
 
     public:
-        virtual void read(access_mode mode, address_type address,
+        virtual void read(function_code fc, address_type address,
             size_type size, void *bytes) override;
 
     public:
-        virtual void write(access_mode mode, address_type address,
+        virtual void write(function_code fc, address_type address,
             size_type size, const void *bytes) override;
     };
 

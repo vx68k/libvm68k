@@ -60,9 +60,14 @@ namespace vm68k
 
     public:
         /**
-         * Constructor.
+         * Constructor that copies a memory map pointer.
          */
         explicit device_manager(const std::shared_ptr<memory_map> &memory);
+
+        /**
+         * Constructor that moves a memory map pointer.
+         */
+        explicit device_manager(std::shared_ptr<memory_map> &&memory);
 
         /**
          * Deleted copy constructor.

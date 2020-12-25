@@ -215,6 +215,11 @@ namespace vm68k
             size_type size, const void *bytes) = 0;
     };
 
+#if _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4251)
+#endif
+
     /**
      * Paged memory maps.
      */
@@ -296,6 +301,10 @@ namespace vm68k
         virtual void write(function_code fc, address_type address,
             size_type size, const void *bytes) override;
     };
+
+#if _MSC_VER
+#pragma warning(pop)
+#endif
 
     /**
      * Swaps the contents of two paged memory maps.

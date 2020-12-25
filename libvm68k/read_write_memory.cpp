@@ -20,16 +20,23 @@
 #include <config.h>
 #endif
 
+#if _WIN32
+#define WIN32_LEAN_AND_MEAN 1
+#include <windows.h>
+#endif
+
 #include <bits/vm68k/read_write_memory.h>
 
 #if HAVE_SYS_MMAN_H
 #include <sys/mman.h>
 #endif
 #include <new>
+#include <cstdint>
 
 using std::bad_alloc;
 using std::declare_no_pointers;
 using std::size_t;
+using std::uint64_t;
 using std::undeclare_no_pointers;
 using std::unique_ptr;
 using namespace vm68k;
@@ -42,6 +49,8 @@ void read_write_memory::bytes_delete::operator ()(byte_type *bytes) const
     undeclare_no_pointers(reinterpret_cast<char *>(bytes), _size);
 #if HAVE_SYS_MMAN_H && defined MAP_ANONYMOUS
     munmap(bytes, _size);
+#elif _WIN32
+    UnmapViewOfFile(bytes);
 #else
     delete[] bytes;
 #endif
@@ -54,6 +63,19 @@ auto read_write_memory::allocate_bytes(const size_t size)
     auto &&bytes = static_cast<byte_type *>(
         mmap(nullptr, size, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS,
             -1, 0));
+    if (bytes == nullptr) {
+        throw bad_alloc();
+    }
+#elif _WIN32
+    auto &&handle =
+        CreateFileMappingA(INVALID_HANDLE_VALUE, nullptr, PAGE_READWRITE,
+            (uint64_t)size >> 32, size, nullptr);
+    if (handle == nullptr) {
+        throw bad_alloc();
+    }
+    auto &&bytes = static_cast<byte_type *>(
+        MapViewOfFile(handle, FILE_MAP_ALL_ACCESS, 0, 0, size));
+    CloseHandle(handle); // This handle is no longer needed.
     if (bytes == nullptr) {
         throw bad_alloc();
     }

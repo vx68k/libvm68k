@@ -57,7 +57,10 @@ void device_manager::swap(device_manager &other) noexcept
     }
 }
 
-void device_manager::add_device(const shared_ptr<device> &d)
+void device_manager::add_device(const shared_ptr<device> &device)
 {
-    // TODO: Implement this function.
+    auto &&inserted = _devices.insert(device);
+    if (inserted.second) {
+        // TODO: Implement this function.
+    }
 }

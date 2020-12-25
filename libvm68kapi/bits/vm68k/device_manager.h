@@ -21,7 +21,7 @@
 
 #include <bits/vm68kapidef.h>
 #include <vm68k/memory>
-#include <vector>
+#include <unordered_set>
 #include <memory>
 
 namespace vm68k
@@ -56,7 +56,7 @@ namespace vm68k
         std::shared_ptr<memory_map> _memory;
 
     private:
-        std::vector<std::shared_ptr<device>> _devices;
+        std::unordered_set<std::shared_ptr<device>> _devices;
 
     public:
         /**

@@ -26,6 +26,11 @@
 
 namespace vm68k
 {
+#if _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4251)
+#endif
+
     /**
      * Device managers.
      */
@@ -104,6 +109,10 @@ namespace vm68k
          */
         void add_device(const std::shared_ptr<device> &d);
     };
+
+#if _MSC_VER
+#pragma warning(pop)
+#endif
 
     /**
      * Swaps the contents of two device managers.

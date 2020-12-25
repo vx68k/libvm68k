@@ -53,13 +53,16 @@ namespace vm68k
         };
 
     private:
+        std::shared_ptr<memory_map> _memory;
+
+    private:
         std::vector<std::shared_ptr<device>> _devices;
 
     public:
         /**
-         * Default constructor.
+         * Constructor.
          */
-        device_manager();
+        explicit device_manager(const std::shared_ptr<memory_map> &memory);
 
         /**
          * Deleted copy constructor.

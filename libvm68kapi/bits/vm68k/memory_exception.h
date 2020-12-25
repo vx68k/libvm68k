@@ -24,6 +24,11 @@
 
 namespace vm68k
 {
+#if _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4275)
+#endif
+
     /**
      * Generic memory exceptions.
      */
@@ -62,6 +67,10 @@ namespace vm68k
     public:
         virtual const char *what() const noexcept override;
     };
+
+#if _MSC_VER
+#pragma warning(pop)
+#endif
 
     /**
      * Bus errors.

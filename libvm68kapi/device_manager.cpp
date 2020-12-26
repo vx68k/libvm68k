@@ -68,6 +68,6 @@ void device_manager::add_device(const shared_ptr<device> &device)
 {
     auto &&inserted = _devices.insert(device);
     if (inserted.second) {
-        // TODO: Implement this function.
+        device->map(*_memory);
     }
 }

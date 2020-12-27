@@ -28,10 +28,10 @@ using namespace vm68k;
 // Implementation of class memory_exception.
 
 memory_exception::memory_exception(const function_code fc,
-    const memory_map::address_type fault_address) noexcept
+    const memory_map::address_type address) noexcept
 :
     _fc {fc},
-    _fault_address {fault_address}
+    _address {address}
 {
     // Nothing to do.
 }
@@ -40,7 +40,7 @@ memory_exception::memory_exception(const memory_exception &other) noexcept
 :
     exception(other),
     _fc {other._fc},
-    _fault_address {other._fault_address}
+    _address {other._address}
 {
     // Nothing to do.
 }
@@ -54,7 +54,7 @@ memory_exception &memory_exception::operator =(const memory_exception &other) no
 {
     if (this != &other) {
         exception::operator =(other);
-        _fault_address = other._fault_address;
+        _address = other._address;
     }
     return *this;
 }
@@ -68,9 +68,9 @@ const char *memory_exception::what() const noexcept
 // Implementation of class bus_error.
 
 bus_error::bus_error(const function_code fc,
-    const memory_map::address_type fault_address) noexcept
+    const memory_map::address_type address) noexcept
 :
-    memory_exception(fc, fault_address)
+    memory_exception(fc, address)
 {
     // Nothing to do.
 }
@@ -84,9 +84,9 @@ const char *bus_error::what() const noexcept
 // Implementation of class address_error.
 
 address_error::address_error(const function_code fc,
-    const memory_map::address_type fault_address) noexcept
+    const memory_map::address_type address) noexcept
 :
-    memory_exception(fc, fault_address)
+    memory_exception(fc, address)
 {
     // Nothing to do.
 }

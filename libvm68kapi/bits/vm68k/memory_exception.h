@@ -70,12 +70,7 @@ namespace vm68k
     {
     public:
         bus_error(function_code fc,
-            memory_map::address_type fault_address) noexcept
-        :
-            memory_exception(fc, fault_address)
-        {
-            // Nothing to do.
-        }
+            memory_map::address_type fault_address) noexcept;
 
     public:
         virtual const char *what() const noexcept override;
@@ -88,12 +83,7 @@ namespace vm68k
     {
     public:
         address_error(function_code fc,
-            memory_map::address_type fault_address) noexcept
-        :
-            memory_exception(fc, fault_address)
-        {
-            // Nothing to do.
-        }
+            memory_map::address_type fault_address) noexcept;
 
     public:
         virtual const char *what() const noexcept override;

@@ -21,7 +21,7 @@
 
 #include <bits/vm68kapidef.h>
 #include <vm68k/memory>
-#include <vector>
+#include <unordered_set>
 #include <memory>
 
 namespace vm68k
@@ -61,13 +61,18 @@ namespace vm68k
         std::shared_ptr<memory_map> _memory;
 
     private:
-        std::vector<std::shared_ptr<device>> _devices;
+        std::unordered_set<std::shared_ptr<device>> _devices;
 
     public:
         /**
-         * Constructor.
+         * Constructor that copies a memory map pointer.
          */
         explicit device_manager(const std::shared_ptr<memory_map> &memory);
+
+        /**
+         * Constructor that moves a memory map pointer.
+         */
+        explicit device_manager(std::shared_ptr<memory_map> &&memory);
 
         /**
          * Deleted copy constructor.
@@ -105,9 +110,18 @@ namespace vm68k
 
     public:
         /**
+         * Returns the memory map associated to the device manager.
+         */
+        const std::shared_ptr<memory_map> &memory() const noexcept
+        {
+            return _memory;
+        }
+
+    public:
+        /**
          * Adds a device to the device manager.
          */
-        void add_device(const std::shared_ptr<device> &d);
+        void add_device(const std::shared_ptr<device> &device);
     };
 
 #if _MSC_VER

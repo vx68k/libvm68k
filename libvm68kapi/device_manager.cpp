@@ -36,6 +36,13 @@ device_manager::device_manager(const shared_ptr<memory_map> &memory)
     // Nothing to do.
 }
 
+device_manager::device_manager(shared_ptr<memory_map> &&memory)
+:
+    _memory {move(memory)}
+{
+    // Nothing to do.
+}
+
 device_manager::device_manager(device_manager &&other) noexcept
 :
     _memory {move(other._memory)},
@@ -57,7 +64,10 @@ void device_manager::swap(device_manager &other) noexcept
     }
 }
 
-void device_manager::add_device(const shared_ptr<device> &d)
+void device_manager::add_device(const shared_ptr<device> &device)
 {
-    // TODO: Implement this function.
+    auto &&inserted = _devices.insert(device);
+    if (inserted.second) {
+        device->map(*_memory);
+    }
 }

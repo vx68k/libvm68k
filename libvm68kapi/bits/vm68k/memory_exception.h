@@ -36,8 +36,8 @@ namespace vm68k
         memory_map::address_type _address;
 
     public:
-        memory_exception(function_code fc,
-            memory_map::address_type address) noexcept;
+        memory_exception(function_code fc, memory_map::address_type address)
+            noexcept;
 
         memory_exception(const memory_exception &other) noexcept;
 
@@ -69,8 +69,8 @@ namespace vm68k
     class _VM68KAPI_PUBLIC bus_error: public memory_exception
     {
     public:
-        bus_error(function_code fc,
-            memory_map::address_type address) noexcept;
+        bus_error(function_code fc, memory_map::address_type address)
+            noexcept;
 
     public:
         virtual const char *what() const noexcept override;
@@ -82,8 +82,8 @@ namespace vm68k
     class _VM68KAPI_PUBLIC address_error: public memory_exception
     {
     public:
-        address_error(function_code fc,
-            memory_map::address_type address) noexcept;
+        address_error(function_code fc, memory_map::address_type address)
+            noexcept;
 
     public:
         virtual const char *what() const noexcept override;

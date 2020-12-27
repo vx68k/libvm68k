@@ -50,7 +50,8 @@ memory_exception::~memory_exception()
     // Nothing to do.
 }
 
-memory_exception &memory_exception::operator =(const memory_exception &other) noexcept
+memory_exception &memory_exception::operator =(const memory_exception &other)
+    noexcept
 {
     if (this != &other) {
         exception::operator =(other);

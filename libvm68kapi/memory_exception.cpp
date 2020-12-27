@@ -67,11 +67,6 @@ const char *memory_exception::what() const noexcept
 
 // Implementation of class bus_error.
 
-bus_error::~bus_error()
-{
-    // Nothing to do.
-}
-
 const char *bus_error::what() const noexcept
 {
     return "vm68k::bus_error";
@@ -79,11 +74,6 @@ const char *bus_error::what() const noexcept
 
 
 // Implementation of class address_error.
-
-address_error::~address_error()
-{
-    // Nothing to do.
-}
 
 const char *address_error::what() const noexcept
 {

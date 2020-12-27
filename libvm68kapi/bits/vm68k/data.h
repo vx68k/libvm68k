@@ -32,7 +32,7 @@ namespace vm68k
      *
      * This type is trivial and standard-layout.
      */
-    class _VM68KAPI_PUBLIC byte
+    class byte
     {
     public:
         using int_type = std::int8_t;
@@ -125,13 +125,14 @@ namespace vm68k
         x.swap(y);
     }
 
+
     /**
      * Word data on the VM68000 architecture.
      * A word is 16-bit wide.
      *
      * This type is trivial and standard-layout.
      */
-    class _VM68KAPI_PUBLIC word
+    class word
     {
     public:
         using int_type = std::int16_t;
@@ -226,13 +227,14 @@ namespace vm68k
         x.swap(y);
     }
 
+
     /**
      * Long word data on the VM68000 architecture.
      * A long word is 32-bit wide.
      *
      * This type is trivial and standard-layout.
      */
-    class _VM68KAPI_PUBLIC long_word
+    class long_word
     {
     public:
         using int_type = std::int32_t;

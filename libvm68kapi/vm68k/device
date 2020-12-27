@@ -1,5 +1,5 @@
-// <vm68k/memory>
-// Copyright (C) 2012-2019 Kaz Nishimura
+// <vm68k/device> -*- C++ -*-
+// Copyright (C) 2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -16,10 +16,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68K_MEMORY
-#define _VM68K_MEMORY 1
+#ifndef _VM68K_DEVICE
+#define _VM68K_DEVICE 1
 
-#include <bits/vm68k/memory_exception.h>
-#include <bits/vm68k/memory_map.h>
+#include <bits/vm68k/device_manager.h>
 
 #endif

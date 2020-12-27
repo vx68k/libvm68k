@@ -1,5 +1,5 @@
-// <vm68k/memory>
-// Copyright (C) 2012-2019 Kaz Nishimura
+// executor.cpp
+// Copyright (C) 2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -16,10 +16,12 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68K_MEMORY
-#define _VM68K_MEMORY 1
-
-#include <bits/vm68k/memory_exception.h>
-#include <bits/vm68k/memory_map.h>
-
+#if HAVE_CONFIG_H
+#include <config.h>
 #endif
+
+#include <bits/vm68k/executor.h>
+
+using namespace vm68k;
+
+// Nothing to implement.

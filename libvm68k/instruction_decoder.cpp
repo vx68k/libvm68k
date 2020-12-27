@@ -1,4 +1,4 @@
-// <vm68k/instruction> -*- C++ -*-
+// instruction_decoder.cpp
 // Copyright (C) 2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -16,9 +16,28 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68K_INSTRUCTION
-#define _VM68K_INSTRUCTION 1
-
-#include <bits/vm68k/instruction.h>
-
+#if HAVE_CONFIG_H
+#include <config.h>
 #endif
+
+#include <bits/vm68k/instruction_decoder.h>
+
+using namespace vm68k;
+
+
+instruction_decoder::instruction_decoder()
+{
+    // Nothing to do, but this function shall be out of line.
+}
+
+instruction_decoder::~instruction_decoder()
+{
+    // Nothing to do.
+}
+
+long_word instruction_decoder::decode_instruction(execution_context &c,
+    executor &e) const
+{
+    // TODO: implement this function.
+    return c.pc();
+}

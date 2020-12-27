@@ -1,4 +1,4 @@
-// register.cpp
+// pipeline.cpp
 // Copyright (C) 2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -20,6 +20,29 @@
 #include <config.h>
 #endif
 
-#include <bits/vm68k/register.h>
+#include <bits/vm68k/pipeline.h>
 
+#include <utility>
+
+using std::move;
+using std::shared_ptr;
 using namespace vm68k;
+
+pipeline::pipeline(const shared_ptr<instruction_decoder> &decoder)
+:
+    _decoder {decoder}
+{
+    // Nothing more to do.
+}
+
+pipeline::pipeline(shared_ptr<instruction_decoder> &&decoder) noexcept
+:
+    _decoder {move(decoder)}
+{
+    // Nothing more to do.
+}
+
+void pipeline::step()
+{
+    // TODO: implement this function.
+}

@@ -1,7 +1,8 @@
 ## Process this file with automake to produce Makefile.in.
 
-AM_CPPFLAGS = -DTEST -I$(top_srcdir)/libvm68k -I$(top_builddir)/libvm68k \
--I$(top_srcdir)/libvm68kapi -I$(top_builddir)/libvm68kapi
+AM_CPPFLAGS = -DTEST \
+-I$(top_srcdir)/libvm68kapi \
+-I$(top_srcdir)/libvm68k
 AM_CXXFLAGS = $(CPPUNIT_CFLAGS)
 
 TEST_EXTENSIONS = .exec
@@ -10,7 +11,11 @@ XFAIL_TESTS =
 CLEANFILES =
 
 if CPPUNIT
-check_PROGRAMS = test_data.exec test_memory.exec test_runtime.exec
+check_PROGRAMS = \
+test_data.exec \
+test_memory.exec \
+test_device.exec \
+test_runtime.exec
 check_SCRIPTS = runtest
 
 EXEC_LOG_COMPILER = $(SHELL) ./runtest
@@ -22,18 +27,23 @@ EXTRA_PROGRAMS = vm68k_test
 noinst_HEADERS = xmlreport.h Test_vm68kdata.h Test_vm68kmem.h
 
 test_data_exec_LDFLAGS = -no-install
-test_data_exec_LDADD = $(top_builddir)/libvm68kapi/libvm68kapi.la \
+test_data_exec_LDADD = -L$(top_builddir)/libvm68kapi -lvm68kapi \
 $(CPPUNIT_LIBS)
 test_data_exec_SOURCES = main.cpp xmlreport.cpp test_data.cpp
 
 test_memory_exec_LDFLAGS = -no-install
-test_memory_exec_LDADD = $(top_builddir)/libvm68kapi/libvm68kapi.la \
+test_memory_exec_LDADD = -L$(top_builddir)/libvm68kapi -lvm68kapi \
 $(CPPUNIT_LIBS)
 test_memory_exec_SOURCES = main.cpp xmlreport.cpp test_memory.cpp
 
+test_device_exec_LDFLAGS = -no-install
+test_device_exec_LDADD = -L$(top_builddir)/libvm68kapi -lvm68kapi \
+$(CPPUNIT_LIBS)
+test_device_exec_SOURCES = main.cpp xmlreport.cpp test_device.cpp
+
 test_runtime_exec_LDFLAGS = -no-install
-test_runtime_exec_LDADD = $(top_builddir)/libvm68k/libvm68k.la \
-$(top_builddir)/libvm68kapi/libvm68kapi.la $(CPPUNIT_LIBS)
+test_runtime_exec_LDADD = -L$(top_builddir)/libvm68k -lvm68k \
+$(CPPUNIT_LIBS)
 test_runtime_exec_SOURCES = main.cpp xmlreport.cpp test_runtime.cpp
 
 vm68k_test_SOURCES = vm68k_test.cpp Test_vm68kdata.cpp Test_vm68kmem.cpp

@@ -19,49 +19,110 @@
 #if HAVE_CONFIG_H
 #include <config.h>
 #endif
-#if __BORLANDC__
-#pragma hdrstop
-#endif
 
-#include <bits/vm68k/internal/instruction.h>
+#include <bits/vm68k/execution_context.h>
+
+#include <utility>
+#include <cassert>
 
 using std::move;
 using std::shared_ptr;
+using std::swap;
 using namespace vm68k;
 
-#if __BORLANDC__
-#pragma package(smart_init)
-#endif
 
-runtime_execution_context::runtime_execution_context(
-    const shared_ptr<memory_map> &memory, const long_word pc)
+// Implementation of class execution_context.
+
+execution_context::execution_context(const shared_ptr<memory_map> &memory)
 :
-    _memory {memory},
-    _pc {pc}
+    _memory {memory}
 {
     // Nothing to do.
 }
 
-runtime_execution_context::runtime_execution_context(
-    shared_ptr<memory_map> &&memory, const long_word pc)
+execution_context::execution_context(shared_ptr<memory_map> &&memory) noexcept
 :
-    _memory {move(memory)},
-    _pc {pc}
+    _memory {move(memory)}
 {
     // Nothing to do.
 }
 
-runtime_execution_context::~runtime_execution_context()
+execution_context::execution_context(const execution_context &other)
+:
+    _memory {other._memory},
+    _d {other._d},
+    _a {other._a},
+    _pc {other._pc}
 {
     // Nothing to do.
 }
 
-long_word runtime_execution_context::pc() const
+execution_context::execution_context(execution_context &&other) noexcept
+:
+    _memory {move(other._memory)},
+    _d {move(other._d)},
+    _a {move(other._a)},
+    _pc {move(other._pc)}
+{
+    // Nothing to do.
+}
+
+execution_context::~execution_context()
+{
+    // Nothing to do.
+}
+
+execution_context &execution_context::operator =(const execution_context &other)
+{
+    if (this != &other) {
+        _memory = other._memory;
+        _d = other._d;
+        _a = other._a;
+        _pc = other._pc;
+    }
+    return *this;
+}
+
+void execution_context::swap(execution_context &other) noexcept
+{
+    if (this != &other) {
+        ::swap(_memory, other._memory);
+        ::swap(_d, other._d);
+        ::swap(_a, other._a);
+        ::swap(_pc, other._pc);
+    }
+}
+
+data_register &execution_context::d(const size_t regno)
+{
+    assert(regno < DATA_REGISTER_MAX);
+    return _d[regno];
+}
+
+const data_register &execution_context::d(const size_t regno) const
+{
+    assert(regno < DATA_REGISTER_MAX);
+    return _d[regno];
+}
+
+address_register &execution_context::a(const size_t regno)
+{
+    assert(regno < ADDRESS_REGISTER_MAX);
+    return _a[regno];
+}
+
+const address_register &execution_context::a(const size_t regno) const
+{
+    assert(regno < ADDRESS_REGISTER_MAX);
+    return _a[regno];
+}
+
+long_word execution_context::pc() const
 {
     return _pc;
 }
 
-void runtime_execution_context::set_pc(const long_word pc)
+void execution_context::set_pc(const long_word pc)
 {
     _pc = pc;
 }

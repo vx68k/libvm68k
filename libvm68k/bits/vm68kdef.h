@@ -1,4 +1,4 @@
-// <vm68k/memory>
+// <bits/vm68kdef.h>
 // Copyright (C) 2012-2019 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -16,10 +16,29 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68K_MEMORY
-#define _VM68K_MEMORY 1
+#ifndef _VM68KDEF_H
+#define _VM68KDEF_H 1
 
-#include <bits/vm68k/memory_exception.h>
-#include <bits/vm68k/memory_map.h>
+#ifndef _VM68K_PUBLIC
+#if _WIN32
+#if _LIBVM68K
+#if DLL_EXPORT
+#define _VM68K_PUBLIC __declspec(dllexport)
+#endif
+#else /* not _LIBVM68K */
+#define _VM68K_PUBLIC __declspec(dllimport)
+#endif /* not _LIBVM68K */
+#else /* not _WIN32 */
+#if defined __has_attribute
+#if __has_attribute(visibility)
+#define _VM68K_PUBLIC __attribute__((visibility("default")))
+#endif
+#endif /* defined __has_attribute */
+#endif /* not _WIN32 */
+#endif
+
+#ifndef _VM68K_PUBLIC
+#define _VM68K_PUBLIC
+#endif
 
 #endif

@@ -3,9 +3,9 @@ exec_prefix=@exec_prefix@
 includedir=@includedir@
 libdir=@libdir@
 
-Name: vm68k
-Description: libvm68k
+Name: libvm68k
+Description: libvm68k runtime
 Version: @VERSION@
-Requires.private: vm68kapi
+Requires.private: libvm68kapi
 Cflags: -I${includedir}
 Libs: -L${libdir} -lvm68k

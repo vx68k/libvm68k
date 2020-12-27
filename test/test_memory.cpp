@@ -29,7 +29,10 @@
 #include <cppunit/TestFixture.h>
 #include <type_traits>
 #include <memory>
+#include <cstdint>
 
+using std::uint32_t;
+using std::unique_ptr;
 using namespace vm68k;
 using CppUnit::TestFixture;
 
@@ -38,44 +41,15 @@ namespace
     class test_memory_map final : public memory_map
     {
     public:
-        void read(mode, address_type, size_type, void *) override
+        void read(function_code, address_type, size_type, void *) override
         {
         }
 
-        void write(mode, address_type, size_type, const void *) override
+        void write(function_code, address_type, size_type, const void *) override
         {
         }
     };
 }
-
-class MemoryStaticTests: public TestFixture
-{
-    CPPUNIT_TEST_SUITE(MemoryStaticTests);
-    CPPUNIT_TEST(testMemory);
-    CPPUNIT_TEST(testReadWriteMemory);
-    CPPUNIT_TEST_SUITE_END();
-
-public:
-    void testMemory()
-    {
-        CPPUNIT_ASSERT(!std::is_copy_constructible<memory>::value);
-        CPPUNIT_ASSERT(!std::is_move_constructible<memory>::value);
-        CPPUNIT_ASSERT(!std::is_copy_assignable<memory>::value);
-        CPPUNIT_ASSERT(!std::is_move_assignable<memory>::value);
-        CPPUNIT_ASSERT(std::has_virtual_destructor<memory>::value);
-    }
-
-    void testReadWriteMemory()
-    {
-        CPPUNIT_ASSERT((std::is_constructible<read_write_memory, std::size_t>::value));
-        CPPUNIT_ASSERT(!std::is_copy_constructible<read_write_memory>::value);
-        CPPUNIT_ASSERT(!std::is_move_constructible<read_write_memory>::value);
-        CPPUNIT_ASSERT(!std::is_copy_assignable<read_write_memory>::value);
-        CPPUNIT_ASSERT(!std::is_move_assignable<read_write_memory>::value);
-        CPPUNIT_ASSERT(std::has_virtual_destructor<read_write_memory>::value);
-    }
-};
-CPPUNIT_TEST_SUITE_REGISTRATION(MemoryStaticTests);
 
 /*
  * Tests for 'memory_map'.
@@ -97,3 +71,40 @@ protected:
     std::shared_ptr<memory_map> memory;
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(MemoryMapTests);
+
+// Tests for class paged_memory_map.
+class PagedMemoryMapTests: public TestFixture
+{
+    CPPUNIT_TEST_SUITE(PagedMemoryMapTests);
+    CPPUNIT_TEST(testAddressMask);
+    CPPUNIT_TEST(testPageSize);
+    CPPUNIT_TEST_SUITE_END();
+
+private:
+    unique_ptr<paged_memory_map> _memory;
+
+public:
+    void setUp()
+    {
+        _memory.reset(new paged_memory_map(0xffffffU, 0x2000U));
+    }
+
+public:
+    void tearDown()
+    {
+        _memory.reset();
+    }
+
+private:
+    void testAddressMask()
+    {
+        CPPUNIT_ASSERT_EQUAL((memory_map::address_type)0xffffffU, _memory->address_mask());
+    }
+
+private:
+    void testPageSize()
+    {
+        CPPUNIT_ASSERT_EQUAL((memory_map::size_type)0x2000U, _memory->page_size());
+    }
+};
+CPPUNIT_TEST_SUITE_REGISTRATION(PagedMemoryMapTests);

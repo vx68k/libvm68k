@@ -6,31 +6,36 @@ pkgconfigdir = $(libdir)/pkgconfig
 
 lib_LTLIBRARIES = libvm68kapi.la
 
-EXTRA_DIST = vm68kapi.pc.in
+EXTRA_DIST = libvm68kapi.pc.in
 
-pkgconfig_DATA = vm68kapi.pc
+pkgconfig_DATA = libvm68kapi.pc
 
-nobase_include_HEADERS = vm68k/data vm68k/memory \
-vm68k/register \
-vm68k/instruction \
-bits/vm68kapi.h bits/vm68k/data.h bits/vm68k/memory.h \
-bits/vm68k/register.h \
-bits/vm68k/instruction.h \
+nobase_include_HEADERS = \
+vm68k/data \
+vm68k/memory \
+vm68k/device \
+bits/vm68kapidef.h \
+bits/vm68k/data.h \
+bits/vm68k/memory_map.h \
+bits/vm68k/memory_exception.h \
+bits/vm68k/device_manager.h \
 bits/vm68k/virtual_machine.h
 
-libvm68kapi_la_LDFLAGS = -version-info 1:0:0
-libvm68kapi_la_SOURCES = data.cpp memory.cpp \
-register.cpp \
-instruction.cpp \
+libvm68kapi_la_LDFLAGS = -no-undefined -version-info 1:0:0
+libvm68kapi_la_SOURCES = \
+data.cpp \
+memory_map.cpp \
+memory_exception.cpp \
+device_manager.cpp \
 virtual_machine.cpp
 
 CLEANFILES = $(pkgconfig_DATA)
 
-vm68kapi.pc: $(srcdir)/vm68kapi.pc.in $(top_builddir)/config.status
+libvm68kapi.pc: $(srcdir)/libvm68kapi.pc.in $(top_builddir)/config.status
 	cd $(top_builddir) && $(SHELL) ./config.status --file=$(subdir)/$@
 
 installcheck-local:
 	if test -n '$(PKG_CONFIG)'; then \
-	    export PKG_CONFIG_PATH=$(pkgconfigdir); \
-	    $(PKG_CONFIG) --exists --exact-version=$(VERSION) vm68kapi; \
+	  export PKG_CONFIG_PATH=$(pkgconfigdir); \
+	  $(PKG_CONFIG) --exists --exact-version=$(VERSION) libvm68kapi; \
 	fi

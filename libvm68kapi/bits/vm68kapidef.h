@@ -1,5 +1,5 @@
-// instruction.cpp
-// Copyright (C) 2020 Kaz Nishimura
+// <bits/vm68kapidef.h>
+// Copyright (C) 2012-2019 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -16,10 +16,29 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#if HAVE_CONFIG_H
-#include <config.h>
+#ifndef _VM68KAPIDEF_H
+#define _VM68KAPIDEF_H 1
+
+#ifndef _VM68KAPI_PUBLIC
+#if _WIN32
+#if _LIBVM68KAPI
+#if DLL_EXPORT
+#define _VM68KAPI_PUBLIC __declspec(dllexport)
+#endif
+#else /* not _LIBVM68KAPI */
+#define _VM68KAPI_PUBLIC __declspec(dllimport)
+#endif /* not _LIBVM68KAPI */
+#else /* not _WIN32 */
+#if defined __has_attribute
+#if __has_attribute(visibility)
+#define _VM68KAPI_PUBLIC __attribute__((visibility("default")))
+#endif
+#endif /* defined __has_attribute */
+#endif /* not _WIN32 */
 #endif
 
-#include <bits/vm68k/instruction.h>
+#ifndef _VM68KAPI_PUBLIC
+#define _VM68KAPI_PUBLIC
+#endif
 
-using namespace vm68k;
+#endif

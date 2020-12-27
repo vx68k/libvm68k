@@ -1,5 +1,5 @@
-// <bits/vm68kapi.h>
-// Copyright (C) 2012-2019 Kaz Nishimura
+// <bits/vm68k/executor.h> -*- C++ -*-
+// Copyright (C) 2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -16,29 +16,23 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68KAPI_H
-#define _VM68KAPI_H 1
+#ifndef _VM68K_EXECUTOR_H
+#define _VM68K_EXECUTOR_H 1
 
-#ifndef _VM68KAPI_PUBLIC
-#if _WIN32
-#if _LIBVX68KAPI
-#if DLL_EXPORT
-#define _VM68KAPI_PUBLIC __declspec(dllexport)
-#endif
-#else /* not _LIBVM68KAPI */
-#define _VM68KAPI_PUBLIC __declspec(dllimport)
-#endif /* not _LIBVM68KAPI */
-#else /* not _WIN32 */
-#if defined __has_attribute
-#if __has_attribute(visibility)
-#define _VM68KAPI_PUBLIC __attribute__((visibility("default")))
-#endif
-#endif /* defined __has_attribute */
-#endif /* not _WIN32 */
-#endif
+#include <bits/vm68kdef.h>
 
-#ifndef _VM68KAPI_PUBLIC
-#define _VM68KAPI_PUBLIC
-#endif
+namespace vm68k
+{
+    class _VM68K_PUBLIC executor
+    {
+    public:
+        executor() = default;
+
+        executor(const executor &) = delete;
+
+    public:
+        virtual ~executor() = default;
+    };
+}
 
 #endif

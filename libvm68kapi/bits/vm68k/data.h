@@ -1,5 +1,5 @@
 // <bits/vm68k/data.h>
-// Copyright (C) 2012-2019 Kaz Nishimura
+// Copyright (C) 2012-2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -19,16 +19,19 @@
 #ifndef _VM68K_DATA_H
 #define _VM68K_DATA_H 1
 
+#include <bits/vm68kapidef.h>
 #include <utility>
 #include <cstdint>
 #include <cstddef>
-#include <bits/vm68kapi.h>
 
 namespace vm68k
 {
-    /// Byte (8-bit-wide) data.
-    ///
-    /// This type is trivial and standard-layout.
+    /**
+     * Byte data on the VM68000 arthitecture.
+     * A byte is 8-bit wide.
+     *
+     * This type is trivial and standard-layout.
+     */
     class _VM68KAPI_PUBLIC byte
     {
     public:
@@ -57,11 +60,12 @@ namespace vm68k
 
     public:
         /**
-         * Swap the content with another.
+         * Swaps the value of the object with another one.
          */
         void swap(byte &other) noexcept
         {
-            std::swap(_value, other._value);
+            using std::swap;
+            swap(_value, other._value);
         }
 
     public:
@@ -92,9 +96,41 @@ namespace vm68k
         }
     };
 
-    /// Word (16-bit-wide) data.
-    ///
-    /// This type is trivial and standard-layout.
+    /**
+     * Returns true if and only if two `byte` values are equal to each other.
+     *
+     * @param x a `byte` value
+     * @param y another `byte` value
+     * @return true if the two values are equal to each other; false otherwise
+     */
+    inline constexpr bool operator ==(const byte &x, const byte &y) noexcept
+    {
+        return x.to_uint() == y.to_uint();
+    }
+
+    /**
+     * Returns true if and only if two `byte` values are not equal to each other.
+     *
+     * @param x a `byte` value
+     * @param y another `byte` value
+     * @return true if the two values are *not* equal to each other; false otherwise
+     */
+    inline constexpr bool operator !=(const byte &x, const byte &y) noexcept
+    {
+        return x.to_uint() != y.to_uint();
+    }
+
+    inline void swap(byte &x, byte &y) noexcept
+    {
+        x.swap(y);
+    }
+
+    /**
+     * Word data on the VM68000 architecture.
+     * A word is 16-bit wide.
+     *
+     * This type is trivial and standard-layout.
+     */
     class _VM68KAPI_PUBLIC word
     {
     public:
@@ -123,11 +159,12 @@ namespace vm68k
 
     public:
         /**
-         * Swap the content with another.
+         * Swaps the value of the object with another one.
          */
         void swap(word &other) noexcept
         {
-            std::swap(_value, other._value);
+            using std::swap;
+            swap(_value, other._value);
         }
 
     public:
@@ -160,9 +197,41 @@ namespace vm68k
         }
     };
 
-    /// Long word (32-bit-wide) data.
-    ///
-    /// This type is trivial and standard-layout.
+    /**
+     * Returns true if and only if two `word` values are equal to each other.
+     *
+     * @param x a `word` value
+     * @param y another `word` value
+     * @return true if the two values are equal to each other; false otherwise
+     */
+    inline constexpr bool operator ==(const word &x, const word &y) noexcept
+    {
+        return x.to_uint() == y.to_uint();
+    }
+
+    /**
+     * Returns true if and only if two `word` values are not equal to each other.
+     *
+     * @param x a `word` value
+     * @param y another `word` value
+     * @return true if the two values are *not* equal to each other; false otherwise
+     */
+    inline constexpr bool operator !=(const word &x, const word &y) noexcept
+    {
+        return x.to_uint() != y.to_uint();
+    }
+
+    inline void swap(word &x, word &y) noexcept
+    {
+        x.swap(y);
+    }
+
+    /**
+     * Long word data on the VM68000 architecture.
+     * A long word is 32-bit wide.
+     *
+     * This type is trivial and standard-layout.
+     */
     class _VM68KAPI_PUBLIC long_word
     {
     public:
@@ -191,11 +260,12 @@ namespace vm68k
 
     public:
         /**
-         * Swap the content with another.
+         * Swaps the value of the object with another one.
          */
         void swap(long_word &other) noexcept
         {
-            std::swap(_value, other._value);
+            using std::swap;
+            swap(_value, other._value);
         }
 
     public:
@@ -231,26 +301,35 @@ namespace vm68k
             return i;
         }
     };
-}
 
-// Specializations.
+    /**
+     * Returns true if and only if two `long_word` values are equal to each other.
+     *
+     * @param x a `long_word` value
+     * @param y another `long_word` value
+     * @return true if the two values are equal to each other; false otherwise
+     */
+    inline constexpr bool operator ==(const long_word &x, const long_word &y) noexcept
+    {
+        return x.to_uint() == y.to_uint();
+    }
 
-template<>
-inline void std::swap(vm68k::byte &x, vm68k::byte &y) noexcept
-{
-    x.swap(y);
-}
+    /**
+     * Returns true if and only if two `long_word` values are not equal to each other.
+     *
+     * @param x a `long_word` value
+     * @param y another `long_word` value
+     * @return true if the two values are *not* equal to each other; false otherwise
+     */
+    inline constexpr bool operator !=(const long_word &x, const long_word &y) noexcept
+    {
+        return x.to_uint() != y.to_uint();
+    }
 
-template<>
-inline void std::swap(vm68k::word &x, vm68k::word &y) noexcept
-{
-    x.swap(y);
-}
-
-template<>
-inline void std::swap(vm68k::long_word &x, vm68k::long_word &y) noexcept
-{
-    x.swap(y);
+    inline void swap(long_word &x, long_word &y) noexcept
+    {
+        x.swap(y);
+    }
 }
 
 #endif

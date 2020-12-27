@@ -6,7 +6,7 @@
 # this notice are preserved.  This file is offered as-is, without any warranty.
 ---
 variables:
-  package.distName: libvm68k-2-alpha.3
+  package.distName: libvm68k-2-alpha.4
   uploadRepository: kazssym/libvm68k
 trigger:
   - master
@@ -25,19 +25,20 @@ stages:
             inputs:
               secureFile: keys.asc
           - bash: |
-              echo '$(gpg.passphrase)' | \
+              echo '$(gpg.passphrase)' |
               sh ./setupkeys.sh '$(Keys.secureFilePath)'
             displayName: Set up signing keys
           - bash: |
               sudo apt-get install -q --no-install-recommends \
-                  texinfo \
-                  libcppunit-dev
+                texinfo \
+                libcppunit-dev
             displayName: Install build dependencies
           - bash: |
-              autoreconf
+              autoreconf --verbose
             displayName: Bootstrap
           - bash: |
-              ./configure --disable-static
+              ./configure --disable-static &&
+              echo "##vso[task.uploadfile]`pwd`/config.log"
             displayName: Configure
           - bash: |
               make check
@@ -45,15 +46,15 @@ stages:
           - task: PublishTestResults@2
             condition: succeededOrFailed()
           - bash: |
-              make dist || exit $?
-              mkdir -p _dist
+              make dist &&
+              mkdir -p _dist &&
               mv -f '$(package.distName)'.* _dist/
-            displayName: Make source archive
+            displayName: Make distributables
           - publish: _dist
             artifact: dist
   - stage: Test
     jobs:
-      - job: Test
+      - job: Build
         strategy:
           matrix:
             Ubuntu:
@@ -63,7 +64,7 @@ stages:
             macOS:
               VM_IMAGE: macOS-latest
               CC: clang
-              CXX: clang++ -std=c++11
+              CXX: clang++ -std=c++14
         continueOnError: true
         pool:
           vmImage: $(VM_IMAGE)
@@ -72,23 +73,22 @@ stages:
           - download: current
             artifact: dist
           - bash: |
-              gzip -dc '$(Agent.BuildDirectory)/dist/$(package.distName).tar.gz' | \
-              tar -x
+              gzip -dc '$(Agent.BuildDirectory)'/dist/*.tar.gz |
+              tar -x --strip-components=1
             displayName: Unpack
           - bash: |
               $CC --version
               $CXX --version
-              ./configure --prefix='$(Build.BinariesDirectory)'
+              ./configure --prefix='$(Build.BinariesDirectory)' &&
+              echo "##vso[task.uploadfile]`pwd`/config.log"
             displayName: Configure
-            workingDirectory: $(package.distName)
           - bash: |
               make check
             displayName: Build
-            workingDirectory: $(package.distName)
           - bash: |
-              make install installcheck
+              make install &&
+              make installcheck
             displayName: Install
-            workingDirectory: $(package.distName)
   - stage: Release
     dependsOn: Default
     condition:
@@ -106,5 +106,5 @@ stages:
             artifact: dist
           - bash: |
               sh ./upload.sh -u '$(bitbucket.username):$(bitbucket.password)' \
-                  -r '$(uploadRepository)' '$(Agent.BuildDirectory)'/dist/*
+                -r '$(uploadRepository)' '$(Agent.BuildDirectory)'/dist/*
             displayName: Upload

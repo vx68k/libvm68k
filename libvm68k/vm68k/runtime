@@ -19,7 +19,7 @@
 #ifndef _VM68K_RUNTIME
 #define _VM68K_RUNTIME 1
 
-#include <bits/vm68k/internal/instruction.h>
-#include <bits/vm68k/internal/register.h>
+#include <bits/vm68k/read_write_memory.h>
+#include <bits/vm68k/execution_context.h>
 
 #endif

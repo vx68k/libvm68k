@@ -1,4 +1,4 @@
-// <vm68k/register> -*- C++ -*-
+// <bits/vm68k/pipeline.h>
 // Copyright (C) 2020 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
@@ -16,9 +16,37 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef _VM68K_REGISTER
-#define _VM68K_REGISTER 1
+#ifndef _VM68K_PIPELINE_H
+#define _VM68K_PIPELINE_H 1
 
-#include <bits/vm68k/register.h>
+#include <bits/vm68k/instruction_decoder.h>
+#include <memory>
+
+namespace vm68k
+{
+    class _VM68K_PUBLIC pipeline
+    {
+    private:
+        std::shared_ptr<instruction_decoder> _decoder;
+
+    public:
+        explicit pipeline(const std::shared_ptr<instruction_decoder> &decoder);
+        explicit pipeline(std::shared_ptr<instruction_decoder> &&decoder) noexcept;
+
+        pipeline(const pipeline &) = default;
+
+    public:
+        virtual ~pipeline() = default;
+
+    public:
+        const std::shared_ptr<instruction_decoder> &decoder() const noexcept
+        {
+            return _decoder;
+        }
+
+    public:
+        virtual void step();
+    };
+}
 
 #endif

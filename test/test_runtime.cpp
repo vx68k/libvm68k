@@ -43,7 +43,7 @@ namespace
         using inherited = memory_map;
 
     private:
-        unique_ptr<memory> _memory;
+        unique_ptr<read_write_memory> _memory;
 
     public:
         test_memory_map()
@@ -52,43 +52,179 @@ namespace
         }
 
     public:
-        void read(mode mode, address_type address, size_type size,
+        void read(function_code fc, address_type address, size_type size,
             void *buffer) override
         {
-            _memory->read(mode, address, size, buffer);
+            _memory->read(fc, address, size, buffer);
         }
 
-        void write(mode mode, address_type address, size_type size,
+        void write(function_code fc, address_type address, size_type size,
             const void *buffer) override
         {
-            _memory->write(mode, address, size, buffer);
+            _memory->write(fc, address, size, buffer);
         }
     };
 }
 
-/*
- * Tests for class 'context'.
- */
-class ContextTests : public TestFixture {
-    CPPUNIT_TEST_SUITE(ContextTests);
-    CPPUNIT_TEST(testMemory);
+class MemoryStaticTests: public TestFixture
+{
+    CPPUNIT_TEST_SUITE(MemoryStaticTests);
+    CPPUNIT_TEST(testReadWriteMemory);
+    CPPUNIT_TEST_SUITE_END();
+
+public:
+    void testReadWriteMemory()
+    {
+        CPPUNIT_ASSERT((std::is_constructible<read_write_memory, std::size_t>::value));
+        CPPUNIT_ASSERT(!std::is_copy_constructible<read_write_memory>::value);
+        CPPUNIT_ASSERT(!std::is_move_constructible<read_write_memory>::value);
+        CPPUNIT_ASSERT(!std::is_copy_assignable<read_write_memory>::value);
+        CPPUNIT_ASSERT(!std::is_move_assignable<read_write_memory>::value);
+        CPPUNIT_ASSERT(std::has_virtual_destructor<read_write_memory>::value);
+    }
+};
+CPPUNIT_TEST_SUITE_REGISTRATION(MemoryStaticTests);
+
+// Unit test for 'read_write_memory'.
+class ReadWriteMemoryTest: public TestFixture
+{
+    CPPUNIT_TEST_SUITE(ReadWriteMemoryTest);
+    CPPUNIT_TEST(testSize);
+    CPPUNIT_TEST(testReadWrite);
     CPPUNIT_TEST_SUITE_END();
 
 private:
-    shared_ptr<runtime_execution_context> _context;
+    unique_ptr<read_write_memory> memory;
 
 public:
-    void setUp() override {
-        auto memory = make_shared<test_memory_map>();
-        _context.reset(new runtime_execution_context(memory, long_word(0)));
+    void setUp() final override
+    {
+        memory.reset(new read_write_memory(0x10000U));
     }
 
-    void tearDown() override {
+public:
+    void tearDown() final override
+    {
+        memory.reset();
+    }
+
+private:
+    void testSize()
+    {
+        CPPUNIT_ASSERT_EQUAL(memory_map::size_type(0x10000U), memory->size());
+    }
+
+    void testReadWrite()
+    {
+        memory->relocate(0x10000U);
+
+        const uint32_t value1 = 0x81828384;
+        uint32_t value2 = 0;
+        memory->write(function_code::data | function_code::supervisor,
+            0x10000U, sizeof value1, &value1);
+        memory->read(function_code::data | function_code::supervisor,
+            0x10000U, sizeof value2, &value2);
+        CPPUNIT_ASSERT_EQUAL(value1, value2);
+    }
+};
+CPPUNIT_TEST_SUITE_REGISTRATION(ReadWriteMemoryTest);
+
+/*
+ * Tests for class execution_context.
+ */
+class ExecutionContextTests: public TestFixture
+{
+    CPPUNIT_TEST_SUITE(ExecutionContextTests);
+    CPPUNIT_TEST(testMemory);
+    CPPUNIT_TEST(testDataRegister);
+    CPPUNIT_TEST(testAddressRegister);
+    CPPUNIT_TEST(testRead);
+    CPPUNIT_TEST(testWrite);
+    CPPUNIT_TEST_SUITE_END();
+
+private:
+    shared_ptr<execution_context> _context;
+
+public:
+    void setUp() override
+    {
+        auto memory = make_shared<test_memory_map>();
+        _context.reset(new execution_context(memory));
+    }
+
+public:
+    void tearDown() override
+    {
         _context.reset();
     }
 
-    void testMemory() {
+private:
+    void testMemory()
+    {
         CPPUNIT_ASSERT(_context->memory() != NULL);
     }
+
+private:
+    void testDataRegister()
+    {
+        _context->d(0) = long_word(0x01234567);
+        _context->d(1) = long_word(0);
+        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x01234567U), long_word(_context->d(0)).to_uint());
+
+        _context->d(0) = long_word(0x01234567);
+        _context->d(0) = word(0x89ab);
+        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x012389abU), long_word(_context->d(0)).to_uint());
+        CPPUNIT_ASSERT_EQUAL(word::uint_type(0x89abU), word(_context->d(0)).to_uint());
+
+        _context->d(0) = long_word(0x01234567);
+        _context->d(0) = byte(0x89);
+        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x01234589U), long_word(_context->d(0)).to_uint());
+        CPPUNIT_ASSERT_EQUAL(byte::uint_type(0x89U), byte(_context->d(0)).to_uint());
+    }
+
+private:
+    void testAddressRegister()
+    {
+        _context->a(0) = long_word(0x01234567);
+        _context->a(1) = long_word(0);
+        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x01234567U), long_word(_context->a(0)).to_uint());
+
+        _context->a(0) = long_word(0x01234567);
+        _context->a(0) = word(0x0123);
+        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0x00000123U), long_word(_context->a(0)).to_uint());
+        CPPUNIT_ASSERT_EQUAL(word::uint_type(0x0123U), word(_context->a(0)).to_uint());
+
+        _context->a(0) = long_word(0x01234567);
+        _context->a(0) = word(0x89ab);
+        CPPUNIT_ASSERT_EQUAL(long_word::uint_type(0xffff89abU), long_word(_context->a(0)).to_uint());
+        CPPUNIT_ASSERT_EQUAL(word::uint_type(0x89abU), word(_context->a(0)).to_uint());
+    }
+
+private:
+    void testRead()
+    {
+        const unsigned char bytes[] {0x89U, 0xabU, 0xcdU, 0xefU};
+        _context->memory()->write(function_code::data | function_code::supervisor,
+            0x8000U, 4U, bytes);
+
+        long_word data1;
+        _context->read(long_word(0x8000U), data1);
+        CPPUNIT_ASSERT_EQUAL(uint32_t(0x89abcdefU), data1.to_uint());
+    }
+
+private:
+    void testWrite()
+    {
+        long_word data1 {0x89abcdefU};
+        _context->write(long_word(0x8000U), data1);
+
+        unsigned char bytes[4U];
+        _context->memory()->read(function_code::data | function_code::supervisor,
+            0x8000U, 4U, bytes);
+        CPPUNIT_ASSERT_EQUAL((unsigned char)0x89U, bytes[0]);
+        CPPUNIT_ASSERT_EQUAL((unsigned char)0xabU, bytes[1]);
+        CPPUNIT_ASSERT_EQUAL((unsigned char)0xcdU, bytes[2]);
+        CPPUNIT_ASSERT_EQUAL((unsigned char)0xefU, bytes[3]);
+    }
 };
-CPPUNIT_TEST_SUITE_REGISTRATION(ContextTests);
+CPPUNIT_TEST_SUITE_REGISTRATION(ExecutionContextTests);

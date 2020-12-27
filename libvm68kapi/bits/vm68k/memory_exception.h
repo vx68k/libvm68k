@@ -78,6 +78,9 @@ namespace vm68k
         }
 
     public:
+        virtual ~bus_error();
+
+    public:
         virtual const char *what() const noexcept override;
     };
 
@@ -94,6 +97,9 @@ namespace vm68k
         {
             // Nothing to do.
         }
+
+    public:
+        virtual ~address_error();
 
     public:
         virtual const char *what() const noexcept override;

@@ -30,6 +30,9 @@ using std::shared_ptr;
 using std::swap;
 using namespace vm68k;
 
+using data_register = execution_context::data_register;
+using address_register = execution_context::address_register;
+
 
 // Implementation of class execution_context.
 

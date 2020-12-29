@@ -152,6 +152,24 @@ namespace vm68k
         return byte(x.to_uint() - y.to_uint());
     }
 
+    /**
+     * Adds a `byte` value to another.
+     */
+    inline byte &operator +=(byte &x, const byte &y) noexcept
+    {
+        x = x + y;
+        return x;
+    }
+
+    /**
+     * Subtracts a `byte` value from another.
+     */
+    inline byte &operator -=(byte &x, const byte &y) noexcept
+    {
+        x = x - y;
+        return x;
+    }
+
     inline void swap(byte &x, byte &y) noexcept
     {
         x.swap(y);
@@ -284,6 +302,24 @@ namespace vm68k
     inline constexpr word operator -(const word &x, const word &y) noexcept
     {
         return word(x.to_uint() - y.to_uint());
+    }
+
+    /**
+     * Adds a `word` value to another.
+     */
+    inline word &operator +=(word &x, const word &y) noexcept
+    {
+        x = x + y;
+        return x;
+    }
+
+    /**
+     * Subtracts a `word` value from another.
+     */
+    inline word &operator -=(word &x, const word &y) noexcept
+    {
+        x = x - y;
+        return x;
     }
 
     inline void swap(word &x, word &y) noexcept
@@ -424,6 +460,24 @@ namespace vm68k
         const long_word &y) noexcept
     {
         return long_word(x.to_uint() - y.to_uint());
+    }
+
+    /**
+     * Adds a `long_word` value to another.
+     */
+    inline long_word &operator +=(long_word &x, const long_word &y) noexcept
+    {
+        x = x + y;
+        return x;
+    }
+
+    /**
+     * Subtracts a `long_word` value from another.
+     */
+    inline long_word &operator -=(long_word &x, const long_word &y) noexcept
+    {
+        x = x - y;
+        return x;
     }
 
     inline void swap(long_word &x, long_word &y) noexcept

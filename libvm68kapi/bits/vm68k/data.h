@@ -121,6 +121,22 @@ namespace vm68k
     }
 
     /**
+     * Returns the `byte` value.
+     */
+    inline constexpr byte operator +(const byte &x) noexcept
+    {
+        return x;
+    }
+
+    /**
+     * Returns the negation of a `byte` value.
+     */
+    inline constexpr byte operator -(const byte &x) noexcept
+    {
+        return byte(-x.to_uint());
+    }
+
+    /**
      * Returns the sum of two `byte` values.
      */
     inline constexpr byte operator +(const byte &x, const byte &y) noexcept
@@ -236,6 +252,22 @@ namespace vm68k
     inline constexpr bool operator !=(const word &x, const word &y) noexcept
     {
         return x.to_uint() != y.to_uint();
+    }
+
+    /**
+     * Returns the `word` value.
+     */
+    inline constexpr word operator +(const word &x) noexcept
+    {
+        return x;
+    }
+
+    /**
+     * Returns the negation of a `word` value.
+     */
+    inline constexpr word operator -(const word &x) noexcept
+    {
+        return word(-x.to_uint());
     }
 
     /**
@@ -358,6 +390,22 @@ namespace vm68k
     inline constexpr bool operator !=(const long_word &x, const long_word &y) noexcept
     {
         return x.to_uint() != y.to_uint();
+    }
+
+    /**
+     * Returns the `long_word` value.
+     */
+    inline constexpr long_word operator +(const long_word &x) noexcept
+    {
+        return x;
+    }
+
+    /**
+     * Returns the negation of a `long_word` value.
+     */
+    inline constexpr long_word operator -(const long_word &x) noexcept
+    {
+        return long_word(-x.to_uint());
     }
 
     /**

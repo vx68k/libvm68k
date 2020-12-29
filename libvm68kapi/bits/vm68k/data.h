@@ -120,6 +120,22 @@ namespace vm68k
         return x.to_uint() != y.to_uint();
     }
 
+    /**
+     * Returns the sum of two `byte` values.
+     */
+    inline constexpr byte operator +(const byte &x, const byte &y) noexcept
+    {
+        return byte(x.to_uint() + y.to_uint());
+    }
+
+    /**
+     * Returns the difference of two `byte` values.
+     */
+    inline constexpr byte operator -(const byte &x, const byte &y) noexcept
+    {
+        return byte(x.to_uint() - y.to_uint());
+    }
+
     inline void swap(byte &x, byte &y) noexcept
     {
         x.swap(y);
@@ -220,6 +236,22 @@ namespace vm68k
     inline constexpr bool operator !=(const word &x, const word &y) noexcept
     {
         return x.to_uint() != y.to_uint();
+    }
+
+    /**
+     * Returns the sum of two `word` values.
+     */
+    inline constexpr word operator +(const word &x, const word &y) noexcept
+    {
+        return word(x.to_uint() + y.to_uint());
+    }
+
+    /**
+     * Returns the difference of two `word` values.
+     */
+    inline constexpr word operator -(const word &x, const word &y) noexcept
+    {
+        return word(x.to_uint() - y.to_uint());
     }
 
     inline void swap(word &x, word &y) noexcept
@@ -326,6 +358,24 @@ namespace vm68k
     inline constexpr bool operator !=(const long_word &x, const long_word &y) noexcept
     {
         return x.to_uint() != y.to_uint();
+    }
+
+    /**
+     * Returns the sum of two `long_word` values.
+     */
+    inline constexpr long_word operator +(const long_word &x,
+        const long_word &y) noexcept
+    {
+        return long_word(x.to_uint() + y.to_uint());
+    }
+
+    /**
+     * Returns the difference of two `long_word` values.
+     */
+    inline constexpr long_word operator -(const long_word &x,
+        const long_word &y) noexcept
+    {
+        return long_word(x.to_uint() - y.to_uint());
     }
 
     inline void swap(long_word &x, long_word &y) noexcept

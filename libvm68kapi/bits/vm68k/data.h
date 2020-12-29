@@ -137,6 +137,14 @@ namespace vm68k
     }
 
     /**
+     * Returns the bitwise NOT of a `byte` value.
+     */
+    inline constexpr byte operator ~(const byte &x) noexcept
+    {
+        return byte(~x.to_uint());
+    }
+
+    /**
      * Returns the sum of two `byte` values.
      */
     inline constexpr byte operator +(const byte &x, const byte &y) noexcept
@@ -310,6 +318,14 @@ namespace vm68k
     inline constexpr word operator -(const word &x) noexcept
     {
         return word(-x.to_uint());
+    }
+
+    /**
+     * Returns the bitwise NOT of a `word` value.
+     */
+    inline constexpr word operator ~(const word &x) noexcept
+    {
+        return word(~x.to_uint());
     }
 
     /**
@@ -490,6 +506,14 @@ namespace vm68k
     inline constexpr long_word operator -(const long_word &x) noexcept
     {
         return long_word(-x.to_uint());
+    }
+
+    /**
+     * Returns the bitwise NOT of a `long_word` value.
+     */
+    inline constexpr long_word operator ~(const long_word &x) noexcept
+    {
+        return long_word(~x.to_uint());
     }
 
     /**

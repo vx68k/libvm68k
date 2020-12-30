@@ -120,6 +120,115 @@ namespace vm68k
         return x.to_uint() != y.to_uint();
     }
 
+    /**
+     * Returns the `byte` value.
+     */
+    inline constexpr byte operator +(const byte &x) noexcept
+    {
+        return x;
+    }
+
+    /**
+     * Returns the negation of a `byte` value.
+     */
+    inline constexpr byte operator -(const byte &x) noexcept
+    {
+        return byte(-x.to_uint());
+    }
+
+    /**
+     * Returns the bitwise NOT of a `byte` value.
+     */
+    inline constexpr byte operator ~(const byte &x) noexcept
+    {
+        return byte(~x.to_uint());
+    }
+
+    /**
+     * Returns the sum of two `byte` values.
+     */
+    inline constexpr byte operator +(const byte &x, const byte &y) noexcept
+    {
+        return byte(x.to_uint() + y.to_uint());
+    }
+
+    /**
+     * Returns the difference of two `byte` values.
+     */
+    inline constexpr byte operator -(const byte &x, const byte &y) noexcept
+    {
+        return byte(x.to_uint() - y.to_uint());
+    }
+
+    /**
+     * Returns the bitwise AND of two `byte` values.
+     */
+    inline constexpr byte operator &(const byte &x, const byte &y) noexcept
+    {
+        return byte(x.to_uint() & y.to_uint());
+    }
+
+    /**
+     * Returns the bitwise OR of two `byte` values.
+     */
+    inline constexpr byte operator |(const byte &x, const byte &y) noexcept
+    {
+        return byte(x.to_uint() | y.to_uint());
+    }
+
+    /**
+     * Returns the bitwise XOR of two `byte` values.
+     */
+    inline constexpr byte operator ^(const byte &x, const byte &y) noexcept
+    {
+        return byte(x.to_uint() ^ y.to_uint());
+    }
+
+    /**
+     * Adds a `byte` value to another.
+     */
+    inline byte &operator +=(byte &x, const byte &y) noexcept
+    {
+        x = x + y;
+        return x;
+    }
+
+    /**
+     * Subtracts a `byte` value from another.
+     */
+    inline byte &operator -=(byte &x, const byte &y) noexcept
+    {
+        x = x - y;
+        return x;
+    }
+
+    /**
+     * Applies bitwise AND operation with a `byte` value.
+     */
+    inline byte &operator &=(byte &x, const byte &y) noexcept
+    {
+        x = x & y;
+        return x;
+    }
+
+    /**
+     * Applies bitwise OR operation with a `byte` value.
+     */
+    inline byte &operator |=(byte &x, const byte &y) noexcept
+    {
+        x = x | y;
+        return x;
+    }
+
+    /**
+     * Applies bitwise XOR operation with a `byte` value.
+     */
+    inline byte &operator ^=(byte &x, const byte &y) noexcept
+    {
+        x = x ^ y;
+        return x;
+    }
+
     inline void swap(byte &x, byte &y) noexcept
     {
         x.swap(y);
@@ -220,6 +329,115 @@ namespace vm68k
     inline constexpr bool operator !=(const word &x, const word &y) noexcept
     {
         return x.to_uint() != y.to_uint();
+    }
+
+    /**
+     * Returns the `word` value.
+     */
+    inline constexpr word operator +(const word &x) noexcept
+    {
+        return x;
+    }
+
+    /**
+     * Returns the negation of a `word` value.
+     */
+    inline constexpr word operator -(const word &x) noexcept
+    {
+        return word(-x.to_uint());
+    }
+
+    /**
+     * Returns the bitwise NOT of a `word` value.
+     */
+    inline constexpr word operator ~(const word &x) noexcept
+    {
+        return word(~x.to_uint());
+    }
+
+    /**
+     * Returns the sum of two `word` values.
+     */
+    inline constexpr word operator +(const word &x, const word &y) noexcept
+    {
+        return word(x.to_uint() + y.to_uint());
+    }
+
+    /**
+     * Returns the difference of two `word` values.
+     */
+    inline constexpr word operator -(const word &x, const word &y) noexcept
+    {
+        return word(x.to_uint() - y.to_uint());
+    }
+
+    /**
+     * Returns the bitwise AND of two `word` values.
+     */
+    inline constexpr word operator &(const word &x, const word &y) noexcept
+    {
+        return word(x.to_uint() & y.to_uint());
+    }
+
+    /**
+     * Returns the bitwise OR of two `word` values.
+     */
+    inline constexpr word operator |(const word &x, const word &y) noexcept
+    {
+        return word(x.to_uint() | y.to_uint());
+    }
+
+    /**
+     * Returns the bitwise XOR of two `word` values.
+     */
+    inline constexpr word operator ^(const word &x, const word &y) noexcept
+    {
+        return word(x.to_uint() ^ y.to_uint());
+    }
+
+    /**
+     * Adds a `word` value to another.
+     */
+    inline word &operator +=(word &x, const word &y) noexcept
+    {
+        x = x + y;
+        return x;
+    }
+
+    /**
+     * Subtracts a `word` value from another.
+     */
+    inline word &operator -=(word &x, const word &y) noexcept
+    {
+        x = x - y;
+        return x;
+    }
+
+    /**
+     * Applies bitwise AND operation with a `word` value.
+     */
+    inline word &operator &=(word &x, const word &y) noexcept
+    {
+        x = x & y;
+        return x;
+    }
+
+    /**
+     * Applies bitwise OR operation with a `word` value.
+     */
+    inline word &operator |=(word &x, const word &y) noexcept
+    {
+        x = x | y;
+        return x;
+    }
+
+    /**
+     * Applies bitwise XOR operation with a `word` value.
+     */
+    inline word &operator ^=(word &x, const word &y) noexcept
+    {
+        x = x ^ y;
+        return x;
     }
 
     inline void swap(word &x, word &y) noexcept
@@ -326,6 +544,120 @@ namespace vm68k
     inline constexpr bool operator !=(const long_word &x, const long_word &y) noexcept
     {
         return x.to_uint() != y.to_uint();
+    }
+
+    /**
+     * Returns the `long_word` value.
+     */
+    inline constexpr long_word operator +(const long_word &x) noexcept
+    {
+        return x;
+    }
+
+    /**
+     * Returns the negation of a `long_word` value.
+     */
+    inline constexpr long_word operator -(const long_word &x) noexcept
+    {
+        return long_word(-x.to_uint());
+    }
+
+    /**
+     * Returns the bitwise NOT of a `long_word` value.
+     */
+    inline constexpr long_word operator ~(const long_word &x) noexcept
+    {
+        return long_word(~x.to_uint());
+    }
+
+    /**
+     * Returns the sum of two `long_word` values.
+     */
+    inline constexpr long_word operator +(const long_word &x,
+        const long_word &y) noexcept
+    {
+        return long_word(x.to_uint() + y.to_uint());
+    }
+
+    /**
+     * Returns the difference of two `long_word` values.
+     */
+    inline constexpr long_word operator -(const long_word &x,
+        const long_word &y) noexcept
+    {
+        return long_word(x.to_uint() - y.to_uint());
+    }
+
+    /**
+     * Returns the bitwise AND of two `long_word` values.
+     */
+    inline constexpr long_word operator &(const long_word &x,
+        const long_word &y) noexcept
+    {
+        return long_word(x.to_uint() & y.to_uint());
+    }
+
+    /**
+     * Returns the bitwise OR of two `long_word` values.
+     */
+    inline constexpr long_word operator |(const long_word &x,
+        const long_word &y) noexcept
+    {
+        return long_word(x.to_uint() | y.to_uint());
+    }
+
+    /**
+     * Returns the bitwise XOR of two `long_word` values.
+     */
+    inline constexpr long_word operator ^(const long_word &x,
+        const long_word &y) noexcept
+    {
+        return long_word(x.to_uint() ^ y.to_uint());
+    }
+
+    /**
+     * Adds a `long_word` value to another.
+     */
+    inline long_word &operator +=(long_word &x, const long_word &y) noexcept
+    {
+        x = x + y;
+        return x;
+    }
+
+    /**
+     * Subtracts a `long_word` value from another.
+     */
+    inline long_word &operator -=(long_word &x, const long_word &y) noexcept
+    {
+        x = x - y;
+        return x;
+    }
+
+    /**
+     * Applies bitwise AND operation with a `long_word` value.
+     */
+    inline long_word &operator &=(long_word &x, const long_word &y) noexcept
+    {
+        x = x & y;
+        return x;
+    }
+
+    /**
+     * Applies bitwise OR operation with a `long_word` value.
+     */
+    inline long_word &operator |=(long_word &x, const long_word &y) noexcept
+    {
+        x = x | y;
+        return x;
+    }
+
+    /**
+     * Applies bitwise XOR operation with a `long_word` value.
+     */
+    inline long_word &operator ^=(long_word &x, const long_word &y) noexcept
+    {
+        x = x ^ y;
+        return x;
     }
 
     inline void swap(long_word &x, long_word &y) noexcept

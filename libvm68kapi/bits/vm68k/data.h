@@ -202,6 +202,33 @@ namespace vm68k
         return x;
     }
 
+    /**
+     * Applies bitwise AND operation with a `byte` value.
+     */
+    inline byte &operator &=(byte &x, const byte &y) noexcept
+    {
+        x = x & y;
+        return x;
+    }
+
+    /**
+     * Applies bitwise OR operation with a `byte` value.
+     */
+    inline byte &operator |=(byte &x, const byte &y) noexcept
+    {
+        x = x | y;
+        return x;
+    }
+
+    /**
+     * Applies bitwise XOR operation with a `byte` value.
+     */
+    inline byte &operator ^=(byte &x, const byte &y) noexcept
+    {
+        x = x ^ y;
+        return x;
+    }
+
     inline void swap(byte &x, byte &y) noexcept
     {
         x.swap(y);
@@ -383,6 +410,33 @@ namespace vm68k
     inline word &operator -=(word &x, const word &y) noexcept
     {
         x = x - y;
+        return x;
+    }
+
+    /**
+     * Applies bitwise AND operation with a `word` value.
+     */
+    inline word &operator &=(word &x, const word &y) noexcept
+    {
+        x = x & y;
+        return x;
+    }
+
+    /**
+     * Applies bitwise OR operation with a `word` value.
+     */
+    inline word &operator |=(word &x, const word &y) noexcept
+    {
+        x = x | y;
+        return x;
+    }
+
+    /**
+     * Applies bitwise XOR operation with a `word` value.
+     */
+    inline word &operator ^=(word &x, const word &y) noexcept
+    {
+        x = x ^ y;
         return x;
     }
 
@@ -576,6 +630,33 @@ namespace vm68k
     inline long_word &operator -=(long_word &x, const long_word &y) noexcept
     {
         x = x - y;
+        return x;
+    }
+
+    /**
+     * Applies bitwise AND operation with a `long_word` value.
+     */
+    inline long_word &operator &=(long_word &x, const long_word &y) noexcept
+    {
+        x = x & y;
+        return x;
+    }
+
+    /**
+     * Applies bitwise OR operation with a `long_word` value.
+     */
+    inline long_word &operator |=(long_word &x, const long_word &y) noexcept
+    {
+        x = x | y;
+        return x;
+    }
+
+    /**
+     * Applies bitwise XOR operation with a `long_word` value.
+     */
+    inline long_word &operator ^=(long_word &x, const long_word &y) noexcept
+    {
+        x = x ^ y;
         return x;
     }
 

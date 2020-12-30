@@ -7,8 +7,6 @@ primarily for use in [Virtual X68000][].
 
 # License
 
-This program is provided under the terms and conditions of the [GNU General Public License, version 3][GPL-3.0].
+This program is provided under the terms and conditions of the [GNU General Public License, version 3][GPL-3.0-or-later].
 
-[![(License)](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)][GPL-3.0]
-
-[GPL-3.0]: https://opensource.org/licenses/GPL-3.0
+[GPL-3.0-or-later]: https://spdx.org/licenses/GPL-3.0-or-later.html

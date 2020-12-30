@@ -1,8 +1,0 @@
-This package contains the source code for libvm68k, a M68000 virtual machine
-library written in C++.
-
-DIRECTORIES
-
-config/ files used in configuration.
-src/    source code for the library itself.
-test/   unit test program for the library.

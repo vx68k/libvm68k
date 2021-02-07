@@ -108,6 +108,7 @@ namespace vm68k
         return x.to_uint() == y.to_uint();
     }
 
+#if __cplusplus < 202002L
     /**
      * Returns true if and only if two `byte` values are not equal to each other.
      *
@@ -117,8 +118,9 @@ namespace vm68k
      */
     inline constexpr bool operator !=(const byte &x, const byte &y) noexcept
     {
-        return x.to_uint() != y.to_uint();
+        return !(x == y);
     }
+#endif
 
     /**
      * Returns the `byte` value.
@@ -319,6 +321,7 @@ namespace vm68k
         return x.to_uint() == y.to_uint();
     }
 
+#if __cplusplus < 202002L
     /**
      * Returns true if and only if two `word` values are not equal to each other.
      *
@@ -328,8 +331,9 @@ namespace vm68k
      */
     inline constexpr bool operator !=(const word &x, const word &y) noexcept
     {
-        return x.to_uint() != y.to_uint();
+        return !(x == y);
     }
+#endif
 
     /**
      * Returns the `word` value.
@@ -534,6 +538,7 @@ namespace vm68k
         return x.to_uint() == y.to_uint();
     }
 
+#if __cplusplus < 202002L
     /**
      * Returns true if and only if two `long_word` values are not equal to each other.
      *
@@ -543,8 +548,9 @@ namespace vm68k
      */
     inline constexpr bool operator !=(const long_word &x, const long_word &y) noexcept
     {
-        return x.to_uint() != y.to_uint();
+        return !(x == y);
     }
+#endif
 
     /**
      * Returns the `long_word` value.

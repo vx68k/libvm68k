@@ -48,7 +48,9 @@ namespace vm68k
             return 1U;
         }
 
-    public:
+
+        // Constructors.
+
         byte() noexcept = default;
 
         constexpr explicit byte(const std::uint8_t value) noexcept
@@ -58,7 +60,7 @@ namespace vm68k
             // Nothing to do.
         }
 
-    public:
+
         /**
          * Swaps the value of the object with another one.
          */
@@ -68,7 +70,6 @@ namespace vm68k
             swap(_value, other._value);
         }
 
-    public:
         constexpr std::int8_t to_int() const noexcept
         {
             return std::int8_t(_value);
@@ -264,7 +265,9 @@ namespace vm68k
             return 2U;
         }
 
-    public:
+
+        // Constructors.
+
         word() noexcept = default;
 
         constexpr explicit word(const std::uint16_t value) noexcept
@@ -274,7 +277,7 @@ namespace vm68k
             // Nothing to do.
         }
 
-    public:
+
         /**
          * Swaps the value of the object with another one.
          */
@@ -284,7 +287,6 @@ namespace vm68k
             swap(_value, other._value);
         }
 
-    public:
         constexpr std::int16_t to_int() const noexcept
         {
             return std::int16_t(_value);
@@ -482,7 +484,9 @@ namespace vm68k
             return 4U;
         }
 
-    public:
+
+        // Constructors.
+
         long_word() noexcept = default;
 
         constexpr explicit long_word(const std::uint32_t value) noexcept
@@ -492,7 +496,7 @@ namespace vm68k
             // Nothing to do.
         }
 
-    public:
+
         /**
          * Swaps the value of the object with another one.
          */
@@ -502,7 +506,6 @@ namespace vm68k
             swap(_value, other._value);
         }
 
-    public:
         constexpr std::int32_t to_int() const noexcept
         {
             return std::int32_t(_value);

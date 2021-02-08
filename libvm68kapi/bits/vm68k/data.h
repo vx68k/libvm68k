@@ -39,7 +39,7 @@ namespace vm68k
         using uint_type = std::uint8_t;
 
     private:
-        std::uint8_t _value;
+        uint_type _value;
 
     public:
         /// Returns the size of a `byte` value, which is always 1.
@@ -48,17 +48,19 @@ namespace vm68k
             return 1U;
         }
 
-    public:
+
+        // Constructors.
+
         byte() noexcept = default;
 
-        constexpr explicit byte(const std::uint8_t value) noexcept
+        constexpr explicit byte(const uint_type value) noexcept
         :
             _value {value}
         {
             // Nothing to do.
         }
 
-    public:
+
         /**
          * Swaps the value of the object with another one.
          */
@@ -68,13 +70,12 @@ namespace vm68k
             swap(_value, other._value);
         }
 
-    public:
-        constexpr std::int8_t to_int() const noexcept
+        constexpr int_type to_int() const noexcept
         {
-            return std::int8_t(_value);
+            return int_type(_value);
         }
 
-        constexpr std::uint8_t to_uint() const noexcept
+        constexpr uint_type to_uint() const noexcept
         {
             return _value;
         }
@@ -83,7 +84,7 @@ namespace vm68k
         Iterator serialize(const Iterator output) const
         {
             auto i = output;
-            *(i++) = _value;
+            *(i++) = std::uint8_t(_value);
             return i;
         }
 
@@ -91,8 +92,13 @@ namespace vm68k
         Iterator deserialize(const Iterator input)
         {
             auto i = input;
-            _value = *(i++);
+            _value = std::uint8_t(*(i++));
             return i;
+        }
+
+        constexpr explicit operator bool() const noexcept
+        {
+            return _value != 0;
         }
     };
 
@@ -108,8 +114,9 @@ namespace vm68k
         return x.to_uint() == y.to_uint();
     }
 
+#if __cplusplus < 202002L
     /**
-     * Returns true if and only if two `byte` values are not equal to each other.
+     * Returns true if and only if two `byte` values are *not* equal to each other.
      *
      * @param x a `byte` value
      * @param y another `byte` value
@@ -117,8 +124,9 @@ namespace vm68k
      */
     inline constexpr bool operator !=(const byte &x, const byte &y) noexcept
     {
-        return x.to_uint() != y.to_uint();
+        return !(x == y);
     }
+#endif
 
     /**
      * Returns the `byte` value.
@@ -248,7 +256,7 @@ namespace vm68k
         using uint_type = std::uint16_t;
 
     private:
-        std::uint16_t _value;
+        uint_type _value;
 
     public:
         /// Returns the size of a `word` value, which is always 2.
@@ -257,17 +265,19 @@ namespace vm68k
             return 2U;
         }
 
-    public:
+
+        // Constructors.
+
         word() noexcept = default;
 
-        constexpr explicit word(const std::uint16_t value) noexcept
+        constexpr explicit word(const uint_type value) noexcept
         :
             _value {value}
         {
             // Nothing to do.
         }
 
-    public:
+
         /**
          * Swaps the value of the object with another one.
          */
@@ -277,13 +287,12 @@ namespace vm68k
             swap(_value, other._value);
         }
 
-    public:
-        constexpr std::int16_t to_int() const noexcept
+        constexpr int_type to_int() const noexcept
         {
-            return std::int16_t(_value);
+            return int_type(_value);
         }
 
-        constexpr std::uint16_t to_uint() const noexcept
+        constexpr uint_type to_uint() const noexcept
         {
             return _value;
         }
@@ -305,6 +314,11 @@ namespace vm68k
             _value |= std::uint8_t(*(i++));
             return i;
         }
+
+        constexpr explicit operator bool() const noexcept
+        {
+            return _value != 0;
+        }
     };
 
     /**
@@ -319,8 +333,9 @@ namespace vm68k
         return x.to_uint() == y.to_uint();
     }
 
+#if __cplusplus < 202002L
     /**
-     * Returns true if and only if two `word` values are not equal to each other.
+     * Returns true if and only if two `word` values are *not* equal to each other.
      *
      * @param x a `word` value
      * @param y another `word` value
@@ -328,8 +343,9 @@ namespace vm68k
      */
     inline constexpr bool operator !=(const word &x, const word &y) noexcept
     {
-        return x.to_uint() != y.to_uint();
+        return !(x == y);
     }
+#endif
 
     /**
      * Returns the `word` value.
@@ -459,7 +475,7 @@ namespace vm68k
         using uint_type = std::uint32_t;
 
     private:
-        std::uint32_t _value;
+        uint_type _value;
 
     public:
         /// Returns the size of a `long_word` value, which is always 4.
@@ -468,17 +484,19 @@ namespace vm68k
             return 4U;
         }
 
-    public:
+
+        // Constructors.
+
         long_word() noexcept = default;
 
-        constexpr explicit long_word(const std::uint32_t value) noexcept
+        constexpr explicit long_word(const uint_type value) noexcept
         :
             _value {value}
         {
             // Nothing to do.
         }
 
-    public:
+
         /**
          * Swaps the value of the object with another one.
          */
@@ -488,13 +506,12 @@ namespace vm68k
             swap(_value, other._value);
         }
 
-    public:
-        constexpr std::int32_t to_int() const noexcept
+        constexpr int_type to_int() const noexcept
         {
-            return std::int32_t(_value);
+            return int_type(_value);
         }
 
-        constexpr std::uint32_t to_uint() const noexcept
+        constexpr uint_type to_uint() const noexcept
         {
             return _value;
         }
@@ -520,6 +537,11 @@ namespace vm68k
             _value |= std::uint8_t(*(i++));
             return i;
         }
+
+        constexpr explicit operator bool() const noexcept
+        {
+            return _value != 0;
+        }
     };
 
     /**
@@ -529,22 +551,26 @@ namespace vm68k
      * @param y another `long_word` value
      * @return true if the two values are equal to each other; false otherwise
      */
-    inline constexpr bool operator ==(const long_word &x, const long_word &y) noexcept
+    inline constexpr bool operator ==(const long_word &x,
+        const long_word &y) noexcept
     {
         return x.to_uint() == y.to_uint();
     }
 
+#if __cplusplus < 202002L
     /**
-     * Returns true if and only if two `long_word` values are not equal to each other.
+     * Returns true if and only if two `long_word` values are *not* equal to each other.
      *
      * @param x a `long_word` value
      * @param y another `long_word` value
      * @return true if the two values are *not* equal to each other; false otherwise
      */
-    inline constexpr bool operator !=(const long_word &x, const long_word &y) noexcept
+    inline constexpr bool operator !=(const long_word &x,
+        const long_word &y) noexcept
     {
-        return x.to_uint() != y.to_uint();
+        return !(x == y);
     }
+#endif
 
     /**
      * Returns the `long_word` value.

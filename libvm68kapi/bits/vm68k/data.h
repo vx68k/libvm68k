@@ -39,7 +39,7 @@ namespace vm68k
         using uint_type = std::uint8_t;
 
     private:
-        std::uint8_t _value;
+        uint_type _value;
 
     public:
         /// Returns the size of a `byte` value, which is always 1.
@@ -53,7 +53,7 @@ namespace vm68k
 
         byte() noexcept = default;
 
-        constexpr explicit byte(const std::uint8_t value) noexcept
+        constexpr explicit byte(const uint_type value) noexcept
         :
             _value {value}
         {
@@ -70,12 +70,12 @@ namespace vm68k
             swap(_value, other._value);
         }
 
-        constexpr std::int8_t to_int() const noexcept
+        constexpr int_type to_int() const noexcept
         {
-            return std::int8_t(_value);
+            return int_type(_value);
         }
 
-        constexpr std::uint8_t to_uint() const noexcept
+        constexpr uint_type to_uint() const noexcept
         {
             return _value;
         }
@@ -84,7 +84,7 @@ namespace vm68k
         Iterator serialize(const Iterator output) const
         {
             auto i = output;
-            *(i++) = _value;
+            *(i++) = std::uint8_t(_value);
             return i;
         }
 
@@ -92,7 +92,7 @@ namespace vm68k
         Iterator deserialize(const Iterator input)
         {
             auto i = input;
-            _value = *(i++);
+            _value = std::uint8_t(*(i++));
             return i;
         }
 
@@ -256,7 +256,7 @@ namespace vm68k
         using uint_type = std::uint16_t;
 
     private:
-        std::uint16_t _value;
+        uint_type _value;
 
     public:
         /// Returns the size of a `word` value, which is always 2.
@@ -270,7 +270,7 @@ namespace vm68k
 
         word() noexcept = default;
 
-        constexpr explicit word(const std::uint16_t value) noexcept
+        constexpr explicit word(const uint_type value) noexcept
         :
             _value {value}
         {
@@ -287,12 +287,12 @@ namespace vm68k
             swap(_value, other._value);
         }
 
-        constexpr std::int16_t to_int() const noexcept
+        constexpr int_type to_int() const noexcept
         {
-            return std::int16_t(_value);
+            return int_type(_value);
         }
 
-        constexpr std::uint16_t to_uint() const noexcept
+        constexpr uint_type to_uint() const noexcept
         {
             return _value;
         }
@@ -475,7 +475,7 @@ namespace vm68k
         using uint_type = std::uint32_t;
 
     private:
-        std::uint32_t _value;
+        uint_type _value;
 
     public:
         /// Returns the size of a `long_word` value, which is always 4.
@@ -489,7 +489,7 @@ namespace vm68k
 
         long_word() noexcept = default;
 
-        constexpr explicit long_word(const std::uint32_t value) noexcept
+        constexpr explicit long_word(const uint_type value) noexcept
         :
             _value {value}
         {
@@ -506,12 +506,12 @@ namespace vm68k
             swap(_value, other._value);
         }
 
-        constexpr std::int32_t to_int() const noexcept
+        constexpr int_type to_int() const noexcept
         {
-            return std::int32_t(_value);
+            return int_type(_value);
         }
 
-        constexpr std::uint32_t to_uint() const noexcept
+        constexpr uint_type to_uint() const noexcept
         {
             return _value;
         }

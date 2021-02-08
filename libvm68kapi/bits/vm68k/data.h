@@ -116,7 +116,7 @@ namespace vm68k
 
 #if __cplusplus < 202002L
     /**
-     * Returns true if and only if two `byte` values are not equal to each other.
+     * Returns true if and only if two `byte` values are *not* equal to each other.
      *
      * @param x a `byte` value
      * @param y another `byte` value
@@ -335,7 +335,7 @@ namespace vm68k
 
 #if __cplusplus < 202002L
     /**
-     * Returns true if and only if two `word` values are not equal to each other.
+     * Returns true if and only if two `word` values are *not* equal to each other.
      *
      * @param x a `word` value
      * @param y another `word` value
@@ -559,7 +559,7 @@ namespace vm68k
 
 #if __cplusplus < 202002L
     /**
-     * Returns true if and only if two `long_word` values are not equal to each other.
+     * Returns true if and only if two `long_word` values are *not* equal to each other.
      *
      * @param x a `long_word` value
      * @param y another `long_word` value

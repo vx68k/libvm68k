@@ -551,7 +551,8 @@ namespace vm68k
      * @param y another `long_word` value
      * @return true if the two values are equal to each other; false otherwise
      */
-    inline constexpr bool operator ==(const long_word &x, const long_word &y) noexcept
+    inline constexpr bool operator ==(const long_word &x,
+        const long_word &y) noexcept
     {
         return x.to_uint() == y.to_uint();
     }
@@ -564,7 +565,8 @@ namespace vm68k
      * @param y another `long_word` value
      * @return true if the two values are *not* equal to each other; false otherwise
      */
-    inline constexpr bool operator !=(const long_word &x, const long_word &y) noexcept
+    inline constexpr bool operator !=(const long_word &x,
+        const long_word &y) noexcept
     {
         return !(x == y);
     }

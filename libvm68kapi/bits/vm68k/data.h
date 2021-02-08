@@ -94,6 +94,11 @@ namespace vm68k
             _value = *(i++);
             return i;
         }
+
+        constexpr explicit operator bool() const noexcept
+        {
+            return _value != 0;
+        }
     };
 
     /**
@@ -306,6 +311,11 @@ namespace vm68k
             _value  = std::uint8_t(*(i++)) << 8;
             _value |= std::uint8_t(*(i++));
             return i;
+        }
+
+        constexpr explicit operator bool() const noexcept
+        {
+            return _value != 0;
         }
     };
 
@@ -523,6 +533,11 @@ namespace vm68k
             _value |= std::uint8_t(*(i++)) << 8;
             _value |= std::uint8_t(*(i++));
             return i;
+        }
+
+        constexpr explicit operator bool() const noexcept
+        {
+            return _value != 0;
         }
     };
 

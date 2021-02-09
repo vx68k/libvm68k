@@ -109,7 +109,7 @@ namespace vm68k
      * @param y another `byte` value
      * @return true if the two values are equal to each other; false otherwise
      */
-    inline constexpr bool operator ==(const byte &x, const byte &y) noexcept
+    constexpr bool operator ==(const byte &x, const byte &y) noexcept
     {
         return x.to_uint() == y.to_uint();
     }
@@ -122,7 +122,7 @@ namespace vm68k
      * @param y another `byte` value
      * @return true if the two values are *not* equal to each other; false otherwise
      */
-    inline constexpr bool operator !=(const byte &x, const byte &y) noexcept
+    constexpr bool operator !=(const byte &x, const byte &y) noexcept
     {
         return !(x == y);
     }
@@ -131,7 +131,7 @@ namespace vm68k
     /**
      * Returns the `byte` value.
      */
-    inline constexpr byte operator +(const byte &x) noexcept
+    constexpr byte operator +(const byte &x) noexcept
     {
         return x;
     }
@@ -139,15 +139,15 @@ namespace vm68k
     /**
      * Returns the negation of a `byte` value.
      */
-    inline constexpr byte operator -(const byte &x) noexcept
+    constexpr byte operator -(const byte &x) noexcept
     {
-        return byte(-x.to_uint());
+        return byte(-x.to_int());
     }
 
     /**
      * Returns the bitwise NOT of a `byte` value.
      */
-    inline constexpr byte operator ~(const byte &x) noexcept
+    constexpr byte operator ~(const byte &x) noexcept
     {
         return byte(~x.to_uint());
     }
@@ -155,23 +155,23 @@ namespace vm68k
     /**
      * Returns the sum of two `byte` values.
      */
-    inline constexpr byte operator +(const byte &x, const byte &y) noexcept
+    constexpr byte operator +(const byte &x, const byte &y) noexcept
     {
-        return byte(x.to_uint() + y.to_uint());
+        return byte(x.to_int() + y.to_int());
     }
 
     /**
      * Returns the difference of two `byte` values.
      */
-    inline constexpr byte operator -(const byte &x, const byte &y) noexcept
+    constexpr byte operator -(const byte &x, const byte &y) noexcept
     {
-        return byte(x.to_uint() - y.to_uint());
+        return byte(x.to_int() - y.to_int());
     }
 
     /**
      * Returns the bitwise AND of two `byte` values.
      */
-    inline constexpr byte operator &(const byte &x, const byte &y) noexcept
+    constexpr byte operator &(const byte &x, const byte &y) noexcept
     {
         return byte(x.to_uint() & y.to_uint());
     }
@@ -179,7 +179,7 @@ namespace vm68k
     /**
      * Returns the bitwise OR of two `byte` values.
      */
-    inline constexpr byte operator |(const byte &x, const byte &y) noexcept
+    constexpr byte operator |(const byte &x, const byte &y) noexcept
     {
         return byte(x.to_uint() | y.to_uint());
     }
@@ -187,7 +187,7 @@ namespace vm68k
     /**
      * Returns the bitwise XOR of two `byte` values.
      */
-    inline constexpr byte operator ^(const byte &x, const byte &y) noexcept
+    constexpr byte operator ^(const byte &x, const byte &y) noexcept
     {
         return byte(x.to_uint() ^ y.to_uint());
     }
@@ -328,7 +328,7 @@ namespace vm68k
      * @param y another `word` value
      * @return true if the two values are equal to each other; false otherwise
      */
-    inline constexpr bool operator ==(const word &x, const word &y) noexcept
+    constexpr bool operator ==(const word &x, const word &y) noexcept
     {
         return x.to_uint() == y.to_uint();
     }
@@ -341,7 +341,7 @@ namespace vm68k
      * @param y another `word` value
      * @return true if the two values are *not* equal to each other; false otherwise
      */
-    inline constexpr bool operator !=(const word &x, const word &y) noexcept
+    constexpr bool operator !=(const word &x, const word &y) noexcept
     {
         return !(x == y);
     }
@@ -350,7 +350,7 @@ namespace vm68k
     /**
      * Returns the `word` value.
      */
-    inline constexpr word operator +(const word &x) noexcept
+    constexpr word operator +(const word &x) noexcept
     {
         return x;
     }
@@ -358,15 +358,15 @@ namespace vm68k
     /**
      * Returns the negation of a `word` value.
      */
-    inline constexpr word operator -(const word &x) noexcept
+    constexpr word operator -(const word &x) noexcept
     {
-        return word(-x.to_uint());
+        return word(-x.to_int());
     }
 
     /**
      * Returns the bitwise NOT of a `word` value.
      */
-    inline constexpr word operator ~(const word &x) noexcept
+    constexpr word operator ~(const word &x) noexcept
     {
         return word(~x.to_uint());
     }
@@ -374,23 +374,23 @@ namespace vm68k
     /**
      * Returns the sum of two `word` values.
      */
-    inline constexpr word operator +(const word &x, const word &y) noexcept
+    constexpr word operator +(const word &x, const word &y) noexcept
     {
-        return word(x.to_uint() + y.to_uint());
+        return word(x.to_int() + y.to_int());
     }
 
     /**
      * Returns the difference of two `word` values.
      */
-    inline constexpr word operator -(const word &x, const word &y) noexcept
+    constexpr word operator -(const word &x, const word &y) noexcept
     {
-        return word(x.to_uint() - y.to_uint());
+        return word(x.to_int() - y.to_int());
     }
 
     /**
      * Returns the bitwise AND of two `word` values.
      */
-    inline constexpr word operator &(const word &x, const word &y) noexcept
+    constexpr word operator &(const word &x, const word &y) noexcept
     {
         return word(x.to_uint() & y.to_uint());
     }
@@ -398,7 +398,7 @@ namespace vm68k
     /**
      * Returns the bitwise OR of two `word` values.
      */
-    inline constexpr word operator |(const word &x, const word &y) noexcept
+    constexpr word operator |(const word &x, const word &y) noexcept
     {
         return word(x.to_uint() | y.to_uint());
     }
@@ -406,7 +406,7 @@ namespace vm68k
     /**
      * Returns the bitwise XOR of two `word` values.
      */
-    inline constexpr word operator ^(const word &x, const word &y) noexcept
+    constexpr word operator ^(const word &x, const word &y) noexcept
     {
         return word(x.to_uint() ^ y.to_uint());
     }
@@ -551,8 +551,7 @@ namespace vm68k
      * @param y another `long_word` value
      * @return true if the two values are equal to each other; false otherwise
      */
-    inline constexpr bool operator ==(const long_word &x,
-        const long_word &y) noexcept
+    constexpr bool operator ==(const long_word &x, const long_word &y) noexcept
     {
         return x.to_uint() == y.to_uint();
     }
@@ -565,8 +564,7 @@ namespace vm68k
      * @param y another `long_word` value
      * @return true if the two values are *not* equal to each other; false otherwise
      */
-    inline constexpr bool operator !=(const long_word &x,
-        const long_word &y) noexcept
+    constexpr bool operator !=(const long_word &x, const long_word &y) noexcept
     {
         return !(x == y);
     }
@@ -575,7 +573,7 @@ namespace vm68k
     /**
      * Returns the `long_word` value.
      */
-    inline constexpr long_word operator +(const long_word &x) noexcept
+    constexpr long_word operator +(const long_word &x) noexcept
     {
         return x;
     }
@@ -583,15 +581,15 @@ namespace vm68k
     /**
      * Returns the negation of a `long_word` value.
      */
-    inline constexpr long_word operator -(const long_word &x) noexcept
+    constexpr long_word operator -(const long_word &x) noexcept
     {
-        return long_word(-x.to_uint());
+        return long_word(-x.to_int());
     }
 
     /**
      * Returns the bitwise NOT of a `long_word` value.
      */
-    inline constexpr long_word operator ~(const long_word &x) noexcept
+    constexpr long_word operator ~(const long_word &x) noexcept
     {
         return long_word(~x.to_uint());
     }
@@ -599,26 +597,23 @@ namespace vm68k
     /**
      * Returns the sum of two `long_word` values.
      */
-    inline constexpr long_word operator +(const long_word &x,
-        const long_word &y) noexcept
+    constexpr long_word operator +(const long_word &x, const long_word &y) noexcept
     {
-        return long_word(x.to_uint() + y.to_uint());
+        return long_word(x.to_int() + y.to_int());
     }
 
     /**
      * Returns the difference of two `long_word` values.
      */
-    inline constexpr long_word operator -(const long_word &x,
-        const long_word &y) noexcept
+    constexpr long_word operator -(const long_word &x, const long_word &y) noexcept
     {
-        return long_word(x.to_uint() - y.to_uint());
+        return long_word(x.to_int() - y.to_int());
     }
 
     /**
      * Returns the bitwise AND of two `long_word` values.
      */
-    inline constexpr long_word operator &(const long_word &x,
-        const long_word &y) noexcept
+    constexpr long_word operator &(const long_word &x, const long_word &y) noexcept
     {
         return long_word(x.to_uint() & y.to_uint());
     }
@@ -626,8 +621,7 @@ namespace vm68k
     /**
      * Returns the bitwise OR of two `long_word` values.
      */
-    inline constexpr long_word operator |(const long_word &x,
-        const long_word &y) noexcept
+    constexpr long_word operator |(const long_word &x, const long_word &y) noexcept
     {
         return long_word(x.to_uint() | y.to_uint());
     }
@@ -635,8 +629,7 @@ namespace vm68k
     /**
      * Returns the bitwise XOR of two `long_word` values.
      */
-    inline constexpr long_word operator ^(const long_word &x,
-        const long_word &y) noexcept
+    constexpr long_word operator ^(const long_word &x, const long_word &y) noexcept
     {
         return long_word(x.to_uint() ^ y.to_uint());
     }

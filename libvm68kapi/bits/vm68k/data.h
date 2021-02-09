@@ -141,7 +141,7 @@ namespace vm68k
      */
     constexpr byte operator -(const byte &x) noexcept
     {
-        return byte(-x.to_uint());
+        return byte(-x.to_int());
     }
 
     /**
@@ -157,7 +157,7 @@ namespace vm68k
      */
     constexpr byte operator +(const byte &x, const byte &y) noexcept
     {
-        return byte(x.to_uint() + y.to_uint());
+        return byte(x.to_int() + y.to_int());
     }
 
     /**
@@ -165,7 +165,7 @@ namespace vm68k
      */
     constexpr byte operator -(const byte &x, const byte &y) noexcept
     {
-        return byte(x.to_uint() - y.to_uint());
+        return byte(x.to_int() - y.to_int());
     }
 
     /**
@@ -360,7 +360,7 @@ namespace vm68k
      */
     constexpr word operator -(const word &x) noexcept
     {
-        return word(-x.to_uint());
+        return word(-x.to_int());
     }
 
     /**
@@ -376,7 +376,7 @@ namespace vm68k
      */
     constexpr word operator +(const word &x, const word &y) noexcept
     {
-        return word(x.to_uint() + y.to_uint());
+        return word(x.to_int() + y.to_int());
     }
 
     /**
@@ -384,7 +384,7 @@ namespace vm68k
      */
     constexpr word operator -(const word &x, const word &y) noexcept
     {
-        return word(x.to_uint() - y.to_uint());
+        return word(x.to_int() - y.to_int());
     }
 
     /**
@@ -583,7 +583,7 @@ namespace vm68k
      */
     constexpr long_word operator -(const long_word &x) noexcept
     {
-        return long_word(-x.to_uint());
+        return long_word(-x.to_int());
     }
 
     /**
@@ -599,7 +599,7 @@ namespace vm68k
      */
     constexpr long_word operator +(const long_word &x, const long_word &y) noexcept
     {
-        return long_word(x.to_uint() + y.to_uint());
+        return long_word(x.to_int() + y.to_int());
     }
 
     /**
@@ -607,7 +607,7 @@ namespace vm68k
      */
     constexpr long_word operator -(const long_word &x, const long_word &y) noexcept
     {
-        return long_word(x.to_uint() - y.to_uint());
+        return long_word(x.to_int() - y.to_int());
     }
 
     /**

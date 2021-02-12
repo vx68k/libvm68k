@@ -65,7 +65,7 @@ namespace vm68k
             return _address;
         }
 
-        virtual const char *what() const noexcept override;
+        const char *what() const noexcept override;
     };
 
     /**
@@ -81,7 +81,7 @@ namespace vm68k
             noexcept;
 
 
-        virtual const char *what() const noexcept override;
+        const char *what() const noexcept override;
     };
 
     /**
@@ -97,7 +97,7 @@ namespace vm68k
             noexcept;
 
 
-        virtual const char *what() const noexcept override;
+        const char *what() const noexcept override;
     };
 }
 

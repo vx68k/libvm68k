@@ -47,7 +47,7 @@ namespace vm68k
 
         // Destructor.
 
-        virtual ~memory_exception();
+        ~memory_exception() override;
 
 
         // Assignment operators.

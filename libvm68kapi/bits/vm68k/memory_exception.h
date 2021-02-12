@@ -1,5 +1,5 @@
 // <bits/vm68k/memory_exception.h>
-// Copyright (C) 2012-2020 Kaz Nishimura
+// Copyright (C) 2012-2021 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -35,37 +35,42 @@ namespace vm68k
     class _VM68KAPI_PUBLIC memory_exception: public std::exception
     {
     private:
+
         function_code _fc;
 
-    private:
         memory_map::address_type _address;
 
     public:
+
+        // Constructors.
+
         memory_exception(function_code fc, memory_map::address_type address)
             noexcept;
 
         memory_exception(const memory_exception &other) noexcept;
 
-    public:
+
+        // Destructor.
+
         virtual ~memory_exception();
 
-    public:
+
+        // Assignment operators.
+
         memory_exception &operator =(const memory_exception &other) noexcept;
 
-    public:
+
         function_code fc() const noexcept
         {
             return _fc;
         }
 
-    public:
         memory_map::address_type address() const noexcept
         {
             return _address;
         }
 
-    public:
-        virtual const char *what() const noexcept override;
+        const char *what() const noexcept override;
     };
 
 #if _MSC_VER
@@ -78,11 +83,14 @@ namespace vm68k
     class _VM68KAPI_PUBLIC bus_error: public memory_exception
     {
     public:
+
+        // Constructors.
+
         bus_error(function_code fc, memory_map::address_type address)
             noexcept;
 
-    public:
-        virtual const char *what() const noexcept override;
+
+        const char *what() const noexcept override;
     };
 
     /**
@@ -91,11 +99,14 @@ namespace vm68k
     class _VM68KAPI_PUBLIC address_error: public memory_exception
     {
     public:
+
+        // Constructors.
+
         address_error(function_code fc, memory_map::address_type address)
             noexcept;
 
-    public:
-        virtual const char *what() const noexcept override;
+
+        const char *what() const noexcept override;
     };
 }
 

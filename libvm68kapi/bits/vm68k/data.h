@@ -1,5 +1,5 @@
 // <bits/vm68k/data.h>
-// Copyright (C) 2012-2020 Kaz Nishimura
+// Copyright (C) 2012-2021 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -35,13 +35,16 @@ namespace vm68k
     class byte
     {
     public:
+
         using int_type = std::int8_t;
         using uint_type = std::uint8_t;
 
     private:
+
         uint_type _value;
 
     public:
+
         /// Returns the size of a `byte` value, which is always 1.
         static constexpr std::size_t size() noexcept
         {
@@ -252,13 +255,16 @@ namespace vm68k
     class word
     {
     public:
+
         using int_type = std::int16_t;
         using uint_type = std::uint16_t;
 
     private:
+
         uint_type _value;
 
     public:
+
         /// Returns the size of a `word` value, which is always 2.
         static constexpr std::size_t size() noexcept
         {
@@ -471,13 +477,16 @@ namespace vm68k
     class long_word
     {
     public:
+
         using int_type = std::int32_t;
         using uint_type = std::uint32_t;
 
     private:
+
         uint_type _value;
 
     public:
+
         /// Returns the size of a `long_word` value, which is always 4.
         static constexpr std::size_t size() noexcept
         {

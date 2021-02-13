@@ -43,7 +43,7 @@ namespace vm68k
     /**
      * Bitwise NOT operator.
      */
-    constexpr function_code operator ~(const function_code &x)
+    constexpr function_code operator ~(const function_code &x) noexcept
     {
         return static_cast<function_code>(~static_cast<unsigned char>(x));
     }
@@ -52,7 +52,7 @@ namespace vm68k
      * Bitwise AND operator.
      */
     constexpr function_code operator &(const function_code &x,
-        const function_code &y)
+        const function_code &y) noexcept
     {
         return static_cast<function_code>(
             static_cast<unsigned char>(x) & static_cast<unsigned char>(y));
@@ -62,7 +62,7 @@ namespace vm68k
      * Bitwise OR operator.
      */
     constexpr function_code operator |(const function_code &x,
-        const function_code &y)
+        const function_code &y) noexcept
     {
         return static_cast<function_code>(
             static_cast<unsigned char>(x) | static_cast<unsigned char>(y));
@@ -72,7 +72,7 @@ namespace vm68k
      * Bitwise XOR operator.
      */
     constexpr function_code operator ^(const function_code &x,
-        const function_code &y)
+        const function_code &y) noexcept
     {
         return static_cast<function_code>(
             static_cast<unsigned char>(x) ^ static_cast<unsigned char>(y));
@@ -82,6 +82,7 @@ namespace vm68k
      * Bitwise AND assignment operator.
      */
     inline function_code &operator &=(function_code &x, const function_code &y)
+        noexcept
     {
         x = x & y;
         return x;
@@ -91,6 +92,7 @@ namespace vm68k
      * Bitwise OR assignment operator.
      */
     inline function_code &operator |=(function_code &x, const function_code &y)
+        noexcept
     {
         x = x | y;
         return x;
@@ -100,10 +102,12 @@ namespace vm68k
      * Bitwise XOR assignment operator.
      */
     inline function_code &operator ^=(function_code &x, const function_code &y)
+        noexcept
     {
         x = x ^ y;
         return x;
     }
+
 
     /**
      * Base class for memory maps.

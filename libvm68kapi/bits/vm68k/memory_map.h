@@ -43,7 +43,7 @@ namespace vm68k
     /**
      * Bitwise NOT operator.
      */
-    inline constexpr function_code operator ~(const function_code &x)
+    constexpr function_code operator ~(const function_code &x)
     {
         return static_cast<function_code>(~static_cast<unsigned char>(x));
     }
@@ -51,7 +51,7 @@ namespace vm68k
     /**
      * Bitwise AND operator.
      */
-    inline constexpr function_code operator &(const function_code &x,
+    constexpr function_code operator &(const function_code &x,
         const function_code &y)
     {
         return static_cast<function_code>(
@@ -61,7 +61,7 @@ namespace vm68k
     /**
      * Bitwise OR operator.
      */
-    inline constexpr function_code operator |(const function_code &x,
+    constexpr function_code operator |(const function_code &x,
         const function_code &y)
     {
         return static_cast<function_code>(
@@ -71,7 +71,7 @@ namespace vm68k
     /**
      * Bitwise XOR operator.
      */
-    inline constexpr function_code operator ^(const function_code &x,
+    constexpr function_code operator ^(const function_code &x,
         const function_code &y)
     {
         return static_cast<function_code>(

@@ -141,9 +141,9 @@ namespace vm68k
             memory() = default;
 
             /**
-             * Defaulted copy constructor.
+             * Deleted copy constructor.
              */
-            memory(const memory &other) = default;
+            memory(const memory &) = delete;
 
         public:
 
@@ -153,6 +153,14 @@ namespace vm68k
              * Defaulted destructor.
              */
             virtual ~memory() = default;
+
+
+            // Assignment operators.
+
+            /**
+             * Deleted copy-assignment operator.
+             */
+            void operator =(const memory &) = delete;
 
 
             /**
@@ -193,9 +201,9 @@ namespace vm68k
         memory_map() = default;
 
         /**
-         * Defaulted copy constructor.
+         * Deleted copy constructor.
          */
-        memory_map(const memory_map &other) = default;
+        memory_map(const memory_map &) = delete;
 
     public:
 
@@ -205,6 +213,14 @@ namespace vm68k
          * Defaulted destructor.
          */
         virtual ~memory_map() = default;
+
+
+        // Assignment operators.
+
+        /**
+         * Deleted copy-assignment operator.
+         */
+        void operator =(const memory_map &) = delete;
 
 
         /**
@@ -262,33 +278,10 @@ namespace vm68k
 
         paged_memory_map(address_type address_mask, size_type page_size);
 
-        paged_memory_map(const paged_memory_map &other) = delete;
-
-        paged_memory_map(paged_memory_map &&other) noexcept;
-
 
         // Destructor.
 
         ~paged_memory_map() override;
-
-
-        // Assignment operators.
-
-        void operator =(const paged_memory_map &other) = delete;
-
-        paged_memory_map &operator =(paged_memory_map &&other) noexcept
-        {
-            swap(other);
-            return *this;
-        }
-
-
-        /**
-         * Swaps the contents with another.
-         *
-         * @param other another paged memory map
-         */
-        void swap(paged_memory_map &other) noexcept;
 
 
         /**
@@ -324,17 +317,6 @@ namespace vm68k
 #if _MSC_VER
 #pragma warning(pop)
 #endif
-
-    /**
-     * Swaps the contents of two paged memory maps.
-     *
-     * @param one a paged memory map
-     * @param other another paged memory map
-     */
-    inline void swap(paged_memory_map &one, paged_memory_map &other) noexcept
-    {
-        one.swap(other);
-    }
 }
 
 #endif

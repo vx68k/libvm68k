@@ -114,20 +114,23 @@ namespace vm68k
     class _VM68KAPI_PUBLIC memory_map
     {
     public:
+
         using address_type = std::uint32_t;
         using size_type = std::uint32_t;
 
-    public:
         /**
          * Memory objects mapped on a memory map.
          */
         class _VM68KAPI_PUBLIC memory
         {
         protected:
+
             using address_type = memory_map::address_type;
             using size_type = memory_map::size_type;
 
-        protected:
+
+            // Constructors.
+
             /**
              * Defaulted default constructor.
              */
@@ -139,12 +142,15 @@ namespace vm68k
             memory(const memory &other) = default;
 
         public:
+
+            // Destructor.
+
             /**
              * Defaulted destructor.
              */
             virtual ~memory() = default;
 
-        public:
+
             /**
              * Returns the size of the memory object.
              */
@@ -174,6 +180,9 @@ namespace vm68k
         };
 
     protected:
+
+        // Constructors.
+
         /**
          * Defaulted default constructor.
          */
@@ -185,12 +194,15 @@ namespace vm68k
         memory_map(const memory_map &other) = default;
 
     public:
+
+        // Destructor.
+
         /**
          * Defaulted destructor.
          */
         virtual ~memory_map() = default;
 
-    public:
+
         /**
          * Reads a sequence of bytes.
          *
@@ -202,7 +214,6 @@ namespace vm68k
         virtual void read(function_code fc, address_type address,
             size_type size, void *bytes) = 0;
 
-    public:
         /**
          * Writes a sequence of bytes.
          *
@@ -226,18 +237,21 @@ namespace vm68k
     class _VM68KAPI_PUBLIC paged_memory_map: public memory_map
     {
     public:
+
         static const size_type DEFAULT_PAGE_SIZE = 0x1000U;
 
     private:
+
         address_type _address_mask;
 
-    private:
         size_type _page_size;
 
-    private:
         std::vector<std::shared_ptr<memory>> _pages;
 
     public:
+
+        // Constructors.
+
         paged_memory_map();
 
         explicit paged_memory_map(address_type address_mask);
@@ -248,10 +262,14 @@ namespace vm68k
 
         paged_memory_map(paged_memory_map &&other) noexcept;
 
-    public:
-        virtual ~paged_memory_map();
 
-    public:
+        // Destructor.
+
+        ~paged_memory_map() override;
+
+
+        // Assignment operators.
+
         void operator =(const paged_memory_map &other) = delete;
 
         paged_memory_map &operator =(paged_memory_map &&other) noexcept
@@ -260,7 +278,7 @@ namespace vm68k
             return *this;
         }
 
-    public:
+
         /**
          * Swaps the contents with another.
          *
@@ -268,7 +286,7 @@ namespace vm68k
          */
         void swap(paged_memory_map &other) noexcept;
 
-    public:
+
         /**
          * Returns the address mask.
          */
@@ -277,7 +295,6 @@ namespace vm68k
             return _address_mask;
         }
 
-    public:
         /**
          * Returns the page size.
          */
@@ -286,20 +303,18 @@ namespace vm68k
             return _page_size;
         }
 
-    public:
         /**
          * Adds a memory to the memory map.
          */
         void add_memory(address_type address,
             const std::shared_ptr<memory> &memory);
 
-    public:
-        virtual void read(function_code fc, address_type address,
-            size_type size, void *bytes) override;
 
-    public:
-        virtual void write(function_code fc, address_type address,
-            size_type size, const void *bytes) override;
+        void read(function_code fc, address_type address, size_type size,
+            void *bytes) override;
+
+        void write(function_code fc, address_type address, size_type size,
+            const void *bytes) override;
     };
 
 #if _MSC_VER

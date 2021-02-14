@@ -23,7 +23,6 @@
 #pragma hdrstop
 #endif
 
-#define _VM68K_DATA_IMPLEMENTATION 1
 #include <bits/vm68k/data.h>
 
 #if __BORLANDC__

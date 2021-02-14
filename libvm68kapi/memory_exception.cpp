@@ -53,10 +53,9 @@ memory_exception::~memory_exception()
 memory_exception &memory_exception::operator =(const memory_exception &other)
     noexcept
 {
-    if (this != &other) {
-        exception::operator =(other);
-        _address = other._address;
-    }
+    exception::operator =(other);
+    _fc = other._fc;
+    _address = other._address;
     return *this;
 }
 

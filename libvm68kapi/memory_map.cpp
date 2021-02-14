@@ -40,19 +40,18 @@ namespace
     class no_memory final: public memory_map::memory
     {
     public:
+
         virtual size_type size() const noexcept override
         {
             return 0U;
         }
 
-    public:
         virtual void read(function_code fc, address_type address, size_type,
             void *) override
         {
             throw bus_error(fc, address);
         }
 
-    public:
         virtual void write(function_code fc, address_type address, size_type,
             const void *) override
         {

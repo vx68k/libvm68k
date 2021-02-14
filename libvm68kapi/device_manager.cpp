@@ -24,9 +24,7 @@
 
 #include <utility>
 
-using std::move;
 using std::shared_ptr;
-using std::swap;
 using namespace vm68k;
 
 device_manager::device_manager(const shared_ptr<memory_map> &memory)

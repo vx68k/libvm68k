@@ -37,7 +37,7 @@ device_manager::device_manager(const shared_ptr<memory_map> &memory)
 
 device_manager::~device_manager()
 {
-    // Nothing to do.
+    // Nothing to do, but this function shall be out of line.
 }
 
 void device_manager::add_device(const shared_ptr<device> &device)

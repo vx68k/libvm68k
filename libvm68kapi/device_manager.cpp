@@ -43,25 +43,9 @@ device_manager::device_manager(shared_ptr<memory_map> &&memory)
     // Nothing to do.
 }
 
-device_manager::device_manager(device_manager &&other) noexcept
-:
-    _memory {move(other._memory)},
-    _devices {move(other._devices)}
-{
-    // Nothing to do.
-}
-
 device_manager::~device_manager()
 {
     // Nothing to do.
-}
-
-void device_manager::swap(device_manager &other) noexcept
-{
-    if (this != &other) {
-        ::swap(_memory, other._memory);
-        ::swap(_devices, other._devices);
-    }
 }
 
 void device_manager::add_device(const shared_ptr<device> &device)

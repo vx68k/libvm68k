@@ -36,13 +36,6 @@ device_manager::device_manager(const shared_ptr<memory_map> &memory)
     // Nothing to do.
 }
 
-device_manager::device_manager(shared_ptr<memory_map> &&memory)
-:
-    _memory {move(memory)}
-{
-    // Nothing to do.
-}
-
 device_manager::~device_manager()
 {
     // Nothing to do.

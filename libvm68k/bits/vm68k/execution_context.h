@@ -34,15 +34,18 @@ namespace vm68k
     class _VM68K_PUBLIC execution_context
     {
     public:
+
         /**
          * Data registers.
          */
         class data_register
         {
         private:
+
             long_word::uint_type _value;
 
         public:
+
             data_register &operator =(const long_word value)
             {
                 _value = value.to_uint();
@@ -63,7 +66,7 @@ namespace vm68k
                 return *this;
             }
 
-        public:
+
             /**
              * Converts the register value to a long word.
              */
@@ -95,9 +98,11 @@ namespace vm68k
         class address_register
         {
         private:
+
             long_word::uint_type _value;
 
         public:
+
             address_register &operator =(const long_word value)
             {
                 _value = value.to_int();
@@ -111,7 +116,7 @@ namespace vm68k
                 return *this;
             }
 
-        public:
+
             /**
              * Converts the register value to a long word.
              */
@@ -129,7 +134,7 @@ namespace vm68k
             }
         };
 
-    public:
+
         /**
          * Number of the data registers.
          */
@@ -141,9 +146,9 @@ namespace vm68k
         static const std::size_t ADDRESS_REGISTER_MAX = 8;
 
     private:
+
         std::shared_ptr<memory_map> _memory;
 
-    private:
         /**
          * Array of the data registers.
          */
@@ -154,10 +159,12 @@ namespace vm68k
          */
         std::array<address_register, ADDRESS_REGISTER_MAX> _a;
 
-    private:
         long_word _pc;
 
     public:
+
+        // Constructors.
+
         explicit execution_context(const std::shared_ptr<memory_map> &memory);
 
         explicit execution_context(std::shared_ptr<memory_map> &&memory) noexcept;
@@ -172,10 +179,14 @@ namespace vm68k
          */
         execution_context(execution_context &&other) noexcept;
 
-    public:
+
+        // Destructor.
+
         virtual ~execution_context();
 
-    public:
+
+        // Assignment operators.
+
         /**
          * Copy assignment operator.
          */
@@ -190,7 +201,7 @@ namespace vm68k
             return *this;
         }
 
-    public:
+
         /**
          * Swaps the contents with another execution context.
          *
@@ -198,13 +209,12 @@ namespace vm68k
          */
         void swap(execution_context &other) noexcept;
 
-    public:
+
         auto memory() const -> const std::shared_ptr<memory_map> &
         {
             return _memory;
         }
 
-    public:
         /**
          * Returns a reference to a data register.
          */
@@ -215,7 +225,6 @@ namespace vm68k
          */
         const data_register &d(std::size_t regno) const;
 
-    public:
         /**
          * Returns a reference to an address register.
          */
@@ -226,13 +235,10 @@ namespace vm68k
          */
         const address_register &a(std::size_t regno) const;
 
-    public:
         long_word pc() const;
 
-    public:
         void set_pc(long_word pc);
 
-    public:
         /**
          * Reads data from an address.
          */
@@ -245,7 +251,6 @@ namespace vm68k
             data.deserialize(bytes);
         }
 
-    public:
         /**
          * Writes data to an address.
          */
@@ -259,6 +264,7 @@ namespace vm68k
         }
 
     protected:
+
         function_code memory_access_mode() const
         {
             return function_code::data; // FIXME

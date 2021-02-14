@@ -24,6 +24,7 @@
 
 #include <utility>
 
+using std::get;
 using std::shared_ptr;
 using namespace vm68k;
 
@@ -42,7 +43,7 @@ device_manager::~device_manager()
 void device_manager::add_device(const shared_ptr<device> &device)
 {
     auto &&inserted = _devices.insert(device);
-    if (inserted.second) {
+    if (get<1>(inserted)) {
         device->map(*_memory);
     }
 }

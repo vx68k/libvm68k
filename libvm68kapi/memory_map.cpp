@@ -41,18 +41,18 @@ namespace
     {
     public:
 
-        virtual size_type size() const noexcept override
+        size_type size() const noexcept override
         {
             return 0U;
         }
 
-        virtual void read(function_code fc, address_type address, size_type,
+        void read(function_code fc, address_type address, size_type,
             void *) override
         {
             throw bus_error(fc, address);
         }
 
-        virtual void write(function_code fc, address_type address, size_type,
+        void write(function_code fc, address_type address, size_type,
             const void *) override
         {
             throw bus_error(fc, address);

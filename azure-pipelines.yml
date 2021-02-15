@@ -40,8 +40,10 @@ stages:
               ./configure --disable-static \
                 CXX="g++ -std=c++14" \
                 CFLAGS="-g -O2 -fprofile-arcs -fprofile-abs-path -ftest-coverage" \
-                CXXFLAGS="-g -O2 -fprofile-arcs -fprofile-abs-path -ftest-coverage" &&
-              echo "##vso[task.uploadfile]`pwd`/config.log"
+                CXXFLAGS="-g -O2 -fprofile-arcs -fprofile-abs-path -ftest-coverage"
+                status=$?
+                echo "##vso[task.uploadfile]`pwd`/config.log"
+                exit $status
             displayName: Configure
           - bash: |
               make check
@@ -82,8 +84,10 @@ stages:
           - bash: |
               $CC --version
               $CXX --version
-              ./configure --prefix='$(Build.BinariesDirectory)' &&
+              ./configure --prefix='$(Build.BinariesDirectory)'
+              status=$?
               echo "##vso[task.uploadfile]`pwd`/config.log"
+              exit $status
             displayName: Configure
           - bash: |
               make check

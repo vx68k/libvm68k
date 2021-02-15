@@ -37,7 +37,10 @@ stages:
               autoreconf --verbose
             displayName: Bootstrap
           - bash: |
-              ./configure --disable-static &&
+              ./configure --disable-static \
+                CXX="g++ -std=c++14" \
+                CFLAGS="-g -O2 -fprofile-arcs -fprofile-abs-path -ftest-coverage" \
+                CXXFLAGS="-g -O2 -fprofile-arcs -fprofile-abs-path -ftest-coverage" &&
               echo "##vso[task.uploadfile]`pwd`/config.log"
             displayName: Configure
           - bash: |

@@ -25,7 +25,10 @@ syntax: regexp
 \.gmo$
 \.trs$
 \.pc$
+\.gcda$
+\.gcno$
 \.lo$
+\.obj$
 \.o$
 \.tvsconfig$
 \.local$

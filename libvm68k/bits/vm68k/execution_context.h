@@ -170,14 +170,9 @@ namespace vm68k
         explicit execution_context(std::shared_ptr<memory_map> &&memory) noexcept;
 
         /**
-         * Copy constructor.
+         * Deleted copy constructor.
          */
-        execution_context(const execution_context &other);
-
-        /**
-         * Move constructor.
-         */
-        execution_context(execution_context &&other) noexcept;
+        execution_context(const execution_context &) = delete;
 
 
         // Destructor.
@@ -188,26 +183,9 @@ namespace vm68k
         // Assignment operators.
 
         /**
-         * Copy assignment operator.
+         * Deleted copy assignment operator.
          */
-        execution_context &operator =(const execution_context &other);
-
-        /**
-         * Move assignment operator.
-         */
-        execution_context &operator =(execution_context &&other) noexcept
-        {
-            swap(other);
-            return *this;
-        }
-
-
-        /**
-         * Swaps the contents with another execution context.
-         *
-         * @param other another execution context
-         */
-        void swap(execution_context &other) noexcept;
+        void operator =(const execution_context &) = delete;
 
 
         auto memory() const -> const std::shared_ptr<memory_map> &
@@ -270,16 +248,6 @@ namespace vm68k
             return function_code::data; // FIXME
         }
     };
-
-    /**
-     * Swaps the contents of two execution contexts.
-     * @param one an execution context
-     * @param other another execution context
-     */
-    inline void swap(execution_context &one, execution_context &other) noexcept
-    {
-        one.swap(other);
-    }
 }
 
 #endif

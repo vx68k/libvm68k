@@ -1,5 +1,5 @@
 // <bits/vm68k/device_manager.h>
-// Copyright (C) 2020 Kaz Nishimura
+// Copyright (C) 2020-2021 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -37,20 +37,32 @@ namespace vm68k
     class _VM68KAPI_PUBLIC device_manager
     {
     public:
+
         /**
          * Base class for devices.
          */
         class _VM68KAPI_PUBLIC device
         {
         protected:
+
+            // Constructors.
+
             device() = default;
 
-            device(const device &other) = default;
+            device(const device &) = delete;
 
         public:
+
+            // Destructor.
+
             virtual ~device() = default;
 
-        public:
+
+            // Assignment operators.
+
+            void operator =(const device &) = delete;
+
+
             /**
              * Maps the device on a memory map.
              */
@@ -58,57 +70,39 @@ namespace vm68k
         };
 
     private:
+
         std::shared_ptr<memory_map> _memory;
 
-    private:
         std::unordered_set<std::shared_ptr<device>> _devices;
 
     public:
+
+        // Constructors.
+
         /**
          * Constructor that copies a memory map pointer.
          */
         explicit device_manager(const std::shared_ptr<memory_map> &memory);
 
         /**
-         * Constructor that moves a memory map pointer.
-         */
-        explicit device_manager(std::shared_ptr<memory_map> &&memory);
-
-        /**
          * Deleted copy constructor.
          */
-        device_manager(const device_manager &other) = delete;
+        device_manager(const device_manager &) = delete;
 
-        /**
-         * Move constructor.
-         */
-        device_manager(device_manager &&other) noexcept;
 
-    public:
+        // Destructor.
+
         virtual ~device_manager();
 
-    public:
+
+        // Assignment operators.
+
         /**
          * Deleted copy assignment operator.
          */
-        void operator =(const device_manager &other) = delete;
+        void operator =(const device_manager &) = delete;
 
-        /**
-         * Move assignment operator.
-         */
-        device_manager &operator =(device_manager &&other) noexcept
-        {
-            swap(other);
-            return *this;
-        }
 
-    public:
-        /**
-         * Swaps the contents with another.
-         */
-        void swap(device_manager &other) noexcept;
-
-    public:
         /**
          * Returns the memory map associated to the device manager.
          */
@@ -117,7 +111,6 @@ namespace vm68k
             return _memory;
         }
 
-    public:
         /**
          * Adds a device to the device manager.
          */
@@ -127,14 +120,6 @@ namespace vm68k
 #if _MSC_VER
 #pragma warning(pop)
 #endif
-
-    /**
-     * Swaps the contents of two device managers.
-     */
-    inline void swap(device_manager &one, device_manager &other) noexcept
-    {
-        one.swap(other);
-    }
 }
 
 #endif

@@ -1,5 +1,5 @@
 // data.cpp
-// Copyright (C) 2012-2019 Kaz Nishimura
+// Copyright (C) 2012-2021 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -19,13 +19,5 @@
 #if HAVE_CONFIG_H
 #include <config.h>
 #endif
-#if __BORLANDC__
-#pragma hdrstop
-#endif
 
-#define _VM68K_DATA_IMPLEMENTATION 1
 #include <bits/vm68k/data.h>
-
-#if __BORLANDC__
-#pragma package(smart_init)
-#endif

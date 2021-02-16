@@ -1,5 +1,5 @@
 # azure-pipelines.yml - configuration for Azure Pipelines
-# Copyright (C) 2020 Kaz Nishimura
+# Copyright (C) 2020-2021 Kaz Nishimura
 #
 # Copying and distribution of this file, with or without modification, are
 # permitted in any medium without royalty provided the copyright notice and
@@ -37,8 +37,13 @@ stages:
               autoreconf --verbose
             displayName: Bootstrap
           - bash: |
-              ./configure --disable-static &&
-              echo "##vso[task.uploadfile]`pwd`/config.log"
+              ./configure --disable-static \
+                CXX="g++ -std=c++14" \
+                CFLAGS="-g -O2 -fprofile-arcs -ftest-coverage" \
+                CXXFLAGS="-g -O2 -fprofile-arcs -ftest-coverage"
+                status=$?
+                echo "##vso[task.uploadfile]`pwd`/config.log"
+                exit $status
             displayName: Configure
           - bash: |
               make check
@@ -79,8 +84,10 @@ stages:
           - bash: |
               $CC --version
               $CXX --version
-              ./configure --prefix='$(Build.BinariesDirectory)' &&
+              ./configure --prefix='$(Build.BinariesDirectory)'
+              status=$?
               echo "##vso[task.uploadfile]`pwd`/config.log"
+              exit $status
             displayName: Configure
           - bash: |
               make check

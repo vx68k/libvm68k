@@ -1,5 +1,5 @@
 // device_manager.cpp
-// Copyright (C) 2020 Kaz Nishimura
+// Copyright (C) 2020-2021 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -24,9 +24,8 @@
 
 #include <utility>
 
-using std::move;
+using std::get;
 using std::shared_ptr;
-using std::swap;
 using namespace vm68k;
 
 device_manager::device_manager(const shared_ptr<memory_map> &memory)
@@ -36,38 +35,15 @@ device_manager::device_manager(const shared_ptr<memory_map> &memory)
     // Nothing to do.
 }
 
-device_manager::device_manager(shared_ptr<memory_map> &&memory)
-:
-    _memory {move(memory)}
-{
-    // Nothing to do.
-}
-
-device_manager::device_manager(device_manager &&other) noexcept
-:
-    _memory {move(other._memory)},
-    _devices {move(other._devices)}
-{
-    // Nothing to do.
-}
-
 device_manager::~device_manager()
 {
-    // Nothing to do.
-}
-
-void device_manager::swap(device_manager &other) noexcept
-{
-    if (this != &other) {
-        ::swap(_memory, other._memory);
-        ::swap(_devices, other._devices);
-    }
+    // Nothing to do, but this function shall be out of line.
 }
 
 void device_manager::add_device(const shared_ptr<device> &device)
 {
     auto &&inserted = _devices.insert(device);
-    if (inserted.second) {
+    if (get<1>(inserted)) {
         device->map(*_memory);
     }
 }

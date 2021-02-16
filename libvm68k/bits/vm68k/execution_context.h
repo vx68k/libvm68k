@@ -1,5 +1,5 @@
 // <bits/vm68k/execution_context.h>
-// Copyright (C) 2012-2020 Kaz Nishimura
+// Copyright (C) 2012-2021 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -39,15 +39,18 @@ namespace vm68k
     class _VM68K_PUBLIC execution_context
     {
     public:
+
         /**
          * Data registers.
          */
         class data_register
         {
         private:
+
             long_word::uint_type _value;
 
         public:
+
             data_register &operator =(const long_word value)
             {
                 _value = value.to_uint();
@@ -68,11 +71,11 @@ namespace vm68k
                 return *this;
             }
 
-        public:
+
             /**
              * Converts the register value to a long word.
              */
-            operator long_word() const noexcept
+            explicit operator long_word() const noexcept
             {
                 return long_word(_value);
             }
@@ -80,7 +83,7 @@ namespace vm68k
             /**
              * Converts the register value to a word.
              */
-            operator word() const noexcept
+            explicit operator word() const noexcept
             {
                 return word(_value);
             }
@@ -88,7 +91,7 @@ namespace vm68k
             /**
              * Converts the register value to a byte.
              */
-            operator byte() const noexcept
+            explicit operator byte() const noexcept
             {
                 return byte(_value);
             }
@@ -100,9 +103,11 @@ namespace vm68k
         class address_register
         {
         private:
+
             long_word::uint_type _value;
 
         public:
+
             address_register &operator =(const long_word value)
             {
                 _value = value.to_int();
@@ -116,11 +121,11 @@ namespace vm68k
                 return *this;
             }
 
-        public:
+
             /**
              * Converts the register value to a long word.
              */
-            operator long_word() const noexcept
+            explicit operator long_word() const noexcept
             {
                 return long_word(_value);
             }
@@ -128,13 +133,13 @@ namespace vm68k
             /**
              * Converts the register value to a word.
              */
-            operator word() const noexcept
+            explicit operator word() const noexcept
             {
                 return word(_value);
             }
         };
 
-    public:
+
         /**
          * Number of the data registers.
          */
@@ -146,9 +151,9 @@ namespace vm68k
         static const std::size_t ADDRESS_REGISTER_MAX = 8;
 
     private:
+
         std::shared_ptr<memory_map> _memory;
 
-    private:
         /**
          * Array of the data registers.
          */
@@ -159,57 +164,38 @@ namespace vm68k
          */
         std::array<address_register, ADDRESS_REGISTER_MAX> _a;
 
-    private:
         long_word _pc;
 
     public:
+
+        // Constructors.
+
         explicit execution_context(const std::shared_ptr<memory_map> &memory);
 
-        explicit execution_context(std::shared_ptr<memory_map> &&memory) noexcept;
-
         /**
-         * Copy constructor.
+         * Deleted copy constructor.
          */
-        execution_context(const execution_context &other);
+        execution_context(const execution_context &) = delete;
 
-        /**
-         * Move constructor.
-         */
-        execution_context(execution_context &&other) noexcept;
 
-    public:
+        // Destructor.
+
         virtual ~execution_context();
 
-    public:
-        /**
-         * Copy assignment operator.
-         */
-        execution_context &operator =(const execution_context &other);
+
+        // Assignment operators.
 
         /**
-         * Move assignment operator.
+         * Deleted copy assignment operator.
          */
-        execution_context &operator =(execution_context &&other) noexcept
-        {
-            swap(other);
-            return *this;
-        }
+        void operator =(const execution_context &) = delete;
 
-    public:
-        /**
-         * Swaps the contents with another execution context.
-         *
-         * @param other another execution context
-         */
-        void swap(execution_context &other) noexcept;
 
-    public:
         auto memory() const -> const std::shared_ptr<memory_map> &
         {
             return _memory;
         }
 
-    public:
         /**
          * Returns a reference to a data register.
          */
@@ -220,7 +206,6 @@ namespace vm68k
          */
         const data_register &d(std::size_t regno) const;
 
-    public:
         /**
          * Returns a reference to an address register.
          */
@@ -231,13 +216,10 @@ namespace vm68k
          */
         const address_register &a(std::size_t regno) const;
 
-    public:
         long_word pc() const;
 
-    public:
         void set_pc(long_word pc);
 
-    public:
         /**
          * Reads data from an address.
          */
@@ -250,7 +232,6 @@ namespace vm68k
             data.deserialize(bytes);
         }
 
-    public:
         /**
          * Writes data to an address.
          */
@@ -264,6 +245,7 @@ namespace vm68k
         }
 
     protected:
+
         function_code memory_access_mode() const
         {
             return function_code::data; // FIXME
@@ -273,16 +255,6 @@ namespace vm68k
 #if _MSC_VER
 #pragma warning(pop)
 #endif
-
-    /**
-     * Swaps the contents of two execution contexts.
-     * @param one an execution context
-     * @param other another execution context
-     */
-    inline void swap(execution_context &one, execution_context &other) noexcept
-    {
-        one.swap(other);
-    }
 }
 
 #endif

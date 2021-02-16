@@ -1,5 +1,5 @@
 // <bits/vm68k/memory_map.h>
-// Copyright (C) 2012-2020 Kaz Nishimura
+// Copyright (C) 2012-2021 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -43,7 +43,7 @@ namespace vm68k
     /**
      * Bitwise NOT operator.
      */
-    inline constexpr function_code operator ~(const function_code &x)
+    constexpr function_code operator ~(const function_code &x) noexcept
     {
         return static_cast<function_code>(~static_cast<unsigned char>(x));
     }
@@ -51,8 +51,8 @@ namespace vm68k
     /**
      * Bitwise AND operator.
      */
-    inline constexpr function_code operator &(const function_code &x,
-        const function_code &y)
+    constexpr function_code operator &(const function_code &x,
+        const function_code &y) noexcept
     {
         return static_cast<function_code>(
             static_cast<unsigned char>(x) & static_cast<unsigned char>(y));
@@ -61,8 +61,8 @@ namespace vm68k
     /**
      * Bitwise OR operator.
      */
-    inline constexpr function_code operator |(const function_code &x,
-        const function_code &y)
+    constexpr function_code operator |(const function_code &x,
+        const function_code &y) noexcept
     {
         return static_cast<function_code>(
             static_cast<unsigned char>(x) | static_cast<unsigned char>(y));
@@ -71,8 +71,8 @@ namespace vm68k
     /**
      * Bitwise XOR operator.
      */
-    inline constexpr function_code operator ^(const function_code &x,
-        const function_code &y)
+    constexpr function_code operator ^(const function_code &x,
+        const function_code &y) noexcept
     {
         return static_cast<function_code>(
             static_cast<unsigned char>(x) ^ static_cast<unsigned char>(y));
@@ -82,6 +82,7 @@ namespace vm68k
      * Bitwise AND assignment operator.
      */
     inline function_code &operator &=(function_code &x, const function_code &y)
+        noexcept
     {
         x = x & y;
         return x;
@@ -91,6 +92,7 @@ namespace vm68k
      * Bitwise OR assignment operator.
      */
     inline function_code &operator |=(function_code &x, const function_code &y)
+        noexcept
     {
         x = x | y;
         return x;
@@ -100,10 +102,12 @@ namespace vm68k
      * Bitwise XOR assignment operator.
      */
     inline function_code &operator ^=(function_code &x, const function_code &y)
+        noexcept
     {
         x = x ^ y;
         return x;
     }
+
 
     /**
      * Base class for memory maps.
@@ -114,37 +118,51 @@ namespace vm68k
     class _VM68KAPI_PUBLIC memory_map
     {
     public:
+
         using address_type = std::uint32_t;
         using size_type = std::uint32_t;
 
-    public:
         /**
          * Memory objects mapped on a memory map.
          */
         class _VM68KAPI_PUBLIC memory
         {
         protected:
+
             using address_type = memory_map::address_type;
             using size_type = memory_map::size_type;
 
-        protected:
+
+            // Constructors.
+
             /**
              * Defaulted default constructor.
              */
             memory() = default;
 
             /**
-             * Defaulted copy constructor.
+             * Deleted copy constructor.
              */
-            memory(const memory &other) = default;
+            memory(const memory &) = delete;
 
         public:
+
+            // Destructor.
+
             /**
              * Defaulted destructor.
              */
             virtual ~memory() = default;
 
-        public:
+
+            // Assignment operators.
+
+            /**
+             * Deleted copy-assignment operator.
+             */
+            void operator =(const memory &) = delete;
+
+
             /**
              * Returns the size of the memory object.
              */
@@ -174,23 +192,37 @@ namespace vm68k
         };
 
     protected:
+
+        // Constructors.
+
         /**
          * Defaulted default constructor.
          */
         memory_map() = default;
 
         /**
-         * Defaulted copy constructor.
+         * Deleted copy constructor.
          */
-        memory_map(const memory_map &other) = default;
+        memory_map(const memory_map &) = delete;
 
     public:
+
+        // Destructor.
+
         /**
          * Defaulted destructor.
          */
         virtual ~memory_map() = default;
 
-    public:
+
+        // Assignment operators.
+
+        /**
+         * Deleted copy-assignment operator.
+         */
+        void operator =(const memory_map &) = delete;
+
+
         /**
          * Reads a sequence of bytes.
          *
@@ -202,7 +234,6 @@ namespace vm68k
         virtual void read(function_code fc, address_type address,
             size_type size, void *bytes) = 0;
 
-    public:
         /**
          * Writes a sequence of bytes.
          *
@@ -226,49 +257,33 @@ namespace vm68k
     class _VM68KAPI_PUBLIC paged_memory_map: public memory_map
     {
     public:
+
         static const size_type DEFAULT_PAGE_SIZE = 0x1000U;
 
     private:
+
         address_type _address_mask;
 
-    private:
         size_type _page_size;
 
-    private:
         std::vector<std::shared_ptr<memory>> _pages;
 
     public:
+
+        // Constructors.
+
         paged_memory_map();
 
         explicit paged_memory_map(address_type address_mask);
 
         paged_memory_map(address_type address_mask, size_type page_size);
 
-        paged_memory_map(const paged_memory_map &other) = delete;
 
-        paged_memory_map(paged_memory_map &&other) noexcept;
+        // Destructor.
 
-    public:
-        virtual ~paged_memory_map();
+        ~paged_memory_map() override;
 
-    public:
-        void operator =(const paged_memory_map &other) = delete;
 
-        paged_memory_map &operator =(paged_memory_map &&other) noexcept
-        {
-            swap(other);
-            return *this;
-        }
-
-    public:
-        /**
-         * Swaps the contents with another.
-         *
-         * @param other another paged memory map
-         */
-        void swap(paged_memory_map &other) noexcept;
-
-    public:
         /**
          * Returns the address mask.
          */
@@ -277,7 +292,6 @@ namespace vm68k
             return _address_mask;
         }
 
-    public:
         /**
          * Returns the page size.
          */
@@ -286,36 +300,23 @@ namespace vm68k
             return _page_size;
         }
 
-    public:
         /**
          * Adds a memory to the memory map.
          */
         void add_memory(address_type address,
             const std::shared_ptr<memory> &memory);
 
-    public:
-        virtual void read(function_code fc, address_type address,
-            size_type size, void *bytes) override;
 
-    public:
-        virtual void write(function_code fc, address_type address,
-            size_type size, const void *bytes) override;
+        void read(function_code fc, address_type address, size_type size,
+            void *bytes) override;
+
+        void write(function_code fc, address_type address, size_type size,
+            const void *bytes) override;
     };
 
 #if _MSC_VER
 #pragma warning(pop)
 #endif
-
-    /**
-     * Swaps the contents of two paged memory maps.
-     *
-     * @param one a paged memory map
-     * @param other another paged memory map
-     */
-    inline void swap(paged_memory_map &one, paged_memory_map &other) noexcept
-    {
-        one.swap(other);
-    }
 }
 
 #endif

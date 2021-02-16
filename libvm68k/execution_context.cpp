@@ -1,5 +1,5 @@
 // execution_context.cpp
-// Copyright (C) 2012-2020 Kaz Nishimura
+// Copyright (C) 2012-2021 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -22,12 +22,9 @@
 
 #include <bits/vm68k/execution_context.h>
 
-#include <utility>
 #include <cassert>
 
-using std::move;
 using std::shared_ptr;
-using std::swap;
 using namespace vm68k;
 
 using data_register = execution_context::data_register;
@@ -43,57 +40,9 @@ execution_context::execution_context(const shared_ptr<memory_map> &memory)
     // Nothing to do.
 }
 
-execution_context::execution_context(shared_ptr<memory_map> &&memory) noexcept
-:
-    _memory {move(memory)}
-{
-    // Nothing to do.
-}
-
-execution_context::execution_context(const execution_context &other)
-:
-    _memory {other._memory},
-    _d {other._d},
-    _a {other._a},
-    _pc {other._pc}
-{
-    // Nothing to do.
-}
-
-execution_context::execution_context(execution_context &&other) noexcept
-:
-    _memory {move(other._memory)},
-    _d {move(other._d)},
-    _a {move(other._a)},
-    _pc {move(other._pc)}
-{
-    // Nothing to do.
-}
-
 execution_context::~execution_context()
 {
     // Nothing to do.
-}
-
-execution_context &execution_context::operator =(const execution_context &other)
-{
-    if (this != &other) {
-        _memory = other._memory;
-        _d = other._d;
-        _a = other._a;
-        _pc = other._pc;
-    }
-    return *this;
-}
-
-void execution_context::swap(execution_context &other) noexcept
-{
-    if (this != &other) {
-        ::swap(_memory, other._memory);
-        ::swap(_d, other._d);
-        ::swap(_a, other._a);
-        ::swap(_pc, other._pc);
-    }
 }
 
 data_register &execution_context::d(const size_t regno)

@@ -1,5 +1,5 @@
 // memory_map.cpp
-// Copyright (C) 2012-2020 Kaz Nishimura
+// Copyright (C) 2012-2021 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -24,15 +24,12 @@
 
 #include <bits/vm68k/memory_exception.h>
 #include <algorithm>
-#include <utility>
 #include <stdexcept>
 
 using std::fill;
 using std::invalid_argument;
 using std::make_shared;
-using std::move;
 using std::shared_ptr;
-using std::swap;
 using namespace vm68k;
 
 namespace
@@ -43,20 +40,19 @@ namespace
     class no_memory final: public memory_map::memory
     {
     public:
-        virtual size_type size() const noexcept override
+
+        size_type size() const noexcept override
         {
             return 0U;
         }
 
-    public:
-        virtual void read(function_code fc, address_type address, size_type,
+        void read(function_code fc, address_type address, size_type,
             void *) override
         {
             throw bus_error(fc, address);
         }
 
-    public:
-        virtual void write(function_code fc, address_type address, size_type,
+        void write(function_code fc, address_type address, size_type,
             const void *) override
         {
             throw bus_error(fc, address);
@@ -99,28 +95,9 @@ paged_memory_map::paged_memory_map(const address_type address_mask,
     _pages.resize(_address_mask / _page_size + 1U, NO_MEMORY);
 }
 
-paged_memory_map::paged_memory_map(paged_memory_map &&other) noexcept
-:
-    _address_mask {move(other._address_mask)},
-    _page_size {move(other._page_size)},
-    _pages {move(other._pages)}
-{
-    // Nothing to do.
-}
-
 paged_memory_map::~paged_memory_map()
 {
     // Nothing to do.
-}
-
-void paged_memory_map::swap(paged_memory_map &other) noexcept
-{
-    // This function shall be out of line.
-    if (this != &other) {
-        ::swap(_address_mask, other._address_mask);
-        ::swap(_page_size, other._page_size);
-        ::swap(_pages, other._pages);
-    }
 }
 
 void paged_memory_map::add_memory(address_type address,

@@ -70,7 +70,7 @@ namespace vm68k
             /**
              * Converts the register value to a long word.
              */
-            operator long_word() const noexcept
+            explicit operator long_word() const noexcept
             {
                 return long_word(_value);
             }
@@ -78,7 +78,7 @@ namespace vm68k
             /**
              * Converts the register value to a word.
              */
-            operator word() const noexcept
+            explicit operator word() const noexcept
             {
                 return word(_value);
             }
@@ -86,7 +86,7 @@ namespace vm68k
             /**
              * Converts the register value to a byte.
              */
-            operator byte() const noexcept
+            explicit operator byte() const noexcept
             {
                 return byte(_value);
             }
@@ -120,7 +120,7 @@ namespace vm68k
             /**
              * Converts the register value to a long word.
              */
-            operator long_word() const noexcept
+            explicit operator long_word() const noexcept
             {
                 return long_word(_value);
             }
@@ -128,7 +128,7 @@ namespace vm68k
             /**
              * Converts the register value to a word.
              */
-            operator word() const noexcept
+            explicit operator word() const noexcept
             {
                 return word(_value);
             }

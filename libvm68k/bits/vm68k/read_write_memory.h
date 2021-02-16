@@ -31,15 +31,19 @@ namespace vm68k
     class _VM68K_PUBLIC read_write_memory: public memory_map::memory
     {
     protected:
+
         using byte_type = unsigned char;
 
-    protected:
         class _VM68K_PUBLIC bytes_delete
         {
         private:
+
             size_t _size;
 
         public:
+
+            // Constructors.
+
             explicit constexpr bytes_delete(const std::size_t size) noexcept
             :
                 _size {size}
@@ -47,51 +51,53 @@ namespace vm68k
                 // Nothing more to do.
             }
 
-        public:
+
             void operator ()(byte_type *ptr) const;
         };
 
     private:
+
         const size_type _size;
 
-    private:
         address_type _base_address = 0;
 
-    private:
         std::unique_ptr<byte_type [], bytes_delete> _bytes;
 
     protected:
+
         static auto allocate_bytes(size_t size)
             -> std::unique_ptr<byte_type [], bytes_delete>;
 
     public:
+
+        // Constructors.
+
         explicit read_write_memory(size_type size);
 
-    public:
+
+        // Destructor.
+
         virtual ~read_write_memory();
 
-    public:
+
         size_type size() const noexcept final override;
 
-    public:
         void relocate(address_type base_address) final override;
 
-    public:
         void read(function_code fc, address_type address, size_type n,
             void *buffer) final override;
 
-    public:
         void write(function_code fc, address_type address, size_type n,
             const void *buffer) final override;
 
     protected:
+
         /// Checks read access on a region.
         ///
         /// This implementation does nothing.
         virtual void check_read_access(function_code fc,
             address_type address, size_type n);
 
-    protected:
         /// Checks write access on a region.
         ///
         /// This implementation does nothing.

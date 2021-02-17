@@ -37,6 +37,11 @@ namespace vm68k
         // Destructor.
 
         virtual ~executor() = default;
+
+
+        // Assignment operators.
+
+        void operator =(const executor &) = delete;
     };
 }
 

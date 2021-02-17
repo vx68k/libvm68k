@@ -77,7 +77,7 @@ namespace vm68k
 
         // Destructor.
 
-        virtual ~read_write_memory();
+        ~read_write_memory() override;
 
 
         size_type size() const noexcept final override;

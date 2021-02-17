@@ -26,11 +26,16 @@ namespace vm68k
     class _VM68K_PUBLIC executor
     {
     public:
+
+        // Constructors.
+
         executor() = default;
 
         executor(const executor &) = delete;
 
-    public:
+
+        // Destructor.
+
         virtual ~executor() = default;
     };
 }

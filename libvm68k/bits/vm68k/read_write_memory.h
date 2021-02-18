@@ -80,15 +80,15 @@ namespace vm68k
         ~read_write_memory() override;
 
 
-        size_type size() const noexcept final override;
+        size_type size() const noexcept override;
 
-        void relocate(address_type base_address) final override;
+        void relocate(address_type base_address) override;
 
         void read(function_code fc, address_type address, size_type n,
-            void *buffer) final override;
+            void *buffer) override;
 
         void write(function_code fc, address_type address, size_type n,
-            const void *buffer) final override;
+            const void *buffer) override;
 
     protected:
 

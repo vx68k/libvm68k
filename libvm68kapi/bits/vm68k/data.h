@@ -245,6 +245,14 @@ namespace vm68k
         x.swap(y);
     }
 
+    /**
+     * Creates a `byte` value as a literal.
+     */
+    constexpr byte operator "" _b(const unsigned long long value)
+    {
+        return byte(value);
+    }
+
 
     /**
      * Word data on the VM68000 architecture.
@@ -465,6 +473,14 @@ namespace vm68k
     inline void swap(word &x, word &y) noexcept
     {
         x.swap(y);
+    }
+
+    /**
+     * Creates a `word` value as a literal.
+     */
+    constexpr word operator "" _w(const unsigned long long value)
+    {
+        return word(value);
     }
 
 
@@ -691,6 +707,14 @@ namespace vm68k
     inline void swap(long_word &x, long_word &y) noexcept
     {
         x.swap(y);
+    }
+
+    /**
+     * Creates a `long_word` value as a literal.
+     */
+    constexpr long_word operator "" _l(const unsigned long long value)
+    {
+        return long_word(value);
     }
 }
 

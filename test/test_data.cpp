@@ -28,19 +28,18 @@
 #include <type_traits>
 #include <cstdint>
 
-using std::size_t;
-using std::ptrdiff_t;
+using std::distance;
 using std::int8_t;
 using std::int16_t;
 using std::int32_t;
+using std::is_constructible;
+using std::is_standard_layout;
+using std::is_trivial;
+using std::ptrdiff_t;
+using std::size_t;
 using std::uint8_t;
 using std::uint16_t;
 using std::uint32_t;
-using std::is_trivial;
-using std::is_standard_layout;
-using std::is_constructible;
-using std::is_assignable;
-using std::distance;
 using namespace vm68k;
 using CppUnit::TestFixture;
 

@@ -53,34 +53,32 @@ class DataStaticTests : public TestFixture
     CPPUNIT_TEST_SUITE_END();
 
 public:
+
     /// Tests the static properties of 'byte'.
     void testByteType()
     {
-        using T = byte;
-        CPPUNIT_ASSERT_EQUAL(true, is_trivial<T>::value);
-        CPPUNIT_ASSERT_EQUAL(true, is_standard_layout<T>::value);
-        CPPUNIT_ASSERT_EQUAL(true, (is_constructible<T, uint8_t>::value));
-        CPPUNIT_ASSERT_EQUAL(size_t(1), T::size());
+        CPPUNIT_ASSERT_EQUAL(true, is_trivial<byte>::value);
+        CPPUNIT_ASSERT_EQUAL(true, is_standard_layout<byte>::value);
+        CPPUNIT_ASSERT_EQUAL(true, (is_constructible<byte, uint8_t>::value));
+        CPPUNIT_ASSERT_EQUAL(size_t(1), byte::size());
     }
 
     /// Tests the static properties of 'word'.
     void testWordType()
     {
-        using T = word;
-        CPPUNIT_ASSERT_EQUAL(true, is_trivial<T>::value);
-        CPPUNIT_ASSERT_EQUAL(true, is_standard_layout<T>::value);
-        CPPUNIT_ASSERT_EQUAL(true, (is_constructible<T, uint16_t>::value));
-        CPPUNIT_ASSERT_EQUAL(size_t(2), T::size());
+        CPPUNIT_ASSERT_EQUAL(true, is_trivial<word>::value);
+        CPPUNIT_ASSERT_EQUAL(true, is_standard_layout<word>::value);
+        CPPUNIT_ASSERT_EQUAL(true, (is_constructible<word, uint16_t>::value));
+        CPPUNIT_ASSERT_EQUAL(size_t(2), word::size());
     }
 
     /// Tests the static properties of 'long_word'.
     void testLongWordType()
     {
-        using T = long_word;
-        CPPUNIT_ASSERT_EQUAL(true, is_trivial<T>::value);
-        CPPUNIT_ASSERT_EQUAL(true, is_standard_layout<T>::value);
-        CPPUNIT_ASSERT_EQUAL(true, (is_constructible<T, uint32_t>::value));
-        CPPUNIT_ASSERT_EQUAL(size_t(4), T::size());
+        CPPUNIT_ASSERT_EQUAL(true, is_trivial<long_word>::value);
+        CPPUNIT_ASSERT_EQUAL(true, is_standard_layout<long_word>::value);
+        CPPUNIT_ASSERT_EQUAL(true, (is_constructible<long_word, uint32_t>::value));
+        CPPUNIT_ASSERT_EQUAL(size_t(4), long_word::size());
     }
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(DataStaticTests);

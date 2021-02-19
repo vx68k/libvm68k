@@ -250,7 +250,7 @@ namespace vm68k
      */
     constexpr byte operator "" _b(const unsigned long long value)
     {
-        return byte(value);
+        return byte(static_cast<byte::uint_type>(value));
     }
 
 
@@ -480,7 +480,7 @@ namespace vm68k
      */
     constexpr word operator "" _w(const unsigned long long value)
     {
-        return word(value);
+        return word(static_cast<word::uint_type>(value));
     }
 
 
@@ -714,7 +714,7 @@ namespace vm68k
      */
     constexpr long_word operator "" _l(const unsigned long long value)
     {
-        return long_word(value);
+        return long_word(static_cast<long_word::uint_type>(value));
     }
 }
 

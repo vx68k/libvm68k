@@ -39,6 +39,8 @@ stages:
               extraProperties: |
                 sonar.cfamily.build-wrapper-output=build-wrapper-output
                 sonar.cfamily.gcov.reportsPath=.
+                sonar.cfamily.threads=2
+                sonar.cfamily.cache.enabled=false
           - bash: |
               curl -OL https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip &&
               unzip build-wrapper-linux-x86.zip

@@ -33,9 +33,6 @@ stages:
               SonarCloud: sonarcloud
               organization: vx68k
               scannerMode: CLI
-              configMode: manual
-              cliProjectKey: vx68k_libvm68k
-              cliSources: libvm68kapi, libvm68k
               extraProperties: |
                 sonar.cfamily.build-wrapper-output=build-wrapper-output
                 sonar.cfamily.gcov.reportsPath=.

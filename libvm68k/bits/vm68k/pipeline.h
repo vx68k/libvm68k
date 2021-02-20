@@ -27,24 +27,29 @@ namespace vm68k
     class _VM68K_PUBLIC pipeline
     {
     private:
+
         std::shared_ptr<instruction_decoder> _decoder;
 
     public:
+
+        // Constructors.
+
         explicit pipeline(const std::shared_ptr<instruction_decoder> &decoder);
         explicit pipeline(std::shared_ptr<instruction_decoder> &&decoder) noexcept;
 
         pipeline(const pipeline &) = default;
 
-    public:
+
+        // Destructor.
+
         virtual ~pipeline() = default;
 
-    public:
+
         const std::shared_ptr<instruction_decoder> &decoder() const noexcept
         {
             return _decoder;
         }
 
-    public:
         virtual void step();
     };
 }

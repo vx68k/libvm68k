@@ -1,5 +1,5 @@
 // <bits/vm68k/executor.h> -*- C++ -*-
-// Copyright (C) 2020 Kaz Nishimura
+// Copyright (C) 2020-2021 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -26,12 +26,22 @@ namespace vm68k
     class _VM68K_PUBLIC executor
     {
     public:
+
+        // Constructors.
+
         executor() = default;
 
         executor(const executor &) = delete;
 
-    public:
+
+        // Destructor.
+
         virtual ~executor() = default;
+
+
+        // Assignment operators.
+
+        void operator =(const executor &) = delete;
     };
 }
 

@@ -1,5 +1,5 @@
 // <bits/vm68k/pipeline.h>
-// Copyright (C) 2020 Kaz Nishimura
+// Copyright (C) 2020-2021 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -27,24 +27,28 @@ namespace vm68k
     class _VM68K_PUBLIC pipeline
     {
     private:
+
         std::shared_ptr<instruction_decoder> _decoder;
 
     public:
+
+        // Constructors.
+
         explicit pipeline(const std::shared_ptr<instruction_decoder> &decoder);
-        explicit pipeline(std::shared_ptr<instruction_decoder> &&decoder) noexcept;
 
         pipeline(const pipeline &) = default;
 
-    public:
+
+        // Destructor.
+
         virtual ~pipeline() = default;
 
-    public:
+
         const std::shared_ptr<instruction_decoder> &decoder() const noexcept
         {
             return _decoder;
         }
 
-    public:
         virtual void step();
     };
 }

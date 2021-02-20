@@ -1,5 +1,5 @@
 // <bits/vm68k/read_write_memory.h>
-// Copyright (C) 2012-2020 Kaz Nishimura
+// Copyright (C) 2012-2021 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -31,15 +31,19 @@ namespace vm68k
     class _VM68K_PUBLIC read_write_memory: public memory_map::memory
     {
     protected:
+
         using byte_type = unsigned char;
 
-    protected:
         class _VM68K_PUBLIC bytes_delete
         {
         private:
+
             size_t _size;
 
         public:
+
+            // Constructors.
+
             explicit constexpr bytes_delete(const std::size_t size) noexcept
             :
                 _size {size}
@@ -47,51 +51,53 @@ namespace vm68k
                 // Nothing more to do.
             }
 
-        public:
+
             void operator ()(byte_type *ptr) const;
         };
 
     private:
+
         const size_type _size;
 
-    private:
         address_type _base_address = 0;
 
-    private:
         std::unique_ptr<byte_type [], bytes_delete> _bytes;
 
     protected:
+
         static auto allocate_bytes(size_t size)
             -> std::unique_ptr<byte_type [], bytes_delete>;
 
     public:
+
+        // Constructors.
+
         explicit read_write_memory(size_type size);
 
-    public:
-        virtual ~read_write_memory();
 
-    public:
-        size_type size() const noexcept final override;
+        // Destructor.
 
-    public:
-        void relocate(address_type base_address) final override;
+        ~read_write_memory() override;
 
-    public:
+
+        size_type size() const noexcept override;
+
+        void relocate(address_type base_address) override;
+
         void read(function_code fc, address_type address, size_type n,
-            void *buffer) final override;
+            void *buffer) override;
 
-    public:
         void write(function_code fc, address_type address, size_type n,
-            const void *buffer) final override;
+            const void *buffer) override;
 
     protected:
+
         /// Checks read access on a region.
         ///
         /// This implementation does nothing.
         virtual void check_read_access(function_code fc,
             address_type address, size_type n);
 
-    protected:
         /// Checks write access on a region.
         ///
         /// This implementation does nothing.

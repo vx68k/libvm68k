@@ -1,5 +1,5 @@
 // test_data.cpp
-// Copyright (C) 2012-2020 Kaz Nishimura
+// Copyright (C) 2012-2021 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -19,9 +19,6 @@
 #if HAVE_CONFIG_H
 #include <config.h>
 #endif
-#if __BORLANDC__
-#pragma hdrstop
-#endif
 
 #include <vm68k/data>
 
@@ -31,19 +28,18 @@
 #include <type_traits>
 #include <cstdint>
 
-using std::size_t;
-using std::ptrdiff_t;
+using std::distance;
 using std::int8_t;
 using std::int16_t;
 using std::int32_t;
+using std::is_constructible;
+using std::is_standard_layout;
+using std::is_trivial;
+using std::ptrdiff_t;
+using std::size_t;
 using std::uint8_t;
 using std::uint16_t;
 using std::uint32_t;
-using std::is_trivial;
-using std::is_standard_layout;
-using std::is_constructible;
-using std::is_assignable;
-using std::distance;
 using namespace vm68k;
 using CppUnit::TestFixture;
 
@@ -57,34 +53,32 @@ class DataStaticTests : public TestFixture
     CPPUNIT_TEST_SUITE_END();
 
 public:
+
     /// Tests the static properties of 'byte'.
     void testByteType()
     {
-        using T = byte;
-        CPPUNIT_ASSERT_EQUAL(true, is_trivial<T>::value);
-        CPPUNIT_ASSERT_EQUAL(true, is_standard_layout<T>::value);
-        CPPUNIT_ASSERT_EQUAL(true, (is_constructible<T, uint8_t>::value));
-        CPPUNIT_ASSERT_EQUAL(size_t(1), T::size());
+        CPPUNIT_ASSERT_EQUAL(true, is_trivial<byte>::value);
+        CPPUNIT_ASSERT_EQUAL(true, is_standard_layout<byte>::value);
+        CPPUNIT_ASSERT_EQUAL(true, (is_constructible<byte, uint8_t>::value));
+        CPPUNIT_ASSERT_EQUAL(size_t(1), byte::size());
     }
 
     /// Tests the static properties of 'word'.
     void testWordType()
     {
-        using T = word;
-        CPPUNIT_ASSERT_EQUAL(true, is_trivial<T>::value);
-        CPPUNIT_ASSERT_EQUAL(true, is_standard_layout<T>::value);
-        CPPUNIT_ASSERT_EQUAL(true, (is_constructible<T, uint16_t>::value));
-        CPPUNIT_ASSERT_EQUAL(size_t(2), T::size());
+        CPPUNIT_ASSERT_EQUAL(true, is_trivial<word>::value);
+        CPPUNIT_ASSERT_EQUAL(true, is_standard_layout<word>::value);
+        CPPUNIT_ASSERT_EQUAL(true, (is_constructible<word, uint16_t>::value));
+        CPPUNIT_ASSERT_EQUAL(size_t(2), word::size());
     }
 
     /// Tests the static properties of 'long_word'.
     void testLongWordType()
     {
-        using T = long_word;
-        CPPUNIT_ASSERT_EQUAL(true, is_trivial<T>::value);
-        CPPUNIT_ASSERT_EQUAL(true, is_standard_layout<T>::value);
-        CPPUNIT_ASSERT_EQUAL(true, (is_constructible<T, uint32_t>::value));
-        CPPUNIT_ASSERT_EQUAL(size_t(4), T::size());
+        CPPUNIT_ASSERT_EQUAL(true, is_trivial<long_word>::value);
+        CPPUNIT_ASSERT_EQUAL(true, is_standard_layout<long_word>::value);
+        CPPUNIT_ASSERT_EQUAL(true, (is_constructible<long_word, uint32_t>::value));
+        CPPUNIT_ASSERT_EQUAL(size_t(4), long_word::size());
     }
 };
 CPPUNIT_TEST_SUITE_REGISTRATION(DataStaticTests);
@@ -99,42 +93,42 @@ class ByteTests : public TestFixture
     CPPUNIT_TEST_SUITE_END();
 
 private:
-    using T = byte;
 
-    T data;
+    byte data;
 
 public:
+
     void setUp() override
     {
-        data = T();
+        data = byte();
     }
 
     void testToInt()
     {
         CPPUNIT_ASSERT_EQUAL(int8_t(0), data.to_int());
-        data = T(0x01);
+        data = 0x01_b;
         CPPUNIT_ASSERT_EQUAL(int8_t(0x01), data.to_int());
-        data = T(0x7f);
+        data = 0x7f_b;
         CPPUNIT_ASSERT_EQUAL(int8_t(0x7f), data.to_int());
-        data = T(0x80);
+        data = 0x80_b;
         CPPUNIT_ASSERT_EQUAL(int8_t(-0x80), data.to_int());
     }
 
     void testToUint()
     {
         CPPUNIT_ASSERT_EQUAL(uint8_t(0), data.to_uint());
-        data = T(0x01);
+        data = 0x01_b;
         CPPUNIT_ASSERT_EQUAL(uint8_t(0x01), data.to_uint());
-        data = T(0x00);
+        data = 0x00_b;
         CPPUNIT_ASSERT_EQUAL(uint8_t(0x00), data.to_uint());
-        data = T(0xff);
+        data = 0xff_b;
         CPPUNIT_ASSERT_EQUAL(uint8_t(0xff), data.to_uint());
     }
 
     void testSerialize()
     {
-        data = T(0x81);
-        int serial[T::size()] = {};
+        data = 0x81_b;
+        int serial[byte::size()] = {};
         auto end = data.serialize(serial);
         CPPUNIT_ASSERT_EQUAL(ptrdiff_t(1), distance(serial, end));
         CPPUNIT_ASSERT_EQUAL(0x81, serial[0]);
@@ -161,42 +155,42 @@ class WordTests : public TestFixture
     CPPUNIT_TEST_SUITE_END();
 
 private:
-    using T = word;
 
-    T data;
+    word data;
 
 public:
+
     void setUp() override
     {
-        data = T();
+        data = word();
     }
 
     void testToInt()
     {
         CPPUNIT_ASSERT_EQUAL(int16_t(0), data.to_int());
-        data = T(0x0102);
+        data = 0x0102_w;
         CPPUNIT_ASSERT_EQUAL(int16_t(0x0102), data.to_int());
-        data = T(0x7fff);
+        data = 0x7fff_w;
         CPPUNIT_ASSERT_EQUAL(int16_t(0x7fff), data.to_int());
-        data = T(0x8000);
+        data = 0x8000_w;
         CPPUNIT_ASSERT_EQUAL(int16_t(-0x8000), data.to_int());
     }
 
     void testToUint()
     {
         CPPUNIT_ASSERT_EQUAL(uint16_t(0), data.to_uint());
-        data = T(0x0102);
+        data = 0x0102_w;
         CPPUNIT_ASSERT_EQUAL(uint16_t(0x0102), data.to_uint());
-        data = T(0x0000);
+        data = 0x0000_w;
         CPPUNIT_ASSERT_EQUAL(uint16_t(0x0000), data.to_uint());
-        data = T(0xffff);
+        data = 0xffff_w;
         CPPUNIT_ASSERT_EQUAL(uint16_t(0xffff), data.to_uint());
     }
 
     void testSerialize()
     {
-        data = T(0x8182);
-        int serial[T::size()] = {};
+        data = 0x8182_w;
+        int serial[word::size()] = {};
         auto end = data.serialize(serial);
         CPPUNIT_ASSERT_EQUAL(ptrdiff_t(2), distance(serial, end));
         CPPUNIT_ASSERT_EQUAL(0x81, serial[0]);
@@ -225,42 +219,42 @@ class LongWordTests : public TestFixture
     CPPUNIT_TEST_SUITE_END();
 
 private:
-    using T = long_word;
 
-    T data;
+    long_word data;
 
 public:
+
     void setUp() override
     {
-        data = T();
+        data = long_word();
     }
 
     void testToInt()
     {
         CPPUNIT_ASSERT_EQUAL(int32_t(0), data.to_int());
-        data = T(0x01020304);
+        data = 0x01020304_l;
         CPPUNIT_ASSERT_EQUAL(int32_t(0x01020304), data.to_int());
-        data = T(0x7fffffff);
+        data = 0x7fffffff_l;
         CPPUNIT_ASSERT_EQUAL(int32_t(0x7fffffff), data.to_int());
-        data = T(0x80000000);
+        data = 0x80000000_l;
         CPPUNIT_ASSERT_EQUAL(int32_t(-0x80000000), data.to_int());
     }
 
     void testToUint()
     {
         CPPUNIT_ASSERT_EQUAL(uint32_t(0), data.to_uint());
-        data = T(0x01020304);
+        data = 0x01020304_l;
         CPPUNIT_ASSERT_EQUAL(uint32_t(0x01020304), data.to_uint());
-        data = T(0x00000000);
+        data = 0x00000000_l;
         CPPUNIT_ASSERT_EQUAL(uint32_t(0x00000000), data.to_uint());
-        data = T(0xffffffff);
+        data = 0xffffffff_l;
         CPPUNIT_ASSERT_EQUAL(uint32_t(0xffffffff), data.to_uint());
     }
 
     void testSerialize()
     {
-        data = T(0x81828384);
-        int serial[T::size()] = {};
+        data = 0x81828384_l;
+        int serial[long_word::size()] = {};
         auto end = data.serialize(serial);
         CPPUNIT_ASSERT_EQUAL(ptrdiff_t(4), distance(serial, end));
         CPPUNIT_ASSERT_EQUAL(0x81, serial[0]);

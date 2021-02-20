@@ -35,13 +35,6 @@ pipeline::pipeline(const shared_ptr<instruction_decoder> &decoder)
     // Nothing more to do.
 }
 
-pipeline::pipeline(shared_ptr<instruction_decoder> &&decoder) noexcept
-:
-    _decoder {move(decoder)}
-{
-    // Nothing more to do.
-}
-
 void pipeline::step()
 {
     // TODO: implement this function.

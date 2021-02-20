@@ -1,5 +1,5 @@
 // <bits/vm68k/instruction_decoder.h>
-// Copyright (C) 2020 Kaz Nishimura
+// Copyright (C) 2020-2021 Kaz Nishimura
 //
 // This program is free software: you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
@@ -33,20 +33,27 @@ namespace vm68k
     class _VM68K_PUBLIC instruction_decoder
     {
     public:
+
         /**
          * Base class for instructions.
          */
         class _VM68K_PUBLIC instruction
         {
         protected:
+
+            // Constructors.
+
             instruction() = default;
 
             instruction(const instruction &) = default;
 
         public:
+
+            // Destructor.
+
             virtual ~instruction() = default;
 
-        public:
+
             /**
              * Decodes the instruction into an executor.
              *
@@ -58,15 +65,21 @@ namespace vm68k
         };
 
     private:
+
         std::array<std::shared_ptr<instruction>, 0x10000U> _instructions;
 
     public:
+
+        // Constructors.
+
         instruction_decoder();
 
-    public:
+
+        // Destructor.
+
         virtual ~instruction_decoder();
 
-    public:
+
         long_word decode_instruction(execution_context &c, executor &e) const;
     };
 }

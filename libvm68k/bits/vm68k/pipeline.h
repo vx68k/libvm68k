@@ -35,7 +35,6 @@ namespace vm68k
         // Constructors.
 
         explicit pipeline(const std::shared_ptr<instruction_decoder> &decoder);
-        explicit pipeline(std::shared_ptr<instruction_decoder> &&decoder) noexcept;
 
         pipeline(const pipeline &) = default;
 

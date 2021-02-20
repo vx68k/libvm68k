@@ -28,6 +28,14 @@ stages:
               echo '$(gpg.passphrase)' |
               sh ./setupkeys.sh '$(Keys.secureFilePath)'
             displayName: Set up signing keys
+          - task: SonarCloudPrepare@1
+            inputs:
+              SonarCloud: sonarcloud
+              organization: vx68k
+              scannerMode: CLI
+              configMode: manual
+              cliProjectKey: vx68k_libvm68k
+              cliSources: libvm68kapi, libvm68k
           - bash: |
               sudo apt-get install -q --no-install-recommends \
                 texinfo \

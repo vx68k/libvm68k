@@ -67,6 +67,7 @@ stages:
             displayName: Build
           - task: PublishTestResults@2
             condition: succeededOrFailed()
+          - task: SonarCloudAnalyze@1
           - bash: |
               make dist &&
               mkdir -p _dist &&

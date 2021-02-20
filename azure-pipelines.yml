@@ -38,6 +38,7 @@ stages:
               cliSources: libvm68kapi, libvm68k
               extraProperties: |
                 sonar.cfamily.build-wrapper-output=build-wrapper-output
+                sonar.cfamily.gcov.reportsPath=.
           - bash: |
               curl -OL https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip &&
               unzip build-wrapper-linux-x86.zip

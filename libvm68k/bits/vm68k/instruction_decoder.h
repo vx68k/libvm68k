@@ -45,13 +45,18 @@ namespace vm68k
 
             instruction() = default;
 
-            instruction(const instruction &) = default;
+            instruction(const instruction &) = delete;
 
         public:
 
             // Destructor.
 
             virtual ~instruction() = default;
+
+
+            // Assignment operators.
+
+            void operator =(const instruction &) = delete;
 
 
             /**

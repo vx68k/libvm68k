@@ -24,9 +24,6 @@
     <ClCompile Include="memory_map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="virtual_machine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="device_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -42,9 +39,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bits\vm68k\memory_map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bits\vm68k\virtual_machine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bits\vm68k\device_manager.h">

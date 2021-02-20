@@ -151,7 +151,6 @@
     <ClCompile Include="device_manager.cpp" />
     <ClCompile Include="memory_exception.cpp" />
     <ClCompile Include="memory_map.cpp" />
-    <ClCompile Include="virtual_machine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bits\vm68kapidef.h" />
@@ -159,7 +158,6 @@
     <ClInclude Include="bits\vm68k\device_manager.h" />
     <ClInclude Include="bits\vm68k\memory_exception.h" />
     <ClInclude Include="bits\vm68k\memory_map.h" />
-    <ClInclude Include="bits\vm68k\virtual_machine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

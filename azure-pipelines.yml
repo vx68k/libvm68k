@@ -6,8 +6,9 @@
 # this notice are preserved.  This file is offered as-is, without any warranty.
 ---
 variables:
-  package.distName: libvm68k-2-alpha.5
-  uploadRepository: kazssym/libvm68k
+  package.name: libvm68k
+  package.version: 2-alpha.5
+  upload.repository: kazssym/libvm68k
 trigger:
   - master
   - release/*
@@ -56,9 +57,9 @@ stages:
                 CXX="g++ -std=c++14" \
                 CFLAGS="-g -O2 -fprofile-arcs -ftest-coverage" \
                 CXXFLAGS="-g -O2 -fprofile-arcs -ftest-coverage"
-                status=$?
-                echo "##vso[task.uploadfile]`pwd`/config.log"
-                exit $status
+              status=$?
+              echo "##vso[task.uploadfile]`pwd`/config.log"
+              exit $status
             displayName: Configure
           - bash: |
               '$(Agent.TempDirectory)'/build-wrapper-linux-x86/build-wrapper-linux-x86-64 \
@@ -76,7 +77,7 @@ stages:
           - bash: |
               make dist &&
               mkdir -p _dist &&
-              mv -f '$(package.distName)'.* _dist/
+              mv -f '$(package.name)-$(package.version)'.* _dist/
             displayName: Make distributables
           - publish: _dist
             artifact: dist
@@ -101,7 +102,7 @@ stages:
           - download: current
             artifact: dist
           - bash: |
-              gzip -dc '$(Agent.BuildDirectory)'/dist/*.tar.gz |
+              gzip -dc '$(Agent.BuildDirectory)'/dist/'$(package.name)-$(package.version)'.tar.gz |
               tar -x --strip-components=1
             displayName: Unpack
           - bash: |
@@ -135,6 +136,8 @@ stages:
           - download: current
             artifact: dist
           - bash: |
-              sh ./upload.sh -u '$(bitbucket.username):$(bitbucket.password)' \
-                -r '$(uploadRepository)' '$(Agent.BuildDirectory)'/dist/*
+              sh ./upload.sh \
+                -u '$(bitbucket.username):$(bitbucket.password)' \
+                -r '$(upload.repository)' \
+                '$(Agent.BuildDirectory)'/dist/'$(package.name)-$(package.version)'.*
             displayName: Upload

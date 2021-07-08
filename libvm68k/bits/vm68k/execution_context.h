@@ -28,6 +28,11 @@
 
 namespace vm68k
 {
+#if _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4251)
+#endif
+
     /*
      * Execution contexts.
      */
@@ -246,6 +251,10 @@ namespace vm68k
             return function_code::data; // FIXME
         }
     };
+
+#if _MSC_VER
+#pragma warning(pop)
+#endif
 }
 
 #endif
